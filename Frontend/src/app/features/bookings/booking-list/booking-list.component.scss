@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:host { font-family: 'Inter', sans-serif; }
+
+.booking-list-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .header-left { display: flex; align-items: center; gap: 12px; }
+
+  .page-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    mat-icon { font-size: 2rem; width: 2rem; height: 2rem; color: #6c63ff; }
+  }
+
+  .total-badge {
+    background: linear-gradient(135deg, #6c63ff, #48cae4);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .add-btn {
+    background: linear-gradient(135deg, #6c63ff, #48cae4);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    height: 40px;
+    padding: 0 20px;
+  }
+}
+
+// ── Filter Card ───────────────────────────────────────────────────────────
+.filter-card {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  padding: 16px 20px;
+
+  .filter-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .search-field { flex: 1.5; min-width: 200px; }
+  .date-field   { flex: 1;   min-width: 150px; }
+  .clear-btn    { height: 40px; }
+}
+
+// ── Status buttons row ────────────────────────────────────────────────────
+.status-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.status-btn {
+  border-radius: 20px !important;
+  font-size: 0.8rem !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  padding: 0 14px !important;
+  transition: all 0.2s;
+  border: 1.5px solid transparent !important;
+  color: #666;
+
+  mat-icon { font-size: 0.9rem; width: 0.9rem; margin-right: 4px; vertical-align: middle; }
+
+  &.active, &:hover {
+    color: white !important;
+    background: linear-gradient(135deg, #6c63ff, #48cae4) !important;
+  }
+
+  &.status-btn-pending.active    { background: linear-gradient(135deg,#ff9800,#ffc107) !important; }
+  &.status-btn-confirmed.active  { background: linear-gradient(135deg,#6c63ff,#48cae4) !important; }
+  &.status-btn-checkedin.active  { background: linear-gradient(135deg,#4caf50,#009688) !important; }
+  &.status-btn-completed.active  { background: linear-gradient(135deg,#2196f3,#673ab7) !important; }
+  &.status-btn-cancelled.active  { background: linear-gradient(135deg,#e53935,#c62828) !important; }
+}
+
+// ── Table ─────────────────────────────────────────────────────────────────
+.table-card {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  overflow: hidden;
+  .table-wrapper { overflow-x: auto; }
+}
+
+.booking-table {
+  width: 100%;
+
+  th.mat-header-cell {
+    background: #f8f9ff;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    padding: 14px 12px;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  tr.table-row {
+    transition: background 0.15s;
+    &:hover { background: #f5f3ff; cursor: pointer; }
+  }
+
+  td.mat-cell { padding: 10px 12px; border-bottom: 1px solid #f3f3f3; }
+}
+
+// ── Booking ID ────────────────────────────────────────────────────────────
+.booking-id {
+  font-weight: 700;
+  color: #6c63ff;
+  font-size: 0.95rem;
+}
+
+// ── Guest cell ────────────────────────────────────────────────────────────
+.guest-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .guest-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c63ff, #48cae4);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .guest-info { display: flex; flex-direction: column; }
+  .guest-name { font-weight: 600; color: #222; font-size: 0.9rem; }
+  .guest-phone { font-size: 0.78rem; color: #888; }
+}
+
+// ── Room info cell ────────────────────────────────────────────────────────
+.room-info-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .room-type    { font-weight: 600; color: #333; font-size: 0.88rem; }
+  .room-numbers { font-size: 0.78rem; color: #888; background: #f5f5f5;
+                  padding: 1px 7px; border-radius: 10px; width: fit-content; }
+}
+
+// ── Dates cell ────────────────────────────────────────────────────────────
+.dates-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .date-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.83rem;
+    color: #444;
+  }
+
+  .date-icon {
+    font-size: 0.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    color: #6c63ff;
+  }
+}
+
+// ── Status badge ──────────────────────────────────────────────────────────
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  mat-icon { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; }
+}
+
+.status-pending    { background: #fff3e0; color: #e65100; }
+.status-confirmed  { background: #ede7f6; color: #512da8; }
+.status-checkedin  { background: #e8f5e9; color: #2e7d32; }
+.status-completed  { background: #e3f2fd; color: #1565c0; }
+.status-cancelled  { background: #ffebee; color: #b71c1c; }
+
+// ── Amount ────────────────────────────────────────────────────────────────
+.amount {
+  font-weight: 700;
+  color: #1a1a2e;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────
+.actions-header, .actions-cell {
+  text-align: right;
+  padding-right: 8px !important;
+}
+
+.btn-checkout { color: #4caf50; }
+.cancel-item { color: #d32f2f; mat-icon { color: #d32f2f; } }
+
+// ── Empty state ───────────────────────────────────────────────────────────
+.empty-cell { padding: 60px !important; }
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #bbb;
+  gap: 12px;
+
+  mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
+  p { font-size: 0.95rem; margin: 0; }
+}
+
+// ── Snackbar ──────────────────────────────────────────────────────────────
+::ng-deep .snack-success .mdc-snackbar__surface { background: #2e7d32 !important; }
+::ng-deep .snack-error   .mdc-snackbar__surface { background: #c62828 !important; }

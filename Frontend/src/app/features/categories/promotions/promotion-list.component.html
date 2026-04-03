@@ -1,0 +1,78 @@
+<div class="category-wrapper">
+  <div class="header-section">
+    <div>
+      <h2>Quản lý Mã giảm giá (Promotions)</h2>
+      <p>Cấu hình các chiến dịch chiết khấu và Voucher</p>
+    </div>
+    <button mat-flat-button class="add-btn" (click)="openEditDialog()">
+      <mat-icon>add</mat-icon> Thêm Voucher Mới
+    </button>
+  </div>
+
+  <mat-card class="glass-card">
+    <table mat-table [dataSource]="dataSource" class="premium-table">
+      <!-- Code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Mã Code </th>
+        <td mat-cell *matCellDef="let element"> 
+          <strong>{{element.code}}</strong>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Tên Chương Trình </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Discount Column -->
+      <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef> Mức giảm </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span class="price-tag">
+            {{element.discountType === 'Percentage' ? element.discountValue + '%' : (element.discountValue | currency:'VND')}}
+          </span> 
+        </td>
+      </ng-container>
+
+      <!-- Usage Column -->
+      <ng-container matColumnDef="usage">
+        <th mat-header-cell *matHeaderCellDef> Đã dùng </th>
+        <td mat-cell *matCellDef="let element"> 
+          {{element.usedCount}} / {{element.usageLimit > 0 ? element.usageLimit : '∞'}} 
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Trạng thái </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-chip" [class.active]="element.isActive && !element.isExpired">
+            {{element.isExpired ? 'Hết hạn' : (element.isActive ? 'Đang chạy' : 'Đã khóa')}}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-right"> Thao tác </th>
+        <td mat-cell *matCellDef="let element" class="text-right">
+          <button mat-icon-button color="primary" (click)="openEditDialog(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deletePromo(element.promotionId, element.code)" [disabled]="!element.isActive">
+            <mat-icon>block</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+    </table>
+
+    <div *ngIf="dataSource.length === 0 && !isLoading" class="empty-state">
+      <mat-icon>local_offer</mat-icon>
+      <p>Chưa có mã giảm giá nào được tạo.</p>
+    </div>
+  </mat-card>
+</div>

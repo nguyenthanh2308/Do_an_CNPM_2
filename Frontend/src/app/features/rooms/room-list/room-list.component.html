@@ -1,0 +1,179 @@
+<div class="room-list-container">
+
+  <!-- ── HEADER ─────────────────────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1 class="page-title">
+        <mat-icon>meeting_room</mat-icon>
+        Quản lý Phòng
+      </h1>
+      <span class="total-badge">{{ dataSource.filteredData.length }} phòng</span>
+    </div>
+    <button mat-raised-button color="primary" class="add-btn"
+            *ngIf="authService.isManagerOrAbove()">
+      <mat-icon>add</mat-icon> Thêm phòng
+    </button>
+  </div>
+
+  <!-- ── FILTER BAR ──────────────────────────────────────────────────────── -->
+  <mat-card class="filter-card">
+    <form [formGroup]="filterForm" class="filter-form">
+
+      <!-- Ô tìm kiếm -->
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Tìm kiếm</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput formControlName="search" placeholder="Số phòng, loại phòng...">
+        <button mat-icon-button matSuffix *ngIf="filterForm.get('search')?.value"
+                (click)="filterForm.patchValue({search: ''})">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Filter trạng thái bằng chip -->
+      <div class="status-filter">
+        <span class="filter-label">Trạng thái:</span>
+        <mat-chip-listbox>
+          <mat-chip-option *ngFor="let opt of statusOptions"
+                           [class]="opt.color"
+                           [selected]="filterForm.get('status')?.value === opt.value"
+                           (click)="onStatusChange(opt.value)">
+            {{ opt.label }}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <!-- Reset -->
+      <button mat-stroked-button (click)="clearFilters()" class="clear-btn">
+        <mat-icon>filter_alt_off</mat-icon> Xóa lọc
+      </button>
+    </form>
+  </mat-card>
+
+  <!-- ── LOADING ─────────────────────────────────────────────────────────── -->
+  <div class="loading-bar" *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+  </div>
+
+  <!-- ── TABLE ───────────────────────────────────────────────────────────── -->
+  <mat-card class="table-card">
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="dataSource" matSort class="room-table">
+
+        <!-- Số phòng -->
+        <ng-container matColumnDef="roomNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Số phòng</th>
+          <td mat-cell *matCellDef="let room">
+            <div class="room-number-cell">
+              <span class="room-num">{{ room.roomNumber }}</span>
+              <span class="floor-badge">Tầng {{ room.floor }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Tầng (ẩn vì đã gộp vào roomNumber) -->
+        <ng-container matColumnDef="floor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tầng</th>
+          <td mat-cell *matCellDef="let room">{{ room.floor }}</td>
+        </ng-container>
+
+        <!-- Loại phòng -->
+        <ng-container matColumnDef="roomTypeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Loại phòng</th>
+          <td mat-cell *matCellDef="let room">
+            <div class="room-type-cell">
+              <mat-icon class="type-icon">king_bed</mat-icon>
+              {{ room.roomTypeName }}
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Trạng thái -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
+          <td mat-cell *matCellDef="let room">
+            <div class="status-chip" [class]="getStatusClass(room.status)">
+              <mat-icon class="status-icon">{{ getStatusIcon(room.status) }}</mat-icon>
+              {{ getStatusLabel(room.status) }}
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Khách sạn -->
+        <ng-container matColumnDef="hotelName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Khách sạn</th>
+          <td mat-cell *matCellDef="let room">
+            <span class="hotel-name">{{ room.hotelName }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="actions-header">Thao tác</th>
+          <td mat-cell *matCellDef="let room" class="actions-cell">
+            <!-- Xem chi tiết -->
+            <button mat-icon-button color="primary" (click)="viewDetail(room)"
+                    matTooltip="Xem chi tiết">
+              <mat-icon>visibility</mat-icon>
+            </button>
+
+            <!-- Đổi trạng thái → Available (khi Dirty) -->
+            <button mat-icon-button color="accent"
+                    *ngIf="room.status === 'Dirty'"
+                    (click)="updateStatus(room, 'Available')"
+                    matTooltip="Đánh dấu sẵn sàng">
+              <mat-icon>check_circle</mat-icon>
+            </button>
+
+            <!-- Đổi trạng thái → Maintenance -->
+            <button mat-icon-button
+                    *ngIf="room.status === 'Available' && authService.isManagerOrAbove()"
+                    (click)="updateStatus(room, 'Maintenance')"
+                    matTooltip="Chuyển sang bảo trì"
+                    class="btn-warn">
+              <mat-icon>build</mat-icon>
+            </button>
+
+            <!-- Menu thêm -->
+            <button mat-icon-button [matMenuTriggerFor]="moreMenu"
+                    *ngIf="authService.isManagerOrAbove()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #moreMenu="matMenu">
+              <button mat-menu-item (click)="viewDetail(room)">
+                <mat-icon>edit</mat-icon> Chỉnh sửa
+              </button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item class="delete-item" (click)="deleteRoom(room)"
+                      [disabled]="room.status === 'Occupied'">
+                <mat-icon>block</mat-icon> Vô hiệu hóa
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            class="table-row" [class.occupied-row]="row.status === 'Occupied'">
+        </tr>
+
+        <!-- Empty state -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell empty-cell" [attr.colspan]="displayedColumns.length">
+            <div class="empty-state">
+              <mat-icon>search_off</mat-icon>
+              <p>Không tìm thấy phòng nào phù hợp</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]"
+                   [pageSize]="20"
+                   showFirstLastButtons
+                   class="table-paginator">
+    </mat-paginator>
+  </mat-card>
+</div>

@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:host { font-family: 'Inter', sans-serif; }
+
+// ── Layout ───────────────────────────────────────────────────────────────
+.room-list-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .header-left { display: flex; align-items: center; gap: 12px; }
+
+  .page-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    mat-icon { font-size: 2rem; width: 2rem; height: 2rem; color: #6c63ff; }
+  }
+
+  .total-badge {
+    background: linear-gradient(135deg, #6c63ff, #48cae4);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .add-btn {
+    background: linear-gradient(135deg, #6c63ff, #48cae4);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 20px;
+    height: 40px;
+  }
+}
+
+// ── Filter Card ───────────────────────────────────────────────────────────
+.filter-card {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  padding: 20px;
+
+  .filter-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .search-field { flex: 1; min-width: 200px; }
+
+  .status-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    .filter-label {
+      font-size: 0.85rem;
+      color: #666;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+  }
+
+  .clear-btn { height: 40px; border-radius: 8px; }
+}
+
+// ── Loading bar ───────────────────────────────────────────────────────────
+.loading-bar { border-radius: 4px; overflow: hidden; }
+
+// ── Table Card ────────────────────────────────────────────────────────────
+.table-card {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  overflow: hidden;
+
+  .table-wrapper { overflow-x: auto; }
+}
+
+.room-table {
+  width: 100%;
+
+  // Header
+  th.mat-header-cell {
+    background: #f8f9ff;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  // Row
+  tr.table-row {
+    transition: background 0.15s;
+    &:hover { background: #f5f3ff; }
+    &.occupied-row { background: #fff8f0; }
+  }
+
+  td.mat-cell { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+}
+
+// ── Room number cell ──────────────────────────────────────────────────────
+.room-number-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .room-num {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1a1a2e;
+  }
+
+  .floor-badge {
+    font-size: 0.72rem;
+    color: #888;
+    background: #f0f0f0;
+    padding: 1px 7px;
+    border-radius: 10px;
+    width: fit-content;
+  }
+}
+
+// ── Room type cell ────────────────────────────────────────────────────────
+.room-type-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: #444;
+
+  .type-icon { font-size: 1.1rem; width: 1.1rem; height: 1.1rem; color: #6c63ff; }
+}
+
+// ── Status chips ──────────────────────────────────────────────────────────
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  width: fit-content;
+
+  .status-icon { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; }
+}
+
+.chip-available   { background: #e8f5e9; color: #2e7d32; }
+.chip-occupied    { background: #fff3e0; color: #e65100; }
+.chip-dirty       { background: #fce4ec; color: #c62828; }
+.chip-maintenance { background: #e3f2fd; color: #1565c0; }
+.chip-out         { background: #f5f5f5; color: #616161; }
+
+// Filter chip trong mat-chip-listbox cũng dùng class trên
+mat-chip-option {
+  &.chip-available[aria-selected="true"]   { background: #2e7d32 !important; color: white !important; }
+  &.chip-occupied[aria-selected="true"]    { background: #e65100 !important; color: white !important; }
+  &.chip-dirty[aria-selected="true"]       { background: #c62828 !important; color: white !important; }
+  &.chip-maintenance[aria-selected="true"] { background: #1565c0 !important; color: white !important; }
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────
+.actions-header, .actions-cell { text-align: right; padding-right: 8px !important; }
+
+.btn-warn { color: #ff9800; }
+
+.delete-item { color: #d32f2f;
+  mat-icon { color: #d32f2f; }
+}
+
+// ── Hotel name ─────────────────────────────────────────────────────────────
+.hotel-name { color: #555; font-size: 0.88rem; }
+
+// ── Empty state ───────────────────────────────────────────────────────────
+.empty-cell { padding: 60px !important; }
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #bbb;
+  gap: 8px;
+
+  mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
+  p { font-size: 0.95rem; margin: 0; }
+}
+
+// ── Paginator ─────────────────────────────────────────────────────────────
+.table-paginator { border-top: 1px solid #f0f0f0; }
+
+// ── Snackbar ──────────────────────────────────────────────────────────────
+::ng-deep .snack-success .mdc-snackbar__surface { background: #2e7d32 !important; }
+::ng-deep .snack-error   .mdc-snackbar__surface { background: #c62828 !important; }

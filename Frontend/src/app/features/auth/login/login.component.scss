@@ -1,0 +1,211 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Aesthetic glowing orbs in the background
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+  }
+  
+  &::before {
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(99, 102, 241, 0.4); // Indigo glow
+  }
+
+  &::after {
+    bottom: -15%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(236, 72, 153, 0.3); // Pink glow
+  }
+}
+
+.login-glass-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 48px;
+  background: rgba(30, 41, 59, 0.6); // Semi-transparent dark slate
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+
+  .logo-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+
+      mat-icon {
+        color: white;
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    h1 {
+      color: #f8fafc;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    ::ng-deep {
+      // Modify Material Form Field for Dark Mode Glass Look
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: rgba(15, 23, 42, 0.5);
+        border-radius: 12px;
+      }
+
+      .mdc-line-ripple {
+        display: none; // Hide the standard underline
+      }
+
+      .mdc-text-field--filled, .mat-mdc-form-field-focus-overlay {
+        border-bottom: none;
+      }
+
+      // Input Text Color
+      .mdc-text-field .mdc-text-field__input {
+        color: #f8fafc !important;
+      }
+
+      // Placeholder/Label Color
+      .mat-mdc-form-field-floating-label {
+        color: #64748b;
+      }
+
+      // Focus Label Color
+      .mdc-text-field--focused .mdc-floating-label {
+        color: #818cf8;
+      }
+
+      // Icon Color
+      .mat-mdc-form-field-icon-prefix, .mat-mdc-form-field-icon-suffix {
+        color: #64748b;
+      }
+
+      .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
+        color: #475569;
+      }
+    }
+
+    .glass-input {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      transition: border-color 0.3s ease;
+
+      &.ng-invalid.ng-touched {
+        border-color: rgba(239, 68, 68, 0.5);
+      }
+      
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &:focus-within {
+        border-color: rgba(99, 102, 241, 0.5);
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+      }
+    }
+
+    .error-banner {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 4px solid #ef4444;
+      color: #fca5a5;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .submit-btn {
+      margin-top: 16px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+
+      &:hover:not([disabled]) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+      }
+
+      &:active:not([disabled]) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        background: #334155;
+        color: #94a3b8;
+        box-shadow: none;
+      }
+      
+      .spinner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

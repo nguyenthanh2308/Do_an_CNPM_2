@@ -1,0 +1,187 @@
+.admin-layout-container {
+  height: 100vh;
+  background-color: #f8fafc; // Light background for the main canvas, or use #0f172a for dark
+  // To match standard premium web apps, keep content light/clean but sidebar/header dark/glass
+}
+
+.glass-sidenav {
+  width: 260px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: #f8fafc;
+  border-right: none;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+
+  .sidenav-header {
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+
+      mat-icon {
+        color: #818cf8;
+        transform: scale(1.2);
+      }
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin: 0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding-left: 36px;
+    }
+  }
+
+  .nav-menu {
+    padding-top: 24px;
+
+    a[mat-list-item] {
+      color: #cbd5e1;
+      border-radius: 0 24px 24px 0;
+      margin: 8px 16px 8px 0;
+      transition: all 0.3s ease;
+
+      mat-icon {
+        color: #94a3b8;
+        transition: color 0.3s ease;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        
+        mat-icon {
+          color: #fff;
+        }
+      }
+
+      &.active-route {
+        background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.2) 100%);
+        color: #818cf8;
+        border-left: 4px solid #818cf8;
+
+        mat-icon {
+          color: #818cf8;
+        }
+      }
+    }
+  }
+
+  .sidenav-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+
+        .name {
+          font-weight: 600;
+          font-size: 14px;
+          color: #f8fafc;
+        }
+
+        .role {
+          font-size: 12px;
+          color: #94a3b8;
+        }
+      }
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.glass-toolbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+  color: #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0 24px;
+
+  .toggle-btn {
+    color: #64748b;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .notification-btn {
+    color: #64748b;
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+
+    &.ringing {
+      animation: bell-ring 0.5s ease-in-out infinite both;
+      color: #6366f1; // Highlight color when ringing
+    }
+  }
+
+  .logout-btn {
+    color: #ef4444;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.router-wrapper {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+// ── Micro-Animations ────────────────────────────────────────────────────────
+@keyframes bell-ring {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-15deg); }
+  30% { transform: rotate(10deg); }
+  40% { transform: rotate(-10deg); }
+  50% { transform: rotate(5deg); }
+  60% { transform: rotate(-5deg); }
+  70% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}

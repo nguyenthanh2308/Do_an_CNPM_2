@@ -1,0 +1,62 @@
+<mat-sidenav-container class="admin-layout-container">
+  
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="side" opened class="glass-sidenav">
+    <div class="sidenav-header">
+      <div class="logo">
+        <mat-icon>hotel</mat-icon>
+        <span>Antigravity</span>
+      </div>
+      <p class="subtitle">Hotel Manager</p>
+    </div>
+
+    <mat-nav-list class="nav-menu">
+      <a mat-list-item *ngFor="let item of filteredMenu" [routerLink]="item.route" routerLinkActive="active-route">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+    </mat-nav-list>
+
+    <div class="sidenav-footer">
+      <div class="user-info">
+        <div class="avatar">{{ userName.charAt(0).toUpperCase() }}</div>
+        <div class="details">
+          <span class="name">{{ userName }}</span>
+          <span class="role">{{ userRole }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content class="main-content">
+    
+    <!-- Topbar -->
+    <mat-toolbar class="glass-toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav" class="toggle-btn">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="spacer"></span>
+
+      <!-- Notification Bell -->
+      <button mat-icon-button class="notification-btn" [class.ringing]="isRinging" (click)="clearNotifications()">
+        <mat-icon [matBadge]="notificationCount > 0 ? notificationCount : null" matBadgeColor="warn">
+          notifications
+        </mat-icon>
+      </button>
+
+      <!-- Logout -->
+      <button mat-icon-button class="logout-btn" (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Router Outlet for Child Pages -->
+    <div class="router-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

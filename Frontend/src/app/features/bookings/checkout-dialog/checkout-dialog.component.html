@@ -1,0 +1,102 @@
+<div class="checkout-wrapper">
+  <h2 mat-dialog-title class="dialog-title">
+    <mat-icon class="title-icon">receipt_long</mat-icon> Trả Phòng & Thanh Toán
+  </h2>
+  
+  <mat-dialog-content>
+    <div class="booking-info">
+      <p><strong>Khách hàng:</strong> {{ data.guestName }}</p>
+      <p><strong>Phòng:</strong> {{ data.roomNumbers }}</p>
+    </div>
+
+    <form [formGroup]="checkoutForm" class="checkout-form">
+      <div class="split-layout">
+        
+        <!-- Left Column: Adjustments -->
+        <div class="left-col">
+          <h3>Điều chỉnh Hóa đơn</h3>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phụ phí (Minibar, Giặt ủi...)</mat-label>
+            <mat-icon matPrefix>add_shopping_cart</mat-icon>
+            <input matInput type="number" formControlName="surcharges">
+            <span matSuffix>VND</span>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Thuế VAT (%)</mat-label>
+            <mat-icon matPrefix>percent</mat-icon>
+            <input matInput type="number" formControlName="taxPercent">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Ghi chú Check-out</mat-label>
+            <mat-icon matPrefix>edit_note</mat-icon>
+            <textarea matInput formControlName="notes" rows="2"></textarea>
+          </mat-form-field>
+        </div>
+
+        <!-- Right Column: Summary & Payment -->
+        <div class="right-col invoice-summary">
+          <h3>Tổng thuật Hóa đơn</h3>
+          <div class="summary-line">
+             <span>Giá phòng ban đầu</span>
+             <span>{{ baseAmount | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          <div class="summary-line highlight" *ngIf="discount > 0">
+             <span>Chiết khấu Voucher</span>
+             <span>- {{ discount | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          <div class="summary-line warning" *ngIf="checkoutForm.get('surcharges')?.value > 0">
+             <span>Phụ phí dịch vụ</span>
+             <span>+ {{ checkoutForm.get('surcharges')?.value | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="summary-line">
+             <span>Thuế ({{ checkoutForm.get('taxPercent')?.value }}%)</span>
+             <span>+ {{ getTaxAmount() | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          
+          <div class="summary-line total-box">
+             <span>TỔNG THANH TOÁN</span>
+             <span class="final-price">{{ getFinalTotal() | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+
+          <!-- Payment Input -->
+          <div class="payment-section">
+            <div class="payment-row">
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>PT Thanh toán</mat-label>
+                <mat-select formControlName="paymentMethod">
+                  <mat-option value="Cash">Tiền mặt</mat-option>
+                  <mat-option value="CreditCard">Thẻ tín dụng</mat-option>
+                  <mat-option value="BankTransfer">Chuyển khoản</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Khách đưa (VND)</mat-label>
+                <input matInput type="number" formControlName="amountPaid">
+              </mat-form-field>
+            </div>
+            
+            <div class="change-line" [class.error]="getChangeAmount() < 0">
+              Tiền thừa trả khách: <strong>{{ getChangeAmount() | currency:'VND':'symbol':'1.0-0' }}</strong>
+              <button mat-icon-button type="button" class="auto-fill-btn" (click)="suggestAmount()" matTooltip="Điền đủ tiền">
+                <mat-icon>auto_fix_high</mat-icon>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button mat-dialog-close [disabled]="isLoading">Hủy</button>
+    <button mat-flat-button color="warn" (click)="onSubmit()" [disabled]="checkoutForm.invalid || isLoading" class="confirm-btn">
+      <mat-icon>shopping_cart_checkout</mat-icon> XÁC NHẬN THU TIỀN VÀ TRẢ PHÒNG
+    </button>
+  </mat-dialog-actions>
+</div>

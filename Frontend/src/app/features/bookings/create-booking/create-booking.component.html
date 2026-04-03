@@ -1,0 +1,140 @@
+<div class="booking-wizard-wrapper">
+  <div class="header">
+    <h2>Khởi tạo Đặt Phòng Mới</h2>
+    <p>Wizard hướng dẫn từng bước tạo Booking cho Khách hàng</p>
+  </div>
+
+  <mat-card class="glass-card">
+    <mat-stepper [linear]="isLinear" #stepper class="premium-stepper">
+      
+      <!-- Bước 1: Tra cứu thời gian & phòng -->
+      <mat-step [stepControl]="searchFormGroup">
+        <form [formGroup]="searchFormGroup">
+          <ng-template matStepLabel>Tìm & Chọn Phòng</ng-template>
+          
+          <div class="step-content">
+            <div class="form-row dates-row">
+              <mat-form-field appearance="fill" class="glass-input">
+                <mat-label>Ngày Check-in</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="checkInDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="glass-input">
+                <mat-label>Ngày Check-out</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="checkOutDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="glass-input small-input">
+                <mat-label>Số người</mat-label>
+                <input matInput type="number" formControlName="numGuests">
+              </mat-form-field>
+              
+              <button mat-flat-button class="search-btn" (click)="onSearchRooms()" [disabled]="roomsLoading">
+                <mat-icon>search</mat-icon> {{ roomsLoading ? 'Đang tìm...' : 'Tìm phòng trống' }}
+              </button>
+            </div>
+
+            <!-- Kết quả tìm phòng -->
+            <div class="room-results" *ngIf="availableRooms.length > 0">
+              <h4>Phòng trống phù hợp:</h4>
+              <mat-form-field appearance="fill" class="glass-input full-width">
+                <mat-label>Chọn phòng</mat-label>
+                <mat-select formControlName="roomId">
+                  <mat-option *ngFor="let room of availableRooms" [value]="room.roomId">
+                    Tầng {{ room.floor }} - Phòng {{ room.roomNumber }} ({{ room.roomTypeName }} - Tối đa {{ room.maxOccupancy }} người)
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="glass-input full-width mt-16">
+                <mat-label>Chọn Gói Giá (Rate Plan)</mat-label>
+                <mat-select formControlName="ratePlanId">
+                  <mat-option *ngFor="let plan of ratePlans" [value]="plan.ratePlanId">
+                    {{ plan.name }} - {{ plan.price | currency:'VND':'symbol':'1.0-0' }} / Đêm
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button mat-flat-button matStepperNext type="button" class="next-btn" [disabled]="searchFormGroup.invalid">Tiếp tục <mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Bước 2: Thông tin CRM & Ưu đãi -->
+      <mat-step [stepControl]="guestFormGroup">
+        <form [formGroup]="guestFormGroup">
+          <ng-template matStepLabel>Thông tin & Mã Giảm Giá</ng-template>
+          
+          <div class="step-content">
+            <mat-form-field appearance="fill" class="glass-input full-width">
+              <mat-label>ID Khách hàng (CRM)</mat-label>
+              <mat-icon matPrefix>badge</mat-icon>
+              <input matInput type="number" formControlName="guestId" placeholder="Nhập ID Khách định danh">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="glass-input full-width">
+              <mat-label>Yêu cầu Đặc biệt (Notes)</mat-label>
+              <mat-icon matPrefix>speaker_notes</mat-icon>
+              <textarea matInput formControlName="specialRequests" placeholder="Ví dụ: Cần nôi em bé, Dị ứng lông mèo..."></textarea>
+            </mat-form-field>
+
+            <div class="voucher-box">
+              <mat-form-field appearance="fill" class="glass-input flex-grow">
+                <mat-label>Mã Voucher / Khuyến mãi</mat-label>
+                <mat-icon matPrefix>local_offer</mat-icon>
+                <input matInput formControlName="voucherCode" placeholder="Nhập mã như SUMMER50">
+              </mat-form-field>
+              <button mat-stroked-button (click)="applyVoucher()" type="button" class="apply-btn">Áp dụng</button>
+            </div>
+            <p *ngIf="voucherMessage" class="voucher-msg" [class.error]="voucherMessage.includes('❌')">{{ voucherMessage }}</p>
+          </div>
+
+          <div class="step-actions">
+            <button mat-button matStepperPrevious type="button"><mat-icon>arrow_back</mat-icon> Quay lại</button>
+            <button mat-flat-button matStepperNext type="button" class="next-btn" [disabled]="guestFormGroup.invalid">Xác nhận Hóa đơn <mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- Bước 3: Hoàn tất & Submit -->
+      <mat-step>
+        <ng-template matStepLabel>Xác nhận Đặt phòng</ng-template>
+        
+        <div class="step-content invoice-summary">
+          <div class="summary-card">
+             <h3>Phác thảo Đơn giá Đặt phòng</h3>
+             <mat-divider></mat-divider>
+             <div class="summary-line">
+               <span>Tiền phòng (Tạm tính)</span>
+               <span>{{ getTempTotal() | currency:'VND':'symbol':'1.0-0' }}</span>
+             </div>
+             <div class="summary-line highlight" *ngIf="discountAmount > 0">
+               <span>Chiết khấu Voucher</span>
+               <span>- {{ discountAmount | currency:'VND':'symbol':'1.0-0' }}</span>
+             </div>
+             <mat-divider></mat-divider>
+             <div class="summary-line total">
+               <span>Tổng Cộng Tiền Khách Trả</span>
+               <span class="final-price">{{ getFinalTotal() | currency:'VND':'symbol':'1.0-0' }}</span>
+             </div>
+          </div>
+        </div>
+
+        <div class="step-actions mt-24">
+          <button mat-button matStepperPrevious type="button"><mat-icon>arrow_back</mat-icon> Xem lại Form</button>
+          <button mat-flat-button color="primary" class="submit-btn full-width" (click)="submitBooking()">
+            <mat-icon>check_circle</mat-icon> HOÀN TẤT ĐẶT PHÒNG
+          </button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </mat-card>
+</div>

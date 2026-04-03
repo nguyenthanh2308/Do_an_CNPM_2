@@ -1,0 +1,65 @@
+<div class="login-container">
+  <div class="login-glass-card">
+    
+    <div class="logo-header">
+      <div class="icon-wrapper" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">
+        <mat-icon>person_add</mat-icon>
+      </div>
+      <h1>Create Account</h1>
+      <p>Join Antigravity Hotel Manager</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login-form">
+      
+      <div *ngIf="errorMessage" class="error-banner">
+        <mat-icon style="vertical-align: middle; margin-right: 4px; font-size: 20px;">error_outline</mat-icon>
+        {{ errorMessage }}
+      </div>
+
+      <mat-form-field appearance="fill" class="glass-input">
+        <mat-label>Full Name</mat-label>
+        <mat-icon matPrefix>badge</mat-icon>
+        <input matInput formControlName="fullName" type="text" placeholder="John Doe">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="glass-input">
+        <mat-label>Email address</mat-label>
+        <mat-icon matPrefix>email</mat-icon>
+        <input matInput formControlName="email" type="email" placeholder="name@company.com">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="glass-input">
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="••••••••">
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="glass-input">
+        <mat-label>Confirm Password</mat-label>
+        <mat-icon matPrefix>lock_reset</mat-icon>
+        <input matInput formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="••••••••">
+        <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword">
+          <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.hasError('passwordsNotMatch')">Passwords do not match</mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button class="submit-btn" type="submit" [disabled]="registerForm.invalid || isLoading" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">
+        <span *ngIf="!isLoading">Register</span>
+        <div *ngIf="isLoading" class="spinner-container">
+          <mat-spinner diameter="24" color="accent"></mat-spinner>
+        </div>
+      </button>
+
+      <div style="text-align: center; margin-top: 16px;">
+        <a routerLink="/login" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.3s;">
+          Already have an account? <span style="color: #60a5fa;">Sign in</span>
+        </a>
+      </div>
+    </form>
+
+  </div>
+</div>
