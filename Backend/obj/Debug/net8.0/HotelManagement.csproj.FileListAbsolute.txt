@@ -145,3 +145,4 @@ C:\Users\MSI\source\Do_An_2\Backend\obj\Debug\net8.0\refint\HotelManagement.dll
 C:\Users\MSI\source\Do_An_2\Backend\obj\Debug\net8.0\HotelManagement.pdb
 C:\Users\MSI\source\Do_An_2\Backend\obj\Debug\net8.0\HotelManagement.genruntimeconfig.cache
 C:\Users\MSI\source\Do_An_2\Backend\obj\Debug\net8.0\ref\HotelManagement.dll
+C:\Users\MSI\source\Do_An_2\Backend\obj\Debug\net8.0\HotelManagement.sourcelink.json

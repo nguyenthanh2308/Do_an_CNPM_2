@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RatePlanService } from '../../../../core/services/rate-plan.service';
+import { RatePlanService } from '../../../core/services/rate-plan.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,7 +37,7 @@ export class RatePlanListComponent implements OnInit {
   loadData() {
     this.isLoading = true;
     this.ratePlanService.getAll().subscribe({
-      next: (res) => {
+      next: (res: any) => {
         this.dataSource = res.data;
         this.isLoading = false;
       },

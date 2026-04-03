@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PromotionService } from '../../../../core/services/promotion.service';
+import { PromotionService } from '../../../core/services/promotion.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,7 +37,7 @@ export class PromotionListComponent implements OnInit {
   loadData() {
     this.isLoading = true;
     this.promotionService.getAll().subscribe({
-      next: (res) => {
+      next: (res: any) => {
         // Handle PagedResult
         this.dataSource = res.data.data;
         this.isLoading = false;

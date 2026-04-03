@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseChartDirective } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartType, Chart, registerables } from 'chart.js';
-import { ReportService } from '../../../core/services/report.service';
+import { ReportService } from '../../core/services/report.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -15,7 +15,7 @@ Chart.register(...registerables);
   standalone: true,
   imports: [
     CommonModule,
-    BaseChartDirective,
+    NgChartsModule,
     MatCardModule,
     MatIconModule,
     MatProgressSpinnerModule

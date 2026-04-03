@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BookingService } from '../../../core/services/booking.service';
@@ -24,7 +25,7 @@ import { RatePlanService } from '../../../core/services/rate-plan.service';
     CommonModule, ReactiveFormsModule, MatStepperModule,
     MatFormFieldModule, MatInputModule, MatButtonModule,
     MatSelectModule, MatDatepickerModule, MatNativeDateModule,
-    MatIconModule, MatCardModule
+    MatIconModule, MatCardModule, MatDividerModule
   ],
   templateUrl: './create-booking.component.html',
   styleUrl: './create-booking.component.scss'
