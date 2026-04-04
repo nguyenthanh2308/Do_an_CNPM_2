@@ -1,0 +1,157 @@
+<div class="hk-page">
+
+  <!-- ── Page Header ──────────────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="header-left">
+      <div class="header-icon">🧹</div>
+      <div>
+        <h1 class="page-title">Housekeeping Board</h1>
+        <p class="page-subtitle">Quản lý công việc dọn phòng & bảo trì realtime</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <!-- Filter by Type -->
+      <form [formGroup]="filterForm" class="filter-bar">
+        <select formControlName="taskType" class="filter-select" id="taskTypeFilter">
+          <option *ngFor="let opt of taskTypeOptions" [value]="opt.value">{{ opt.label }}</option>
+        </select>
+      </form>
+
+      <!-- Refresh -->
+      <button class="btn-refresh" (click)="loadTasks()" matTooltip="Làm mới">
+        <span class="refresh-icon" [class.spinning]="isLoading">↻</span>
+        Làm mới
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Summary Stats ─────────────────────────────────────────────────── -->
+  <div class="stats-row">
+    <div class="stat-chip pending-chip">
+      <span class="stat-num">{{ getColumnCount('Pending') }}</span>
+      <span class="stat-label">Chờ thực hiện</span>
+    </div>
+    <div class="stat-chip progress-chip">
+      <span class="stat-num">{{ getColumnCount('InProgress') }}</span>
+      <span class="stat-label">Đang thực hiện</span>
+    </div>
+    <div class="stat-chip done-chip">
+      <span class="stat-num">{{ getColumnCount('Completed') }}</span>
+      <span class="stat-label">Hoàn thành</span>
+    </div>
+    <div class="stat-chip total-chip">
+      <span class="stat-num">{{ allTasks.length }}</span>
+      <span class="stat-label">Tổng cộng</span>
+    </div>
+  </div>
+
+  <!-- ── Loading State ─────────────────────────────────────────────────── -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Đang tải dữ liệu...</p>
+  </div>
+
+  <!-- ── Kanban Board ──────────────────────────────────────────────────── -->
+  <div *ngIf="!isLoading" class="kanban-board">
+    <div
+      *ngFor="let col of columns"
+      class="kanban-column"
+      [ngClass]="col.colorClass"
+    >
+      <!-- Column Header -->
+      <div class="col-header">
+        <div class="col-title-wrap">
+          <span class="col-icon">{{ col.icon === 'schedule' ? '⏳' : col.icon === 'autorenew' ? '🔄' : '✅' }}</span>
+          <span class="col-title">{{ col.label }}</span>
+        </div>
+        <span class="col-count">{{ getColumnCount(col.status) }}</span>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="getTasksByStatus(col.status).length === 0" class="empty-col">
+        <span class="empty-icon">📭</span>
+        <p>Không có task</p>
+      </div>
+
+      <!-- Task Cards -->
+      <div class="cards-container">
+        <div
+          *ngFor="let task of getTasksByStatus(col.status)"
+          class="task-card"
+          [ngClass]="getPriorityClass(task.priority)"
+        >
+          <!-- Card Header-->
+          <div class="card-header">
+            <div class="room-badge">
+              <span class="room-icon">🛏️</span>
+              <span class="room-num">Phòng {{ task.roomNumber }}</span>
+              <span class="floor-tag">Tầng {{ task.floor }}</span>
+            </div>
+            <span class="priority-badge" [ngClass]="getPriorityClass(task.priority)">
+              {{ getPriorityLabel(task.priority) }}
+            </span>
+          </div>
+
+          <!-- Task Type -->
+          <div class="task-type">
+            <span class="type-icon">{{ getTypeIcon(task.taskType) }}</span>
+            <span class="type-label">{{ getTypeLabel(task.taskType) }}</span>
+            <span class="room-type">· {{ task.roomTypeName }}</span>
+          </div>
+
+          <!-- Notes -->
+          <div *ngIf="task.notes" class="task-notes">
+            📝 {{ task.notes }}
+          </div>
+
+          <!-- Assignee & Time -->
+          <div class="card-meta">
+            <span class="assignee">
+              👤 {{ task.assignedToUserName || 'Chưa phân công' }}
+            </span>
+            <span class="time-ago">{{ getTimeAgo(task.createdAt) }}</span>
+          </div>
+
+          <!-- ── Actions ────────────────────────────────────────────── -->
+          <div class="card-actions">
+
+            <!-- Confirm Maintenance Done (special button) -->
+            <button
+              *ngIf="isMaintenanceInProgress(task)"
+              class="btn-maintenance"
+              (click)="confirmMaintenanceDone(task)"
+              matTooltip="Xác nhận bảo trì hoàn thành & phòng về Available"
+            >
+              🔧 Xác nhận bảo trì xong
+            </button>
+
+            <div class="action-row" *ngIf="!isMaintenanceInProgress(task)">
+              <!-- Move Back -->
+              <button
+                *ngIf="canMovePrev(task.status)"
+                class="btn-action btn-prev"
+                (click)="moveToPrev(task)"
+                matTooltip="Chuyển về bước trước"
+              >
+                ← Quay lại
+              </button>
+
+              <!-- Move Forward -->
+              <button
+                *ngIf="canMoveNext(task.status)"
+                class="btn-action btn-next"
+                (click)="moveToNext(task)"
+                matTooltip="{{ task.status === 'Pending' ? 'Bắt đầu thực hiện' : 'Đánh dấu hoàn thành' }}"
+              >
+                {{ task.status === 'Pending' ? '▶ Bắt đầu' : '✔ Hoàn thành' }}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- end cards-container -->
+    </div><!-- end kanban-column -->
+  </div><!-- end kanban-board -->
+
+</div><!-- end hk-page -->

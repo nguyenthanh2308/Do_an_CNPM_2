@@ -38,13 +38,14 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   private taskSub?: Subscription;
 
   menuItems = [
-    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard', roles: ['Manager', 'Admin'] },
-    { label: 'Room List', icon: 'meeting_room', route: '/rooms', roles: ['Admin', 'Manager', 'Receptionist', 'Housekeeping'] },
-    { label: 'Bookings', icon: 'book_online', route: '/bookings', roles: ['Admin', 'Manager', 'Receptionist'] },
-    { label: 'Invoices', icon: 'receipt_long', route: '/invoices', roles: ['Admin', 'Manager', 'Receptionist'] },
-    { label: 'Guests', icon: 'group', route: '/guests', roles: ['Admin', 'Manager', 'Receptionist'] },
-    { label: 'Rate Plans', icon: 'price_change', route: '/rate-plans', roles: ['Admin', 'Manager'] },
-    { label: 'Promotions', icon: 'local_offer', route: '/promotions', roles: ['Admin', 'Manager'] }
+    { label: 'Dashboard',    icon: 'dashboard',         route: '/dashboard',    roles: ['Manager', 'Admin'] },
+    { label: 'Room List',    icon: 'meeting_room',      route: '/rooms',        roles: ['Admin', 'Manager', 'Receptionist', 'Housekeeping'] },
+    { label: 'Bookings',     icon: 'book_online',       route: '/bookings',     roles: ['Admin', 'Manager', 'Receptionist'] },
+    { label: 'Housekeeping', icon: 'cleaning_services', route: '/housekeeping', roles: ['Admin', 'Manager', 'Housekeeping'] },
+    { label: 'Invoices',     icon: 'receipt_long',      route: '/invoices',     roles: ['Admin', 'Manager', 'Receptionist'] },
+    { label: 'Guests',       icon: 'group',             route: '/guests',       roles: ['Admin', 'Manager', 'Receptionist'] },
+    { label: 'Rate Plans',   icon: 'price_change',      route: '/rate-plans',   roles: ['Admin', 'Manager'] },
+    { label: 'Promotions',   icon: 'local_offer',       route: '/promotions',   roles: ['Admin', 'Manager'] }
   ];
 
   filteredMenu: any[] = [];

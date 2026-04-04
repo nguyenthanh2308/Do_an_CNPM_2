@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi tiết phòng — LuxStay</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🏨</div><span>LuxStay</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="search.html">← Quay lại tìm kiếm</a></li>
+    </ul>
+    <a href="search.html" class="btn-book-nav">← Kết quả tìm kiếm</a>
+  </div>
+</nav>
+
+<div style="padding-top:80px;min-height:100vh;background:var(--bg);" id="pageContent">
+  <!-- Loading -->
+  <div id="loadingState" class="spinner-center">
+    <div class="spinner"></div>
+    <p>Đang tải thông tin phòng...</p>
+  </div>
+
+  <!-- Room Detail -->
+  <div id="roomDetail" class="hidden">
+    <div class="container" style="padding-top:40px;padding-bottom:80px;">
+
+      <!-- Breadcrumb -->
+      <div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:24px;">
+        <a href="index.html" style="color:var(--text-muted)">Trang chủ</a>
+        <span style="margin:0 8px">›</span>
+        <a href="search.html" style="color:var(--text-muted)">Tìm phòng</a>
+        <span style="margin:0 8px">›</span>
+        <span id="breadcrumbRoom" style="color:var(--primary-l)">Chi tiết phòng</span>
+      </div>
+
+      <div class="grid-2" style="gap:40px;align-items:start;">
+
+        <!-- LEFT: Images + Info -->
+        <div>
+          <!-- Main Image -->
+          <div style="border-radius:var(--radius);overflow:hidden;aspect-ratio:16/10;background:var(--surface-2);margin-bottom:12px;">
+            <img id="mainImg" src="" alt="Room" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <!-- Thumbnail Row -->
+          <div id="thumbRow" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px;"></div>
+
+          <!-- Info -->
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+            <h1 id="roomName" style="font-size:1.6rem;color:var(--text);margin-bottom:12px;">Phòng</h1>
+
+            <div id="roomMetaRow" style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px;"></div>
+
+            <div class="divider"></div>
+
+            <h3 style="font-family:Inter,sans-serif;color:var(--text);margin-bottom:12px;">Tiện nghi phòng</h3>
+            <div id="amenitiesRow" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+
+            <div class="divider"></div>
+
+            <h3 style="font-family:Inter,sans-serif;color:var(--text);margin-bottom:8px;">Mô tả</h3>
+            <p id="roomDesc" style="font-size:0.9rem;line-height:1.7;"></p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Booking Box -->
+        <div style="position:sticky;top:100px;">
+          <div style="background:var(--surface);border:1px solid var(--border-l);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-lg);">
+            <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:20px;">
+              <span id="priceMain" style="font-size:2rem;font-weight:800;color:var(--primary-l);"></span>
+              <span style="color:var(--text-dim);font-size:0.9rem;">/đêm</span>
+            </div>
+
+            <!-- Dates summary -->
+            <div style="background:var(--surface-2);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:4px;">Nhận phòng</div>
+                  <div id="ciDisplay" style="font-weight:600;font-size:0.9rem;color:var(--text);"></div>
+                </div>
+                <div>
+                  <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:4px;">Trả phòng</div>
+                  <div id="coDisplay" style="font-weight:600;font-size:0.9rem;color:var(--text);"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-box" style="margin-bottom:20px;">
+              <div class="summary-row"><span class="label">Giá/đêm</span><span class="value" id="priceRow">-</span></div>
+              <div class="summary-row"><span class="label">Số đêm</span><span class="value" id="nightsRow">-</span></div>
+              <div class="summary-row total"><span class="label">Tổng tiền</span><span class="value" id="totalRow">-</span></div>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-lg" id="bookBtn" onclick="proceedToBook()">
+              🏨 Đặt phòng ngay
+            </button>
+            <p style="font-size:0.75rem;text-align:center;color:var(--text-dim);margin-top:10px;">
+              ✅ Xác nhận ngay lập tức · Không tính phụ phí
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/room.js"></script>
+</body>
+</html>

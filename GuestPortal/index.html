@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuxStay — Đặt phòng khách sạn cao cấp</title>
+  <meta name="description" content="Khám phá và đặt phòng khách sạn cao cấp trực tuyến. Giá tốt nhất, dịch vụ 5 sao, đặt phòng nhanh chóng và dễ dàng." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏨</text></svg>" />
+</head>
+<body>
+
+<!-- ── Toast ─────────────────────────────────────────────────────────── -->
+<div id="toast" class="toast" role="alert"></div>
+
+<!-- ── Navbar ────────────────────────────────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🏨</div>
+      <span>LuxStay</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="search.html">Tìm phòng</a></li>
+      <li><a href="#features">Tiện ích</a></li>
+      <li><a href="#about">Về chúng tôi</a></li>
+    </ul>
+    <a href="search.html" class="btn-book-nav">Đặt phòng ngay</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="container" style="width:100%">
+    <div class="hero-content">
+      <div class="hero-badge">✨ Trải nghiệm đẳng cấp 5 sao</div>
+      <h1>Kỳ nghỉ hoàn hảo<br><span class="gradient-text">bắt đầu từ đây</span></h1>
+      <p class="hero-sub">Khám phá và đặt phòng khách sạn cao cấp. Hơn 50 loại phòng sang trọng, dịch vụ tận tâm 24/7.</p>
+
+      <!-- ── Search Box ──────────────────────────────────────────────── -->
+      <div class="search-glass" style="margin-top:40px; max-width:900px; margin-left:auto; margin-right:auto;">
+        <form id="heroSearchForm" class="search-grid">
+          <div class="field-group">
+            <label for="checkIn">📅 Ngày nhận phòng</label>
+            <input type="date" id="checkIn" name="checkIn" required />
+          </div>
+          <div class="field-group">
+            <label for="checkOut">📅 Ngày trả phòng</label>
+            <input type="date" id="checkOut" name="checkOut" required />
+          </div>
+          <div class="field-group">
+            <label for="guests">👥 Số khách</label>
+            <select id="guests" name="guests">
+              <option value="1">1 khách</option>
+              <option value="2" selected>2 khách</option>
+              <option value="3">3 khách</option>
+              <option value="4">4 khách</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-search" id="heroSearchBtn" style="height:46px; align-self:end;">
+            🔍 Tìm phòng
+          </button>
+        </form>
+      </div>
+      <!-- stats row -->
+      <div style="display:flex;gap:40px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+        <div style="text-align:center">
+          <div style="font-size:1.8rem;font-weight:800;color:#a78bfa" id="statRooms">50+</div>
+          <div style="font-size:0.8rem;color:#64748b;">Loại phòng</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:1.8rem;font-weight:800;color:#60a5fa">4.9⭐</div>
+          <div style="font-size:0.8rem;color:#64748b;">Đánh giá</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:1.8rem;font-weight:800;color:#34d399">24/7</div>
+          <div style="font-size:0.8rem;color:#64748b;">Hỗ trợ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     FEATURED ROOMS
+═══════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="rooms" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">🛏 Phòng nổi bật</div>
+      <h2>Lựa chọn <span class="gradient-text">sang trọng</span></h2>
+      <p>Khám phá các loại phòng được thiết kế tinh tế với đầy đủ tiện nghi hiện đại</p>
+    </div>
+    <div id="featuredRooms" class="grid-3">
+      <!-- Skeleton loaders -->
+      <div class="card" style="height:340px"><div class="skeleton" style="height:100%"></div></div>
+      <div class="card" style="height:340px"><div class="skeleton" style="height:100%"></div></div>
+      <div class="card" style="height:340px"><div class="skeleton" style="height:100%"></div></div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="search.html" class="btn btn-outline btn-lg">Xem tất cả phòng →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     FEATURES
+═══════════════════════════════════════════════════════════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">⭐ Tại sao chọn chúng tôi</div>
+      <h2>Trải nghiệm <span class="gradient-text">đẳng cấp</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal" style="padding:32px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:16px">🏆</div>
+        <h3 style="font-family:Inter,sans-serif;margin-bottom:8px;color:var(--text)">Giá tốt nhất</h3>
+        <p style="font-size:0.875rem">Cam kết giá tốt nhất thị trường, không phí ẩn, đặt phòng trực tiếp.</p>
+      </div>
+      <div class="card reveal" style="padding:32px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:16px">⚡</div>
+        <h3 style="font-family:Inter,sans-serif;margin-bottom:8px;color:var(--text)">Đặt phòng nhanh</h3>
+        <p style="font-size:0.875rem">Chỉ 3 bước đơn giản, xác nhận ngay tức thì, không cần chờ đợi.</p>
+      </div>
+      <div class="card reveal" style="padding:32px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:16px">🛡️</div>
+        <h3 style="font-family:Inter,sans-serif;margin-bottom:8px;color:var(--text)">An toàn & Bảo mật</h3>
+        <p style="font-size:0.875rem">Thông tin cá nhân được bảo vệ tuyệt đối. Thanh toán an toàn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════════════════════════════════════ -->
+<section style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(14,165,233,0.1));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 0;text-align:center;">
+  <div class="container">
+    <h2 class="reveal" style="color:var(--text);margin-bottom:16px">Sẵn sàng cho chuyến đi?</h2>
+    <p class="reveal" style="margin-bottom:32px;font-size:1rem">Đặt phòng ngay hôm nay và nhận ưu đãi đặc biệt cho khách đặt trực tiếp</p>
+    <a href="search.html" class="btn btn-primary btn-lg reveal">🏨 Đặt phòng ngay</a>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────── -->
+<footer style="background:var(--surface);border-top:1px solid var(--border);padding:40px 0;text-align:center;color:var(--text-dim);font-size:0.85rem;">
+  <div class="container">
+    <div class="nav-logo" style="justify-content:center;margin-bottom:16px;">
+      <div class="logo-icon">🏨</div>
+      <span style="color:var(--text);font-family:'Playfair Display',serif;font-size:1.2rem;">LuxStay</span>
+    </div>
+    <p>© 2025 LuxStay Hotel. Hệ thống quản lý khách sạn cao cấp.</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tìm phòng trống — LuxStay</title>
+  <meta name="description" content="Tìm kiếm phòng trống theo ngày check-in, check-out và số khách. Đặt phòng ngay." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🏨</div>
+      <span>LuxStay</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="search.html">Tìm phòng</a></li>
+    </ul>
+    <a href="index.html" class="btn-book-nav">← Trang chủ</a>
+  </div>
+</nav>
+
+<!-- ── Page Content ───────────────────────────────────────────────────── -->
+<div style="padding-top:80px; min-height:100vh; background:var(--bg);">
+
+  <!-- Search Bar -->
+  <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:24px 0;">
+    <div class="container">
+      <form id="searchForm" class="search-grid">
+        <div class="field-group">
+          <label for="checkIn">📅 Nhận phòng</label>
+          <input type="date" id="checkIn" name="checkIn" required />
+        </div>
+        <div class="field-group">
+          <label for="checkOut">📅 Trả phòng</label>
+          <input type="date" id="checkOut" name="checkOut" required />
+        </div>
+        <div class="field-group">
+          <label for="guests">👥 Số khách</label>
+          <select id="guests" name="guests">
+            <option value="1">1 khách</option>
+            <option value="2" selected>2 khách</option>
+            <option value="3">3 khách</option>
+            <option value="4">4 khách</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:end;height:46px;" id="searchBtn">
+          🔍 Tìm kiếm
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:32px;padding-bottom:64px;">
+
+    <!-- Result Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h2 style="font-family:Inter,sans-serif;font-size:1.2rem;color:var(--text);margin:0;" id="resultTitle">
+          Đang tìm phòng...
+        </h2>
+        <p style="font-size:0.85rem;margin:4px 0 0;" id="resultSub"></p>
+      </div>
+      <!-- Sort -->
+      <select id="sortSelect" class="filter-select">
+        <option value="price_asc">Giá tăng dần</option>
+        <option value="price_desc">Giá giảm dần</option>
+        <option value="floor_asc">Tầng thấp nhất</option>
+        <option value="floor_desc">Tầng cao nhất</option>
+      </select>
+    </div>
+
+    <!-- Rooms Grid -->
+    <div id="roomsGrid" class="grid-3">
+      <div class="card" style="height:320px"><div class="skeleton" style="height:100%"></div></div>
+      <div class="card" style="height:320px"><div class="skeleton" style="height:100%"></div></div>
+      <div class="card" style="height:320px"><div class="skeleton" style="height:100%"></div></div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="hidden" style="text-align:center;padding:80px 0;">
+      <div style="font-size:3.5rem;margin-bottom:16px;">🔍</div>
+      <h3 style="color:var(--text);font-family:Inter,sans-serif;margin-bottom:8px;">Không tìm thấy phòng</h3>
+      <p>Vui lòng thay đổi ngày hoặc số khách và thử lại.</p>
+      <a href="index.html" class="btn btn-primary" style="margin-top:24px;">← Về trang chủ</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

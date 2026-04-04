@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đặt phòng — LuxStay</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🏨</div><span>LuxStay</span>
+    </a>
+    <ul class="nav-links"><li><a href="search.html">Tìm phòng</a></li></ul>
+  </div>
+</nav>
+
+<div style="padding-top:90px;min-height:100vh;background:var(--bg);">
+  <div class="container" style="max-width:860px;padding-top:24px;padding-bottom:80px;">
+
+    <h1 style="font-size:1.8rem;color:var(--text);margin-bottom:8px;">Đặt phòng</h1>
+    <p style="margin-bottom:32px;">Hoàn thành thông tin để xác nhận đặt phòng của bạn</p>
+
+    <!-- Step Bar -->
+    <div class="step-bar" id="stepBar">
+      <div class="step active" id="step1Indicator">
+        <div class="step-circle">1</div>
+        <div class="step-label">Thông tin khách</div>
+      </div>
+      <div class="step" id="step2Indicator">
+        <div class="step-circle">2</div>
+        <div class="step-label">Xác nhận</div>
+      </div>
+      <div class="step" id="step3Indicator">
+        <div class="step-circle">3</div>
+        <div class="step-label">Hoàn tất</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="gap:32px;align-items:start;">
+
+      <!-- STEPS PANEL -->
+      <div>
+
+        <!-- Step 1: Guest Info -->
+        <div id="step1">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+            <h3 style="font-family:Inter,sans-serif;color:var(--text);margin-bottom:20px;">👤 Thông tin khách hàng</h3>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="firstName">Họ *</label>
+                <input type="text" id="firstName" placeholder="Nguyễn" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Tên *</label>
+                <input type="text" id="lastName" placeholder="Văn A" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guestEmail">Email *</label>
+              <input type="email" id="guestEmail" placeholder="email@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="guestPhone">Số điện thoại *</label>
+              <input type="tel" id="guestPhone" placeholder="0912 345 678" required />
+            </div>
+
+            <div class="form-group">
+              <label for="numGuests">Số khách</label>
+              <select id="numGuests">
+                <option value="1">1 khách</option>
+                <option value="2" selected>2 khách</option>
+                <option value="3">3 khách</option>
+                <option value="4">4 khách</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="specialRequests">Yêu cầu đặc biệt (không bắt buộc)</label>
+              <textarea id="specialRequests" placeholder="Ví dụ: phòng tầng cao, giường đôi, dị ứng thực phẩm..."></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-block" id="toStep2Btn" onclick="goToStep2()">
+              Tiếp tục →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Confirm -->
+        <div id="step2" class="hidden">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;">
+            <h3 style="font-family:Inter,sans-serif;color:var(--text);margin-bottom:20px;">📋 Xác nhận đặt phòng</h3>
+
+            <div id="confirmDetails" style="font-size:0.9rem;"></div>
+
+            <div class="divider"></div>
+
+            <!-- Demo payment note -->
+            <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);padding:14px;margin-bottom:20px;">
+              <div style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#fbbf24;">
+                <span>⚠️</span>
+                <span>Phiên bản đồ án — Thanh toán sẽ được thực hiện trực tiếp tại quầy khi nhận phòng</span>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-ghost" onclick="goToStep1()">← Quay lại</button>
+              <button class="btn btn-primary" style="flex:1;" id="submitBtn" onclick="submitBooking()">
+                ✅ Xác nhận đặt phòng
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="step3" class="hidden">
+          <div style="background:var(--surface);border:1px solid rgba(16,185,129,0.25);border-radius:var(--radius);padding:40px;text-align:center;">
+            <div style="font-size:4rem;margin-bottom:16px;animation:bounce 0.5s ease;">🎉</div>
+            <h2 style="color:var(--success);font-family:Inter,sans-serif;margin-bottom:8px;">Đặt phòng thành công!</h2>
+            <p style="margin-bottom:8px;color:var(--text-muted);">Mã đặt phòng của bạn:</p>
+            <div id="bookingCode" style="font-size:1.8rem;font-weight:800;color:var(--primary-l);letter-spacing:0.1em;margin-bottom:20px;"></div>
+            <p style="font-size:0.875rem;margin-bottom:28px;">Chúng tôi đã ghi nhận đặt phòng của bạn. Hẹn gặp tại khách sạn! 🏨</p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+              <a href="index.html" class="btn btn-primary">🏠 Về trang chủ</a>
+              <a href="search.html" class="btn btn-ghost">Đặt thêm phòng</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Booking Summary Sidebar -->
+      <div style="position:sticky;top:100px;" id="bookingSummary">
+        <div class="summary-box">
+          <div class="summary-title">📋 Tóm tắt đặt phòng</div>
+
+          <div id="summaryImg" style="border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:16/9;margin-bottom:16px;background:var(--surface-2);">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80"
+                 style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+
+          <div class="summary-row">
+            <span class="label">Loại phòng</span>
+            <span class="value" id="sumRoomType">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Phòng số</span>
+            <span class="value" id="sumRoomNum">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Nhận phòng</span>
+            <span class="value" id="sumCheckIn">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Trả phòng</span>
+            <span class="value" id="sumCheckOut">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Số đêm</span>
+            <span class="value" id="sumNights">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Giá/đêm</span>
+            <span class="value" id="sumPrice">-</span>
+          </div>
+          <div class="summary-row total">
+            <span class="label">Tổng cộng</span>
+            <span class="value" id="sumTotal">-</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>
