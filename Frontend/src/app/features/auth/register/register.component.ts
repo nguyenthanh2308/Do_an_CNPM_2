@@ -10,6 +10,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Subject, takeUntil } from 'rxjs';
 
+/**
+ * Trang đăng ký dành cho KHÁCH HÀNG (Guest).
+ * Role luôn là 'Guest' — không cho phép chọn chức vụ.
+ * Admin tạo tài khoản nhân viên qua trang /staff/create trong Admin Dashboard.
+ */
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -32,7 +37,8 @@ export class RegisterComponent implements OnDestroy {
   hideConfirmPassword = true;
   isLoading = false;
   errorMessage = '';
-  
+  successMessage = '';
+
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -40,46 +46,57 @@ export class RegisterComponent implements OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {
+    // Khách hàng đã đăng nhập → redirect về trang chủ guest portal
+    if (this.authService.isLoggedIn()) {
+      const role = this.authService.getCurrentUser()?.role;
+      if (role && role !== 'Guest') {
+        this.router.navigate(['/dashboard']);
+      }
+    }
+
     this.registerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.maxLength(150)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      fullName:        ['', [Validators.required, Validators.maxLength(150)]],
+      email:           ['', [Validators.required, Validators.email]],
+      password:        ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     }, {
       validators: this.passwordMatchValidator
     });
   }
 
-  // Custom validator so sánh mật khẩu
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password')?.value;
-    const confirmPassword = control.get('confirmPassword')?.value;
-    if (password && confirmPassword && password !== confirmPassword) {
-      return { passwordsNotMatch: true };
-    }
+    const pw  = control.get('password')?.value;
+    const cpw = control.get('confirmPassword')?.value;
+    if (pw && cpw && pw !== cpw) return { passwordsNotMatch: true };
     return null;
   }
 
-  onSubmit() {
-    if (this.registerForm.invalid) return;
+  onSubmit(): void {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
 
     this.isLoading = true;
     this.errorMessage = '';
+
     const { fullName, email, password } = this.registerForm.value;
 
-    // TODO: Create a register function in AuthService. Right now authService has login() 
-    // We will call the public endpoint POST /api/auth/register (It was implemented in AuthController)
-    this.authService.register({ fullName, email, password, role: 'Receptionist' }) // Thay thế bằng generic role trên UI nếu cần
+    // Role cố định là 'Guest' — khách hàng không được chọn chức vụ
+    this.authService.register({ fullName, email, password, role: 'Guest' })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.isLoading = false;
-          // Thông báo thành công và chuyển về login
-          this.router.navigate(['/login']);
+          this.successMessage = `Tài khoản của "${fullName}" đã được tạo thành công! Bạn có thể đăng nhập ngay.`;
         },
         error: (err) => {
           this.isLoading = false;
-          this.errorMessage = err.error?.Message || 'Không thể tạo tài khoản. Vui lòng thử lại sau.';
+          this.errorMessage =
+            err.error?.message ||
+            err.error?.Message ||
+            err.error?.errors?.[0] ||
+            'Không thể tạo tài khoản. Email có thể đã được sử dụng.';
         }
       });
   }

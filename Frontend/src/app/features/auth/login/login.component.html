@@ -5,42 +5,55 @@
       <div class="icon-wrapper">
         <mat-icon>domain</mat-icon>
       </div>
-      <h1>Welcome Back</h1>
-      <p>Log in to Antigravity Hotel Manager</p>
+      <h1>Đăng nhập</h1>
+      <p>Hệ thống quản lý khách sạn</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       
+      <!-- Warning banner (Guest bị chặn từ admin) -->
+      <div *ngIf="warningMessage" class="warning-banner">
+        <mat-icon style="vertical-align: middle; margin-right: 4px; font-size: 20px; width: 20px; height: 20px;">info_outline</mat-icon>
+        {{ warningMessage }}
+      </div>
+
+      <!-- Error banner -->
       <div *ngIf="errorMessage" class="error-banner">
         <mat-icon style="vertical-align: middle; margin-right: 4px; font-size: 20px; width: 20px; height: 20px;">error_outline</mat-icon>
         {{ errorMessage }}
       </div>
 
       <mat-form-field appearance="fill" class="glass-input">
-        <mat-label>Email address</mat-label>
+        <mat-label>Email</mat-label>
         <mat-icon matPrefix>email</mat-icon>
-        <input matInput formControlName="email" type="email" placeholder="name@company.com" autocomplete="email">
-        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
-        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+        <input matInput formControlName="email" type="email" placeholder="name@company.com" autocomplete="email" id="loginEmail">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email là bắt buộc</mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Email không hợp lệ</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="glass-input">
-        <mat-label>Password</mat-label>
+        <mat-label>Mật khẩu</mat-label>
         <mat-icon matPrefix>lock</mat-icon>
-        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="••••••••" autocomplete="current-password">
-        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="••••••••" autocomplete="current-password" id="loginPassword">
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Ẩn/hiện mật khẩu'" [attr.aria-pressed]="hidePassword">
           <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Mật khẩu là bắt buộc</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mật khẩu tối thiểu 6 ký tự</mat-error>
       </mat-form-field>
 
-      <button mat-flat-button class="submit-btn" type="submit" [disabled]="loginForm.invalid || isLoading">
-        <span *ngIf="!isLoading">Sign In</span>
+      <button mat-flat-button class="submit-btn" type="submit" [disabled]="loginForm.invalid || isLoading" id="loginSubmitBtn">
+        <span *ngIf="!isLoading">Đăng nhập</span>
         <div *ngIf="isLoading" class="spinner-container">
           <mat-spinner diameter="24" color="accent"></mat-spinner>
         </div>
       </button>
+
+      <div style="text-align: center; margin-top: 12px;">
+        <a routerLink="/register" style="color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.3s;" id="goToRegisterLink">
+          Chưa có tài khoản? <span style="color: #10b981; font-weight: 600;">Đăng ký ngay</span>
+        </a>
+      </div>
     </form>
 
   </div>

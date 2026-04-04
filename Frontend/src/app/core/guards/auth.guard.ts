@@ -2,14 +2,27 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
+// Roles được phép vào Admin Dashboard
+const STAFF_ROLES = ['Admin', 'Manager', 'Receptionist', 'Housekeeping'];
+
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
-  const router = inject(Router);
+  const router      = inject(Router);
 
-  if (authService.isLoggedIn()) {
-    return true;
+  if (!authService.isLoggedIn()) {
+    // Chưa đăng nhập → về trang login
+    return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
   }
 
-  // Chuyển hướng về login nếu chưa đăng nhập, lưu lại Url ban đầu để sau khi login sẽ quay lại được
-  return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
+  const role = authService.getCurrentUser()?.role;
+
+  // Khách hàng (Guest) KHÔNG được vào Admin Dashboard
+  if (!role || !STAFF_ROLES.includes(role)) {
+    // Redirect về login với thông báo
+    return router.createUrlTree(['/login'], {
+      queryParams: { message: 'Bạn không có quyền truy cập khu vực quản trị.' }
+    });
+  }
+
+  return true;
 };

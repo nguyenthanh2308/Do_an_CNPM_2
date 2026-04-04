@@ -1,0 +1,125 @@
+<div class="staff-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <div class="header-icon">👤</div>
+      <div>
+        <h1 class="page-title">Tạo tài khoản nhân viên</h1>
+        <p class="page-subtitle">Chỉ Admin mới có quyền truy cập trang này</p>
+      </div>
+    </div>
+    <a routerLink="/rooms" class="btn-back">
+      ← Quay lại
+    </a>
+  </div>
+
+  <div class="form-wrapper">
+    <div class="form-card">
+
+      <!-- Admin badge -->
+      <div class="admin-badge">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Khu vực quản trị — Tạo tài khoản nhân viên</span>
+      </div>
+
+      <form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+
+        <!-- Full Name -->
+        <div class="field-row">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Họ và tên nhân viên</mat-label>
+            <mat-icon matPrefix>badge</mat-icon>
+            <input matInput formControlName="fullName" placeholder="Nguyễn Văn A" id="staffFullName">
+            <mat-error *ngIf="staffForm.get('fullName')?.hasError('required')">Họ tên là bắt buộc</mat-error>
+            <mat-error *ngIf="staffForm.get('fullName')?.hasError('maxlength')">Tối đa 150 ký tự</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <div class="field-row">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Địa chỉ Email đăng nhập</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="email" type="email" placeholder="nhanvien@hotel.com" id="staffEmail">
+            <mat-error *ngIf="staffForm.get('email')?.hasError('required')">Email là bắt buộc</mat-error>
+            <mat-error *ngIf="staffForm.get('email')?.hasError('email')">Email không hợp lệ</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Role -->
+        <div class="field-row">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Chức vụ / Vai trò</mat-label>
+            <mat-icon matPrefix>work</mat-icon>
+            <mat-select formControlName="role" id="staffRole">
+              <mat-option *ngFor="let r of roleOptions" [value]="r.value">
+                {{ r.label }} ({{ r.value }})
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="staffForm.get('role')?.hasError('required')">Vui lòng chọn chức vụ</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Role descriptions -->
+        <div class="role-hints">
+          <div class="role-hint"><span class="dot dot-blue"></span><strong>Admin</strong> — Toàn quyền hệ thống, tạo/xóa tài khoản</div>
+          <div class="role-hint"><span class="dot dot-purple"></span><strong>Manager</strong> — Xem dashboard, báo cáo, quản lý đặt phòng</div>
+          <div class="role-hint"><span class="dot dot-green"></span><strong>Receptionist</strong> — Tiếp nhận đặt phòng, check-in/out</div>
+          <div class="role-hint"><span class="dot dot-yellow"></span><strong>Housekeeping</strong> — Quản lý dọn phòng, bảo trì</div>
+        </div>
+
+        <!-- Password -->
+        <div class="field-row" style="margin-top: 8px;">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Mật khẩu khởi tạo</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="••••••••" id="staffPassword">
+            <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" matTooltip="Ẩn/hiện mật khẩu">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="staffForm.get('password')?.hasError('required')">Mật khẩu là bắt buộc</mat-error>
+            <mat-error *ngIf="staffForm.get('password')?.hasError('minlength')">Tối thiểu 6 ký tự</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Generate password button -->
+        <button type="button" class="btn-generate" (click)="generatePassword()" id="generatePwdBtn">
+          🎲 Tạo mật khẩu ngẫu nhiên
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Submit -->
+        <div class="action-row">
+          <a routerLink="/rooms" class="btn-cancel">Hủy</a>
+          <button type="submit" class="btn-submit" [disabled]="staffForm.invalid || isLoading" id="staffSubmitBtn">
+            <mat-spinner *ngIf="isLoading" diameter="18" color="accent" style="display:inline-block;margin-right:8px;"></mat-spinner>
+            <span>{{ isLoading ? 'Đang tạo...' : '✅ Tạo tài khoản' }}</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Info Sidebar -->
+    <div class="info-sidebar">
+      <div class="info-card">
+        <h3>🔐 Lưu ý bảo mật</h3>
+        <ul>
+          <li>Nhân viên nên đổi mật khẩu ngay sau lần đăng nhập đầu tiên</li>
+          <li>Không chia sẻ mật khẩu qua email hoặc chat</li>
+          <li>Mỗi nhân viên dùng tài khoản riêng để đảm bảo kiểm tra lịch sử</li>
+        </ul>
+      </div>
+      <div class="info-card" style="border-color: rgba(99,102,241,0.3);">
+        <h3>📋 Tài khoản khách hàng</h3>
+        <p style="color:#94a3b8;font-size:0.875rem;line-height:1.6;">
+          Khách hàng tự đăng ký tại trang <strong style="color:#a78bfa">/register</strong>.
+          Tài khoản Guest không có quyền truy cập Admin Dashboard.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

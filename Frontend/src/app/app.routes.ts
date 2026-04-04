@@ -61,6 +61,12 @@ export const routes: Routes = [
         loadComponent: () => import('./features/housekeeping/housekeeping-board.component').then(m => m.HousekeepingBoardComponent),
         data: { roles: ['Admin', 'Manager', 'Housekeeping'] },
         canActivate: [roleGuard]
+      },
+      {
+        path: 'staff/create',
+        loadComponent: () => import('./features/staff/create-staff.component').then(m => m.CreateStaffComponent),
+        data: { roles: ['Admin'] },
+        canActivate: [roleGuard]
       }
       // Note: invoices and guests modules don't exist yet so not mapped.
     ]
