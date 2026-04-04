@@ -63,6 +63,12 @@ export const routes: Routes = [
         canActivate: [roleGuard]
       },
       {
+        path: 'payments',
+        loadComponent: () => import('./features/payments/payment-list/payment-list.component').then(m => m.PaymentListComponent),
+        data: { roles: ['Admin', 'Manager', 'Receptionist'] },
+        canActivate: [roleGuard]
+      },
+      {
         path: 'housekeeping',
         loadComponent: () => import('./features/housekeeping/housekeeping-board.component').then(m => m.HousekeepingBoardComponent),
         data: { roles: ['Admin', 'Manager', 'Housekeeping'] },

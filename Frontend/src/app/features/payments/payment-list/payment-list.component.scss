@@ -1,0 +1,162 @@
+.category-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    p {
+      margin: 4px 0 0 0;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .add-btn {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+      color: #fff;
+      border-radius: 8px;
+      height: 40px;
+    }
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 220px;
+  }
+
+  .filters-row {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) 220px auto;
+    gap: 12px;
+    padding: 16px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .search-field,
+    .status-field {
+      width: 100%;
+    }
+
+    .clear-btn {
+      height: 42px;
+      border-radius: 10px;
+    }
+  }
+
+  .loading-wrap {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .premium-table {
+    width: 100%;
+    background: transparent;
+
+    th.mat-header-cell {
+      background-color: rgba(248, 250, 252, 0.5);
+      color: #475569;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    td.mat-cell {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      color: #1e293b;
+      font-size: 14px;
+      padding: 14px;
+    }
+
+    .table-row:hover {
+      background-color: rgba(241, 245, 249, 0.6);
+    }
+
+    .price-tag {
+      font-weight: 600;
+      color: #0f766e;
+      background: rgba(20, 184, 166, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .status-chip {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #64748b;
+
+      &.completed {
+        background: rgba(16, 185, 129, 0.14);
+        color: #047857;
+      }
+
+      &.failed {
+        background: rgba(239, 68, 68, 0.14);
+        color: #b91c1c;
+      }
+
+      &.refunded {
+        background: rgba(245, 158, 11, 0.18);
+        color: #92400e;
+      }
+
+      &.pending {
+        background: rgba(99, 102, 241, 0.14);
+        color: #3730a3;
+      }
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .actions-col {
+      white-space: nowrap;
+    }
+  }
+
+  .empty-state {
+    padding: 64px 24px;
+    text-align: center;
+    color: #94a3b8;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      opacity: 0.5;
+      margin-bottom: 16px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .filters-row {
+      grid-template-columns: 1fr;
+      .clear-btn {
+        width: 100%;
+      }
+    }
+  }
+}

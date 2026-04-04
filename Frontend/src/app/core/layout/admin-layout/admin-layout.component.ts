@@ -43,6 +43,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     { label: 'Bookings',     icon: 'book_online',       route: '/bookings',     roles: ['Admin', 'Manager', 'Receptionist'] },
     { label: 'Housekeeping', icon: 'cleaning_services', route: '/housekeeping', roles: ['Admin', 'Manager', 'Housekeeping'] },
     { label: 'Invoices',     icon: 'receipt_long',      route: '/invoices',     roles: ['Admin', 'Manager', 'Receptionist'] },
+    { label: 'Payments',     icon: 'payments',          route: '/payments',     roles: ['Admin', 'Manager', 'Receptionist'] },
     { label: 'Guests',       icon: 'group',             route: '/guests',       roles: ['Admin', 'Manager', 'Receptionist'] },
     { label: 'Rate Plans',   icon: 'price_change',      route: '/rate-plans',   roles: ['Admin', 'Manager'] },
     { label: 'Promotions',   icon: 'local_offer',       route: '/promotions',   roles: ['Admin', 'Manager'] },

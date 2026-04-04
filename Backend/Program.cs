@@ -52,6 +52,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 // ════════════════════════════════════════════════════════════════════════════
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -235,7 +236,7 @@ using (var scope = app.Services.CreateScope())
     if (conn.State != ConnectionState.Open)
         await conn.OpenAsync();
 
-    async Task EnsureUserColumnAsync(string columnName, string columnDefinition)
+    async Task EnsureUserColumnAsync(string columnName)
     {
         await using var check = conn.CreateCommand();
         check.CommandText = @"SELECT COUNT(*)
@@ -252,15 +253,25 @@ using (var scope = app.Services.CreateScope())
         var exists = Convert.ToInt32(await check.ExecuteScalarAsync()) > 0;
         if (!exists)
         {
-            await db.Database.ExecuteSqlRawAsync($"ALTER TABLE users ADD COLUMN {columnName} {columnDefinition}");
+            var sql = columnName switch
+            {
+                "full_name" => "ALTER TABLE users ADD COLUMN full_name VARCHAR(150) NULL",
+                "phone" => "ALTER TABLE users ADD COLUMN phone VARCHAR(20) NULL",
+                "updated_at" => "ALTER TABLE users ADD COLUMN updated_at DATETIME(6) NULL",
+                "created_at" => "ALTER TABLE users ADD COLUMN created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)",
+                "is_active" => "ALTER TABLE users ADD COLUMN is_active TINYINT(1) NOT NULL DEFAULT 1",
+                _ => throw new InvalidOperationException($"Unsupported users column bootstrap: {columnName}")
+            };
+
+            await db.Database.ExecuteSqlRawAsync(sql);
         }
     }
 
-    await EnsureUserColumnAsync("full_name", "VARCHAR(150) NULL");
-    await EnsureUserColumnAsync("phone", "VARCHAR(20) NULL");
-    await EnsureUserColumnAsync("updated_at", "DATETIME(6) NULL");
-    await EnsureUserColumnAsync("created_at", "DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)");
-    await EnsureUserColumnAsync("is_active", "TINYINT(1) NOT NULL DEFAULT 1");
+    await EnsureUserColumnAsync("full_name");
+    await EnsureUserColumnAsync("phone");
+    await EnsureUserColumnAsync("updated_at");
+    await EnsureUserColumnAsync("created_at");
+    await EnsureUserColumnAsync("is_active");
 
     // Đồng bộ kiểu cột role để lưu enum dưới dạng string nhất quán với EF conversion.
     await db.Database.ExecuteSqlRawAsync("ALTER TABLE users MODIFY COLUMN role VARCHAR(30) NOT NULL");

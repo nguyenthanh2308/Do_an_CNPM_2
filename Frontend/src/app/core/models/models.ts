@@ -219,6 +219,35 @@ export interface ValidateVoucherResponse {
   finalAmount: number;
 }
 
+// ── Payment Models ────────────────────────────────────────────────────────
+export interface PaymentDto {
+  paymentId: number;
+  invoiceId: number;
+  invoiceNumber: string;
+  guestName: string;
+  amount: number;
+  paymentMethod: string;
+  paymentDate: string;
+  transactionId?: string;
+  status: string;
+  notes?: string;
+  createdAt: string;
+}
+
+export interface CreatePaymentDto {
+  invoiceId: number;
+  amount: number;
+  paymentMethod: string;
+  transactionId?: string;
+  notes?: string;
+}
+
+export interface UpdatePaymentStatusDto {
+  status: string;
+  transactionId?: string;
+  notes?: string;
+}
+
 // ── Housekeeping Models ───────────────────────────────────────────────────
 export type TaskStatus = 'Pending' | 'InProgress' | 'Completed' | 'Cancelled';
 export type TaskType = 'Cleaning' | 'Maintenance' | 'Inspection';

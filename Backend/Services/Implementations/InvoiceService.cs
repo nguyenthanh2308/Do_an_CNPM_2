@@ -14,11 +14,13 @@ namespace HotelManagement.Services.Implementations
     {
         private readonly HotelDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IPaymentService _paymentService;
 
-        public InvoiceService(HotelDbContext context, IMapper mapper)
+        public InvoiceService(HotelDbContext context, IMapper mapper, IPaymentService paymentService)
         {
             _context = context;
             _mapper = mapper;
+            _paymentService = paymentService;
         }
 
         public async Task<InvoiceDto> GetInvoiceByIdAsync(long invoiceId)
@@ -117,27 +119,12 @@ namespace HotelManagement.Services.Implementations
             await _context.Invoices.AddAsync(invoice);
             await _context.SaveChangesAsync(); // Sinh ra InvoiceId
 
-            // 3. Xử lý PaymentMethod an toàn
-            if (!Enum.TryParse<PaymentMethod>(paymentMethodStr, true, out var method))
-            {
-                method = PaymentMethod.Cash;
-            }
-
-            // 4. Tạo Payment (trả lại tiền thừa nếu amountPaid > totalAmount, hoặc ghi nhận đúng amountPaid tùy logic, ở đây ta ghi nhận đúng tiền khách trả, thực tế Invoice.TotalAmount có thể dùng để cân đối)
-            var payment = new Payment
-            {
-                InvoiceId = invoice.InvoiceId,
-                Amount = amountPaid >= totalAmount ? totalAmount : amountPaid, // Chỉ ghi nhận tối đa phần cần thu cho invoice này, tránh dư nợ dương trừ khi làm hệ thống complex
-                PaymentMethod = method,
-                PaymentDate = DateTime.UtcNow,
-                TransactionId = $"TXN-{invoice.InvoiceId}-{DateTime.UtcNow.Ticks}",
-                Status = PaymentStatus.Completed,
-                Notes = notes,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            await _context.Payments.AddAsync(payment);
-            await _context.SaveChangesAsync();
+            // 3. Tạo Payment qua PaymentService để tách biệt trách nhiệm nghiệp vụ.
+            await _paymentService.CreateCheckoutPaymentAsync(
+                invoice,
+                paymentMethodStr,
+                amountPaid,
+                notes);
             
             return invoice;
         }

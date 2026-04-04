@@ -1,0 +1,106 @@
+<div class="category-wrapper">
+  <div class="header-section">
+    <div>
+      <h2>Quản lý Thanh toán</h2>
+      <p>Theo dõi giao dịch theo hóa đơn và trạng thái xử lý</p>
+    </div>
+    <button mat-flat-button class="add-btn" (click)="loadData()">
+      <mat-icon>refresh</mat-icon> Làm mới
+    </button>
+  </div>
+
+  <mat-card class="glass-card">
+    <div class="filters-row">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Tìm theo mã TT / hóa đơn / khách</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="applyFilters()"
+          placeholder="Ví dụ: #1024, INV-2026-001, Nguyen Van A" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="status-field">
+        <mat-label>Trạng thái</mat-label>
+        <mat-select [(ngModel)]="selectedStatus" (selectionChange)="applyFilters()">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-stroked-button type="button" class="clear-btn" (click)="clearFilters()">
+        Xóa lọc
+      </button>
+    </div>
+
+    <div class="loading-wrap" *ngIf="isLoading">
+      <mat-spinner diameter="36"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="filteredDataSource" class="premium-table" *ngIf="!isLoading">
+      <ng-container matColumnDef="paymentId">
+        <th mat-header-cell *matHeaderCellDef> Mã TT </th>
+        <td mat-cell *matCellDef="let element"> #{{ element.paymentId }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoiceNumber">
+        <th mat-header-cell *matHeaderCellDef> Hóa đơn </th>
+        <td mat-cell *matCellDef="let element"> {{ element.invoiceNumber }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="guestName">
+        <th mat-header-cell *matHeaderCellDef> Khách hàng </th>
+        <td mat-cell *matCellDef="let element"> {{ element.guestName }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Số tiền </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="price-tag">{{ element.amount | currency:'VND' }}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef> Phương thức </th>
+        <td mat-cell *matCellDef="let element"> {{ element.paymentMethod }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Trạng thái </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-chip" [ngClass]="element.status.toLowerCase()">{{ element.status }}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentDate">
+        <th mat-header-cell *matHeaderCellDef> Thời gian </th>
+        <td mat-cell *matCellDef="let element"> {{ element.paymentDate | date:'dd/MM/yyyy HH:mm' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-right"> Thao tác </th>
+        <td mat-cell *matCellDef="let element" class="text-right actions-col">
+          <button mat-icon-button color="primary" (click)="updateStatus(element, 'Completed')" matTooltip="Đánh dấu thành công">
+            <mat-icon>check_circle</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="updateStatus(element, 'Failed')" matTooltip="Đánh dấu thất bại">
+            <mat-icon>cancel</mat-icon>
+          </button>
+          <button mat-icon-button (click)="updateStatus(element, 'Refunded')" matTooltip="Đánh dấu hoàn tiền">
+            <mat-icon>replay</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+    </table>
+
+    <div *ngIf="filteredDataSource.length === 0 && !isLoading" class="empty-state">
+      <mat-icon>payments</mat-icon>
+      <p>{{ dataSource.length === 0 ? 'Chưa có giao dịch thanh toán.' : 'Không có giao dịch khớp bộ lọc.' }}</p>
+    </div>
+  </mat-card>
+</div>
