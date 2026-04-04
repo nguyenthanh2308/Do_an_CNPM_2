@@ -15,6 +15,12 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent)
   },
+  {
+    path: 'home',
+    loadComponent: () => import('./features/guest/home/guest-home.component').then(m => m.GuestHomeComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
   // Protected Routes Wrapper
   {
     path: '',

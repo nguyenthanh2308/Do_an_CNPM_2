@@ -51,6 +51,8 @@ export class RegisterComponent implements OnDestroy {
       const role = this.authService.getCurrentUser()?.role;
       if (role && role !== 'Guest') {
         this.router.navigate(['/dashboard']);
+      } else if (role === 'Guest') {
+        this.router.navigate(['/home']);
       }
     }
 

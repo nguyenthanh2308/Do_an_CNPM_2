@@ -1729,3 +1729,30 @@ MySqlConnector.MySqlException (0x80004005): Unknown column 'r.isRevoked' in 'fie
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
    at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in c:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-04-04 11:30:28.164 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-04 11:30:28.396 +07:00 [INF] POST /api/auth/login — Email: Test10@example.com
+2026-04-04 11:30:29.504 +07:00 [INF] User 'Test10' logged in.
+2026-04-04 11:30:29.540 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 1347.9655 ms
+2026-04-04 11:33:11.406 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-04 11:33:11.438 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.7718 ms
+2026-04-04 11:33:11.651 +07:00 [INF] POST /api/auth/login — Email: Test10@example.com
+2026-04-04 11:33:12.703 +07:00 [INF] User 'Test10' logged in.
+2026-04-04 11:33:12.735 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 1286.5469 ms
+2026-04-04 11:33:12.741 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.4311 ms
+2026-04-04 11:33:12.796 +07:00 [INF] POST /api/auth/logout — UserId: 31
+2026-04-04 11:33:12.868 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-04 11:33:12.871 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 123.2782 ms
+2026-04-04 11:40:16.402 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-04 11:40:16.434 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.7150 ms
+2026-04-04 11:40:16.643 +07:00 [INF] POST /api/auth/login — Email: Test10@example.com
+2026-04-04 11:40:17.851 +07:00 [INF] User 'Test10' logged in.
+2026-04-04 11:40:17.883 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 1437.6263 ms
+2026-04-04 11:44:47.716 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-04 11:44:47.751 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 3.6940 ms
+2026-04-04 11:44:48.019 +07:00 [INF] POST /api/auth/logout — UserId: 31
+2026-04-04 11:44:48.354 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-04 11:44:48.378 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 614.6954 ms
+2026-04-04 11:45:04.525 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.4516 ms
+2026-04-04 11:45:04.546 +07:00 [INF] POST /api/auth/login — Email: Test10@example.com
+2026-04-04 11:45:05.333 +07:00 [INF] User 'Test10' logged in.
+2026-04-04 11:45:05.345 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 816.3660 ms

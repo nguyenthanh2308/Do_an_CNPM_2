@@ -3973,11 +3973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
+      "projectUniqueName": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
       "projectName": "HotelManagement",
-      "projectPath": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
+      "projectPath": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
       "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

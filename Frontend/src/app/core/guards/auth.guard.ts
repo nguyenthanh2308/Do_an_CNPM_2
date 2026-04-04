@@ -18,9 +18,13 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   // Khách hàng (Guest) KHÔNG được vào Admin Dashboard
   if (!role || !STAFF_ROLES.includes(role)) {
-    // Redirect về login với thông báo
+    if (role === 'Guest') {
+      return router.createUrlTree(['/home']);
+    }
+
+    // Role không hợp lệ hoặc chưa xác định
     return router.createUrlTree(['/login'], {
-      queryParams: { message: 'Bạn không có quyền truy cập khu vực quản trị.' }
+      queryParams: { message: 'Role khong hop le. Vui long dang nhap lai.' }
     });
   }
 

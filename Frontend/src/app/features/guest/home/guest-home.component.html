@@ -1,0 +1,69 @@
+<div class="guest-home-wrap">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <section class="panel">
+    <div class="head-row">
+      <div class="head-main">
+        <div class="badge">
+          <mat-icon>travel_explore</mat-icon>
+        </div>
+
+        <div>
+          <h1>Welcome, {{ fullName }}</h1>
+          <p class="subtitle">Find available rooms and book your next stay.</p>
+        </div>
+      </div>
+
+      <button mat-stroked-button class="secondary" (click)="signOut()">
+        Sign Out
+      </button>
+    </div>
+
+    <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchRooms()">
+      <mat-form-field appearance="outline">
+        <mat-label>Check-in</mat-label>
+        <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
+        <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+        <mat-datepicker #checkInPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Check-out</mat-label>
+        <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
+        <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+        <mat-datepicker #checkOutPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Guests</mat-label>
+        <input matInput type="number" min="1" max="10" formControlName="guests">
+      </mat-form-field>
+
+      <button mat-flat-button class="primary" type="submit" [disabled]="isLoading">
+        <mat-icon>search</mat-icon>
+        {{ isLoading ? 'Searching...' : 'Search Rooms' }}
+      </button>
+    </form>
+
+    <p class="error" *ngIf="searchError">{{ searchError }}</p>
+
+    <div class="results" *ngIf="hasSearched">
+      <p class="result-title" *ngIf="!isLoading">
+        {{ availableRooms.length }} room(s) available
+      </p>
+
+      <div class="room-grid" *ngIf="availableRooms.length > 0">
+        <mat-card class="room-card" *ngFor="let room of availableRooms">
+          <h3>{{ room.roomTypeName }} - Room {{ room.roomNumber }}</h3>
+          <p>Floor {{ room.floor }} • Up to {{ room.maxOccupancy }} guests</p>
+          <div class="price">{{ room.pricePerNight | number }} VND / night</div>
+        </mat-card>
+      </div>
+
+      <p class="empty" *ngIf="!isLoading && availableRooms.length === 0">
+        No rooms available for selected dates. Try another date range.
+      </p>
+    </div>
+  </section>
+</div>

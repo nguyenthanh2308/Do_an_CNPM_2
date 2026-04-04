@@ -73,10 +73,13 @@ export class LoginComponent implements OnDestroy {
             // Nhân viên → admin dashboard
             const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/rooms';
             this.router.navigateByUrl(returnUrl);
+          } else if (role === 'Guest') {
+            // Khách hàng → guest home
+            this.router.navigateByUrl('/home');
           } else {
-            // Khách hàng (Guest) → thông báo không có quyền vào admin
+            // Role không hợp lệ/không xác định
             this.authService.logout();
-            this.errorMessage = 'Tài khoản khách hàng không có quyền truy cập khu vực này. Vui lòng sử dụng Guest Portal để đặt phòng.';
+            this.errorMessage = 'Tai khoan khong hop le. Vui long dang nhap lai.';
           }
         },
         error: (err) => {
