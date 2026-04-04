@@ -2098,3 +2098,25 @@ MySqlConnector.MySqlException (0x80004005): Unknown column 'b.check_in_date' in 
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
    at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-04-04 12:54:19.702 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-04 12:54:19.918 +07:00 [INF] POST /api/auth/register — Username: admin
+2026-04-04 12:54:19.955 +07:00 [ERR] HTTP POST /api/auth/register responded 500 in 230.9727 ms
+HotelManagement.Exceptions.AppException: Email đã được sử dụng.
+   at HotelManagement.Services.Implementations.AuthService.RegisterAsync(RegisterRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 49
+   at HotelManagement.Controllers.AuthController.Register(RegisterRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 50
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-04 12:54:19.973 +07:00 [WRN] AppException [409]: Email đã được sử dụng.
+2026-04-04 12:54:26.445 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-04 12:54:26.775 +07:00 [INF] User 'admin' logged in.
+2026-04-04 12:54:26.793 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 362.8457 ms

@@ -1,8 +1,10 @@
 using FluentValidation;
 using HotelManagement.Data;
 using HotelManagement.DTOs.Booking;
+using HotelManagement.Enums;
 using HotelManagement.Mappings;
 using HotelManagement.Middleware;
+using HotelManagement.Models;
 using HotelManagement.Repositories.Implementations;
 using HotelManagement.Repositories.Interfaces;
 using HotelManagement.Services.Implementations;
@@ -280,6 +282,43 @@ using (var scope = app.Services.CreateScope())
 
     // Đồng bộ kiểu cột role để lưu enum dưới dạng string nhất quán với EF conversion.
     await db.Database.ExecuteSqlRawAsync("ALTER TABLE users MODIFY COLUMN role VARCHAR(30) NOT NULL");
+
+    // Seed tài khoản Admin mặc định (idempotent)
+    const string adminUsername = "admin";
+    const string adminEmail = "admin@hotel.com";
+    const string adminPassword = "admin@123";
+
+    var adminUser = await db.Users
+        .FirstOrDefaultAsync(u => u.Email == adminEmail || u.Username == adminUsername);
+
+    if (adminUser == null)
+    {
+        adminUser = new User
+        {
+            Username = adminUsername,
+            Email = adminEmail,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12),
+            FullName = "Administrator",
+            Role = UserRole.Admin,
+            IsActive = true,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await db.Users.AddAsync(adminUser);
+        await db.SaveChangesAsync();
+    }
+    else
+    {
+        adminUser.Username = adminUsername;
+        adminUser.Email = adminEmail;
+        adminUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12);
+        adminUser.Role = UserRole.Admin;
+        adminUser.IsActive = true;
+        adminUser.UpdatedAt = DateTime.UtcNow;
+
+        db.Users.Update(adminUser);
+        await db.SaveChangesAsync();
+    }
 }
 
 app.Run();
