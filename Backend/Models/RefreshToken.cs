@@ -6,31 +6,27 @@ namespace HotelManagement.Models
     [Table("refreshtokens")]
     public class RefreshToken
     {
-        [Key]
-        [Column("id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         [Required]
-        [Column("user_id")]
+        [Column("userId")]
         public long UserId { get; set; }
 
+        [Key]
         [Required]
         [MaxLength(512)]
         [Column("token")]
         public string Token { get; set; } = null!;
 
-        [Column("expires_at")]
+        [Column("expiresAt")]
         public DateTime ExpiresAt { get; set; }
 
-        [Column("is_revoked")]
+        [NotMapped]
         public bool IsRevoked { get; set; } = false;
 
-        [Column("created_at")]
+        [Column("createdAt")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         [MaxLength(50)]
-        [Column("created_by_ip")]
+        [NotMapped]
         public string? CreatedByIp { get; set; }
 
         // Navigation Properties

@@ -86,12 +86,6 @@ namespace HotelManagement.Services.Implementations
             if (!BCryptVerifyPassword(dto.Password, user.PasswordHash))
                 throw new AppException("Email hoặc mật khẩu không đúng.", 401);
 
-            // Thu hồi tất cả RefreshToken cũ (single session)
-            var oldTokens = await _context.RefreshTokens
-                .Where(rt => rt.UserId == user.UserId && !rt.IsRevoked)
-                .ToListAsync();
-            oldTokens.ForEach(t => t.IsRevoked = true);
-
             // Tạo token mới
             var accessToken = GenerateAccessToken(user);
             var refreshToken = await CreateRefreshTokenAsync(user.UserId);
@@ -119,18 +113,12 @@ namespace HotelManagement.Services.Implementations
                 .FirstOrDefaultAsync(rt => rt.Token == refreshToken)
                 ?? throw new AppException("Refresh token không hợp lệ.", 401);
 
-            if (tokenEntity.IsRevoked)
-                throw new AppException("Refresh token đã bị thu hồi.", 401);
-
             if (tokenEntity.ExpiresAt < DateTime.UtcNow)
                 throw new AppException("Refresh token đã hết hạn. Vui lòng đăng nhập lại.", 401);
 
             var user = tokenEntity.User;
             if (!user.IsActive)
                 throw new AppException("Tài khoản đã bị vô hiệu hóa.", 403);
-
-            // Thu hồi token cũ
-            tokenEntity.IsRevoked = true;
 
             // Tạo token mới
             var newAccessToken = GenerateAccessToken(user);
@@ -159,7 +147,7 @@ namespace HotelManagement.Services.Implementations
 
             if (tokenEntity != null)
             {
-                tokenEntity.IsRevoked = true;
+                _context.RefreshTokens.Remove(tokenEntity);
                 await _context.SaveChangesAsync();
             }
 
@@ -203,7 +191,6 @@ namespace HotelManagement.Services.Implementations
                 UserId = userId,
                 Token = GenerateSecureToken(),
                 ExpiresAt = DateTime.UtcNow.AddDays(RefreshExpiryDays),
-                IsRevoked = false,
                 CreatedAt = DateTime.UtcNow
             };
 

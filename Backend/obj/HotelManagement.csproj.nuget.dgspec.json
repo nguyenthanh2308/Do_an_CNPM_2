@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj": {}
+    "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj": {
+    "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
+        "projectUniqueName": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
         "projectName": "HotelManagement",
-        "projectPath": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
+        "projectPath": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\HotelManagement.csproj",
         "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MSI\\source\\Do_An_2\\Backend\\obj\\",
+        "outputPath": "c:\\Users\\MSI\\source\\Do_An_2\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
