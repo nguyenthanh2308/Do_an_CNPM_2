@@ -6,14 +6,14 @@
     </div>
 
     <nav class="nav-links">
-      <button mat-button type="button" (click)="scrollTo('intro')">Gioi thieu</button>
-      <button mat-button type="button" (click)="scrollTo('features')">Tinh nang</button>
-      <button mat-button type="button" (click)="scrollTo('achievements')">Thanh tuu</button>
+      <button mat-button type="button" (click)="scrollTo('intro')">Giới thiệu</button>
+      <button mat-button type="button" (click)="scrollTo('features')">Tính năng</button>
+      <button mat-button type="button" (click)="scrollTo('achievements')">Thành tựu</button>
     </nav>
 
     <div class="top-actions">
-      <span class="hello">Xin chao, {{ fullName }}</span>
-      <button mat-stroked-button class="logout" (click)="signOut()">Dang xuat</button>
+      <span class="hello">Xin chào, {{ fullName }}</span>
+      <button mat-stroked-button class="logout" (click)="signOut()">Đăng xuất</button>
     </div>
   </header>
 
@@ -26,19 +26,19 @@
         </span>
       </div>
 
-      <h1>Dat phong truc tuyen nhanh chong, an toan va de dang</h1>
+      <h1>Đặt phòng trực tuyến nhanh chóng, an toàn và dễ dàng</h1>
       <p>
-        Nen tang quan ly va dat phong thong minh giup ban tim phong trong phu hop, thanh toan linh hoat,
-        va nhan ho tro xuyen suot 24/7.
+        Nền tảng quản lý và đặt phòng thông minh giúp bạn tìm phòng trống phù hợp, thanh toán linh hoạt,
+        và nhận hỗ trợ xuyên suốt 24/7.
       </p>
 
       <div class="hero-actions">
         <button mat-flat-button class="cta" (click)="scrollTo('booking')">
           <mat-icon>search</mat-icon>
-          Tim phong ngay
+          Tìm phòng ngay
         </button>
         <button mat-button class="ghost" (click)="scrollTo('features')">
-          Kham pha tinh nang
+          Khám phá tính năng
         </button>
       </div>
     </div>
@@ -47,55 +47,55 @@
   </section>
 
   <section class="quick-booking" id="booking">
-    <h2>Tim phong trong nhanh</h2>
+    <h2>Tìm phòng trống nhanh</h2>
     <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchRooms()">
       <mat-form-field appearance="outline">
-        <mat-label>Check-in</mat-label>
+        <mat-label>Ngày nhận phòng</mat-label>
         <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
         <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkInPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Check-out</mat-label>
+        <mat-label>Ngày trả phòng</mat-label>
         <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
         <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkOutPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>So khach</mat-label>
+        <mat-label>Số khách</mat-label>
         <input matInput type="number" min="1" max="10" formControlName="guests">
       </mat-form-field>
 
       <button mat-flat-button class="search-btn" type="submit" [disabled]="isLoading">
         <mat-icon>search</mat-icon>
-        {{ isLoading ? 'Dang tim...' : 'Tim phong' }}
+        {{ isLoading ? 'Đang tìm...' : 'Tìm phòng' }}
       </button>
     </form>
 
     <p class="error" *ngIf="searchError">{{ searchError }}</p>
 
     <div class="results" *ngIf="hasSearched">
-      <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phong trong phu hop</p>
+      <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phòng trống phù hợp</p>
 
       <div class="room-grid" *ngIf="availableRooms.length > 0">
         <mat-card class="room-card" *ngFor="let room of availableRooms">
-          <h3>{{ room.roomTypeName }} - Phong {{ room.roomNumber }}</h3>
-          <p>Tang {{ room.floor }} • Toi da {{ room.maxOccupancy }} khach</p>
-          <div class="price">{{ room.pricePerNight | number }} VND / dem</div>
+          <h3>{{ room.roomTypeName }} - Phòng {{ room.roomNumber }}</h3>
+          <p>Tầng {{ room.floor }} • Tối đa {{ room.maxOccupancy }} khách</p>
+          <div class="price">{{ room.pricePerNight | number }} VND / đêm</div>
         </mat-card>
       </div>
 
       <p class="empty" *ngIf="!isLoading && availableRooms.length === 0">
-        Hien chua co phong trong trong khoang thoi gian ban chon.
+        Hiện chưa có phòng trống trong khoảng thời gian bạn chọn.
       </p>
     </div>
   </section>
 
   <section class="feature-section" id="features">
-    <p class="section-tag">TINH NANG</p>
-    <h2>Tinh Nang Noi Bat</h2>
+    <p class="section-tag">TÍNH NĂNG</p>
+    <h2>Tính Năng Nổi Bật</h2>
 
     <div class="feature-grid">
       <article class="feature-card" *ngFor="let feature of features">

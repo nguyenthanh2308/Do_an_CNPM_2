@@ -37,39 +37,39 @@ export class GuestHomeComponent {
   searchError = '';
   hasSearched = false;
   highlights = [
-    'Dat phong 24/7',
-    'Thanh toan bao mat',
-    'Ho tro da nen tang'
+    'Đặt phòng 24/7',
+    'Thanh toán bảo mật',
+    'Hỗ trợ đa nền tảng'
   ];
 
   features = [
     {
       icon: 'event_available',
-      title: 'Dat Phong Online',
-      description: 'Dat phong nhanh chong moi luc moi noi voi quy trinh don gian.'
+      title: 'Đặt Phòng Online',
+      description: 'Đặt phòng nhanh chóng mọi lúc mọi nơi với quy trình đơn giản.'
     },
     {
       icon: 'credit_card',
-      title: 'Thanh Toan Bao Mat',
-      description: 'Nhieu phuong thuc thanh toan an toan, bao mat tuyet doi.'
+      title: 'Thanh Toán Bảo Mật',
+      description: 'Nhiều phương thức thanh toán an toàn, bảo mật tuyệt đối.'
     },
     {
       icon: 'local_offer',
-      title: 'Khuyen Mai Hap Dan',
-      description: 'Uu dai linh hoat theo mua, giam gia doc quyen cho khach hang.'
+      title: 'Khuyến Mãi Hấp Dẫn',
+      description: 'Ưu đãi linh hoạt theo mùa, giảm giá độc quyền cho khách hàng.'
     },
     {
       icon: 'support_agent',
-      title: 'Ho Tro 24/7',
-      description: 'Doi ngu ho tro san sang dong hanh cung ban trong suot ky nghi.'
+      title: 'Hỗ Trợ 24/7',
+      description: 'Đội ngũ hỗ trợ sẵn sàng đồng hành cùng bạn trong suốt kỳ nghỉ.'
     }
   ];
 
   achievements = [
-    { icon: 'apartment', value: '5+', label: 'Khach san doi tac' },
-    { icon: 'meeting_room', value: '100+', label: 'Phong dang van hanh' },
-    { icon: 'event', value: '500+', label: 'Luot dat thanh cong' },
-    { icon: 'groups', value: '1000+', label: 'Khach hang tin dung' }
+    { icon: 'apartment', value: '5+', label: 'Khách sạn đối tác' },
+    { icon: 'meeting_room', value: '100+', label: 'Phòng đang vận hành' },
+    { icon: 'event', value: '500+', label: 'Lượt đặt thành công' },
+    { icon: 'groups', value: '1000+', label: 'Khách hàng tin dùng' }
   ];
 
   constructor(
@@ -77,7 +77,7 @@ export class GuestHomeComponent {
     private roomService: RoomService,
     private fb: FormBuilder
   ) {
-    this.fullName = this.authService.getCurrentUser()?.fullName || 'Guest';
+    this.fullName = this.authService.getCurrentUser()?.fullName || 'Khách';
 
     const checkIn = new Date();
     checkIn.setDate(checkIn.getDate() + 1);
@@ -109,7 +109,7 @@ export class GuestHomeComponent {
     const checkOutDate = this.searchForm.value.checkOutDate as Date;
 
     if (checkOutDate <= checkInDate) {
-      this.searchError = 'Check-out date must be after check-in date.';
+      this.searchError = 'Ngày trả phòng phải sau ngày nhận phòng.';
       return;
     }
 
@@ -129,7 +129,7 @@ export class GuestHomeComponent {
       error: () => {
         this.availableRooms = [];
         this.isLoading = false;
-        this.searchError = 'Unable to load available rooms. Please try again.';
+        this.searchError = 'Không thể tải danh sách phòng trống. Vui lòng thử lại.';
       }
     });
   }
