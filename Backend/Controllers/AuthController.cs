@@ -40,7 +40,7 @@ namespace HotelManagement.Controllers
         /// Đăng ký tài khoản mới (dùng cho Admin tạo nhân viên)
         /// </summary>
         [HttpPost("register")]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(ApiResponse<UserDto>), 201)]
         [ProducesResponseType(typeof(ApiResponse<object>), 400)]
         [ProducesResponseType(typeof(ApiResponse<object>), 409)]

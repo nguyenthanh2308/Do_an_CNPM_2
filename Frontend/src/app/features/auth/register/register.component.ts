@@ -81,9 +81,17 @@ export class RegisterComponent implements OnDestroy {
     this.errorMessage = '';
 
     const { fullName, email, password } = this.registerForm.value;
+    const username = (email as string).split('@')[0];
 
     // Role cố định là 'Guest' — khách hàng không được chọn chức vụ
-    this.authService.register({ fullName, email, password, role: 'Guest' })
+    this.authService.register({
+      username,
+      fullName,
+      email,
+      password,
+      confirmPassword: password,
+      role: 'Guest'
+    })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {

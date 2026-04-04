@@ -8,7 +8,7 @@ namespace HotelManagement.Models
     public class User
     {
         [Key]
-        [Column("user_id")]
+        [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long UserId { get; set; }
 

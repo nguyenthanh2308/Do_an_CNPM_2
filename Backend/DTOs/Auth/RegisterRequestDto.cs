@@ -26,9 +26,9 @@ namespace HotelManagement.DTOs.Auth
         [MaxLength(20)]
         public string? Phone { get; set; }
 
-        /// <summary>Admin, Manager, Receptionist, Housekeeping</summary>
+        /// <summary>Admin, Manager, Receptionist, Housekeeping, Guest</summary>
         [Required]
-        public string Role { get; set; } = "Receptionist";
+        public string Role { get; set; } = "Guest";
     }
 
     public class RefreshTokenRequestDto

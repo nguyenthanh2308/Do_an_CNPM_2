@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 // ════════════════════════════════════════════════════════════════════════════
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // ════════════════════════════════════════════════════════════════════════════
 // FLUENT VALIDATION — tự động scan toàn bộ assembly
@@ -217,12 +219,51 @@ app.MapControllers();
 // ── SignalR Hubs ──────────────────────────────────────────────────────────
 app.MapHub<HotelManagement.Hubs.RoomHub>("/hubs/room");
 
-// ── Auto migrate DB khi khởi động (optional, chỉ dùng trong Dev) ─────────
-if (app.Environment.IsDevelopment())
+// ── DB bootstrap ───────────────────────────────────────────────────────────
+using (var scope = app.Services.CreateScope())
 {
-    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<HotelDbContext>();
-    await db.Database.MigrateAsync();
+
+    // Auto migrate chỉ bật trong Development.
+    if (app.Environment.IsDevelopment())
+    {
+        await db.Database.MigrateAsync();
+    }
+
+    // Backfill tối thiểu cho DB cũ thiếu cột users.
+    var conn = db.Database.GetDbConnection();
+    if (conn.State != ConnectionState.Open)
+        await conn.OpenAsync();
+
+    async Task EnsureUserColumnAsync(string columnName, string columnDefinition)
+    {
+        await using var check = conn.CreateCommand();
+        check.CommandText = @"SELECT COUNT(*)
+                             FROM INFORMATION_SCHEMA.COLUMNS
+                             WHERE TABLE_SCHEMA = DATABASE()
+                               AND TABLE_NAME = 'users'
+                               AND COLUMN_NAME = @columnName";
+
+        var param = check.CreateParameter();
+        param.ParameterName = "@columnName";
+        param.Value = columnName;
+        check.Parameters.Add(param);
+
+        var exists = Convert.ToInt32(await check.ExecuteScalarAsync()) > 0;
+        if (!exists)
+        {
+            await db.Database.ExecuteSqlRawAsync($"ALTER TABLE users ADD COLUMN {columnName} {columnDefinition}");
+        }
+    }
+
+    await EnsureUserColumnAsync("full_name", "VARCHAR(150) NULL");
+    await EnsureUserColumnAsync("phone", "VARCHAR(20) NULL");
+    await EnsureUserColumnAsync("updated_at", "DATETIME(6) NULL");
+    await EnsureUserColumnAsync("created_at", "DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)");
+    await EnsureUserColumnAsync("is_active", "TINYINT(1) NOT NULL DEFAULT 1");
+
+    // Đồng bộ kiểu cột role để lưu enum dưới dạng string nhất quán với EF conversion.
+    await db.Database.ExecuteSqlRawAsync("ALTER TABLE users MODIFY COLUMN role VARCHAR(30) NOT NULL");
 }
 
 app.Run();
