@@ -17,6 +17,7 @@ using System.Text;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var runtimeInstanceId = Guid.NewGuid().ToString("N");
 
 // ════════════════════════════════════════════════════════════════════════════
 // SERILOG
@@ -216,6 +217,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Trả về runtime id của backend để frontend phát hiện server restart.
+app.MapGet("/api/session/runtime-id", () => Results.Ok(new { runtimeId = runtimeInstanceId }))
+    .AllowAnonymous();
 
 // ── SignalR Hubs ──────────────────────────────────────────────────────────
 app.MapHub<HotelManagement.Hubs.RoomHub>("/hubs/room");
