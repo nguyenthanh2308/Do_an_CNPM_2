@@ -1,25 +1,53 @@
-<div class="guest-home-wrap">
-  <div class="orb orb-a"></div>
-  <div class="orb orb-b"></div>
-
-  <section class="panel">
-    <div class="head-row">
-      <div class="head-main">
-        <div class="badge">
-          <mat-icon>travel_explore</mat-icon>
-        </div>
-
-        <div>
-          <h1>Welcome, {{ fullName }}</h1>
-          <p class="subtitle">Find available rooms and book your next stay.</p>
-        </div>
-      </div>
-
-      <button mat-stroked-button class="secondary" (click)="signOut()">
-        Sign Out
-      </button>
+<div class="home-page">
+  <header class="topbar">
+    <div class="brand">
+      <mat-icon>apartment</mat-icon>
+      <span>Hotel Management</span>
     </div>
 
+    <nav class="nav-links">
+      <button mat-button type="button" (click)="scrollTo('intro')">Gioi thieu</button>
+      <button mat-button type="button" (click)="scrollTo('features')">Tinh nang</button>
+      <button mat-button type="button" (click)="scrollTo('achievements')">Thanh tuu</button>
+    </nav>
+
+    <div class="top-actions">
+      <span class="hello">Xin chao, {{ fullName }}</span>
+      <button mat-stroked-button class="logout" (click)="signOut()">Dang xuat</button>
+    </div>
+  </header>
+
+  <section class="hero" id="intro">
+    <div class="hero-left">
+      <div class="pill-row">
+        <span class="pill" *ngFor="let item of highlights">
+          <mat-icon>check_circle</mat-icon>
+          {{ item }}
+        </span>
+      </div>
+
+      <h1>Dat phong truc tuyen nhanh chong, an toan va de dang</h1>
+      <p>
+        Nen tang quan ly va dat phong thong minh giup ban tim phong trong phu hop, thanh toan linh hoat,
+        va nhan ho tro xuyen suot 24/7.
+      </p>
+
+      <div class="hero-actions">
+        <button mat-flat-button class="cta" (click)="scrollTo('booking')">
+          <mat-icon>search</mat-icon>
+          Tim phong ngay
+        </button>
+        <button mat-button class="ghost" (click)="scrollTo('features')">
+          Kham pha tinh nang
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-image" aria-hidden="true"></div>
+  </section>
+
+  <section class="quick-booking" id="booking">
+    <h2>Tim phong trong nhanh</h2>
     <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchRooms()">
       <mat-form-field appearance="outline">
         <mat-label>Check-in</mat-label>
@@ -36,34 +64,55 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Guests</mat-label>
+        <mat-label>So khach</mat-label>
         <input matInput type="number" min="1" max="10" formControlName="guests">
       </mat-form-field>
 
-      <button mat-flat-button class="primary" type="submit" [disabled]="isLoading">
+      <button mat-flat-button class="search-btn" type="submit" [disabled]="isLoading">
         <mat-icon>search</mat-icon>
-        {{ isLoading ? 'Searching...' : 'Search Rooms' }}
+        {{ isLoading ? 'Dang tim...' : 'Tim phong' }}
       </button>
     </form>
 
     <p class="error" *ngIf="searchError">{{ searchError }}</p>
 
     <div class="results" *ngIf="hasSearched">
-      <p class="result-title" *ngIf="!isLoading">
-        {{ availableRooms.length }} room(s) available
-      </p>
+      <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phong trong phu hop</p>
 
       <div class="room-grid" *ngIf="availableRooms.length > 0">
         <mat-card class="room-card" *ngFor="let room of availableRooms">
-          <h3>{{ room.roomTypeName }} - Room {{ room.roomNumber }}</h3>
-          <p>Floor {{ room.floor }} • Up to {{ room.maxOccupancy }} guests</p>
-          <div class="price">{{ room.pricePerNight | number }} VND / night</div>
+          <h3>{{ room.roomTypeName }} - Phong {{ room.roomNumber }}</h3>
+          <p>Tang {{ room.floor }} • Toi da {{ room.maxOccupancy }} khach</p>
+          <div class="price">{{ room.pricePerNight | number }} VND / dem</div>
         </mat-card>
       </div>
 
       <p class="empty" *ngIf="!isLoading && availableRooms.length === 0">
-        No rooms available for selected dates. Try another date range.
+        Hien chua co phong trong trong khoang thoi gian ban chon.
       </p>
     </div>
+  </section>
+
+  <section class="feature-section" id="features">
+    <p class="section-tag">TINH NANG</p>
+    <h2>Tinh Nang Noi Bat</h2>
+
+    <div class="feature-grid">
+      <article class="feature-card" *ngFor="let feature of features">
+        <div class="icon-wrap">
+          <mat-icon>{{ feature.icon }}</mat-icon>
+        </div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="achievement" id="achievements">
+    <article class="stat-card" *ngFor="let item of achievements">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <div class="value">{{ item.value }}</div>
+      <div class="label">{{ item.label }}</div>
+    </article>
   </section>
 </div>

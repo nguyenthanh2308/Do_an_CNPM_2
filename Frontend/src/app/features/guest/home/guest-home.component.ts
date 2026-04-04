@@ -36,6 +36,41 @@ export class GuestHomeComponent {
   isLoading = false;
   searchError = '';
   hasSearched = false;
+  highlights = [
+    'Dat phong 24/7',
+    'Thanh toan bao mat',
+    'Ho tro da nen tang'
+  ];
+
+  features = [
+    {
+      icon: 'event_available',
+      title: 'Dat Phong Online',
+      description: 'Dat phong nhanh chong moi luc moi noi voi quy trinh don gian.'
+    },
+    {
+      icon: 'credit_card',
+      title: 'Thanh Toan Bao Mat',
+      description: 'Nhieu phuong thuc thanh toan an toan, bao mat tuyet doi.'
+    },
+    {
+      icon: 'local_offer',
+      title: 'Khuyen Mai Hap Dan',
+      description: 'Uu dai linh hoat theo mua, giam gia doc quyen cho khach hang.'
+    },
+    {
+      icon: 'support_agent',
+      title: 'Ho Tro 24/7',
+      description: 'Doi ngu ho tro san sang dong hanh cung ban trong suot ky nghi.'
+    }
+  ];
+
+  achievements = [
+    { icon: 'apartment', value: '5+', label: 'Khach san doi tac' },
+    { icon: 'meeting_room', value: '100+', label: 'Phong dang van hanh' },
+    { icon: 'event', value: '500+', label: 'Luot dat thanh cong' },
+    { icon: 'groups', value: '1000+', label: 'Khach hang tin dung' }
+  ];
 
   constructor(
     private authService: AuthService,
@@ -58,6 +93,10 @@ export class GuestHomeComponent {
 
   signOut() {
     this.authService.logout();
+  }
+
+  scrollTo(sectionId: string) {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   searchRooms() {
