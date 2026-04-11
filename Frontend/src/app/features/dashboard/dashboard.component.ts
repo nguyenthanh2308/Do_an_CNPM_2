@@ -77,50 +77,67 @@ export class DashboardComponent implements OnInit {
   }
 
   loadData() {
-    // 1. Load Occupancy
     const today = new Date().toISOString().split('T')[0];
-    this.reportService.getOccupancyReport(today).subscribe({
-      next: (res: { data: any }) => {
-        const d = res.data;
-        this.totalRooms = d.totalRooms;
-        this.occupiedRooms = d.occupiedRooms;
-        this.availableRooms = d.availableRooms;
-        const other = d.totalRooms - d.occupiedRooms - d.availableRooms;
-        
-        this.doughnutChartData.datasets[0].data = [
-          d.occupiedRooms,
-          d.availableRooms,
-          other > 0 ? other : 0
-        ];
-        
-        // Force chart update in ng2-charts by creating a new reference
-        this.doughnutChartData = { ...this.doughnutChartData };
-      }
-    });
-
-    // 2. Load Revenue (7 days ago to today)
     const end = new Date();
     const start = new Date();
     start.setDate(end.getDate() - 7);
-    
-    this.reportService.getRevenueReport(start.toISOString().split('T')[0], end.toISOString().split('T')[0]).subscribe({
-      next: (res: { data: any }) => {
-        this.totalRevenue = res.data.totalRevenue;
-        
-        // Cập nhật mảng Bar Chart
-        const labels = res.data.invoices.map((inv: any) => new Date(inv.issuedAt).toLocaleDateString());
-        const data = res.data.invoices.map((inv: any) => inv.totalAmount);
-        
-        // Nếu có nhiều hóa đơn trong 1 ngày, Backend chưa group by ngày. 
-        // Trong dự án đồ án ngắn, ta sẽ hiển thị list dạng thô dọc theo thời gian.
-        
-        this.barChartData.labels = labels;
-        this.barChartData.datasets[0].data = data;
-        this.barChartData = { ...this.barChartData };
+    const startStr = start.toISOString().split('T')[0];
+    const endStr = end.toISOString().split('T')[0];
 
-        this.isLoading = false;
+    let completedRequests = 0;
+    const totalRequests = 2;
+
+    // 1. Load Occupancy (today)
+    this.reportService.getOccupancyReport(today, today).subscribe({
+      next: (res: { data: any }) => {
+        if (res.data) {
+          const d = res.data;
+          this.totalRooms = d.totalRooms || 0;
+          this.occupiedRooms = d.occupiedRooms || 0;
+          this.availableRooms = d.availableRooms || 0;
+          const other = this.totalRooms - this.occupiedRooms - this.availableRooms;
+          
+          this.doughnutChartData.datasets[0].data = [
+            this.occupiedRooms,
+            this.availableRooms,
+            other > 0 ? other : 0
+          ];
+          
+          // Force chart update in ng2-charts by creating a new reference
+          this.doughnutChartData = { ...this.doughnutChartData };
+        }
+        completedRequests++;
+        if (completedRequests === totalRequests) this.isLoading = false;
       },
-      error: () => this.isLoading = false
+      error: () => {
+        completedRequests++;
+        if (completedRequests === totalRequests) this.isLoading = false;
+      }
+    });
+
+    // 2. Load Revenue (7 days)
+    this.reportService.getRevenueReport(startStr, endStr).subscribe({
+      next: (res: { data: any }) => {
+        if (res.data) {
+          this.totalRevenue = res.data.totalRevenue || 0;
+          
+          // Cập nhật mảng Bar Chart - add null check
+          if (res.data.dailyBreakdown && Array.isArray(res.data.dailyBreakdown)) {
+            const labels = res.data.dailyBreakdown.map((item: any) => new Date(item.date).toLocaleDateString());
+            const data = res.data.dailyBreakdown.map((item: any) => item.revenue);
+            
+            this.barChartData.labels = labels;
+            this.barChartData.datasets[0].data = data;
+            this.barChartData = { ...this.barChartData };
+          }
+        }
+        completedRequests++;
+        if (completedRequests === totalRequests) this.isLoading = false;
+      },
+      error: () => {
+        completedRequests++;
+        if (completedRequests === totalRequests) this.isLoading = false;
+      }
     });
   }
 }

@@ -16,16 +16,6 @@
         <span matListItemTitle>{{ item.label }}</span>
       </a>
     </mat-nav-list>
-
-    <div class="sidenav-footer">
-      <div class="user-info">
-        <div class="avatar">{{ userName.charAt(0).toUpperCase() }}</div>
-        <div class="details">
-          <span class="name">{{ userName }}</span>
-          <span class="role">{{ userRole }}</span>
-        </div>
-      </div>
-    </div>
   </mat-sidenav>
 
   <!-- Main Content Area -->
@@ -38,6 +28,15 @@
       </button>
 
       <span class="spacer"></span>
+
+      <!-- User Info Dropdown -->
+      <div class="user-info-topbar">
+        <div class="avatar-small">{{ userName.charAt(0).toUpperCase() }}</div>
+        <div class="user-details-small">
+          <span class="name-small">{{ userName }}</span>
+          <span class="role-small">{{ userRole }}</span>
+        </div>
+      </div>
 
       <!-- Notification Bell -->
       <button mat-icon-button class="notification-btn" [class.ringing]="isRinging" (click)="clearNotifications()">

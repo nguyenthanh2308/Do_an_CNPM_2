@@ -191,3 +191,166 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-04-11 13:24:56.111 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 18.6424 ms
 2026-04-11 13:24:59.101 +07:00 [INF] SignalR Disconnected: ConnId=lFp5nqHsjltwXO7aQcShug
 2026-04-11 13:24:59.102 +07:00 [INF] HTTP GET /hubs/room responded 101 in 386395.7707 ms
+2026-04-11 13:29:51.281 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 13:31:17.387 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 13:31:17.393 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.6212 ms
+2026-04-11 13:31:17.614 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-11 13:31:17.953 +07:00 [INF] User 'admin' logged in.
+2026-04-11 13:31:17.985 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 582.2135 ms
+2026-04-11 13:31:17.990 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4313 ms
+2026-04-11 13:31:18.031 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 38.9180 ms
+2026-04-11 13:31:18.046 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.1074 ms
+2026-04-11 13:31:18.048 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0990 ms
+2026-04-11 13:31:18.068 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.3838 ms
+2026-04-11 13:31:18.078 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:31:18.078 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:31:18.079 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 7.4559 ms
+2026-04-11 13:31:18.107 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=tmdV8deUpg8Th2_N7VNzfQ
+2026-04-11 13:31:18.226 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 175.8490 ms
+2026-04-11 13:31:18.246 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 197.8816 ms
+2026-04-11 13:31:26.337 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2145 ms
+2026-04-11 13:32:12.711 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 13:32:26.428 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 13:32:26.434 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4107 ms
+2026-04-11 13:32:26.639 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-11 13:32:26.957 +07:00 [INF] User 'admin' logged in.
+2026-04-11 13:32:26.991 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 546.9015 ms
+2026-04-11 13:32:26.996 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4024 ms
+2026-04-11 13:32:27.038 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 39.6694 ms
+2026-04-11 13:32:27.067 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.1152 ms
+2026-04-11 13:32:27.069 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0948 ms
+2026-04-11 13:32:27.093 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:32:27.093 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:32:27.099 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.2209 ms
+2026-04-11 13:32:27.108 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 5.3540 ms
+2026-04-11 13:32:27.131 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=6u85TBTVWfYiPTGJZ2JG4A
+2026-04-11 13:32:27.229 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 156.2040 ms
+2026-04-11 13:32:27.249 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 178.8790 ms
+2026-04-11 13:32:39.227 +07:00 [INF] SignalR Disconnected: ConnId=6u85TBTVWfYiPTGJZ2JG4A
+2026-04-11 13:32:39.230 +07:00 [INF] HTTP GET /hubs/room responded 101 in 12116.0693 ms
+2026-04-11 13:32:39.337 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.1588 ms
+2026-04-11 13:32:39.337 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0625 ms
+2026-04-11 13:32:39.348 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0885 ms
+2026-04-11 13:32:39.348 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:32:39.348 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:32:39.350 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6448 ms
+2026-04-11 13:32:39.356 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 15.4096 ms
+2026-04-11 13:32:39.356 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 16.8375 ms
+2026-04-11 13:32:39.416 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=OsKec0Rqu6PShdttdHpKpQ
+2026-04-11 13:32:50.707 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1418 ms
+2026-04-11 13:32:50.755 +07:00 [INF] HTTP GET /api/rooms responded 200 in 46.8546 ms
+2026-04-11 13:33:05.786 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0791 ms
+2026-04-11 13:33:05.787 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0554 ms
+2026-04-11 13:33:05.796 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:33:05.796 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:33:05.801 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 11.4548 ms
+2026-04-11 13:33:05.803 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 13.5931 ms
+2026-04-11 13:34:00.606 +07:00 [INF] SignalR Disconnected: ConnId=OsKec0Rqu6PShdttdHpKpQ
+2026-04-11 13:34:00.607 +07:00 [INF] HTTP GET /hubs/room responded 101 in 81203.0603 ms
+2026-04-11 13:34:00.701 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.1330 ms
+2026-04-11 13:34:00.701 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0231 ms
+2026-04-11 13:34:00.710 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:34:00.710 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:34:00.711 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0710 ms
+2026-04-11 13:34:00.716 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.8210 ms
+2026-04-11 13:34:00.716 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 11.9016 ms
+2026-04-11 13:34:00.716 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 12.8437 ms
+2026-04-11 13:34:00.764 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=TtsTdH9X_vyP0JkmhCg5WQ
+2026-04-11 13:34:04.561 +07:00 [INF] SignalR Disconnected: ConnId=TtsTdH9X_vyP0JkmhCg5WQ
+2026-04-11 13:34:04.562 +07:00 [INF] HTTP GET /hubs/room responded 101 in 3799.7842 ms
+2026-04-11 13:34:04.676 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:34:04.676 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:34:04.682 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 12.3501 ms
+2026-04-11 13:34:04.682 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1428 ms
+2026-04-11 13:34:04.682 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 13.1344 ms
+2026-04-11 13:34:04.687 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6021 ms
+2026-04-11 13:34:04.742 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=tQ0MfLB_FPJsAGi3X49zFg
+2026-04-11 13:34:38.197 +07:00 [INF] SignalR Disconnected: ConnId=tQ0MfLB_FPJsAGi3X49zFg
+2026-04-11 13:34:38.198 +07:00 [INF] HTTP GET /hubs/room responded 101 in 33467.5494 ms
+2026-04-11 13:34:38.290 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1098 ms
+2026-04-11 13:34:38.293 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4354 ms
+2026-04-11 13:34:38.310 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=iWhH7lrrN9nZ9oyE8JFZgg
+2026-04-11 13:34:50.795 +07:00 [INF] SignalR Disconnected: ConnId=iWhH7lrrN9nZ9oyE8JFZgg
+2026-04-11 13:34:50.796 +07:00 [INF] HTTP GET /hubs/room responded 101 in 12488.7816 ms
+2026-04-11 13:34:50.888 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0715 ms
+2026-04-11 13:34:50.890 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4219 ms
+2026-04-11 13:34:50.902 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=ev_52Za6qo1DvYOEGZUyzQ
+2026-04-11 13:34:58.658 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.1491 ms
+2026-04-11 13:34:58.658 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0215 ms
+2026-04-11 13:34:58.668 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:34:58.668 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:34:58.672 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 9.9704 ms
+2026-04-11 13:34:58.673 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 12.5084 ms
+2026-04-11 13:37:37.837 +07:00 [INF] SignalR Disconnected: ConnId=ev_52Za6qo1DvYOEGZUyzQ
+2026-04-11 13:37:37.838 +07:00 [INF] HTTP GET /hubs/room responded 101 in 166937.5427 ms
+2026-04-11 13:37:37.931 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0550 ms
+2026-04-11 13:37:37.932 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0292 ms
+2026-04-11 13:37:37.942 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0520 ms
+2026-04-11 13:37:37.942 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:37:37.942 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:37:37.945 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4239 ms
+2026-04-11 13:37:37.947 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 12.7490 ms
+2026-04-11 13:37:37.949 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 15.1029 ms
+2026-04-11 13:37:37.983 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=-Kb1asPWJ6wFLz9dXd0-Hg
+2026-04-11 13:37:43.609 +07:00 [INF] SignalR Disconnected: ConnId=-Kb1asPWJ6wFLz9dXd0-Hg
+2026-04-11 13:37:43.610 +07:00 [INF] HTTP GET /hubs/room responded 101 in 5628.9230 ms
+2026-04-11 13:37:43.718 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0602 ms
+2026-04-11 13:37:43.718 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0158 ms
+2026-04-11 13:37:43.728 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:37:43.728 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:37:43.730 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1248 ms
+2026-04-11 13:37:43.740 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 20.2745 ms
+2026-04-11 13:37:43.740 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 18.7928 ms
+2026-04-11 13:37:43.743 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.5927 ms
+2026-04-11 13:37:43.802 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=bWwXj6CS8cz1E-U1DnNQBA
+2026-04-11 13:38:02.452 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1254 ms
+2026-04-11 13:38:02.465 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.7094 ms
+2026-04-11 13:38:04.063 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.4928 ms
+2026-04-11 13:38:46.089 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 13:38:52.195 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 13:38:52.200 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 2.4248 ms
+2026-04-11 13:38:52.265 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 56.1693 ms
+2026-04-11 13:38:52.287 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=bhrt7ZlEU24Od_lOi9U2AQ
+2026-04-11 13:39:30.416 +07:00 [INF] SignalR Disconnected: ConnId=bhrt7ZlEU24Od_lOi9U2AQ
+2026-04-11 13:39:30.418 +07:00 [INF] HTTP GET /hubs/room responded 101 in 38149.3780 ms
+2026-04-11 13:39:30.514 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2273 ms
+2026-04-11 13:39:30.542 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0882 ms
+2026-04-11 13:39:30.543 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0413 ms
+2026-04-11 13:39:30.544 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.9024 ms
+2026-04-11 13:39:30.546 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6398 ms
+2026-04-11 13:39:30.600 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=r0pO8V-OFQ4wkF2OsQ35Yg
+2026-04-11 13:39:30.604 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=n17j_ovA-MJ59iuTeyUpMQ
+2026-04-11 13:39:30.816 +07:00 [INF] HTTP GET /api/rooms responded 200 in 299.7689 ms
+2026-04-11 13:40:32.702 +07:00 [INF] SignalR Disconnected: ConnId=r0pO8V-OFQ4wkF2OsQ35Yg
+2026-04-11 13:40:32.702 +07:00 [INF] SignalR Disconnected: ConnId=n17j_ovA-MJ59iuTeyUpMQ
+2026-04-11 13:40:32.703 +07:00 [INF] HTTP GET /hubs/room responded 101 in 62127.6185 ms
+2026-04-11 13:40:32.703 +07:00 [INF] HTTP GET /hubs/room responded 101 in 62107.1276 ms
+2026-04-11 13:40:32.821 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1540 ms
+2026-04-11 13:40:32.850 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0714 ms
+2026-04-11 13:40:32.852 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1103 ms
+2026-04-11 13:40:32.852 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.5860 ms
+2026-04-11 13:40:32.854 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6411 ms
+2026-04-11 13:40:32.899 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=gaI1Dt_w6j5A8F_qGYIVsQ
+2026-04-11 13:40:32.902 +07:00 [INF] HTTP GET /api/rooms responded 200 in 80.1297 ms
+2026-04-11 13:40:32.941 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=VadrIxSqjfVWwGs08k6GGQ
+2026-04-11 13:40:37.078 +07:00 [INF] SignalR Disconnected: ConnId=VadrIxSqjfVWwGs08k6GGQ
+2026-04-11 13:40:37.078 +07:00 [INF] HTTP GET /hubs/room responded 101 in 4165.6066 ms
+2026-04-11 13:40:37.080 +07:00 [INF] SignalR Disconnected: ConnId=gaI1Dt_w6j5A8F_qGYIVsQ
+2026-04-11 13:40:37.080 +07:00 [INF] HTTP GET /hubs/room responded 101 in 4189.2215 ms
+2026-04-11 13:40:37.215 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.9425 ms
+2026-04-11 13:40:37.234 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.2226 ms
+2026-04-11 13:40:37.236 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0769 ms
+2026-04-11 13:40:37.236 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6751 ms
+2026-04-11 13:40:37.238 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.7229 ms
+2026-04-11 13:40:37.289 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=M3mxzTnvd4yKsO38w82hIw
+2026-04-11 13:40:37.312 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=P6ZI6TZ7QvznKBYV27iDdA
+2026-04-11 13:40:40.663 +07:00 [INF] SignalR Disconnected: ConnId=P6ZI6TZ7QvznKBYV27iDdA
+2026-04-11 13:40:40.663 +07:00 [INF] SignalR Disconnected: ConnId=M3mxzTnvd4yKsO38w82hIw
+2026-04-11 13:40:40.663 +07:00 [INF] HTTP GET /hubs/room responded 101 in 3353.1316 ms
+2026-04-11 13:40:40.663 +07:00 [INF] HTTP GET /hubs/room responded 101 in 3377.0352 ms
+2026-04-11 13:40:40.780 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1439 ms
+2026-04-11 13:40:40.793 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.7633 ms
+2026-04-11 13:40:40.812 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0825 ms
+2026-04-11 13:40:40.813 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0488 ms
+2026-04-11 13:40:40.814 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4584 ms
+2026-04-11 13:40:40.815 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4209 ms

@@ -25,6 +25,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
+import { SimpleRoomFormComponent } from '../room-form.component';
 
 @Component({
   selector: 'app-room-list',
@@ -171,7 +172,18 @@ export class RoomListComponent implements OnInit, OnDestroy {
   }
 
   // ── Actions ────────────────────────────────────────────────────────────
+  openAddRoomDialog(): void {
+    const dialogRef = this.dialog.open(SimpleRoomFormComponent, {
+      width: '600px',
+      data: { mode: 'create' }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadRooms();
+      }
+    });
+  }
   viewDetail(room: RoomDto): void {
     // Navigate to detail or open dialog
     // this.router.navigate(['/rooms', room.roomId]);

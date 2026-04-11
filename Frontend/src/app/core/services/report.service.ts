@@ -14,13 +14,13 @@ export class ReportService {
 
   getRevenueReport(startDate: string, endDate: string): Observable<ApiResponse<any>> {
     return this.http.get<ApiResponse<any>>(`${this.APIUrl}/revenue`, {
-      params: { startDate, endDate }
+      params: { from: startDate, to: endDate }
     });
   }
 
-  getOccupancyReport(date: string): Observable<ApiResponse<any>> {
+  getOccupancyReport(startDate: string, endDate: string): Observable<ApiResponse<any>> {
     return this.http.get<ApiResponse<any>>(`${this.APIUrl}/occupancy`, {
-      params: { date }
+      params: { from: startDate, to: endDate }
     });
   }
 }

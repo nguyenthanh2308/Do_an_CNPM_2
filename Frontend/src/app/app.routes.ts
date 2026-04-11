@@ -75,12 +75,23 @@ export const routes: Routes = [
         canActivate: [roleGuard]
       },
       {
+        path: 'invoices',
+        loadComponent: () => import('./features/invoices/invoice-list.component').then(m => m.InvoiceListComponent),
+        data: { roles: ['Admin', 'Manager'] },
+        canActivate: [roleGuard]
+      },
+      {
+        path: 'guests',
+        loadComponent: () => import('./features/guests/guest-list.component').then(m => m.GuestListComponent),
+        data: { roles: ['Admin', 'Manager', 'Receptionist'] },
+        canActivate: [roleGuard]
+      },
+      {
         path: 'staff/create',
         loadComponent: () => import('./features/staff/create-staff.component').then(m => m.CreateStaffComponent),
         data: { roles: ['Admin'] },
         canActivate: [roleGuard]
       }
-      // Note: invoices and guests modules don't exist yet so not mapped.
     ]
   },
   // Fallback

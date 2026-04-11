@@ -10,6 +10,7 @@
       <span class="total-badge">{{ dataSource.filteredData.length }} phòng</span>
     </div>
     <button mat-raised-button color="primary" class="add-btn"
+            (click)="openAddRoomDialog()"
             *ngIf="authService.isManagerOrAbove()">
       <mat-icon>add</mat-icon> Thêm phòng
     </button>
