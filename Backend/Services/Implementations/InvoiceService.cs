@@ -128,5 +128,38 @@ namespace HotelManagement.Services.Implementations
             
             return invoice;
         }
+
+        /// <summary>
+        /// Tạo Invoice cho booking vừa tạo (trước khi thanh toán)
+        /// </summary>
+        public async Task<Invoice> GenerateBookingInvoiceAsync(Booking booking)
+        {
+            // Kiểm tra nếu đã có invoice cho booking này
+            var existingInvoice = await _context.Invoices
+                .FirstOrDefaultAsync(i => i.BookingId == booking.BookingId);
+            
+            if (existingInvoice != null)
+                return existingInvoice;
+
+            // Tạo Invoice dành cho Pending payment
+            var invoice = new Invoice
+            {
+                BookingId = booking.BookingId,
+                InvoiceNumber = $"INV-{DateTime.UtcNow:yyyyMMdd}-{booking.BookingId}-{Guid.NewGuid().ToString().Substring(0, 4).ToUpper()}",
+                IssuedAt = DateTime.UtcNow,
+                Subtotal = booking.TotalAmount,
+                TaxAmount = 0, // Sẽ tính sau khi checkout
+                DiscountAmount = booking.DiscountAmount,
+                TotalAmount = booking.FinalAmount,
+                Status = InvoiceStatus.Pending, // Chờ thanh toán
+                Notes = $"Invoice cho đặt phòng #{booking.BookingId}",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await _context.Invoices.AddAsync(invoice);
+            await _context.SaveChangesAsync();
+
+            return invoice;
+        }
     }
 }

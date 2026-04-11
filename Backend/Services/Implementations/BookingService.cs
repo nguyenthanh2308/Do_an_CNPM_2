@@ -268,7 +268,10 @@ namespace HotelManagement.Services.Implementations
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    // ── Bước 13: Load lại để trả về đầy đủ ──────────────────────
+                    // ── Bước 13: Tạo Invoice cho booking ──────────────────────
+                    await _invoiceService.GenerateBookingInvoiceAsync(booking);
+
+                    // ── Bước 14: Load lại để trả về đầy đủ ──────────────────────
                     var created = await _bookingRepo.GetBookingDetailAsync(booking.BookingId);
                     if (created == null)
                         throw new AppException($"Không thể lấy thông tin booking #{booking.BookingId} mới tạo.");

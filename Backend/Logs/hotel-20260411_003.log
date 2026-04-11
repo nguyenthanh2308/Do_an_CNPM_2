@@ -220,3 +220,41 @@ System.InvalidOperationException: The configured execution strategy 'MySqlRetryi
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
    at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-04-11 15:46:19.519 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:47:36.019 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:47:49.557 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 15:47:49.564 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4832 ms
+2026-04-11 15:47:49.807 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:47:50.153 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 15:47:50.184 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 609.7463 ms
+2026-04-11 15:47:50.192 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4752 ms
+2026-04-11 15:47:50.246 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 49.0350 ms
+2026-04-11 15:47:53.287 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.2446 ms
+2026-04-11 15:47:53.395 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:47:53.583 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 288.9919 ms
+2026-04-11 15:48:01.473 +07:00 [INF] HTTP OPTIONS /api/bookings/1 responded 204 in 0.3470 ms
+2026-04-11 15:48:01.494 +07:00 [INF] DELETE /api/bookings/1
+2026-04-11 15:48:01.531 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-11 15:48:01.649 +07:00 [INF] Booking #1 đã bị hủy.
+2026-04-11 15:48:01.651 +07:00 [INF] HTTP DELETE /api/bookings/1 responded 200 in 174.8330 ms
+2026-04-11 15:48:01.660 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0663 ms
+2026-04-11 15:48:01.677 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:48:01.684 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 17.8398 ms
+2026-04-11 15:48:10.054 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1044 ms
+2026-04-11 15:48:10.108 +07:00 [INF] HTTP GET /api/rooms responded 200 in 46.0279 ms
+2026-04-11 15:48:16.818 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0831 ms
+2026-04-11 15:48:16.844 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 15:48:16.899 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 77.7095 ms
+2026-04-11 15:48:23.325 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.1140 ms
+2026-04-11 15:48:23.357 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 28.5489 ms
+2026-04-11 15:48:23.368 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1548 ms
+2026-04-11 15:48:23.393 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 15:48:23.491 +07:00 [INF] Booking #2 created successfully.
+2026-04-11 15:48:23.500 +07:00 [INF] HTTP POST /api/bookings responded 201 in 128.8460 ms
+2026-04-11 15:48:25.554 +07:00 [INF] HTTP OPTIONS /api/bookings/2 responded 204 in 0.1151 ms
+2026-04-11 15:48:25.582 +07:00 [INF] GET /api/bookings/2
+2026-04-11 15:48:25.596 +07:00 [INF] HTTP GET /api/bookings/2 responded 200 in 30.2781 ms
+2026-04-11 15:48:39.065 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0896 ms
+2026-04-11 15:48:39.070 +07:00 [INF] HTTP POST /api/payments responded 403 in 1.9528 ms
+2026-04-11 15:48:47.932 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.2954 ms
+2026-04-11 15:48:47.936 +07:00 [INF] HTTP POST /api/payments responded 403 in 0.5934 ms

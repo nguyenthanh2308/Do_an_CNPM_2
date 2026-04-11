@@ -11,6 +11,11 @@ namespace HotelManagement.Services.Interfaces
         Task<PagedResult<InvoiceDto>> GetPagedInvoicesAsync(int page, int pageSize);
         
         /// <summary>
+        /// Tạo hóa đơn cho booking vừa tạo (trước khi thanh toán)
+        /// </summary>
+        Task<Invoice> GenerateBookingInvoiceAsync(Booking booking);
+        
+        /// <summary>
         /// Tạo hóa đơn và thanh toán đi kèm trong quá trình Check-out
         /// Gọi và thực thi bên trong transaction của BookingService
         /// </summary>

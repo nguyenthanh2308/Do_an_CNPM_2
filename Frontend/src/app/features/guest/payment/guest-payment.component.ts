@@ -4,6 +4,7 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingService } from '../../../core/services/booking.service';
 import { PaymentService } from '../../../core/services/payment.service';
+import { InvoiceService } from '../../../core/services/invoice.service';
 import { BookingDto, CreatePaymentDto } from '../../../core/models/models';
 import { Subject, takeUntil } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
@@ -44,6 +45,7 @@ import { MatPrefix, MatSuffix } from '@angular/material/form-field';
 export class GuestPaymentComponent implements OnInit, OnDestroy {
   paymentForm!: FormGroup;
   booking: BookingDto | null = null;
+  invoiceId: number | null = null;
   isLoadingBooking = true;
   isProcessing = false;
   
@@ -61,6 +63,7 @@ export class GuestPaymentComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private bookingService: BookingService,
     private paymentService: PaymentService,
+    private invoiceService: InvoiceService,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar
@@ -106,7 +109,24 @@ export class GuestPaymentComponent implements OnInit, OnDestroy {
           this.paymentForm.patchValue({
             amount: this.booking?.finalAmount || 0
           });
-          this.isLoadingBooking = false;
+          
+          // Load invoice for this booking
+          this.invoiceService.getByBooking(bookingId)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+              next: (invoiceRes) => {
+                if (invoiceRes.data && invoiceRes.data.length > 0) {
+                  this.invoiceId = invoiceRes.data[0].invoiceId;
+                } else {
+                  this.bookingError = 'Không tìm thấy hóa đơn cho đặt phòng này';
+                }
+                this.isLoadingBooking = false;
+              },
+              error: (err) => {
+                this.bookingError = 'Không thể tải thông tin hóa đơn';
+                this.isLoadingBooking = false;
+              }
+            });
         },
         error: (err) => {
           this.bookingError = err.error?.message || 'Không thể tải thông tin đặt phòng';
@@ -156,15 +176,16 @@ export class GuestPaymentComponent implements OnInit, OnDestroy {
   }
 
   processPayment(): void {
-    if (!this.paymentForm.valid || !this.booking) return;
+    if (!this.paymentForm.valid || !this.booking || !this.invoiceId) {
+      this.showError('Thông tin không đầy đủ để thanh toán');
+      return;
+    }
 
     this.isProcessing = true;
     const formValue = this.paymentForm.value;
     
-    // Create payment DTO for booking
-    // Note: In a real system, an invoice would be created first
     const paymentDto: CreatePaymentDto = {
-      invoiceId: Math.floor(Date.now() / 1000), // Use a temporary ID
+      invoiceId: this.invoiceId, // Use real invoice ID loaded from backend
       amount: formValue.amount,
       paymentMethod: formValue.paymentMethod,
       transactionId: formValue.transactionId || this.generateTransactionId(),

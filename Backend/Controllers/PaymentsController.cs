@@ -13,8 +13,10 @@ namespace HotelManagement.Controllers
 {
     /// <summary>
     /// Payments Controller — tra cứu và ghi nhận thanh toán.
+    /// Guests có thể thanh toán cho booking của chính mình.
+    /// Staff có thể tra cứu tất cả thanh toán.
     /// </summary>
-    [Authorize(Roles = "Admin,Manager,Receptionist")]
+    [Authorize]
     public class PaymentsController : BaseController
     {
         private readonly HotelDbContext _context;
@@ -27,6 +29,7 @@ namespace HotelManagement.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
         [ProducesResponseType(typeof(ApiResponse<PagedResult<PaymentDto>>), 200)]
         public async Task<IActionResult> GetPaged([FromQuery] int page = 1, [FromQuery] int pageSize = 20)
         {
@@ -56,6 +59,7 @@ namespace HotelManagement.Controllers
         }
 
         [HttpGet("{id:long}")]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
         [ProducesResponseType(typeof(ApiResponse<PaymentDto>), 200)]
         [ProducesResponseType(typeof(ApiResponse<object>), 404)]
         public async Task<IActionResult> GetById(long id)
@@ -71,6 +75,7 @@ namespace HotelManagement.Controllers
         }
 
         [HttpGet("invoice/{invoiceId:long}")]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
         [ProducesResponseType(typeof(ApiResponse<IEnumerable<PaymentDto>>), 200)]
         public async Task<IActionResult> GetByInvoice(long invoiceId)
         {
@@ -88,13 +93,29 @@ namespace HotelManagement.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse<PaymentDto>), 201)]
         [ProducesResponseType(typeof(ApiResponse<object>), 400)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 403)]
         [ProducesResponseType(typeof(ApiResponse<object>), 404)]
         public async Task<IActionResult> Create([FromBody] CreatePaymentDto dto)
         {
             var invoice = await _context.Invoices
                 .Include(i => i.Payments)
+                .Include(i => i.Booking)
+                    .ThenInclude(b => b.Guest)
                 .FirstOrDefaultAsync(i => i.InvoiceId == dto.InvoiceId)
                 ?? throw AppException.NotFound($"Invoice #{dto.InvoiceId}");
+
+            // Check if user is staff or owns the booking
+            var userId = GetCurrentUserId();
+            var userRole = User.FindFirst("role")?.Value;
+            var isStaff = !string.IsNullOrEmpty(userRole) && new[] { "Admin", "Manager", "Receptionist" }.Contains(userRole);
+            
+            if (!isStaff)
+            {
+                // Guest must own the booking associated with this invoice
+                var guest = await _context.Guests.FirstOrDefaultAsync(g => g.UserId == userId && g.GuestId == invoice.Booking.GuestId);
+                if (guest == null)
+                    return Fail("Bạn không có quyền thanh toán hóa đơn này.", 403);
+            }
 
             if (!Enum.TryParse<PaymentMethod>(dto.PaymentMethod, true, out var method))
                 throw new AppException($"PaymentMethod '{dto.PaymentMethod}' không hợp lệ.");
@@ -138,6 +159,7 @@ namespace HotelManagement.Controllers
         }
 
         [HttpPut("{id:long}/status")]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
         [ProducesResponseType(typeof(ApiResponse<PaymentDto>), 200)]
         [ProducesResponseType(typeof(ApiResponse<object>), 404)]
         [ProducesResponseType(typeof(ApiResponse<object>), 400)]
