@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingService } from '../../../core/services/booking.service';
 import { RoomService } from '../../../core/services/room.service';
+import { RatePlanService } from '../../../core/services/rate-plan.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { AvailableRoomDto, CreateBookingDto, UserInfo } from '../../../core/models/models';
 import { Subject, takeUntil } from 'rxjs';
@@ -63,6 +64,7 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private bookingService: BookingService,
     private roomService: RoomService,
+    private ratePlanService: RatePlanService,
     private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar
@@ -99,15 +101,53 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     // If there's a pre-selected room, skip search step and go directly to details
     if (this.preSelectedRoom) {
       this.skipSearchStep = true;
-      this.selectedRoom = this.preSelectedRoom as AvailableRoomDto;
-      this.hasSearched = true;
+      // Auto-search to get AvailableRoomDto with pricePerNight
+      const ci = checkIn.toISOString().split('T')[0];
+      const co = checkOut.toISOString().split('T')[0];
+      const searchDto = {
+        checkIn: ci,
+        checkOut: co,
+        guests: 1
+      };
+
+      this.roomService.getAvailableRooms(searchDto)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (res) => {
+            // Find the pre-selected room in the available rooms
+            const foundRoom = res.data?.find(r => r.roomId === this.preSelectedRoom.roomId);
+            if (foundRoom) {
+              this.selectedRoom = foundRoom;  // Use the AvailableRoomDto with price
+              this.availableRooms = [foundRoom];
+              this.hasSearched = true;
+              this.showSuccess(`Phòng ${this.preSelectedRoom.roomNumber} đã được chọn!`);
+            } else {
+              // If not available, use the room data with base price as fallback
+              this.selectedRoom = {
+                ...this.preSelectedRoom,
+                pricePerNight: this.preSelectedRoom.roomTypeDetails?.basePrice || 0
+              } as AvailableRoomDto;
+              this.hasSearched = true;
+              this.showInfo(`Phòng ${this.preSelectedRoom.roomNumber} không trống cho khoảng thời gian này, nhưng bạn có thể tiếp tục đặt.`);
+            }
+          },
+          error: (err) => {
+            // Use fallback price if search fails
+            this.selectedRoom = {
+              ...this.preSelectedRoom,
+              pricePerNight: this.preSelectedRoom.roomTypeDetails?.basePrice || 0
+            } as AvailableRoomDto;
+            this.hasSearched = true;
+            this.showInfo(`Sử dụng giá cơ bản: ${this.selectedRoom.pricePerNight} VND/đêm`);
+          }
+        });
+
       // Advance to step 2 after stepper is initialized
       setTimeout(() => {
         if (this.stepper) {
           this.stepper.next();
         }
       }, 100);
-      this.showSuccess(`Phòng ${this.preSelectedRoom.roomNumber} đã được chọn!`);
     }
   }
 
@@ -163,35 +203,59 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
 
     this.isBooking = true;
     this.bookingError = '';
-    const formValue = this.searchForm.value;
-    const bookingDto: CreateBookingDto = {
-      guestId: this.currentUser.userId,
-      ratePlanId: 1, // Default rate plan ID
-      checkInDate: this.formatDate(formValue.checkInDate),
-      checkOutDate: this.formatDate(formValue.checkOutDate),
-      numGuests: formValue.guests,
-      bookingSource: 'Guest Portal',
-      specialRequests: this.bookingForm.get('specialRequests')?.value,
-      roomIds: [this.selectedRoom.roomId]
-    };
 
-    this.bookingService.create(bookingDto)
-      .pipe(takeUntil(this.destroy$))
+    const selectedRoom = this.selectedRoom; // Store in local variable to avoid null check in nested subscribe
+
+    // First, fetch the rate plan for the selected room type
+    this.ratePlanService.getAll(undefined, selectedRoom.roomTypeId)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
       .subscribe({
         next: (res) => {
-          this.isBooking = false;
-          this.showSuccess(`Đặt phòng thành công! Mã đặt phòng: ${res.data.bookingId}`);
-          // Store booking for payment
-          sessionStorage.setItem('lastBookingId', res.data.bookingId.toString());
-          // Navigate to payment or booking confirmation
-          setTimeout(() => {
-            this.router.navigate(['/guest/payment'], { 
-              queryParams: { bookingId: res.data.bookingId } 
+          if (!res.data || res.data.length === 0) {
+            this.bookingError = 'Không tìm thấy gói giá cho phòng này';
+            this.isBooking = false;
+            return;
+          }
+
+          const formValue = this.searchForm.value;
+          const selectedRatePlan = res.data[0]; // Use first rate plan
+          
+          const bookingDto: CreateBookingDto = {
+            guestId: this.currentUser!.userId,
+            ratePlanId: selectedRatePlan.ratePlanId,
+            checkInDate: this.formatDate(formValue.checkInDate),
+            checkOutDate: this.formatDate(formValue.checkOutDate),
+            numGuests: formValue.guests,
+            bookingSource: 'Guest Portal',
+            specialRequests: this.bookingForm.get('specialRequests')?.value,
+            roomIds: [selectedRoom.roomId]
+          };
+
+          this.bookingService.create(bookingDto)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+              next: (res) => {
+                this.isBooking = false;
+                this.showSuccess(`Đặt phòng thành công! Mã đặt phòng: ${res.data.bookingId}`);
+                // Store booking for payment
+                sessionStorage.setItem('lastBookingId', res.data.bookingId.toString());
+                // Navigate to payment or booking confirmation
+                setTimeout(() => {
+                  this.router.navigate(['/guest/payment'], { 
+                    queryParams: { bookingId: res.data.bookingId } 
+                  });
+                }, 2000);
+              },
+              error: (err) => {
+                this.bookingError = err.error?.message || err.error?.errors?.[0] || 'Không thể tạo đặt phòng';
+                this.isBooking = false;
+              }
             });
-          }, 2000);
         },
         error: (err) => {
-          this.bookingError = err.error?.message || err.error?.errors?.[0] || 'Không thể tạo đặt phòng';
+          this.bookingError = 'Không thể lấy thông tin giá. Vui lòng thử lại.';
           this.isBooking = false;
         }
       });

@@ -89,3 +89,83 @@ HotelManagement.Exceptions.AppException: BookingSource phải là: Online, WalkI
 2026-04-11 14:58:07.798 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1772 ms
 2026-04-11 14:58:07.809 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
 2026-04-11 14:58:07.814 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 12.8119 ms
+2026-04-11 15:02:07.357 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0665 ms
+2026-04-11 15:02:07.368 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:02:07.618 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 258.2184 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 15:02:07.625 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-11 15:02:19.207 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0524 ms
+2026-04-11 15:02:19.219 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:02:19.459 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 15:02:19.460 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 249.7255 ms
+2026-04-11 15:02:19.465 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0417 ms
+2026-04-11 15:02:19.468 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4008 ms
+2026-04-11 15:02:27.862 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0600 ms
+2026-04-11 15:02:27.884 +07:00 [INF] HTTP GET /api/rooms responded 200 in 16.8944 ms
+2026-04-11 15:02:51.013 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1492 ms
+2026-04-11 15:02:51.025 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 15:02:51.027 +07:00 [ERR] HTTP POST /api/bookings responded 500 in 10.5332 ms
+HotelManagement.Exceptions.AppException: BookingSource phải là: Online, WalkIn hoặc Phone.
+   at HotelManagement.Services.Implementations.BookingService.CreateBookingAsync(CreateBookingDto dto, Nullable`1 createdByUserId) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 104
+   at HotelManagement.Controllers.BookingsController.Create(CreateBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 164
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 15:02:51.032 +07:00 [WRN] AppException [422]: BookingSource phải là: Online, WalkIn hoặc Phone.
+2026-04-11 15:06:33.331 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0514 ms
+2026-04-11 15:06:33.343 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:06:33.597 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 15:06:33.598 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 263.4592 ms
+2026-04-11 15:06:33.603 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0430 ms
+2026-04-11 15:06:33.608 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4687 ms
+2026-04-11 15:06:37.032 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0584 ms
+2026-04-11 15:06:37.057 +07:00 [INF] HTTP GET /api/rooms responded 200 in 15.0728 ms
+2026-04-11 15:06:39.193 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0604 ms
+2026-04-11 15:06:39.206 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 15:06:39.211 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 15.0048 ms
+2026-04-11 15:06:55.680 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0428 ms
+2026-04-11 15:06:55.734 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 48.8372 ms
+2026-04-11 15:06:55.739 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0430 ms
+2026-04-11 15:06:55.750 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 15:06:55.751 +07:00 [ERR] HTTP POST /api/bookings responded 500 in 9.6587 ms
+HotelManagement.Exceptions.AppException: BookingSource phải là: Online, WalkIn hoặc Phone.
+   at HotelManagement.Services.Implementations.BookingService.CreateBookingAsync(CreateBookingDto dto, Nullable`1 createdByUserId) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 104
+   at HotelManagement.Controllers.BookingsController.Create(CreateBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 164
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 15:06:55.756 +07:00 [WRN] AppException [422]: BookingSource phải là: Online, WalkIn hoặc Phone.
