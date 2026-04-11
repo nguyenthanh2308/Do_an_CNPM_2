@@ -138,3 +138,85 @@ HotelManagement.Exceptions.AppException: Lỗi khi tạo booking: InvalidOperati
    at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
 2026-04-11 15:37:01.009 +07:00 [WRN] AppException [400]: Lỗi khi tạo booking: InvalidOperationException - The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
 2026-04-11 15:39:08.569 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:40:39.763 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:40:56.812 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 15:40:56.819 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.1323 ms
+2026-04-11 15:40:57.056 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:40:57.369 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 15:40:57.400 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 569.6708 ms
+2026-04-11 15:40:57.407 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3023 ms
+2026-04-11 15:40:57.453 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 42.3089 ms
+2026-04-11 15:40:59.279 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2762 ms
+2026-04-11 15:40:59.478 +07:00 [INF] HTTP GET /api/rooms responded 200 in 191.4378 ms
+2026-04-11 15:41:01.713 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1635 ms
+2026-04-11 15:41:01.779 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 15:41:01.831 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 112.8699 ms
+2026-04-11 15:41:05.793 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0974 ms
+2026-04-11 15:41:05.846 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 49.3892 ms
+2026-04-11 15:41:05.852 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.2847 ms
+2026-04-11 15:41:05.882 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 15:41:06.118 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-11 15:41:06.171 +07:00 [INF] Booking #1 created successfully.
+2026-04-11 15:41:06.181 +07:00 [INF] HTTP POST /api/bookings responded 201 in 325.3997 ms
+2026-04-11 15:41:08.233 +07:00 [INF] HTTP OPTIONS /api/bookings/1 responded 204 in 0.1169 ms
+2026-04-11 15:41:08.249 +07:00 [INF] HTTP GET /api/bookings/1 responded 403 in 7.0991 ms
+2026-04-11 15:42:08.407 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0834 ms
+2026-04-11 15:42:08.432 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:42:08.498 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 85.8623 ms
+2026-04-11 15:42:15.210 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.2724 ms
+2026-04-11 15:42:15.224 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:42:15.232 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 17.2576 ms
+2026-04-11 15:42:24.394 +07:00 [INF] HTTP OPTIONS /api/bookings/1 responded 204 in 0.0817 ms
+2026-04-11 15:42:24.412 +07:00 [INF] DELETE /api/bookings/1
+2026-04-11 15:42:24.430 +07:00 [ERR] An exception occurred in the database while saving changes for context type 'HotelManagement.Data.HotelDbContext'.
+System.InvalidOperationException: The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.OnFirstExecution()
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.InvalidOperationException: The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.OnFirstExecution()
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-04-11 15:42:24.436 +07:00 [ERR] HTTP DELETE /api/bookings/1 responded 500 in 38.7656 ms
+System.InvalidOperationException: The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.OnFirstExecution()
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at HotelManagement.Services.Implementations.BookingService.CancelBookingAsync(CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 356
+   at HotelManagement.Services.Implementations.BookingService.CancelBookingAsync(CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 362
+   at HotelManagement.Controllers.BookingsController.Cancel(Int64 id, CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 278
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 15:42:24.453 +07:00 [ERR] Unhandled exception: The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+System.InvalidOperationException: The configured execution strategy 'MySqlRetryingExecutionStrategy' does not support user-initiated transactions. Use the execution strategy returned by 'DbContext.Database.CreateExecutionStrategy()' to execute all the operations in the transaction as a retriable unit.
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.OnFirstExecution()
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at HotelManagement.Services.Implementations.BookingService.CancelBookingAsync(CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 356
+   at HotelManagement.Services.Implementations.BookingService.CancelBookingAsync(CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 362
+   at HotelManagement.Controllers.BookingsController.Cancel(Int64 id, CancelBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 278
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26

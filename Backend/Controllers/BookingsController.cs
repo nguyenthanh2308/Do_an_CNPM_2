@@ -1,9 +1,11 @@
+using HotelManagement.Data;
 using HotelManagement.DTOs.Booking;
 using HotelManagement.DTOs.Common;
 using HotelManagement.DTOs.Promotion;
 using HotelManagement.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Controllers
 {
@@ -15,11 +17,13 @@ namespace HotelManagement.Controllers
     {
         private readonly IBookingService _bookingService;
         private readonly ILogger<BookingsController> _logger;
+        private readonly HotelDbContext _context;
 
-        public BookingsController(IBookingService bookingService, ILogger<BookingsController> logger)
+        public BookingsController(IBookingService bookingService, ILogger<BookingsController> logger, HotelDbContext context)
         {
             _bookingService = bookingService;
             _logger = logger;
+            _context = context;
         }
 
         // ════════════════════════════════════════════════════════════════════
@@ -48,13 +52,28 @@ namespace HotelManagement.Controllers
         /// </summary>
         /// <param name="id">Booking ID</param>
         [HttpGet("{id:long}")]
-        [Authorize(Roles = "Admin,Manager,Receptionist")]
+        [Authorize]
         [ProducesResponseType(typeof(ApiResponse<BookingDto>), 200)]
+        [ProducesResponseType(403)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetById(long id)
         {
             _logger.LogInformation("GET /api/bookings/{Id}", id);
             var booking = await _bookingService.GetByIdAsync(id);
+            
+            // Allow staff to view any booking, guests only their own
+            var userId = GetCurrentUserId();
+            var userRole = User.FindFirst("role")?.Value;
+            
+            // If not staff, verify guest owns this booking
+            if (string.IsNullOrEmpty(userRole) || !new[] { "Admin", "Manager", "Receptionist" }.Contains(userRole))
+            {
+                // Guest viewing their own booking
+                var guest = await _context.Guests.FirstOrDefaultAsync(g => g.UserId == userId && g.GuestId == booking.GuestId);
+                if (guest == null)
+                    return Fail("Bạn không có quyền xem booking này.", 403);
+            }
+            
             return Success(booking);
         }
 

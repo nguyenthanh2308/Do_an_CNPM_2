@@ -336,31 +336,41 @@ namespace HotelManagement.Services.Implementations
             if (booking.Status == BookingStatus.Cancelled)
                 throw new AppException("Booking này đã bị hủy trước đó.");
 
-            using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            // Use execution strategy to handle retries with transactions properly
+            var strategy = _context.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
             {
-                booking.Status = BookingStatus.Cancelled;
-                booking.Notes = string.IsNullOrEmpty(dto.Reason)
-                    ? booking.Notes
-                    : $"Hủy booking: {dto.Reason}";
-                booking.UpdatedAt = DateTime.UtcNow;
-
-                // Hoàn lại UsedCount của Promotion
-                if (booking.PromotionId.HasValue && booking.Promotion != null)
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    booking.Promotion.UsedCount = Math.Max(0, booking.Promotion.UsedCount - 1);
-                    _context.Promotions.Update(booking.Promotion);
-                }
+                    booking.Status = BookingStatus.Cancelled;
+                    booking.Notes = string.IsNullOrEmpty(dto.Reason)
+                        ? booking.Notes
+                        : $"Hủy booking: {dto.Reason}";
+                    booking.UpdatedAt = DateTime.UtcNow;
 
-                _context.Bookings.Update(booking);
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
-            }
-            catch
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+                    // Hoàn lại UsedCount của Promotion
+                    if (booking.PromotionId.HasValue && booking.Promotion != null)
+                    {
+                        booking.Promotion.UsedCount = Math.Max(0, booking.Promotion.UsedCount - 1);
+                        _context.Promotions.Update(booking.Promotion);
+                    }
+
+                    _context.Bookings.Update(booking);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+                }
+                catch (AppException)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw new AppException($"Lỗi khi hủy booking: {ex.GetType().Name} - {ex.Message}");
+                }
+            });
         }
 
         // ═══════════════════════════════════════════════════════════════════
@@ -386,57 +396,67 @@ namespace HotelManagement.Services.Implementations
                 throw new AppException(
                     $"Chưa đến ngày check-in. Ngày check-in: {booking.CheckInDate:dd/MM/yyyy}.");
 
-            using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            // Use execution strategy to handle retries with transactions properly
+            var strategy = _context.Database.CreateExecutionStrategy();
+            return await strategy.ExecuteAsync(async () =>
             {
-                // Cập nhật Booking status
-                booking.Status = BookingStatus.CheckedIn;
-                booking.ActualCheckIn = DateTime.UtcNow;
-                booking.Notes = dto.Notes ?? booking.Notes;
-                booking.UpdatedAt = DateTime.UtcNow;
-
-                var statusChangedRooms = new List<Room>();
-
-                // Cập nhật tất cả Room sang Occupied
-                foreach (var br in booking.BookingRooms)
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    var room = await _context.Rooms.FindAsync(br.RoomId);
-                    if (room != null)
-                    {
-                        statusChangedRooms.Add(new Room { RoomId = room.RoomId, RoomNumber = room.RoomNumber, Floor = room.Floor, HotelId = room.HotelId });
+                    // Cập nhật Booking status
+                    booking.Status = BookingStatus.CheckedIn;
+                    booking.ActualCheckIn = DateTime.UtcNow;
+                    booking.Notes = dto.Notes ?? booking.Notes;
+                    booking.UpdatedAt = DateTime.UtcNow;
 
-                        room.Status = RoomStatus.Occupied;
-                        room.UpdatedAt = DateTime.UtcNow;
-                        _context.Rooms.Update(room);
+                    var statusChangedRooms = new List<Room>();
+
+                    // Cập nhật tất cả Room sang Occupied
+                    foreach (var br in booking.BookingRooms)
+                    {
+                        var room = await _context.Rooms.FindAsync(br.RoomId);
+                        if (room != null)
+                        {
+                            statusChangedRooms.Add(new Room { RoomId = room.RoomId, RoomNumber = room.RoomNumber, Floor = room.Floor, HotelId = room.HotelId });
+
+                            room.Status = RoomStatus.Occupied;
+                            room.UpdatedAt = DateTime.UtcNow;
+                            _context.Rooms.Update(room);
+                        }
                     }
-                }
 
-                _context.Bookings.Update(booking);
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
+                    _context.Bookings.Update(booking);
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
 
-                // SignalR thông báo
-                foreach (var room in statusChangedRooms)
-                {
-                    await _hubContext.Clients.Group("staff").SendAsync(HubEvents.RoomStatusChanged, new RoomStatusChangedPayload
+                    // SignalR thông báo
+                    foreach (var room in statusChangedRooms)
                     {
-                        RoomId = room.RoomId,
-                        RoomNumber = room.RoomNumber,
-                        Floor = room.Floor,
-                        HotelId = room.HotelId,
-                        OldStatus = RoomStatus.Available.ToString(),
-                        NewStatus = RoomStatus.Occupied.ToString(),
-                        ChangedAt = DateTime.UtcNow
-                    });
-                }
+                        await _hubContext.Clients.Group("staff").SendAsync(HubEvents.RoomStatusChanged, new RoomStatusChangedPayload
+                        {
+                            RoomId = room.RoomId,
+                            RoomNumber = room.RoomNumber,
+                            Floor = room.Floor,
+                            HotelId = room.HotelId,
+                            OldStatus = RoomStatus.Available.ToString(),
+                            NewStatus = RoomStatus.Occupied.ToString(),
+                            ChangedAt = DateTime.UtcNow
+                        });
+                    }
 
-                return _mapper.Map<BookingDto>(booking);
-            }
-            catch
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+                    return _mapper.Map<BookingDto>(booking);
+                }
+                catch (AppException)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw new AppException($"Lỗi khi check-in: {ex.GetType().Name} - {ex.Message}");
+                }
+            });
         }
 
         // ═══════════════════════════════════════════════════════════════════
@@ -456,95 +476,105 @@ namespace HotelManagement.Services.Implementations
                 throw new AppException(
                     $"Không thể check-out. Booking hiện đang ở trạng thái '{booking.Status}'. Yêu cầu trạng thái: CheckedIn.");
 
-            using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            // Use execution strategy to handle retries with transactions properly
+            var strategy = _context.Database.CreateExecutionStrategy();
+            return await strategy.ExecuteAsync(async () =>
             {
-                // Gọi sang InvoiceService để xử lý Hóa đơn & Thanh toán (Luồng gộp)
-                // Nó sẽ quăng lỗi nếu AmountPaid không đủ thanh toán tổng hóa đơn
-                await _invoiceService.GenerateCheckoutInvoiceAsync(
-                    booking, 
-                    dto.Surcharges, 
-                    dto.TaxAmount, 
-                    dto.PaymentMethod, 
-                    dto.AmountPaid, 
-                    dto.Notes);
-
-                // Cập nhật Booking status
-                booking.Status = BookingStatus.Completed;
-                booking.ActualCheckOut = DateTime.UtcNow;
-                booking.Notes = dto.Notes ?? booking.Notes;
-                booking.UpdatedAt = DateTime.UtcNow;
-
-                // Lưu thông tin để gửi qua SignalR sau khi commit
-                var housekeepingTasks = new List<HousekeepingTask>();
-
-                // Cập nhật tất cả Room sang Dirty → Housekeeping sẽ nhận task
-                foreach (var br in booking.BookingRooms)
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    var room = await _context.Rooms.FindAsync(br.RoomId);
-                    if (room != null)
-                    {
-                        room.Status = RoomStatus.Dirty;
-                        room.UpdatedAt = DateTime.UtcNow;
-                        _context.Rooms.Update(room);
+                    // Gọi sang InvoiceService để xử lý Hóa đơn & Thanh toán (Luồng gộp)
+                    // Nó sẽ quăng lỗi nếu AmountPaid không đủ thanh toán tổng hóa đơn
+                    await _invoiceService.GenerateCheckoutInvoiceAsync(
+                        booking, 
+                        dto.Surcharges, 
+                        dto.TaxAmount, 
+                        dto.PaymentMethod, 
+                        dto.AmountPaid, 
+                        dto.Notes);
 
-                        // Tự động tạo HousekeepingTask cho mỗi phòng vừa trả
-                        var cleaningTask = new HousekeepingTask
+                    // Cập nhật Booking status
+                    booking.Status = BookingStatus.Completed;
+                    booking.ActualCheckOut = DateTime.UtcNow;
+                    booking.Notes = dto.Notes ?? booking.Notes;
+                    booking.UpdatedAt = DateTime.UtcNow;
+
+                    // Lưu thông tin để gửi qua SignalR sau khi commit
+                    var housekeepingTasks = new List<HousekeepingTask>();
+
+                    // Cập nhật tất cả Room sang Dirty → Housekeeping sẽ nhận task
+                    foreach (var br in booking.BookingRooms)
+                    {
+                        var room = await _context.Rooms.FindAsync(br.RoomId);
+                        if (room != null)
                         {
-                            RoomId = room.RoomId,
-                            Room = room, // Gắn tạm Entity để dùng truyền qua msg
-                            TaskType = HousekeepingTaskType.Cleaning,
-                            Status = HousekeepingTaskStatus.Pending,
-                            Priority = TaskPriority.High,
-                            Notes = $"Phòng {room.RoomNumber} vừa check-out. Cần dọn ngay.",
-                            CreatedByUserId = booking.CreatedByUserId ?? 1, // fallback
-                            CreatedAt = DateTime.UtcNow
-                        };
-                        await _context.HousekeepingTasks.AddAsync(cleaningTask);
-                        housekeepingTasks.Add(cleaningTask);
+                            room.Status = RoomStatus.Dirty;
+                            room.UpdatedAt = DateTime.UtcNow;
+                            _context.Rooms.Update(room);
+
+                            // Tự động tạo HousekeepingTask cho mỗi phòng vừa trả
+                            var cleaningTask = new HousekeepingTask
+                            {
+                                RoomId = room.RoomId,
+                                Room = room, // Gắn tạm Entity để dùng truyền qua msg
+                                TaskType = HousekeepingTaskType.Cleaning,
+                                Status = HousekeepingTaskStatus.Pending,
+                                Priority = TaskPriority.High,
+                                Notes = $"Phòng {room.RoomNumber} vừa check-out. Cần dọn ngay.",
+                                CreatedByUserId = booking.CreatedByUserId ?? 1, // fallback
+                                CreatedAt = DateTime.UtcNow
+                            };
+                            await _context.HousekeepingTasks.AddAsync(cleaningTask);
+                            housekeepingTasks.Add(cleaningTask);
+                        }
                     }
+
+                    _context.Bookings.Update(booking);
+                    await _context.SaveChangesAsync();  // Lưu để lấy TaskId
+                    await transaction.CommitAsync();
+
+                    // Gửi thông báo đến Housekeeping / staff qua SignalR
+                    foreach (var task in housekeepingTasks)
+                    {
+                        // Thông báo phòng đổi trạng thái -> Dirty
+                        await _hubContext.Clients.Group("staff").SendAsync(HubEvents.RoomStatusChanged, new RoomStatusChangedPayload
+                        {
+                            RoomId = task.Room.RoomId,
+                            RoomNumber = task.Room.RoomNumber,
+                            Floor = task.Room.Floor,
+                            HotelId = task.Room.HotelId,
+                            OldStatus = RoomStatus.Occupied.ToString(),
+                            NewStatus = RoomStatus.Dirty.ToString(),
+                            ChangedAt = DateTime.UtcNow
+                        });
+
+                        // Báo có task dọn phòng mới
+                        await _hubContext.Clients.Group("housekeeping").SendAsync(HubEvents.NewHousekeepingTask, new NewHousekeepingTaskPayload
+                        {
+                            TaskId = task.TaskId,
+                            RoomId = task.Room.RoomId,
+                            RoomNumber = task.Room.RoomNumber,
+                            Floor = task.Room.Floor,
+                            TaskType = task.TaskType.ToString(),
+                            Priority = task.Priority.ToString(),
+                            Notes = task.Notes,
+                            CreatedAt = task.CreatedAt
+                        });
+                    }
+
+                    return _mapper.Map<BookingDto>(booking);
                 }
-
-                _context.Bookings.Update(booking);
-                await _context.SaveChangesAsync();  // Lưu để lấy TaskId
-                await transaction.CommitAsync();
-
-                // Gửi thông báo đến Housekeeping / staff qua SignalR
-                foreach (var task in housekeepingTasks)
+                catch (AppException)
                 {
-                    // Thông báo phòng đổi trạng thái -> Dirty
-                    await _hubContext.Clients.Group("staff").SendAsync(HubEvents.RoomStatusChanged, new RoomStatusChangedPayload
-                    {
-                        RoomId = task.Room.RoomId,
-                        RoomNumber = task.Room.RoomNumber,
-                        Floor = task.Room.Floor,
-                        HotelId = task.Room.HotelId,
-                        OldStatus = RoomStatus.Occupied.ToString(),
-                        NewStatus = RoomStatus.Dirty.ToString(),
-                        ChangedAt = DateTime.UtcNow
-                    });
-
-                    // Báo có task dọn phòng mới
-                    await _hubContext.Clients.Group("housekeeping").SendAsync(HubEvents.NewHousekeepingTask, new NewHousekeepingTaskPayload
-                    {
-                        TaskId = task.TaskId,
-                        RoomId = task.Room.RoomId,
-                        RoomNumber = task.Room.RoomNumber,
-                        Floor = task.Room.Floor,
-                        TaskType = task.TaskType.ToString(),
-                        Priority = task.Priority.ToString(),
-                        Notes = task.Notes,
-                        CreatedAt = task.CreatedAt
-                    });
+                    await transaction.RollbackAsync();
+                    throw;
                 }
-
-                return _mapper.Map<BookingDto>(booking);
-            }
-            catch
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw new AppException($"Lỗi khi check-out: {ex.GetType().Name} - {ex.Message}");
+                }
+            });
         }
 
         // ═══════════════════════════════════════════════════════════════════
