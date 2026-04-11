@@ -1,0 +1,162 @@
+<div class="my-bookings-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>
+        <mat-icon>event_note</mat-icon>
+        Đặt phòng của tôi
+      </h1>
+      <p>Quản lý và theo dõi các đặt phòng của bạn</p>
+    </div>
+    <button mat-flat-button [routerLink]="['/guest/booking']" class="btn-new-booking">
+      <mat-icon>add_circle</mat-icon>
+      Đặt phòng mới
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+    <p>Đang tải danh sách đặt phòng...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!isLoading && bookings.length === 0">
+    <mat-icon>event_note</mat-icon>
+    <h3>Chưa có đặt phòng</h3>
+    <p>Bạn chưa tạo đặt phòng nào. Hãy bắt đầu bằng cách đặt phòng của bạn ngay hôm nay!</p>
+    <button mat-flat-button [routerLink]="['/guest/booking']" class="btn-book">
+      <mat-icon>event_available</mat-icon>
+      Đặt phòng ngay
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div *ngIf="!isLoading && bookings.length > 0">
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <h3>Lọc theo trạng thái:</h3>
+      <div class="filter-chips">
+        <button 
+          *ngFor="let status of ['Pending', 'Confirmed', 'CheckedIn', 'Completed', 'Cancelled']"
+          (click)="filterByStatus(status)"
+          [class.active]="filterStatus === status"
+          class="filter-chip"
+          [ngClass]="getStatusClass(status)">
+          <mat-icon>{{ getStatusIcon(status) }}</mat-icon>
+          {{ getStatusLabel(status) }}
+        </button>
+        <button 
+          *ngIf="filterStatus"
+          (click)="filterByStatus('')"
+          class="filter-chip reset-chip">
+          <mat-icon>clear_all</mat-icon>
+          Xóa lọc
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty Filter State -->
+    <div class="empty-filter" *ngIf="getFilteredBookings().length === 0">
+      <mat-icon>search_off</mat-icon>
+      <p>Không tìm thấy đặt phòng với trạng thái "{{ getStatusLabel(filterStatus) }}"</p>
+    </div>
+
+    <!-- Bookings List -->
+    <div class="bookings-grid" *ngIf="getFilteredBookings().length > 0">
+      <mat-card class="booking-card" *ngFor="let booking of getFilteredBookings()">
+        
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="header-left">
+            <h3>{{ booking.roomTypeName }}</h3>
+            <p class="room-info">
+              <mat-icon>door_front</mat-icon>
+              {{ booking.roomNumbers }}
+            </p>
+          </div>
+          <div class="status-badge" [ngClass]="getStatusClass(booking.status)">
+            <mat-icon>{{ getStatusIcon(booking.status) }}</mat-icon>
+            <span>{{ getStatusLabel(booking.status) }}</span>
+          </div>
+        </div>
+
+        <!-- Card Details -->
+        <div class="card-details">
+          <div class="detail-row">
+            <div class="detail-item">
+              <span class="label">Mã đặt phòng</span>
+              <strong>#{{ booking.bookingId }}</strong>
+            </div>
+            <div class="detail-item">
+              <span class="label">Ngày đặt</span>
+              <strong>{{ booking.createdAt | date:'dd/MM/yyyy HH:mm' }}</strong>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-item">
+              <span class="label">Nhận phòng</span>
+              <strong>{{ booking.checkInDate | date:'dd/MM/yyyy' }}</strong>
+            </div>
+            <div class="detail-item">
+              <span class="label">Trả phòng</span>
+              <strong>{{ booking.checkOutDate | date:'dd/MM/yyyy' }}</strong>
+            </div>
+            <div class="detail-item">
+              <span class="label">Số đêm</span>
+              <strong>{{ getNightCount(booking) }}</strong>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-item">
+              <span class="label">Tên khách</span>
+              <strong>{{ booking.guestName }}</strong>
+            </div>
+            <div class="detail-item" *ngIf="booking.guestPhone">
+              <span class="label">Số điện thoại</span>
+              <strong>{{ booking.guestPhone }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Section -->
+        <div class="card-price">
+          <div class="price-info">
+            <span class="label">Tổng giá</span>
+            <strong>{{ booking.finalAmount | number }} VND</strong>
+          </div>
+        </div>
+
+        <!-- Card Actions -->
+        <div class="card-actions">
+          <button mat-button class="btn-detail"
+                  (click)="viewDetails(booking)">
+            <mat-icon>visibility</mat-icon>
+            Chi tiết
+          </button>
+          <button mat-button class="btn-cancel" 
+                  *ngIf="canCancel(booking)"
+                  (click)="openCancelDialog(booking)"
+                  [matTooltip]="'Hủy đặt phòng này'">
+            <mat-icon>cancel</mat-icon>
+            Hủy phòng
+          </button>
+          <span *ngIf="!canCancel(booking)" class="text-muted">
+            <mat-icon>lock</mat-icon>
+            Không thể hủy
+          </span>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Info Text -->
+    <div class="info-text" *ngIf="getFilteredBookings().length > 0">
+      <p>
+        Hiển thị <strong>{{ getFilteredBookings().length }}</strong> / <strong>{{ bookings.length }}</strong> đặt phòng
+        <span *ngIf="filterStatus"> • Trạng thái: {{ getStatusLabel(filterStatus) }}</span>
+      </p>
+    </div>
+  </div>
+</div>

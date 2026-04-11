@@ -29,7 +29,7 @@ import { Subject, takeUntil } from 'rxjs';
     MatProgressSpinnerModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: '../login/login.component.scss'
+  styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnDestroy {
   registerForm: FormGroup;

@@ -21,6 +21,30 @@ export const routes: Routes = [
     canActivate: [roleGuard],
     data: { roles: ['Guest'] }
   },
+  {
+    path: 'guest/rooms',
+    loadComponent: () => import('./features/guest/room-listing/room-listing.component').then(m => m.RoomListingComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
+    path: 'guest/booking',
+    loadComponent: () => import('./features/guest/booking/guest-booking.component').then(m => m.GuestBookingComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
+    path: 'guest/payment',
+    loadComponent: () => import('./features/guest/payment/guest-payment.component').then(m => m.GuestPaymentComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
+    path: 'guest/my-bookings',
+    loadComponent: () => import('./features/guest/my-bookings/my-bookings.component').then(m => m.MyBookingsComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
   // Protected Routes Wrapper
   {
     path: '',

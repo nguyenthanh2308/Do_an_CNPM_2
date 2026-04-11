@@ -1,0 +1,269 @@
+<div class="booking-page">
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <button mat-icon-button (click)="onCancel()" class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="header-text">
+        <h1>
+          <mat-icon>event_available</mat-icon>
+          Đặt phòng
+        </h1>
+        <p>Chọn phòng và hoàn tất đặt phòng của bạn</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Booking Stepper -->
+  <mat-stepper linear #stepper class="booking-stepper">
+    
+    <!-- Step 1: Search Available Rooms -->
+    <mat-step [stepControl]="searchForm" label="Tìm phòng">
+      <form [formGroup]="searchForm">
+        <div class="step-content">
+          <h3>Chọn ngày và số lượng khách</h3>
+          
+          <div class="search-form">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Ngày nhận phòng</mat-label>
+              <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
+              <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+              <mat-datepicker #checkInPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Ngày trả phòng</mat-label>
+              <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
+              <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+              <mat-datepicker #checkOutPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Số khách</mat-label>
+              <input matInput type="number" min="1" max="10" formControlName="guests">
+            </mat-form-field>
+
+            <button mat-flat-button class="search-btn" 
+                    (click)="searchAvailableRooms()" 
+                    [disabled]="isSearching || searchForm.invalid">
+              <mat-icon *ngIf="!isSearching">search</mat-icon>
+              <mat-spinner *ngIf="isSearching" diameter="20" color="accent"></mat-spinner>
+              {{ isSearching ? 'Đang tìm...' : 'Tìm phòng' }}
+            </button>
+          </div>
+
+          <p class="error" *ngIf="searchError">{{ searchError }}</p>
+
+          <!-- Available Rooms -->
+          <div class="rooms-selection" *ngIf="hasSearched">
+            <p class="result-info" *ngIf="!isSearching">
+              {{ availableRooms.length }} phòng trống phù hợp
+            </p>
+
+            <div class="room-select-grid" *ngIf="availableRooms.length > 0">
+              <div class="room-option" 
+                   *ngFor="let room of availableRooms"
+                   [class.selected]="selectedRoom?.roomId === room.roomId"
+                   (click)="selectRoom(room)">
+                <div class="room-header">
+                  <h4>{{ room.roomTypeName }}</h4>
+                  <span class="room-number">Phòng {{ room.roomNumber }}</span>
+                </div>
+                <div class="room-details">
+                  <p>
+                    <mat-icon>layers</mat-icon>
+                    Tầng {{ room.floor }}
+                  </p>
+                  <p>
+                    <mat-icon>groups</mat-icon>
+                    Tối đa {{ room.maxOccupancy }} khách
+                  </p>
+                  <p *ngIf="room.areaSqm">
+                    <mat-icon>aspect_ratio</mat-icon>
+                    {{ room.areaSqm }} m²
+                  </p>
+                </div>
+                <div class="room-price">
+                  <strong>{{ room.pricePerNight | number }} VND</strong>
+                  <span>/đêm</span>
+                </div>
+                <div class="selection-indicator">
+                  <mat-icon *ngIf="selectedRoom?.roomId === room.roomId">check_circle</mat-icon>
+                  <mat-icon *ngIf="selectedRoom?.roomId !== room.roomId">radio_button_unchecked</mat-icon>
+                </div>
+              </div>
+            </div>
+
+            <p class="empty" *ngIf="!isSearching && availableRooms.length === 0">
+              Không có phòng trống trong khoảng thời gian này
+            </p>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button mat-stroked-button (click)="onCancel()">Hủy</button>
+          <button mat-flat-button matStepperNext 
+                  [disabled]="!selectedRoom || isSearching || !hasSearched">
+            Tiếp theo
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Booking Details -->
+    <mat-step [stepControl]="bookingForm" label="Chi tiết">
+      <form [formGroup]="bookingForm">
+        <div class="step-content">
+          <h3>Cho chúng tôi biết thêm về yêu cầu của bạn</h3>
+          
+          <!-- Selected Room Summary -->
+          <div class="selected-room-summary" *ngIf="selectedRoom">
+            <h4>Phòng đã chọn</h4>
+            <div class="summary-card">
+              <div class="summary-info">
+                <p>
+                  <strong>{{ selectedRoom.roomTypeName }}</strong> - Phòng {{ selectedRoom.roomNumber }}
+                </p>
+                <p class="text-muted">Tầng {{ selectedRoom.floor }}</p>
+              </div>
+              <div class="summary-price">
+                <strong>{{ selectedRoom.pricePerNight | number }} VND</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Requests -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Yêu cầu đặc biệt (tùy chọn)</mat-label>
+            <mat-icon matPrefix>note</mat-icon>
+            <textarea matInput formControlName="specialRequests" 
+                      placeholder="Ví dụ: Phòng tầng cao, gần thang máy, v.v..."
+                      rows="4"></textarea>
+          </mat-form-field>
+
+          <!-- Guest Info -->
+          <div class="guest-info">
+            <h4>Thông tin khách hàng</h4>
+            <p>
+              <strong>Tên:</strong> {{ currentUser?.fullName }}
+            </p>
+            <p>
+              <strong>Email:</strong> {{ currentUser?.email }}
+            </p>
+          </div>
+
+          <p class="error" *ngIf="bookingError">{{ bookingError }}</p>
+        </div>
+
+        <div class="step-actions">
+          <button mat-stroked-button matStepperPrevious>
+            <mat-icon>arrow_back</mat-icon>
+            Quay lại
+          </button>
+          <button mat-flat-button matStepperNext>
+            Tiếp theo
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 3: Confirm and Book -->
+    <mat-step label="Xác nhận">
+      <div class="step-content">
+        <h3>Xác nhận và hoàn tất đặt phòng</h3>
+        
+        <div class="booking-summary">
+          <!-- Room Details -->
+          <div class="summary-section">
+            <h4>
+              <mat-icon>meeting_room</mat-icon>
+              Chi tiết phòng
+            </h4>
+            <div class="details-grid">
+              <p><span class="label">Loại phòng:</span> <strong>{{ selectedRoom?.roomTypeName }}</strong></p>
+              <p><span class="label">Số phòng:</span> <strong>{{ selectedRoom?.roomNumber }}</strong></p>
+              <p><span class="label">Tầng:</span> <strong>{{ selectedRoom?.floor }}</strong></p>
+              <p><span class="label">Sức chứa:</span> <strong>{{ selectedRoom?.maxOccupancy }} khách</strong></p>
+            </div>
+          </div>
+
+          <!-- Booking Dates -->
+          <div class="summary-section">
+            <h4>
+              <mat-icon>calendar_today</mat-icon>
+              Ngày đặt
+            </h4>
+            <div class="details-grid">
+              <p>
+                <span class="label">Nhận phòng:</span> 
+                <strong>{{ searchForm.get('checkInDate')?.value | date:'dd/MM/yyyy' }}</strong>
+              </p>
+              <p>
+                <span class="label">Trả phòng:</span> 
+                <strong>{{ searchForm.get('checkOutDate')?.value | date:'dd/MM/yyyy' }}</strong>
+              </p>
+              <p>
+                <span class="label">Số đêm:</span> 
+                <strong>{{ getNightCount() }}</strong>
+              </p>
+            </div>
+          </div>
+
+          <!-- Guest Info -->
+          <div class="summary-section">
+            <h4>
+              <mat-icon>person</mat-icon>
+              Thông tin khách
+            </h4>
+            <div class="details-grid">
+              <p><span class="label">Số khách:</span> <strong>{{ searchForm.get('guests')?.value }}</strong></p>
+              <p><span class="label">Tên khách:</span> <strong>{{ currentUser?.fullName }}</strong></p>
+              <p><span class="label">Email:</span> <strong>{{ currentUser?.email }}</strong></p>
+            </div>
+          </div>
+
+          <!-- Price Summary -->
+          <div class="summary-section price-section">
+            <h4>
+              <mat-icon>receipt</mat-icon>
+              Tổng giá
+            </h4>
+            <div class="price-grid">
+              <div class="price-row">
+                <span>Giá phòng/đêm:</span>
+                <strong>{{ selectedRoom?.pricePerNight | number }} VND</strong>
+              </div>
+              <div class="price-row">
+                <span>Số đêm:</span>
+                <strong>{{ getNightCount() }}</strong>
+              </div>
+              <div class="price-row total">
+                <span>Tổng tiền:</span>
+                <strong>{{ getTotalPrice() | number }} VND</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="error" *ngIf="bookingError">{{ bookingError }}</p>
+      </div>
+
+      <div class="step-actions">
+        <button mat-stroked-button matStepperPrevious>
+          <mat-icon>arrow_back</mat-icon>
+          Quay lại
+        </button>
+        <button mat-flat-button class="btn-confirm"
+                (click)="createBooking()" 
+                [disabled]="isBooking">
+          <mat-spinner *ngIf="isBooking" diameter="20" color="accent"></mat-spinner>
+          <mat-icon *ngIf="!isBooking">check_circle</mat-icon>
+          {{ isBooking ? 'Đang tạo...' : 'Xác nhận và đặt phòng' }}
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

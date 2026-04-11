@@ -9,6 +9,14 @@
       <button mat-button type="button" (click)="scrollTo('intro')">Giới thiệu</button>
       <button mat-button type="button" (click)="scrollTo('features')">Tính năng</button>
       <button mat-button type="button" (click)="scrollTo('achievements')">Thành tựu</button>
+      <a [routerLink]="['/guest/rooms']" mat-button class="nav-rooms">
+        <mat-icon>meeting_room</mat-icon>
+        Danh sách phòng
+      </a>
+      <a [routerLink]="['/guest/my-bookings']" mat-button class="nav-bookings">
+        <mat-icon>event_note</mat-icon>
+        Đặt phòng của tôi
+      </a>
     </nav>
 
     <div class="top-actions">
@@ -33,10 +41,10 @@
       </p>
 
       <div class="hero-actions">
-        <button mat-flat-button class="cta" (click)="scrollTo('booking')">
-          <mat-icon>search</mat-icon>
-          Tìm phòng ngay
-        </button>
+        <a [routerLink]="['/guest/booking']" mat-flat-button class="cta">
+          <mat-icon>event_available</mat-icon>
+          Đặt phòng
+        </a>
         <button mat-button class="ghost" (click)="scrollTo('features')">
           Khám phá tính năng
         </button>

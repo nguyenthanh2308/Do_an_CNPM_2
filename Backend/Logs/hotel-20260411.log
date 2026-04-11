@@ -354,3 +354,102 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-04-11 13:40:40.813 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0488 ms
 2026-04-11 13:40:40.814 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4584 ms
 2026-04-11 13:40:40.815 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4209 ms
+2026-04-11 13:51:41.602 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 13:52:26.982 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 13:52:26.998 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 5.9246 ms
+2026-04-11 13:52:26.999 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 5.2286 ms
+2026-04-11 13:52:26.998 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 5.9464 ms
+2026-04-11 13:52:27.097 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 82.2504 ms
+2026-04-11 13:52:27.128 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=-cT6eIO6Y4xzVQNVkjpXwA
+2026-04-11 13:52:27.130 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-04T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:52:27.130 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-11T00:00:00.0000000", To: "2026-04-11T00:00:00.0000000", Hotel: null
+2026-04-11 13:52:27.311 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 294.8010 ms
+2026-04-11 13:52:27.311 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 294.7951 ms
+2026-04-11 13:52:32.455 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.1945 ms
+2026-04-11 13:52:32.459 +07:00 [INF] SignalR Disconnected: ConnId=-cT6eIO6Y4xzVQNVkjpXwA
+2026-04-11 13:52:32.461 +07:00 [INF] HTTP GET /hubs/room responded 101 in 5358.8381 ms
+2026-04-11 13:52:32.656 +07:00 [INF] POST /api/auth/logout — UserId: 1
+2026-04-11 13:52:32.745 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-11 13:52:32.747 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 274.5905 ms
+2026-04-11 13:52:39.942 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0870 ms
+2026-04-11 13:52:39.958 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-11 13:52:40.231 +07:00 [INF] User 'admin' logged in.
+2026-04-11 13:52:40.239 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 293.8559 ms
+2026-04-11 13:52:40.244 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0688 ms
+2026-04-11 13:52:40.260 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 10.4103 ms
+2026-04-11 13:52:40.360 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0811 ms
+2026-04-11 13:52:40.422 +07:00 [INF] HTTP GET /api/rooms responded 200 in 57.9476 ms
+2026-04-11 13:52:40.437 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0900 ms
+2026-04-11 13:52:40.439 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0646 ms
+2026-04-11 13:52:40.441 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 1.0105 ms
+2026-04-11 13:52:40.443 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4664 ms
+2026-04-11 13:52:40.564 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=zts3cthiYkr9TuYBLJHwIg
+2026-04-11 13:52:40.573 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=e6XCH8LB4NN-idlkUuEy1g
+2026-04-11 13:52:43.809 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.1370 ms
+2026-04-11 13:52:43.878 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 65.1047 ms
+2026-04-11 13:52:56.038 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0736 ms
+2026-04-11 13:52:56.056 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 14.3696 ms
+2026-04-11 13:53:05.106 +07:00 [INF] HTTP OPTIONS /api/rooms/3/status responded 204 in 0.1058 ms
+2026-04-11 13:53:05.160 +07:00 [INF] Room #3 status changed: "Dirty" → "Available" by User #1
+2026-04-11 13:53:05.163 +07:00 [INF] HTTP PUT /api/rooms/3/status responded 200 in 52.5373 ms
+2026-04-11 13:53:05.171 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0592 ms
+2026-04-11 13:53:05.183 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.1143 ms
+2026-04-11 13:53:08.019 +07:00 [INF] HTTP OPTIONS /api/rooms/3 responded 204 in 0.1514 ms
+2026-04-11 13:53:08.033 +07:00 [INF] HTTP GET /api/rooms/3 responded 200 in 10.1041 ms
+2026-04-11 13:53:13.212 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0815 ms
+2026-04-11 13:53:13.267 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-11 13:53:13.368 +07:00 [INF] HTTP GET /api/bookings responded 200 in 152.2824 ms
+2026-04-11 13:53:15.958 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0752 ms
+2026-04-11 13:53:16.013 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 50.8125 ms
+2026-04-11 13:53:27.951 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0687 ms
+2026-04-11 13:53:27.969 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-10T00:00:00.0000000", CheckOut: "2026-04-11T00:00:00.0000000"
+2026-04-11 13:53:28.015 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 59.0053 ms
+2026-04-11 13:53:48.625 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0769 ms
+2026-04-11 13:53:48.654 +07:00 [INF] POST /api/bookings — Guest: 1, RatePlan: 1, Rooms: [2]
+2026-04-11 13:53:48.675 +07:00 [ERR] HTTP POST /api/bookings responded 500 in 47.0997 ms
+HotelManagement.Exceptions.AppException: Ngày check-in không được nhỏ hơn ngày hôm nay.; BookingSource phải là: Online, WalkIn hoặc Phone.
+   at HotelManagement.Services.Implementations.BookingService.CreateBookingAsync(CreateBookingDto dto, Nullable`1 createdByUserId) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 104
+   at HotelManagement.Controllers.BookingsController.Create(CreateBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 164
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 13:53:48.692 +07:00 [WRN] AppException [422]: Ngày check-in không được nhỏ hơn ngày hôm nay.; BookingSource phải là: Online, WalkIn hoặc Phone.
+2026-04-11 13:53:58.313 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0809 ms
+2026-04-11 13:53:58.383 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 65.9077 ms
+2026-04-11 13:53:59.000 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0920 ms
+2026-04-11 13:53:59.014 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-11 13:53:59.024 +07:00 [INF] HTTP GET /api/bookings responded 200 in 20.3468 ms
+2026-04-11 13:54:01.093 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 11.9659 ms
+2026-04-11 13:54:32.667 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0774 ms
+2026-04-11 13:54:32.720 +07:00 [INF] HTTP GET /api/payments responded 200 in 48.2600 ms
+2026-04-11 13:55:15.817 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.0600 ms
+2026-04-11 13:55:15.817 +07:00 [INF] SignalR Disconnected: ConnId=e6XCH8LB4NN-idlkUuEy1g
+2026-04-11 13:55:15.819 +07:00 [INF] HTTP GET /hubs/room responded 101 in 155249.1826 ms
+2026-04-11 13:55:15.844 +07:00 [INF] POST /api/auth/logout — UserId: 1
+2026-04-11 13:55:15.853 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-11 13:55:15.854 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 19.9087 ms
+2026-04-11 13:57:27.445 +07:00 [INF] SignalR Disconnected: ConnId=zts3cthiYkr9TuYBLJHwIg
+2026-04-11 13:57:27.446 +07:00 [INF] HTTP GET /hubs/room responded 101 in 286888.8308 ms
+2026-04-11 14:02:11.054 +07:00 [INF] HTTP OPTIONS /api/auth/register responded 204 in 0.0720 ms
+2026-04-11 14:02:11.075 +07:00 [INF] POST /api/auth/register — Username: Test12
+2026-04-11 14:02:11.382 +07:00 [INF] User 'Test12' registered with role '"Guest"'.
+2026-04-11 14:02:11.387 +07:00 [INF] HTTP POST /api/auth/register responded 201 in 329.6237 ms
+2026-04-11 14:02:35.297 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0649 ms
+2026-04-11 14:02:35.307 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 14:02:35.558 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 14:02:35.560 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 260.3277 ms
+2026-04-11 14:02:35.563 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0407 ms
+2026-04-11 14:02:35.568 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.1145 ms
+2026-04-11 14:02:53.141 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0444 ms
+2026-04-11 14:02:53.153 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:02:53.158 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 14.1403 ms

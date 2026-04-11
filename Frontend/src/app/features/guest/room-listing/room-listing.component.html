@@ -1,0 +1,119 @@
+<div class="room-listing-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1>
+        <mat-icon>apartment</mat-icon>
+        Danh sách phòng
+      </h1>
+      <p>Chọn phòng để đặt ngay hoặc xem chi tiết</p>
+    </div>
+  </div>
+
+  <!-- Filter Chips -->
+  <div class="filter-section">
+    <h3>Lọc theo trạng thái:</h3>
+    <div class="filter-chips">
+      <button 
+        *ngFor="let status of ['Available', 'Occupied', 'Dirty', 'Maintenance', 'OutOfService']"
+        (click)="filterByStatus(status)"
+        [class.active]="filterStatus === status"
+        class="filter-chip"
+        [ngClass]="getStatusClass(status)">
+        <mat-icon>{{ getStatusIcon(status) }}</mat-icon>
+        {{ getStatusLabel(status) }}
+      </button>
+      <button 
+        *ngIf="filterStatus"
+        (click)="filterByStatus('')"
+        class="filter-chip reset-chip">
+        <mat-icon>clear_all</mat-icon>
+        Xóa bộ lọc
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+    <p>Đang tải danh sách phòng...</p>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="!isLoading && getFilteredRooms().length === 0">
+    <mat-icon>meeting_room</mat-icon>
+    <h3>Không tìm thấy phòng</h3>
+    <p *ngIf="filterStatus">Không có phòng nào với trạng thái "{{ getStatusLabel(filterStatus) }}"</p>
+    <p *ngIf="!filterStatus">Không có dữ liệu phòng</p>
+  </div>
+
+  <!-- Room Grid -->
+  <div class="room-grid" *ngIf="!isLoading && getFilteredRooms().length > 0">
+    <mat-card class="room-card" *ngFor="let room of getFilteredRooms()" 
+              [class.unavailable]="isUnavailable(room.status)">
+      
+      <!-- Room Image -->
+      <div class="image-container" [class.dimmed]="isUnavailable(room.status)">
+        <div class="placeholder-image">
+          <mat-icon>image</mat-icon>
+        </div>
+        <div class="overlay" *ngIf="isUnavailable(room.status)"></div>
+      </div>
+
+      <!-- Room Status Badge -->
+      <div class="status-badge" [ngClass]="getStatusClass(room.status)">
+        <mat-icon>{{ getStatusIcon(room.status) }}</mat-icon>
+        <span>{{ getStatusLabel(room.status) }}</span>
+      </div>
+
+      <!-- Room Details -->
+      <div class="card-content">
+        <h2 class="room-number">Phòng {{ room.roomNumber }}</h2>
+        <p class="room-type">{{ getRoomTypeDisplayName(room) }}</p>
+
+        <div class="room-info">
+          <div class="info-item">
+            <mat-icon>layers</mat-icon>
+            <span>Tầng {{ room.floor }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon>note</mat-icon>
+            <span *ngIf="room.notes">{{ room.notes }}</span>
+            <span *ngIf="!room.notes" class="text-muted">-</span>
+          </div>
+        </div>
+
+        <!-- Active Status -->
+        <div class="active-status">
+          <span *ngIf="room.isActive" class="badge-active">
+            <mat-icon>check_circle</mat-icon> Đang hoạt động
+          </span>
+          <span *ngIf="!room.isActive" class="badge-inactive">
+            <mat-icon>cancel</mat-icon> Không hoạt động
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="card-actions">
+        <button 
+          mat-flat-button 
+          class="btn-book"
+          [disabled]="!canBook(room)"
+          (click)="onBookClick(room)"
+          [matTooltip]="canBook(room) ? 'Đặt phòng' : 'Phòng không khả dụng'">
+          <mat-icon>event_available</mat-icon>
+          {{ canBook(room) ? 'Đặt phòng' : 'Không khả dụng' }}
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Info Text -->
+  <div class="info-text" *ngIf="!isLoading && getFilteredRooms().length > 0">
+    <p>
+      Hiển thị <strong>{{ getFilteredRooms().length }}</strong> / <strong>{{ rooms.length }}</strong> phòng
+      <span *ngIf="filterStatus"> • Trạng thái: {{ getStatusLabel(filterStatus) }}</span>
+    </p>
+  </div>
+</div>

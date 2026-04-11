@@ -1,0 +1,237 @@
+<div class="payment-page">
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="header-content">
+      <button mat-icon-button (click)="onCancel()" class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="header-text">
+        <h1>
+          <mat-icon>credit_card</mat-icon>
+          Thanh toán
+        </h1>
+        <p>Hoàn tất thanh toán cho đặt phòng của bạn</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoadingBooking">
+    <mat-spinner></mat-spinner>
+    <p>Đang tải thông tin đặt phòng...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="!isLoadingBooking && bookingError">
+    <div class="error-card">
+      <mat-icon>error</mat-icon>
+      <h2>{{ bookingError }}</h2>
+      <button mat-flat-button (click)="onCancel()">Quay lại</button>
+    </div>
+  </div>
+
+  <!-- Payment Content -->
+  <div class="payment-container" *ngIf="!isLoadingBooking && !bookingError && booking">
+    <div class="payment-grid">
+      <!-- Payment Form -->
+      <div class="payment-form-section">
+        <h2>Thông tin thanh toán</h2>
+        <form [formGroup]="paymentForm" (ngSubmit)="processPayment()">
+          
+          <!-- Payment Method Selection -->
+          <div class="form-section">
+            <h3>Chọn phương thức thanh toán</h3>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Phương thức thanh toán</mat-label>
+              <mat-icon matPrefix>payment</mat-icon>
+              <mat-select formControlName="paymentMethod">
+                <mat-option *ngFor="let method of paymentMethods" [value]="method.value">
+                  {{ method.label }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Credit Card Details (conditional) -->
+          <div class="form-section" *ngIf="paymentForm.get('paymentMethod')?.value === 'CreditCard'">
+            <h3>Chi tiết thẻ tín dụng</h3>
+            
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Số thẻ</mat-label>
+              <mat-icon matPrefix>credit_card</mat-icon>
+              <input matInput formControlName="cardNumber" 
+                     placeholder="1234 5678 9012 3456"
+                     maxlength="19">
+              <mat-error>Vui lòng nhập số thẻ hợp lệ (13-19 chữ số)</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Tên chủ thẻ</mat-label>
+              <mat-icon matPrefix>person</mat-icon>
+              <input matInput formControlName="cardHolder" placeholder="NGUYEN VAN A">
+              <mat-error>Vui lòng nhập tên chủ thẻ</mat-error>
+            </mat-form-field>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field-half">
+                <mat-label>Tháng hết hạn</mat-label>
+                <mat-icon matPrefix>calendar_today</mat-icon>
+                <input matInput formControlName="expiryMonth" placeholder="MM">
+                <mat-error>Vui lòng nhập tháng (1-12)</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field-half">
+                <mat-label>Năm hết hạn</mat-label>
+                <mat-icon matPrefix>calendar_today</mat-icon>
+                <input matInput formControlName="expiryYear" placeholder="YYYY">
+                <mat-error>Vui lòng nhập năm</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field-half">
+                <mat-label>CVV</mat-label>
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput formControlName="cvv" placeholder="123" maxlength="4">
+                <mat-error>Vui lòng nhập CVV (3-4 chữ số)</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Transaction ID (for reference) -->
+          <div class="form-section">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>ID giao dịch (tùy chọn)</mat-label>
+              <mat-icon matPrefix>vpn_key</mat-icon>
+              <input matInput formControlName="transactionId" 
+                     placeholder="Để trống để tạo ID tự động">
+            </mat-form-field>
+          </div>
+
+          <!-- Amount -->
+          <div class="form-section">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Số tiền thanh toán</mat-label>
+              <mat-icon matPrefix>attach_money</mat-icon>
+              <input matInput formControlName="amount" type="number" placeholder="0">
+              <mat-suffix>VND</mat-suffix>
+              <mat-error>Vui lòng nhập số tiền</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Terms & Conditions -->
+          <div class="form-section">
+            <mat-checkbox formControlName="acceptTerms" color="primary">
+              <span>Tôi đồng ý với <a href="#" target="_blank">điều khoản thanh toán</a></span>
+            </mat-checkbox>
+            <mat-error *ngIf="paymentForm.get('acceptTerms')?.hasError('required')">
+              Vui lòng đồng ý với điều khoản
+            </mat-error>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="form-actions">
+            <button type="button" mat-stroked-button (click)="onCancel()">
+              <mat-icon>close</mat-icon>
+              Hủy
+            </button>
+            <button type="submit" mat-flat-button class="btn-pay" 
+                    [disabled]="paymentForm.invalid || isProcessing">
+              <mat-spinner *ngIf="isProcessing" diameter="20" color="accent"></mat-spinner>
+              <mat-icon *ngIf="!isProcessing">check_circle</mat-icon>
+              {{ isProcessing ? 'Đang xử lý...' : 'Thanh toán' }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary-section">
+        <div class="summary-card">
+          <h2>
+            <mat-icon>receipt</mat-icon>
+            Tóm tắt đặt phòng
+          </h2>
+
+          <!-- Booking Details -->
+          <div class="summary-section">
+            <h3>Chi tiết phòng</h3>
+            <div class="detail-row">
+              <span>Loại phòng:</span>
+              <strong>{{ booking.rooms[0]?.roomTypeName || 'N/A' }}</strong>
+            </div>
+            <div class="detail-row">
+              <span>Số phòng:</span>
+              <strong>{{ booking.rooms[0]?.roomNumber || 'N/A' }}</strong>
+            </div>
+          </div>
+
+          <!-- Check-in/out -->
+          <div class="summary-section">
+            <h3>Khoảng thời gian</h3>
+            <div class="detail-row">
+              <span>Nhận phòng:</span>
+              <strong>{{ booking.checkInDate | date:'dd/MM/yyyy' }}</strong>
+            </div>
+            <div class="detail-row">
+              <span>Trả phòng:</span>
+              <strong>{{ booking.checkOutDate | date:'dd/MM/yyyy' }}</strong>
+            </div>
+            <div class="detail-row">
+              <span>Số đêm:</span>
+              <strong>{{ getNightCount() }}</strong>
+            </div>
+          </div>
+
+          <!-- Guest Info -->
+          <div class="summary-section">
+            <h3>Thông tin khách</h3>
+            <div class="detail-row">
+              <span>Tên khách:</span>
+              <strong>{{ booking.guestName }}</strong>
+            </div>
+            <div class="detail-row">
+              <span>Số khách:</span>
+              <strong>{{ booking.numGuests }}</strong>
+            </div>
+            <div class="detail-row" *ngIf="booking.guestEmail">
+              <span>Email:</span>
+              <strong>{{ booking.guestEmail }}</strong>
+            </div>
+          </div>
+
+          <!-- Price Breakdown -->
+          <div class="summary-section price-section">
+            <h3>Chi tiết giá</h3>
+            <div class="price-row">
+              <span>Giá phòng/đêm:</span>
+              <strong>{{ booking.rooms[0]?.pricePerNight | number }} VND</strong>
+            </div>
+            <div class="price-row">
+              <span>Số đêm:</span>
+              <strong>{{ getNightCount() }}</strong>
+            </div>
+            <div class="price-row subtotal">
+              <span>Tổng tiền:</span>
+              <strong>{{ (booking.rooms[0]?.pricePerNight || 0) * getNightCount() | number }} VND</strong>
+            </div>
+            <div class="divider" *ngIf="booking.discountAmount > 0"></div>
+            <div class="price-row discount" *ngIf="booking.discountAmount > 0">
+              <span>Giảm giá:</span>
+              <strong class="discount-amount">-{{ booking.discountAmount | number }} VND</strong>
+            </div>
+            <div class="divider"></div>
+            <div class="price-row total">
+              <span>Thanh toán:</span>
+              <strong>{{ getTotalAmount() | number }} VND</strong>
+            </div>
+          </div>
+
+          <!-- Status Badge -->
+          <div class="status-badge" [ngClass]="'status-' + booking.status.toLowerCase()">
+            <mat-icon>info</mat-icon>
+            <span>Trạng thái: {{ booking.status }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
