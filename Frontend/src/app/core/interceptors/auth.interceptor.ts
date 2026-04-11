@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   HttpRequest, HttpHandler, HttpEvent,
   HttpInterceptor, HttpErrorResponse
@@ -12,11 +12,19 @@ import { Router } from '@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject = new BehaviorSubject<string | null>(null);
+  private authService?: AuthService;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private injector: Injector, private router: Router) {}
+
+  private getAuthService(): AuthService {
+    if (!this.authService) {
+      this.authService = this.injector.get(AuthService);
+    }
+    return this.authService;
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getAccessToken();
+    const token = this.getAuthService().getAccessToken();
     const authReq = token ? this.addToken(req, token) : req;
 
     return next.handle(authReq).pipe(
@@ -38,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
 
-      return this.authService.refreshToken().pipe(
+      return this.getAuthService().refreshToken().pipe(
         switchMap(response => {
           this.isRefreshing = false;
           this.refreshTokenSubject.next(response.data.accessToken);
@@ -46,7 +54,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }),
         catchError(err => {
           this.isRefreshing = false;
-          this.authService.logout();
+          this.getAuthService().logout();
           this.router.navigate(['/login']);
           return throwError(() => err);
         })

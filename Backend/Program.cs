@@ -231,11 +231,234 @@ app.MapHub<HotelManagement.Hubs.RoomHub>("/hubs/room");
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<HotelDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("DbBootstrap");
+
+    async Task<bool> ColumnExistsAsync(string tableName, string columnName)
+    {
+        var connection = db.Database.GetDbConnection();
+        if (connection.State != ConnectionState.Open)
+            await connection.OpenAsync();
+
+        await using var command = connection.CreateCommand();
+        command.CommandText = @"SELECT COUNT(*)
+                               FROM INFORMATION_SCHEMA.COLUMNS
+                               WHERE TABLE_SCHEMA = DATABASE()
+                                 AND TABLE_NAME = @tableName
+                                 AND COLUMN_NAME = @columnName";
+
+        var tableParam = command.CreateParameter();
+        tableParam.ParameterName = "@tableName";
+        tableParam.Value = tableName;
+        command.Parameters.Add(tableParam);
+
+        var columnParam = command.CreateParameter();
+        columnParam.ParameterName = "@columnName";
+        columnParam.Value = columnName;
+        command.Parameters.Add(columnParam);
+
+        return Convert.ToInt32(await command.ExecuteScalarAsync()) > 0;
+    }
+
+    async Task EnsureSeedDataAsync()
+    {
+        const string adminUsername = "admin";
+        const string adminEmail = "admin@hotel.com";
+        const string adminPassword = "admin@123";
+
+        var adminUser = await db.Users
+            .FirstOrDefaultAsync(u => u.Email == adminEmail || u.Username == adminUsername);
+
+        if (adminUser == null)
+        {
+            adminUser = new User
+            {
+                Username = adminUsername,
+                Email = adminEmail,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12),
+                FullName = "Administrator",
+                Role = UserRole.Admin,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await db.Users.AddAsync(adminUser);
+            await db.SaveChangesAsync();
+        }
+        else
+        {
+            adminUser.Username = adminUsername;
+            adminUser.Email = adminEmail;
+            adminUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12);
+            adminUser.Role = UserRole.Admin;
+            adminUser.IsActive = true;
+            adminUser.UpdatedAt = DateTime.UtcNow;
+
+            db.Users.Update(adminUser);
+            await db.SaveChangesAsync();
+        }
+
+        var hotel = await db.Hotels.FirstOrDefaultAsync();
+        if (hotel == null)
+        {
+            hotel = new Hotel
+            {
+                Name = "Antigravity Hotel",
+                Address = "1 Nguyen Hue, Quan 1, TP.HCM",
+                Phone = "0900000000",
+                Email = "contact@antigravityhotel.com",
+                Description = "Khach san trung tam voi dich vu tieu chuan 4 sao.",
+                StarRating = 4,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await db.Hotels.AddAsync(hotel);
+            await db.SaveChangesAsync();
+        }
+
+        if (!await db.RoomTypes.AnyAsync(rt => rt.HotelId == hotel.HotelId))
+        {
+            var deluxe = new RoomType
+            {
+                HotelId = hotel.HotelId,
+                Name = "Deluxe",
+                Description = "Phong Deluxe huu nghi, day du tien nghi.",
+                MaxOccupancy = 2,
+                BasePrice = 900000,
+                AreaSqm = 28,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            var suite = new RoomType
+            {
+                HotelId = hotel.HotelId,
+                Name = "Suite",
+                Description = "Phong Suite rong rai, phu hop gia dinh nho.",
+                MaxOccupancy = 4,
+                BasePrice = 1500000,
+                AreaSqm = 40,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await db.RoomTypes.AddRangeAsync(deluxe, suite);
+            await db.SaveChangesAsync();
+        }
+
+        var roomTypes = await db.RoomTypes.Where(rt => rt.HotelId == hotel.HotelId).ToListAsync();
+        var deluxeType = roomTypes.First(rt => rt.Name == "Deluxe");
+        var suiteType = roomTypes.First(rt => rt.Name == "Suite");
+
+        if (!await db.Rooms.AnyAsync(r => r.HotelId == hotel.HotelId))
+        {
+            var rooms = new List<Room>
+            {
+                new() { HotelId = hotel.HotelId, RoomTypeId = deluxeType.RoomTypeId, RoomNumber = "D101", Floor = 1, Status = RoomStatus.Available, IsActive = true, CreatedAt = DateTime.UtcNow },
+                new() { HotelId = hotel.HotelId, RoomTypeId = deluxeType.RoomTypeId, RoomNumber = "D102", Floor = 1, Status = RoomStatus.Available, IsActive = true, CreatedAt = DateTime.UtcNow },
+                new() { HotelId = hotel.HotelId, RoomTypeId = deluxeType.RoomTypeId, RoomNumber = "D201", Floor = 2, Status = RoomStatus.Dirty, IsActive = true, CreatedAt = DateTime.UtcNow },
+                new() { HotelId = hotel.HotelId, RoomTypeId = suiteType.RoomTypeId, RoomNumber = "S301", Floor = 3, Status = RoomStatus.Available, IsActive = true, CreatedAt = DateTime.UtcNow },
+                new() { HotelId = hotel.HotelId, RoomTypeId = suiteType.RoomTypeId, RoomNumber = "S302", Floor = 3, Status = RoomStatus.Occupied, IsActive = true, CreatedAt = DateTime.UtcNow }
+            };
+
+            await db.Rooms.AddRangeAsync(rooms);
+            await db.SaveChangesAsync();
+        }
+
+        if (!await db.RatePlans.AnyAsync())
+        {
+            await db.RatePlans.AddRangeAsync(
+                new RatePlan
+                {
+                    RoomTypeId = deluxeType.RoomTypeId,
+                    Name = "Gia linh hoat Deluxe",
+                    Description = "Khong kem bua sang, linh hoat ngay dat.",
+                    PricePerNight = 920000,
+                    MealPlan = MealPlan.RoomOnly,
+                    IsRefundable = true,
+                    CancellationPolicy = "Huy truoc 24 gio",
+                    MinStayNights = 1,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new RatePlan
+                {
+                    RoomTypeId = suiteType.RoomTypeId,
+                    Name = "Gia Suite bao gom an sang",
+                    Description = "Bao gom bua sang cho toi da 4 khach.",
+                    PricePerNight = 1600000,
+                    MealPlan = MealPlan.BreakfastIncluded,
+                    IsRefundable = true,
+                    CancellationPolicy = "Huy truoc 48 gio",
+                    MinStayNights = 1,
+                    IsActive = true,
+                    CreatedAt = DateTime.UtcNow
+                });
+
+            await db.SaveChangesAsync();
+        }
+
+        if (!await db.Promotions.AnyAsync())
+        {
+            await db.Promotions.AddAsync(new Promotion
+            {
+                Code = "WELCOME10",
+                Name = "Uu dai khach moi",
+                Description = "Giam 10% cho don dat dau tien.",
+                DiscountType = DiscountType.Percentage,
+                DiscountValue = 10,
+                MinBookingAmount = 500000,
+                StartDate = DateTime.UtcNow.Date,
+                EndDate = DateTime.UtcNow.Date.AddMonths(2),
+                UsageLimit = 100,
+                UsedCount = 0,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            });
+
+            await db.SaveChangesAsync();
+        }
+
+        if (!await db.Guests.AnyAsync())
+        {
+            await db.Guests.AddAsync(new Guest
+            {
+                FullName = "Nguyen Van A",
+                Email = "guest1@example.com",
+                Phone = "0912345678",
+                IdNumber = "079000123456",
+                IdType = IdType.CCCD,
+                Nationality = "Vietnam",
+                Address = "TP.HCM",
+                CreatedAt = DateTime.UtcNow
+            });
+
+            await db.SaveChangesAsync();
+        }
+    }
 
     // Auto migrate chỉ bật trong Development.
     if (app.Environment.IsDevelopment())
     {
         await db.Database.MigrateAsync();
+    }
+
+    var hasLegacySchemaMismatch =
+        !await ColumnExistsAsync("hotels", "hotel_id") ||
+        !await ColumnExistsAsync("room_types", "room_type_id") ||
+        !await ColumnExistsAsync("guests", "guest_id") ||
+        !await ColumnExistsAsync("invoices", "invoice_id") ||
+        !await ColumnExistsAsync("payments", "payment_id") ||
+        !await ColumnExistsAsync("bookings", "booking_id") ||
+        !await ColumnExistsAsync("rooms", "room_id") ||
+        !await ColumnExistsAsync("rateplans", "rate_plan_id") ||
+        !await ColumnExistsAsync("promotions", "promotion_id");
+
+    if (hasLegacySchemaMismatch)
+    {
+        logger.LogWarning("Legacy schema mismatch detected. Recreating database and seeding fresh data.");
+        await db.Database.EnsureDeletedAsync();
+        await db.Database.EnsureCreatedAsync();
     }
 
     // Backfill tối thiểu cho DB cũ thiếu cột users.
@@ -283,42 +506,7 @@ using (var scope = app.Services.CreateScope())
     // Đồng bộ kiểu cột role để lưu enum dưới dạng string nhất quán với EF conversion.
     await db.Database.ExecuteSqlRawAsync("ALTER TABLE users MODIFY COLUMN role VARCHAR(30) NOT NULL");
 
-    // Seed tài khoản Admin mặc định (idempotent)
-    const string adminUsername = "admin";
-    const string adminEmail = "admin@hotel.com";
-    const string adminPassword = "admin@123";
-
-    var adminUser = await db.Users
-        .FirstOrDefaultAsync(u => u.Email == adminEmail || u.Username == adminUsername);
-
-    if (adminUser == null)
-    {
-        adminUser = new User
-        {
-            Username = adminUsername,
-            Email = adminEmail,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12),
-            FullName = "Administrator",
-            Role = UserRole.Admin,
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
-        };
-
-        await db.Users.AddAsync(adminUser);
-        await db.SaveChangesAsync();
-    }
-    else
-    {
-        adminUser.Username = adminUsername;
-        adminUser.Email = adminEmail;
-        adminUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(adminPassword, workFactor: 12);
-        adminUser.Role = UserRole.Admin;
-        adminUser.IsActive = true;
-        adminUser.UpdatedAt = DateTime.UtcNow;
-
-        db.Users.Update(adminUser);
-        await db.SaveChangesAsync();
-    }
+    await EnsureSeedDataAsync();
 }
 
 app.Run();
