@@ -228,7 +228,7 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
             checkInDate: this.formatDate(formValue.checkInDate),
             checkOutDate: this.formatDate(formValue.checkOutDate),
             numGuests: formValue.guests,
-            bookingSource: 'Guest Portal',
+            bookingSource: 'Online',
             specialRequests: this.bookingForm.get('specialRequests')?.value,
             roomIds: [selectedRoom.roomId]
           };

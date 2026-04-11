@@ -104,8 +104,29 @@ namespace HotelManagement.Services.Implementations
                 throw AppException.Validation(validation.Errors.Select(e => e.ErrorMessage).ToList());
 
             // ── Bước 2: Kiểm tra Guest tồn tại ───────────────────────────────
+            // Tìm theo GuestId trước, nếu không thấy thì thử tìm theo UserId
+            // (Guest Portal gửi userId, không phải guestId)
             var guest = await _context.Guests.FindAsync(dto.GuestId)
-                        ?? throw AppException.NotFound($"Guest #{dto.GuestId}");
+                        ?? await _context.Guests.FirstOrDefaultAsync(g => g.UserId == dto.GuestId);
+
+            // Nếu vẫn không thấy, tự tạo Guest mới từ thông tin User (user mới đăng ký)
+            if (guest == null)
+            {
+                var linkedUser = await _context.Users.FindAsync(dto.GuestId);
+                if (linkedUser == null)
+                    throw AppException.NotFound($"Guest #{dto.GuestId}");
+
+                guest = new Guest
+                {
+                    UserId = linkedUser.UserId,
+                    FullName = linkedUser.FullName ?? linkedUser.Username,
+                    Email = linkedUser.Email,
+                    Phone = linkedUser.Phone,
+                    CreatedAt = DateTime.UtcNow
+                };
+                await _context.Guests.AddAsync(guest);
+                await _context.SaveChangesAsync(); // Lấy GuestId mới
+            }
 
             // ── Bước 3: Kiểm tra RatePlan hợp lệ và còn active ───────────────
             var ratePlan = await _context.RatePlans
@@ -183,7 +204,7 @@ namespace HotelManagement.Services.Implementations
             {
                 var booking = new Booking
                 {
-                    GuestId = dto.GuestId,
+                    GuestId = guest.GuestId,
                     RatePlanId = dto.RatePlanId,
                     PromotionId = dto.PromotionId,
                     CreatedByUserId = createdByUserId,
