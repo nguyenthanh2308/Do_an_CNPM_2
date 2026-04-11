@@ -26,6 +26,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { SimpleRoomFormComponent } from '../room-form.component';
+import { RoomDetailDialogComponent } from '../room-detail-dialog.component';
 
 @Component({
   selector: 'app-room-list',
@@ -185,9 +186,10 @@ export class RoomListComponent implements OnInit, OnDestroy {
     });
   }
   viewDetail(room: RoomDto): void {
-    // Navigate to detail or open dialog
-    // this.router.navigate(['/rooms', room.roomId]);
-    console.log('View detail:', room);
+    this.dialog.open(RoomDetailDialogComponent, {
+      width: '800px',
+      data: { roomId: room.roomId }
+    });
   }
 
   updateStatus(room: RoomDto, newStatus: RoomStatus): void {
