@@ -1,0 +1,91 @@
+2026-04-11 14:29:50.311 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 14:29:50.473 +07:00 [ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5000: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-04-11 14:30:19.574 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 14:32:46.498 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 14:38:35.585 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 14:38:54.766 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 14:38:54.773 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.7205 ms
+2026-04-11 14:38:54.987 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 14:38:55.298 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 14:38:55.330 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 545.0775 ms
+2026-04-11 14:38:55.337 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4448 ms
+2026-04-11 14:38:55.387 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 46.4555 ms
+2026-04-11 14:39:04.718 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1589 ms
+2026-04-11 14:39:04.809 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:39:04.932 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 209.7339 ms
+2026-04-11 14:39:07.701 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1201 ms
+2026-04-11 14:39:07.769 +07:00 [INF] HTTP GET /api/rooms responded 200 in 55.1267 ms
+2026-04-11 14:39:37.449 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1507 ms
+2026-04-11 14:39:37.472 +07:00 [INF] HTTP GET /api/rooms responded 200 in 17.0807 ms
+2026-04-11 14:41:01.759 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1573 ms
+2026-04-11 14:41:01.774 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:41:01.779 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 17.1247 ms
+2026-04-11 14:41:45.375 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1013 ms
+2026-04-11 14:41:45.391 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.7341 ms
+2026-04-11 14:42:48.274 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1159 ms
+2026-04-11 14:42:48.300 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 14:42:48.349 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 70.2147 ms
+2026-04-11 14:55:31.526 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1228 ms
+2026-04-11 14:55:31.543 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 14:55:31.794 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 14:55:31.795 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 264.2095 ms
+2026-04-11 14:55:31.800 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0703 ms
+2026-04-11 14:55:31.805 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.2212 ms
+2026-04-11 14:55:38.270 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.3857 ms
+2026-04-11 14:55:38.294 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.5231 ms
+2026-04-11 14:55:43.881 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0865 ms
+2026-04-11 14:55:43.892 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:55:43.897 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 12.6120 ms
+2026-04-11 14:56:05.945 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.4290 ms
+2026-04-11 14:56:05.971 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 14:56:06.000 +07:00 [ERR] HTTP POST /api/bookings responded 500 in 52.2780 ms
+HotelManagement.Exceptions.AppException: BookingSource phải là: Online, WalkIn hoặc Phone.
+   at HotelManagement.Services.Implementations.BookingService.CreateBookingAsync(CreateBookingDto dto, Nullable`1 createdByUserId) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\BookingService.cs:line 104
+   at HotelManagement.Controllers.BookingsController.Create(CreateBookingDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\BookingsController.cs:line 164
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 14:56:06.018 +07:00 [WRN] AppException [422]: BookingSource phải là: Online, WalkIn hoặc Phone.
+2026-04-11 14:57:04.218 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0725 ms
+2026-04-11 14:57:04.239 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.5903 ms
+2026-04-11 14:57:06.774 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0626 ms
+2026-04-11 14:57:06.785 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:57:06.790 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 12.3332 ms
+2026-04-11 14:58:07.798 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1772 ms
+2026-04-11 14:58:07.809 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 14:58:07.814 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 12.8119 ms

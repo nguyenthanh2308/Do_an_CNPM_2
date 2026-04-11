@@ -453,3 +453,19 @@ HotelManagement.Exceptions.AppException: Ngày check-in không được nhỏ h�
 2026-04-11 14:02:53.141 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0444 ms
 2026-04-11 14:02:53.153 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
 2026-04-11 14:02:53.158 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 14.1403 ms
+2026-04-11 14:18:27.622 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 14:23:11.771 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 14:23:11.778 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 2.9114 ms
+2026-04-11 14:23:12.051 +07:00 [INF] POST /api/auth/logout — UserId: 2
+2026-04-11 14:23:12.120 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-11 14:23:12.143 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 347.9453 ms
+2026-04-11 14:27:56.163 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.4822 ms
+2026-04-11 14:27:56.183 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 14:27:56.508 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 14:27:56.520 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 353.7366 ms
+2026-04-11 14:27:56.526 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.1052 ms
+2026-04-11 14:27:56.545 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 15.7118 ms
+2026-04-11 14:28:08.546 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0712 ms
+2026-04-11 14:28:08.557 +07:00 [INF] HTTP GET /api/rooms responded 403 in 4.7181 ms
+2026-04-11 14:28:40.718 +07:00 [INF] HTTP OPTIONS /api/bookings/guest/2 responded 204 in 0.1419 ms
+2026-04-11 14:28:40.727 +07:00 [INF] HTTP GET /api/bookings/guest/2 responded 403 in 2.5935 ms

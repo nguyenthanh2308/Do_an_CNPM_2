@@ -39,7 +39,7 @@ export class RoomListingComponent implements OnInit, OnDestroy {
   statusConfig = {
     'Available': { label: 'Trống', color: 'status-available', icon: 'check_circle', canBook: true },
     'Occupied': { label: 'Có khách', color: 'status-occupied', icon: 'person', canBook: false },
-    'Dirty': { label: 'Cần dọn', color: 'status-dirty', icon: 'cleaning_services', canBook: false },
+    'Dirty': { label: 'Đang dọn', color: 'status-dirty', icon: 'cleaning_services', canBook: false },
     'Maintenance': { label: 'Bảo trì', color: 'status-maintenance', icon: 'build', canBook: false },
     'OutOfService': { label: 'Ngừng hoạt động', color: 'status-outofservice', icon: 'block', canBook: false }
   };

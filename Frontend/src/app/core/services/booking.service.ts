@@ -36,6 +36,11 @@ export class BookingService {
     return this.http.get<ApiResponse<BookingSummaryDto[]>>(`${this.API}/guest/${guestId}`);
   }
 
+  /** Booking của user hiện tại */
+  getMyBookings(): Observable<ApiResponse<BookingSummaryDto[]>> {
+    return this.http.get<ApiResponse<BookingSummaryDto[]>>(`${this.API}/my-bookings`);
+  }
+
   /** Tạo booking */
   create(dto: CreateBookingDto): Observable<ApiResponse<BookingDto>> {
     return this.http.post<ApiResponse<BookingDto>>(this.API, dto);

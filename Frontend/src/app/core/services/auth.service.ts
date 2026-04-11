@@ -38,6 +38,12 @@ export class AuthService {
       return;
     }
 
+    // Validate token with Backend
+    await this.validateTokenWithBackend();
+    if (!this.getAccessToken()) {
+      return;
+    }
+
     await this.enforceBackendRestartOnStartup();
     if (!this.getAccessToken()) {
       return;
@@ -145,6 +151,22 @@ export class AuthService {
 
     if (storedRuntimeId !== runtimeId) {
       this.clearLocalSession('Phiên đã kết thúc do hệ thống được khởi động lại, vui lòng đăng nhập lại');
+    }
+  }
+
+  private async validateTokenWithBackend(): Promise<void> {
+    try {
+      const response = await firstValueFrom(
+        this.http.get<ApiResponse<any>>(`${this.API}/me`).pipe(
+          catchError(() => of(null))
+        )
+      );
+
+      if (!response || !response.success) {
+        this.clearLocalSession('Token không hợp lệ, vui lòng đăng nhập lại');
+      }
+    } catch (err) {
+      this.clearLocalSession('Không thể xác thực với server, vui lòng đăng nhập lại');
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -7,6 +7,7 @@ import { RoomService } from '../../../core/services/room.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { AvailableRoomDto, CreateBookingDto, UserInfo } from '../../../core/models/models';
 import { Subject, takeUntil } from 'rxjs';
+import { MatStepper } from '@angular/material/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -40,17 +41,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './guest-booking.component.scss'
 })
 export class GuestBookingComponent implements OnInit, OnDestroy {
+  @ViewChild('stepper') stepper!: MatStepper;
+  
   searchForm!: FormGroup;
   bookingForm!: FormGroup;
   selectedRoom: AvailableRoomDto | null = null;
   availableRooms: AvailableRoomDto[] = [];
   currentUser: UserInfo | null = null;
+  preSelectedRoom: any | null = null;
   
   isSearching = false;
   isBooking = false;
   searchError = '';
   bookingError = '';
   hasSearched = false;
+  skipSearchStep = false;  // Flag to skip search step when room is pre-selected
 
   private destroy$ = new Subject<void>();
 
@@ -66,6 +71,14 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Check if there's a pre-selected room from room listing
+    const selectedRoomData = sessionStorage.getItem('selectedRoomForBooking');
+    if (selectedRoomData) {
+      this.preSelectedRoom = JSON.parse(selectedRoomData);
+      // Clear from session storage after reading
+      sessionStorage.removeItem('selectedRoomForBooking');
+    }
+
     // Initialize search form
     const checkIn = new Date();
     checkIn.setDate(checkIn.getDate() + 1);
@@ -82,6 +95,20 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     this.bookingForm = this.fb.group({
       specialRequests: ['']
     });
+
+    // If there's a pre-selected room, skip search step and go directly to details
+    if (this.preSelectedRoom) {
+      this.skipSearchStep = true;
+      this.selectedRoom = this.preSelectedRoom as AvailableRoomDto;
+      this.hasSearched = true;
+      // Advance to step 2 after stepper is initialized
+      setTimeout(() => {
+        if (this.stepper) {
+          this.stepper.next();
+        }
+      }, 100);
+      this.showSuccess(`Phòng ${this.preSelectedRoom.roomNumber} đã được chọn!`);
+    }
   }
 
   searchAvailableRooms(): void {
@@ -104,6 +131,18 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
           this.availableRooms = res.data || [];
           this.hasSearched = true;
           this.isSearching = false;
+          
+          // Auto-select pre-selected room if found in available rooms
+          if (this.preSelectedRoom && this.availableRooms.length > 0) {
+            const foundRoom = this.availableRooms.find(r => r.roomId === this.preSelectedRoom.roomId);
+            if (foundRoom) {
+              this.selectRoom(foundRoom);
+              this.showSuccess(`Phòng ${this.preSelectedRoom.roomNumber} đã sẵn có!`);
+            } else {
+              this.showInfo(`Phòng ${this.preSelectedRoom.roomNumber} không trống trong khoảng thời gian này`);
+            }
+          }
+          
           if (this.availableRooms.length === 0) {
             this.showInfo('Không tìm thấy phòng trống cho khoảng thời gian này');
           }

@@ -35,7 +35,7 @@ namespace HotelManagement.Controllers
 
         /// <summary>Lấy danh sách tất cả phòng</summary>
         [HttpGet]
-        [Authorize(Roles = "Admin,Manager,Receptionist,Housekeeping")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(ApiResponse<IEnumerable<RoomDto>>), 200)]
         public async Task<IActionResult> GetAll(
             [FromQuery] long? hotelId,

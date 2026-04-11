@@ -110,6 +110,31 @@
   }
 }
 
+// ── Pre-selected Info Message ───────────────────────────────────────────
+.pre-selected-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+
+  mat-icon {
+    color: #10b981;
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  p {
+    margin: 0;
+    color: #047857;
+    font-weight: 500;
+  }
+}
+
 // ── Rooms Selection ──────────────────────────────────────────────────────
 .rooms-selection {
   margin-top: 32px;

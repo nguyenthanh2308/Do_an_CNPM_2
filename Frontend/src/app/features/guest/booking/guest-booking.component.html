@@ -16,15 +16,19 @@
   </header>
 
   <!-- Booking Stepper -->
-  <mat-stepper linear #stepper class="booking-stepper">
+  <mat-stepper [linear]="!skipSearchStep" #stepper class="booking-stepper">
     
-    <!-- Step 1: Search Available Rooms -->
-    <mat-step [stepControl]="searchForm" label="Tìm phòng">
+    <!-- Step 1: Search Available Rooms (Can be skipped if room is pre-selected) -->
+    <mat-step [stepControl]="searchForm" label="Tìm phòng" [completed]="skipSearchStep">
       <form [formGroup]="searchForm">
         <div class="step-content">
-          <h3>Chọn ngày và số lượng khách</h3>
+          <div *ngIf="skipSearchStep" class="pre-selected-info">
+            <mat-icon>check_circle</mat-icon>
+            <p>Phòng {{ preSelectedRoom?.roomNumber }} đã được chọn. Tiếp tục để hoàn tất thông tin.</p>
+          </div>
+          <h3 *ngIf="!skipSearchStep">Chọn ngày và số lượng khách</h3>
           
-          <div class="search-form">
+          <div class="search-form" *ngIf="!skipSearchStep">
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Ngày nhận phòng</mat-label>
               <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
@@ -56,7 +60,7 @@
           <p class="error" *ngIf="searchError">{{ searchError }}</p>
 
           <!-- Available Rooms -->
-          <div class="rooms-selection" *ngIf="hasSearched">
+          <div class="rooms-selection" *ngIf="hasSearched && !skipSearchStep">
             <p class="result-info" *ngIf="!isSearching">
               {{ availableRooms.length }} phòng trống phù hợp
             </p>
@@ -103,8 +107,12 @@
 
         <div class="step-actions">
           <button mat-stroked-button (click)="onCancel()">Hủy</button>
-          <button mat-flat-button matStepperNext 
+          <button *ngIf="!skipSearchStep" mat-flat-button matStepperNext 
                   [disabled]="!selectedRoom || isSearching || !hasSearched">
+            Tiếp theo
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+          <button *ngIf="skipSearchStep" mat-flat-button matStepperNext>
             Tiếp theo
             <mat-icon>arrow_forward</mat-icon>
           </button>

@@ -71,9 +71,8 @@ export class MyBookingsComponent implements OnInit, OnDestroy {
 
   loadMyBookings(): void {
     this.isLoading = true;
-    if (!this.currentUser) return;
 
-    this.bookingService.getByGuest(this.currentUser.userId)
+    this.bookingService.getMyBookings()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (res) => {

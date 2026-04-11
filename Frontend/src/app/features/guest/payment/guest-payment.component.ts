@@ -16,6 +16,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPrefix, MatSuffix } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-guest-payment',
@@ -33,7 +34,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPrefix,
+    MatSuffix
   ],
   templateUrl: './guest-payment.component.html',
   styleUrl: './guest-payment.component.scss'
