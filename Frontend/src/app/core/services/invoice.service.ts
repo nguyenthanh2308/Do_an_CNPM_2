@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../models/models';
+import { environment } from '../../../environments/environment';
 
 export interface InvoiceDto {
   invoiceId: number;
@@ -21,7 +22,7 @@ export interface InvoiceDto {
   providedIn: 'root'
 })
 export class InvoiceService {
-  private apiUrl = '/api/invoices';
+  private readonly apiUrl = `${environment.apiUrl}/invoices`;
 
   constructor(private http: HttpClient) {}
 

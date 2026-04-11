@@ -219,7 +219,7 @@ namespace HotelManagement.Services.Implementations
             // ── Bước 10: Tạo Booking entity ────────────────────────────────────
             // Use execution strategy to handle retries with transactions properly
             var strategy = _context.Database.CreateExecutionStrategy();
-            return await strategy.ExecuteAsync(async () =>
+            var result = await strategy.ExecuteAsync(async () =>
             {
                 using var transaction = await _context.Database.BeginTransactionAsync();
                 try
@@ -268,15 +268,12 @@ namespace HotelManagement.Services.Implementations
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
 
-                    // ── Bước 13: Tạo Invoice cho booking ──────────────────────
-                    await _invoiceService.GenerateBookingInvoiceAsync(booking);
-
-                    // ── Bước 14: Load lại để trả về đầy đủ ──────────────────────
+                    // ── Bước 13: Load lại để trả về đầy đủ ──────────────────────
                     var created = await _bookingRepo.GetBookingDetailAsync(booking.BookingId);
                     if (created == null)
                         throw new AppException($"Không thể lấy thông tin booking #{booking.BookingId} mới tạo.");
                     
-                    return _mapper.Map<BookingDto>(created);
+                    return new { booking, dto = _mapper.Map<BookingDto>(created) };
                 }
                 catch (AppException)
                 {
@@ -289,6 +286,19 @@ namespace HotelManagement.Services.Implementations
                     throw new AppException($"Lỗi khi tạo booking: {ex.GetType().Name} - {ex.Message}");
                 }
             });
+            
+            // After transaction succeeds, create invoice (non-blocking)
+            try
+            {
+                await _invoiceService.GenerateBookingInvoiceAsync(result.booking);
+            }
+            catch (Exception ex)
+            {
+                // Log but don't fail - invoice can be created later
+                System.Diagnostics.Debug.WriteLine($"Warning: Failed to create invoice for booking #{result.booking.BookingId}: {ex.Message}");
+            }
+            
+            return result.dto;
         }
 
         // ═══════════════════════════════════════════════════════════════════

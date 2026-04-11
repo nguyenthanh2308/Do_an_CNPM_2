@@ -258,3 +258,139 @@ System.InvalidOperationException: The configured execution strategy 'MySqlRetryi
 2026-04-11 15:48:39.070 +07:00 [INF] HTTP POST /api/payments responded 403 in 1.9528 ms
 2026-04-11 15:48:47.932 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.2954 ms
 2026-04-11 15:48:47.936 +07:00 [INF] HTTP POST /api/payments responded 403 in 0.5934 ms
+2026-04-11 15:52:19.788 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:53:13.922 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 15:53:47.396 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 15:53:47.403 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.6913 ms
+2026-04-11 15:53:47.614 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 15:53:47.965 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 15:53:47.996 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 581.9931 ms
+2026-04-11 15:53:48.003 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3489 ms
+2026-04-11 15:53:48.051 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 43.7473 ms
+2026-04-11 15:53:54.546 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1509 ms
+2026-04-11 15:53:54.655 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:53:54.851 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 297.5216 ms
+2026-04-11 15:54:02.993 +07:00 [INF] HTTP OPTIONS /api/bookings/2 responded 204 in 0.3273 ms
+2026-04-11 15:54:03.013 +07:00 [INF] DELETE /api/bookings/2
+2026-04-11 15:54:03.055 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-11 15:54:03.173 +07:00 [INF] Booking #2 đã bị hủy.
+2026-04-11 15:54:03.175 +07:00 [INF] HTTP DELETE /api/bookings/2 responded 200 in 178.5049 ms
+2026-04-11 15:54:03.183 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0842 ms
+2026-04-11 15:54:03.202 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:54:03.208 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 18.7261 ms
+2026-04-11 15:54:09.260 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1182 ms
+2026-04-11 15:54:09.312 +07:00 [INF] HTTP GET /api/rooms responded 200 in 47.5943 ms
+2026-04-11 15:54:34.400 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1072 ms
+2026-04-11 15:54:34.431 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 15:54:34.488 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 84.1691 ms
+2026-04-11 15:54:40.916 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0812 ms
+2026-04-11 15:54:40.951 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 30.4799 ms
+2026-04-11 15:54:40.957 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1617 ms
+2026-04-11 15:54:40.982 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 15:54:41.119 +07:00 [INF] Booking #3 created successfully.
+2026-04-11 15:54:41.128 +07:00 [INF] HTTP POST /api/bookings responded 201 in 168.1382 ms
+2026-04-11 15:54:43.180 +07:00 [INF] HTTP OPTIONS /api/bookings/3 responded 204 in 0.1243 ms
+2026-04-11 15:54:43.211 +07:00 [INF] GET /api/bookings/3
+2026-04-11 15:54:43.228 +07:00 [INF] HTTP GET /api/bookings/3 responded 200 in 34.9066 ms
+2026-04-11 15:56:23.250 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1824 ms
+2026-04-11 15:56:23.263 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:56:23.267 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 12.7217 ms
+2026-04-11 15:56:30.737 +07:00 [INF] HTTP OPTIONS /api/bookings/3 responded 204 in 0.0745 ms
+2026-04-11 15:56:30.748 +07:00 [INF] DELETE /api/bookings/3
+2026-04-11 15:56:30.762 +07:00 [INF] Booking #3 đã bị hủy.
+2026-04-11 15:56:30.763 +07:00 [INF] HTTP DELETE /api/bookings/3 responded 200 in 22.4601 ms
+2026-04-11 15:56:30.769 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0572 ms
+2026-04-11 15:56:30.781 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 15:56:30.784 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 9.6369 ms
+2026-04-11 15:57:49.789 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 16:00:16.431 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 16:00:33.044 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 16:00:33.051 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.5659 ms
+2026-04-11 16:00:33.276 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 16:00:33.606 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 16:00:33.637 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 575.2096 ms
+2026-04-11 16:00:33.643 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4661 ms
+2026-04-11 16:00:33.694 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 46.3985 ms
+2026-04-11 16:00:35.605 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1907 ms
+2026-04-11 16:00:35.715 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 16:00:35.901 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 288.7296 ms
+2026-04-11 16:00:40.836 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1385 ms
+2026-04-11 16:00:40.888 +07:00 [INF] HTTP GET /api/rooms responded 200 in 46.2640 ms
+2026-04-11 16:00:44.828 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1714 ms
+2026-04-11 16:00:44.859 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 16:00:44.917 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 84.2300 ms
+2026-04-11 16:00:49.530 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0846 ms
+2026-04-11 16:00:49.562 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 28.6236 ms
+2026-04-11 16:00:49.569 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.3252 ms
+2026-04-11 16:00:49.605 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 16:00:49.831 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-11 16:00:49.882 +07:00 [INF] Booking #4 created successfully.
+2026-04-11 16:00:49.893 +07:00 [INF] HTTP POST /api/bookings responded 201 in 319.9805 ms
+2026-04-11 16:00:51.937 +07:00 [INF] HTTP OPTIONS /api/bookings/4 responded 204 in 0.1221 ms
+2026-04-11 16:00:51.961 +07:00 [INF] GET /api/bookings/4
+2026-04-11 16:00:51.980 +07:00 [INF] HTTP GET /api/bookings/4 responded 200 in 36.5257 ms
+2026-04-11 16:05:11.777 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 16:05:46.658 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 16:05:46.680 +07:00 [INF] HTTP GET /api/health responded 404 in 17.2737 ms
+2026-04-11 16:05:55.648 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 270.0790 ms
+2026-04-11 16:06:23.744 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 16:06:46.275 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 16:06:46.282 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4653 ms
+2026-04-11 16:06:46.510 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 16:06:46.798 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 504.6383 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-11 16:06:46.814 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-11 16:06:52.427 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.4662 ms
+2026-04-11 16:06:52.440 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 16:06:52.786 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 16:06:52.804 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 373.9363 ms
+2026-04-11 16:06:52.810 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0704 ms
+2026-04-11 16:06:52.858 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 43.1494 ms
+2026-04-11 16:06:54.425 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.2304 ms
+2026-04-11 16:06:54.490 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 16:06:54.686 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 253.9491 ms
+2026-04-11 16:07:01.716 +07:00 [INF] HTTP OPTIONS /api/bookings/4 responded 204 in 0.3520 ms
+2026-04-11 16:07:01.740 +07:00 [INF] DELETE /api/bookings/4
+2026-04-11 16:07:01.780 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-11 16:07:01.940 +07:00 [INF] Booking #4 đã bị hủy.
+2026-04-11 16:07:01.942 +07:00 [INF] HTTP DELETE /api/bookings/4 responded 200 in 219.7334 ms
+2026-04-11 16:07:01.950 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0665 ms
+2026-04-11 16:07:01.970 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-11 16:07:01.975 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 18.4521 ms
+2026-04-11 16:07:16.089 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1091 ms
+2026-04-11 16:07:16.100 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-11 16:07:16.362 +07:00 [INF] User 'Test12' logged in.
+2026-04-11 16:07:16.363 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 269.9945 ms
+2026-04-11 16:07:16.368 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0625 ms
+2026-04-11 16:07:16.372 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.1649 ms
+2026-04-11 16:07:17.663 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.3298 ms
+2026-04-11 16:07:17.727 +07:00 [INF] HTTP GET /api/rooms responded 200 in 52.7824 ms
+2026-04-11 16:07:20.283 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.2151 ms
+2026-04-11 16:07:20.317 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-12T00:00:00.0000000", CheckOut: "2026-04-13T00:00:00.0000000"
+2026-04-11 16:07:20.385 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 97.4017 ms
+2026-04-11 16:07:25.263 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0851 ms
+2026-04-11 16:07:25.297 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 29.8919 ms
+2026-04-11 16:07:25.304 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0867 ms
+2026-04-11 16:07:25.334 +07:00 [INF] POST /api/bookings — Guest: 2, RatePlan: 1, Rooms: [2]
+2026-04-11 16:07:25.449 +07:00 [INF] Booking #5 created successfully.
+2026-04-11 16:07:25.458 +07:00 [INF] HTTP POST /api/bookings responded 201 in 150.9897 ms
+2026-04-11 16:07:27.508 +07:00 [INF] HTTP OPTIONS /api/bookings/5 responded 204 in 0.1137 ms
+2026-04-11 16:07:27.530 +07:00 [INF] GET /api/bookings/5
+2026-04-11 16:07:27.545 +07:00 [INF] HTTP GET /api/bookings/5 responded 200 in 30.2650 ms
+2026-04-11 16:31:50.463 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-11 16:32:10.841 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-11 16:32:11.127 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 282.8662 ms
