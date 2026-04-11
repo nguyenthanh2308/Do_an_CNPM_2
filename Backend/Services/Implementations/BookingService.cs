@@ -178,8 +178,26 @@ namespace HotelManagement.Services.Implementations
             }
 
             // ── Bước 7: Kiểm tra sức chứa (tổng capacity >= NumGuests) ───────
-            var totalCapacity = rooms.Sum(r =>
-                _context.RoomTypes.Find(r.RoomTypeId)?.MaxOccupancy ?? 2);
+            int totalCapacity = 0;
+            try
+            {
+                // Get all RoomTypes for the selected rooms in one query
+                var roomTypeIds = rooms.Select(r => r.RoomTypeId).Distinct().ToList();
+                var roomTypes = await _context.RoomTypes
+                    .Where(rt => roomTypeIds.Contains(rt.RoomTypeId))
+                    .ToListAsync();
+
+                foreach (var room in rooms)
+                {
+                    var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeId == room.RoomTypeId);
+                    totalCapacity += roomType?.MaxOccupancy ?? 2;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new AppException($"Lỗi kiểm tra sức chứa phòng: {ex.Message}");
+            }
+
             if (dto.NumGuests > totalCapacity)
                 throw new AppException(
                     $"Số khách ({dto.NumGuests}) vượt quá sức chứa tổng của các phòng đã chọn ({totalCapacity}).");
@@ -199,62 +217,75 @@ namespace HotelManagement.Services.Implementations
             decimal finalAmount = totalAmount - discountAmount;
 
             // ── Bước 10: Tạo Booking entity ────────────────────────────────────
-            using var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            // Use execution strategy to handle retries with transactions properly
+            var strategy = _context.Database.CreateExecutionStrategy();
+            return await strategy.ExecuteAsync(async () =>
             {
-                var booking = new Booking
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    GuestId = guest.GuestId,
-                    RatePlanId = dto.RatePlanId,
-                    PromotionId = dto.PromotionId,
-                    CreatedByUserId = createdByUserId,
-                    CheckInDate = dto.CheckInDate,
-                    CheckOutDate = dto.CheckOutDate,
-                    NumGuests = dto.NumGuests,
-                    Status = BookingStatus.Confirmed,   // Confirmed ngay vì đã chọn phòng
-                    TotalAmount = totalAmount,
-                    DiscountAmount = discountAmount,
-                    FinalAmount = finalAmount,
-                    BookingSource = dto.BookingSource,
-                    SpecialRequests = dto.SpecialRequests,
-                    Notes = dto.Notes,
-                    CreatedAt = DateTime.UtcNow
-                };
+                    var booking = new Booking
+                    {
+                        GuestId = guest.GuestId,
+                        RatePlanId = dto.RatePlanId,
+                        PromotionId = dto.PromotionId,
+                        CreatedByUserId = createdByUserId,
+                        CheckInDate = dto.CheckInDate,
+                        CheckOutDate = dto.CheckOutDate,
+                        NumGuests = dto.NumGuests,
+                        Status = BookingStatus.Confirmed,   // Confirmed ngay vì đã chọn phòng
+                        TotalAmount = totalAmount,
+                        DiscountAmount = discountAmount,
+                        FinalAmount = finalAmount,
+                        BookingSource = dto.BookingSource,
+                        SpecialRequests = dto.SpecialRequests,
+                        Notes = dto.Notes,
+                        CreatedAt = DateTime.UtcNow
+                    };
 
-                await _context.Bookings.AddAsync(booking);
-                await _context.SaveChangesAsync(); // Lấy BookingId
+                    await _context.Bookings.AddAsync(booking);
+                    await _context.SaveChangesAsync(); // Lấy BookingId
 
-                // ── Bước 11: Tạo BookingRoom ──────────────────────────────────
-                var bookingRooms = rooms.Select(room => new BookingRoom
-                {
-                    BookingId = booking.BookingId,
-                    RoomId = room.RoomId,
-                    CheckInDate = dto.CheckInDate,
-                    CheckOutDate = dto.CheckOutDate,
-                    PricePerNight = ratePlan.PricePerNight
-                }).ToList();
+                    // ── Bước 11: Tạo BookingRoom ──────────────────────────────────
+                    var bookingRooms = rooms.Select(room => new BookingRoom
+                    {
+                        BookingId = booking.BookingId,
+                        RoomId = room.RoomId,
+                        CheckInDate = dto.CheckInDate,
+                        CheckOutDate = dto.CheckOutDate,
+                        PricePerNight = ratePlan.PricePerNight
+                    }).ToList();
 
-                await _context.BookingRooms.AddRangeAsync(bookingRooms);
+                    await _context.BookingRooms.AddRangeAsync(bookingRooms);
 
-                // ── Bước 12: Cập nhật UsedCount của Promotion ─────────────────
-                if (promotion != null)
-                {
-                    promotion.UsedCount++;
-                    _context.Promotions.Update(promotion);
+                    // ── Bước 12: Cập nhật UsedCount của Promotion ─────────────────
+                    if (promotion != null)
+                    {
+                        promotion.UsedCount++;
+                        _context.Promotions.Update(promotion);
+                    }
+
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    // ── Bước 13: Load lại để trả về đầy đủ ──────────────────────
+                    var created = await _bookingRepo.GetBookingDetailAsync(booking.BookingId);
+                    if (created == null)
+                        throw new AppException($"Không thể lấy thông tin booking #{booking.BookingId} mới tạo.");
+                    
+                    return _mapper.Map<BookingDto>(created);
                 }
-
-                await _context.SaveChangesAsync();
-                await transaction.CommitAsync();
-
-                // ── Bước 13: Load lại để trả về đầy đủ ──────────────────────
-                var created = await _bookingRepo.GetBookingDetailAsync(booking.BookingId);
-                return _mapper.Map<BookingDto>(created!);
-            }
-            catch
-            {
-                await transaction.RollbackAsync();
-                throw;
-            }
+                catch (AppException)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw new AppException($"Lỗi khi tạo booking: {ex.GetType().Name} - {ex.Message}");
+                }
+            });
         }
 
         // ═══════════════════════════════════════════════════════════════════

@@ -222,9 +222,11 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
           const formValue = this.searchForm.value;
           const selectedRatePlan = res.data[0]; // Use first rate plan
           
+          console.log('Select rate plan:', selectedRatePlan);
+          
           const bookingDto: CreateBookingDto = {
             guestId: this.currentUser!.userId,
-            ratePlanId: selectedRatePlan.ratePlanId,
+            ratePlanId: (selectedRatePlan as any).RatePlanId || (selectedRatePlan as any).ratePlanId,
             checkInDate: this.formatDate(formValue.checkInDate),
             checkOutDate: this.formatDate(formValue.checkOutDate),
             numGuests: formValue.guests,
@@ -233,10 +235,13 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
             roomIds: [selectedRoom.roomId]
           };
 
+          console.log('Booking DTO:', bookingDto);
+
           this.bookingService.create(bookingDto)
             .pipe(takeUntil(this.destroy$))
             .subscribe({
               next: (res) => {
+                console.log('Booking created successfully:', res);
                 this.isBooking = false;
                 this.showSuccess(`Đặt phòng thành công! Mã đặt phòng: ${res.data.bookingId}`);
                 // Store booking for payment
@@ -249,7 +254,11 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
                 }, 2000);
               },
               error: (err) => {
-                this.bookingError = err.error?.message || err.error?.errors?.[0] || 'Không thể tạo đặt phòng';
+                console.error('Booking creation error:', err);
+                console.error('Status:', err.status);
+                console.error('Error response:', err.error);
+                console.error('Full error object:', JSON.stringify(err, null, 2));
+                this.bookingError = err.error?.message || err.error?.errors?.[0] || err.message || 'Không thể tạo đặt phòng';
                 this.isBooking = false;
               }
             });

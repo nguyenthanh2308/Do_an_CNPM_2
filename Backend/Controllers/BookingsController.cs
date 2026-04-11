@@ -156,15 +156,31 @@ namespace HotelManagement.Controllers
         [ProducesResponseType(typeof(ApiResponse<object>), 422)]
         public async Task<IActionResult> Create([FromBody] CreateBookingDto dto)
         {
-            _logger.LogInformation(
-                "POST /api/bookings — Guest: {GuestId}, RatePlan: {RatePlanId}, Rooms: {@RoomIds}",
-                dto.GuestId, dto.RatePlanId, dto.RoomIds);
+            try
+            {
+                _logger.LogInformation(
+                    "POST /api/bookings — Guest: {GuestId}, RatePlan: {RatePlanId}, Rooms: {@RoomIds}",
+                    dto.GuestId, dto.RatePlanId, dto.RoomIds);
 
-            var createdByUserId = GetCurrentUserId();
-            var booking = await _bookingService.CreateBookingAsync(dto, createdByUserId);
+                if (dto.RoomIds == null || !dto.RoomIds.Any())
+                    throw new HotelManagement.Exceptions.AppException("Phải chọn ít nhất một phòng.");
 
-            _logger.LogInformation("Booking #{BookingId} created successfully.", booking.BookingId);
-            return Created(booking, $"Đặt phòng #{booking.BookingId} thành công.");
+                var createdByUserId = GetCurrentUserId();
+                var booking = await _bookingService.CreateBookingAsync(dto, createdByUserId);
+
+                _logger.LogInformation("Booking #{BookingId} created successfully.", booking.BookingId);
+                return Created(booking, $"Đặt phòng #{booking.BookingId} thành công.");
+            }
+            catch (HotelManagement.Exceptions.AppException)
+            {
+                throw; // Re-throw AppException so middleware can handle it properly
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error while creating booking: {Message}", ex.Message);
+                throw new HotelManagement.Exceptions.AppException(
+                    $"Lỗi tạo booking: {ex.GetType().Name} - {ex.Message}", 500);
+            }
         }
 
         // ════════════════════════════════════════════════════════════════════
