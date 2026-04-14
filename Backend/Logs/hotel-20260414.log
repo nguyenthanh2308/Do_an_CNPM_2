@@ -211,3 +211,142 @@
 2026-04-14 13:34:27.829 +07:00 [INF] SignalR Disconnected: ConnId=7To-tHbK2MKa0LbN-7D9PA
 2026-04-14 13:34:27.833 +07:00 [INF] HTTP GET /hubs/room responded 101 in 327208.4635 ms
 2026-04-14 13:34:27.833 +07:00 [INF] HTTP GET /hubs/room responded 101 in 327183.6567 ms
+2026-04-14 13:41:08.746 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 13:41:40.868 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 13:41:40.876 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.3739 ms
+2026-04-14 13:41:41.107 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 13:41:41.426 +07:00 [INF] User 'admin' logged in.
+2026-04-14 13:41:41.458 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 570.1688 ms
+2026-04-14 13:41:41.465 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4283 ms
+2026-04-14 13:41:41.517 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 48.5036 ms
+2026-04-14 13:41:41.588 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1021 ms
+2026-04-14 13:41:41.696 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.4169 ms
+2026-04-14 13:41:41.696 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.4166 ms
+2026-04-14 13:41:41.716 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 7.6514 ms
+2026-04-14 13:41:41.716 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 10.7973 ms
+2026-04-14 13:41:41.778 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=YmbZCoChV3FveKM4dLkJ2g
+2026-04-14 13:41:41.778 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=H4ZlOLXFMv3W6aImutRt_A
+2026-04-14 13:41:41.861 +07:00 [INF] HTTP GET /api/rooms responded 200 in 269.6149 ms
+2026-04-14 13:41:47.478 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1889 ms
+2026-04-14 13:41:47.478 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/1 responded 204 in 0.0289 ms
+2026-04-14 13:41:47.545 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 63.5349 ms
+2026-04-14 13:41:47.552 +07:00 [INF] HTTP GET /api/room-types/hotel/1 responded 200 in 68.6904 ms
+2026-04-14 13:43:04.887 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.4338 ms
+2026-04-14 13:43:04.889 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1439 ms
+2026-04-14 13:43:04.904 +07:00 [ERR] Connection id "0HNKPU3HBMEKU", Request id "0HNKPU3HBMEKU:00000005": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HotelManagement.Controllers.RoomTypesController.GetPaged (HotelManagement)
+HotelManagement.Controllers.RoomsController.GetRoomTypes (HotelManagement)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2026-04-14 13:43:04.917 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 21.9252 ms
+2026-04-14 13:43:11.788 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.1501 ms
+2026-04-14 13:43:11.851 +07:00 [INF] HTTP GET /api/hotels responded 200 in 58.1505 ms
+2026-04-14 13:49:45.743 +07:00 [INF] HTTP OPTIONS /api/uploads/image responded 204 in 0.0692 ms
+2026-04-14 13:49:45.784 +07:00 [INF] HTTP POST /api/uploads/image responded 200 in 37.3913 ms
+2026-04-14 13:49:45.808 +07:00 [INF] HTTP GET /uploads/202604/c595ef30523a44bb9d8d40075a4d9c8c.jpg responded 200 in 15.2406 ms
+2026-04-14 13:49:52.319 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.2207 ms
+2026-04-14 13:49:52.416 +07:00 [INF] HTTP POST /api/hotels responded 201 in 93.4038 ms
+2026-04-14 13:49:52.424 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0853 ms
+2026-04-14 13:49:52.439 +07:00 [INF] HTTP GET /api/hotels responded 200 in 11.6527 ms
+2026-04-14 13:50:09.182 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0657 ms
+2026-04-14 13:50:09.192 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 13:50:09.456 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 269.9309 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-14 13:50:09.473 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-14 13:50:17.260 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0738 ms
+2026-04-14 13:50:17.272 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 13:50:17.514 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 13:50:17.515 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 251.2594 ms
+2026-04-14 13:50:17.519 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0605 ms
+2026-04-14 13:50:17.523 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.0650 ms
+2026-04-14 13:50:25.178 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1392 ms
+2026-04-14 13:50:25.195 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.6268 ms
+2026-04-14 13:50:29.791 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0805 ms
+2026-04-14 13:50:29.830 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-14 13:50:29.919 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 123.8620 ms
+2026-04-14 13:50:48.419 +07:00 [INF] HTTP OPTIONS /api/hotels/2 responded 204 in 0.0802 ms
+2026-04-14 13:50:48.424 +07:00 [INF] HTTP PUT /api/hotels/2 responded 403 in 1.3959 ms
+2026-04-14 13:51:17.141 +07:00 [INF] HTTP OPTIONS /api/hotels/2 responded 204 in 0.0718 ms
+2026-04-14 13:51:17.145 +07:00 [INF] HTTP PUT /api/hotels/2 responded 403 in 0.4077 ms
+2026-04-14 13:51:33.973 +07:00 [INF] HTTP OPTIONS /api/hotels/2 responded 204 in 0.0839 ms
+2026-04-14 13:51:33.976 +07:00 [INF] HTTP PUT /api/hotels/2 responded 403 in 0.3164 ms
+2026-04-14 13:51:43.910 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.1256 ms
+2026-04-14 13:51:43.911 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0514 ms
+2026-04-14 13:51:43.915 +07:00 [ERR] Connection id "0HNKPU3HBMEL6", Request id "0HNKPU3HBMEL6:00000002": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HotelManagement.Controllers.RoomTypesController.GetPaged (HotelManagement)
+HotelManagement.Controllers.RoomsController.GetRoomTypes (HotelManagement)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2026-04-14 13:51:43.929 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 13.4942 ms
+2026-04-14 13:51:52.443 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0634 ms
+2026-04-14 13:51:52.462 +07:00 [INF] HTTP GET /api/hotels responded 200 in 13.8614 ms
+2026-04-14 13:51:53.280 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.0688 ms
+2026-04-14 13:51:53.282 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0646 ms
+2026-04-14 13:51:53.285 +07:00 [ERR] Connection id "0HNKPU3HBMEL4", Request id "0HNKPU3HBMEL4:0000001C": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HotelManagement.Controllers.RoomTypesController.GetPaged (HotelManagement)
+HotelManagement.Controllers.RoomsController.GetRoomTypes (HotelManagement)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2026-04-14 13:51:53.299 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 13.1594 ms
+2026-04-14 13:52:09.045 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.2714 ms
+2026-04-14 13:52:09.064 +07:00 [INF] HTTP GET /api/hotels responded 200 in 13.8549 ms
+2026-04-14 13:52:10.596 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.0941 ms
+2026-04-14 13:52:10.597 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0797 ms
+2026-04-14 13:52:10.600 +07:00 [ERR] Connection id "0HNKPU3HBMEL6", Request id "0HNKPU3HBMEL6:00000008": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+HotelManagement.Controllers.RoomTypesController.GetPaged (HotelManagement)
+HotelManagement.Controllers.RoomsController.GetRoomTypes (HotelManagement)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, Span`1 candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2026-04-14 13:52:10.614 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.4310 ms
+2026-04-14 13:52:22.478 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0655 ms
+2026-04-14 13:52:22.494 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.3253 ms
+2026-04-14 13:56:52.430 +07:00 [INF] SignalR Disconnected: ConnId=YmbZCoChV3FveKM4dLkJ2g
+2026-04-14 13:56:52.430 +07:00 [INF] SignalR Disconnected: ConnId=H4ZlOLXFMv3W6aImutRt_A
+2026-04-14 13:56:52.433 +07:00 [INF] HTTP GET /hubs/room responded 101 in 910702.8990 ms
+2026-04-14 13:56:52.433 +07:00 [INF] HTTP GET /hubs/room responded 101 in 910676.3558 ms
+2026-04-14 14:00:39.270 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 14:01:13.897 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 14:01:14.145 +07:00 [INF] HTTP GET /api/room-types responded 200 in 244.8675 ms
+2026-04-14 14:01:16.529 +07:00 [INF] HTTP GET /api/room-types/hotel/1 responded 200 in 72.0916 ms

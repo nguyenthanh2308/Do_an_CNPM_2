@@ -46,6 +46,7 @@ import { RoomTypeDto, CreateRoomTypeDto, UpdateRoomTypeDto, HotelDto } from '../
 export class RoomTypeManagementComponent implements OnInit, OnDestroy {
   roomTypes: RoomTypeDto[] = [];
   hotels: HotelDto[] = [];
+  selectedHotelId: number | null = null;
   roomTypeForm!: FormGroup;
   displayedColumns: string[] = ['roomTypeId', 'name', 'hotelName', 'basePrice', 'maxOccupancy', 'totalRooms', 'availableRooms', 'isActive', 'actions'];
   
@@ -70,8 +71,8 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadRoomTypes();
     this.loadHotels();
+    this.loadRoomTypes();
   }
 
   ngOnDestroy(): void {
@@ -93,15 +94,33 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
 
   private loadRoomTypes(): void {
     this.isLoading = true;
-    this.roomTypeService.getPaged(this.pageIndex, this.pageSize)
+    if (this.selectedHotelId) {
+      this.roomTypeService.getByHotel(this.selectedHotelId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (rows: RoomTypeDto[]) => {
+            this.roomTypes = rows;
+            this.totalRows = rows.length;
+            this.isLoading = false;
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            this.showError(err.error?.errors?.[0] ?? 'Tải danh sách thất bại.');
+          }
+        });
+      return;
+    }
+
+    this.roomTypeService.getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response: any) => {
-          this.roomTypes = response.data || [];
-          this.totalRows = response.total || 0;
+          const rows = response.data || [];
+          this.roomTypes = rows;
+          this.totalRows = rows.length;
           this.isLoading = false;
         },
-        error: (err) => {
+        error: (err: any) => {
           this.isLoading = false;
           this.showError(err.error?.errors?.[0] ?? 'Tải danh sách thất bại.');
         }
@@ -237,6 +256,12 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
   onPageChange(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
+    this.loadRoomTypes();
+  }
+
+  onHotelFilterChange(hotelId: number | null): void {
+    this.selectedHotelId = hotelId;
+    this.pageIndex = 0;
     this.loadRoomTypes();
   }
 

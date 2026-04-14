@@ -146,7 +146,13 @@ export class HotelManagementComponent implements OnInit, OnDestroy {
             this.isFormLoading = false;
           },
           error: (err) => {
-            this.showError(err.error?.message || 'Lỗi cập nhật khách sạn');
+            if (err?.status === 403) {
+              this.showError('Bạn không có quyền cập nhật khách sạn. Vui lòng đăng nhập bằng Admin/Manager.');
+            } else if (err?.status === 401) {
+              this.showError('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+            } else {
+              this.showError(err.error?.message || err.error?.errors?.[0] || 'Lỗi cập nhật khách sạn');
+            }
             this.isFormLoading = false;
           }
         });

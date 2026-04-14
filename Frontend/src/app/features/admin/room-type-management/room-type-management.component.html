@@ -15,6 +15,18 @@
 
   <!-- Thẻ chính -->
   <mat-card class="data-card">
+    <div class="hotel-filter-bar">
+      <mat-form-field appearance="outline" class="hotel-filter-field">
+        <mat-label>Lọc theo khách sạn</mat-label>
+        <mat-select [value]="selectedHotelId" (selectionChange)="onHotelFilterChange($event.value)">
+          <mat-option [value]="null">Tất cả khách sạn</mat-option>
+          <mat-option *ngFor="let hotel of hotels" [value]="hotel.hotelId">
+            {{ hotel.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <!-- Loading Spinner -->
     <div *ngIf="isLoading" class="loading-overlay">
       <mat-spinner [diameter]="50"></mat-spinner>

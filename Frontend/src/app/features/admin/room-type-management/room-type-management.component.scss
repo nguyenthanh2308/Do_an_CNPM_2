@@ -66,6 +66,16 @@
   overflow: hidden;
 }
 
+.hotel-filter-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 16px 0;
+}
+
+.hotel-filter-field {
+  min-width: 280px;
+}
+
 // ── Loading Overlay ────────────────────────────────────────────────────────
 .loading-overlay {
   position: absolute;
