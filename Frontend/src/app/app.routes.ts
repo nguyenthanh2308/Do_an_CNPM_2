@@ -111,6 +111,18 @@ export const routes: Routes = [
         canActivate: [roleGuard]
       },
       {
+        path: 'hotels',
+        loadComponent: () => import('./features/admin/hotel-management/hotel-management.component').then(m => m.HotelManagementComponent),
+        data: { roles: ['Admin', 'Manager'] },
+        canActivate: [roleGuard]
+      },
+      {
+        path: 'room-types',
+        loadComponent: () => import('./features/admin/room-type-management/room-type-management.component').then(m => m.RoomTypeManagementComponent),
+        data: { roles: ['Admin', 'Manager'] },
+        canActivate: [roleGuard]
+      },
+      {
         path: 'staff/create',
         loadComponent: () => import('./features/staff/create-staff.component').then(m => m.CreateStaffComponent),
         data: { roles: ['Admin'] },

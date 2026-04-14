@@ -1,0 +1,158 @@
+<div class="container">
+  <!-- Form Dialog -->
+  <mat-card *ngIf="showForm" class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{ editingId ? 'Sửa Khách Sạn' : 'Thêm Khách Sạn' }}</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="hotelForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tên khách sạn *</mat-label>
+          <input matInput formControlName="name" placeholder="VD: Antigravity Hotel">
+          <mat-error *ngIf="hotelForm.get('name')?.hasError('required')">Tên khách sạn không được để trống</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Địa chỉ</mat-label>
+          <input matInput formControlName="address" placeholder="VD: 1 Nguyễn Huệ, Q.1, TP.HCM">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Điện thoại</mat-label>
+          <input matInput formControlName="phone" placeholder="VD: 0900000000">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="VD: contact@hotel.com">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mô tả</mat-label>
+          <textarea matInput formControlName="description" placeholder="Mô tả khách sạn"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Sao đánh giá *</mat-label>
+          <mat-select formControlName="starRating">
+            <mat-option *ngFor="let star of starOptions" [value]="star">{{ star }} ⭐</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="full-width">
+          <label>Hình ảnh khách sạn</label>
+          <app-image-upload
+            [imageUrl]="hotelForm.get('thumbnailUrl')?.value"
+            buttonText="Tai anh khach san"
+            (imageUrlChange)="onThumbnailUploaded($event)">
+          </app-image-upload>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>URL hình ảnh</mat-label>
+          <input matInput formControlName="thumbnailUrl" placeholder="https://...">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button (click)="closeForm()" [disabled]="isFormLoading">Hủy</button>
+      <button mat-raised-button color="primary" (click)="saveHotel()" [disabled]="!hotelForm.valid || isFormLoading">
+        <mat-spinner diameter="20" *ngIf="isFormLoading"></mat-spinner>
+        {{ editingId ? 'Cập nhật' : 'Thêm' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Hotels List -->
+  <mat-card class="list-card">
+    <mat-card-header>
+      <mat-card-title>Quản Lý Khách Sạn</mat-card-title>
+      <button mat-raised-button color="accent" (click)="openForm()" class="add-btn">
+        <mat-icon>add</mat-icon> Thêm Khách Sạn
+      </button>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="isLoading" class="loading">
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+
+      <div *ngIf="!isLoading && hotels.length === 0" class="empty-state">
+        <p>Không có khách sạn nào</p>
+      </div>
+
+      <table mat-table [dataSource]="hotels" *ngIf="!isLoading && hotels.length > 0" class="full-width">
+        <!-- ID Column -->
+        <ng-container matColumnDef="hotelId">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let element">{{ element.hotelId }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Tên Khách Sạn</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef>Địa Chỉ</th>
+          <td mat-cell *matCellDef="let element">{{ element.address || '—' }}</td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Điện Thoại</th>
+          <td mat-cell *matCellDef="let element">{{ element.phone || '—' }}</td>
+        </ng-container>
+
+        <!-- Star Rating Column -->
+        <ng-container matColumnDef="starRating">
+          <th mat-header-cell *matHeaderCellDef>Đánh Giá</th>
+          <td mat-cell *matCellDef="let element">{{ element.starRating }} ⭐</td>
+        </ng-container>
+
+        <!-- Total Rooms Column -->
+        <ng-container matColumnDef="totalRooms">
+          <th mat-header-cell *matHeaderCellDef>Phòng</th>
+          <td mat-cell *matCellDef="let element">{{ element.totalRooms }}</td>
+        </ng-container>
+
+        <!-- Is Active Column -->
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef>Trạng Thái</th>
+          <td mat-cell *matCellDef="let element">
+            <span [class.active]="element.isActive" [class.inactive]="!element.isActive">
+              {{ element.isActive ? '🟢 Hoạt động' : '🔴 Vô hiệu' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Hành Động</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Sửa" (click)="editHotel(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Xoá" color="warn" (click)="deleteHotel(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="totalRows"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

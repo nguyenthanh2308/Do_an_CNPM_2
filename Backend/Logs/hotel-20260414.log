@@ -1,0 +1,114 @@
+2026-04-14 12:50:57.678 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 12:51:33.000 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 12:51:33.008 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.5332 ms
+2026-04-14 12:51:33.257 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 12:51:33.576 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 12:51:33.606 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 582.1391 ms
+2026-04-14 12:51:33.615 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4774 ms
+2026-04-14 12:51:33.663 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 43.1884 ms
+2026-04-14 12:51:37.526 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1884 ms
+2026-04-14 12:51:37.730 +07:00 [INF] HTTP GET /api/rooms responded 200 in 198.7434 ms
+2026-04-14 12:51:52.336 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.3903 ms
+2026-04-14 12:51:52.376 +07:00 [INF] POST /api/auth/logout — UserId: 2
+2026-04-14 12:51:52.398 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-14 12:51:52.399 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 47.2093 ms
+2026-04-14 12:52:00.101 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0980 ms
+2026-04-14 12:52:00.115 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 12:52:00.370 +07:00 [INF] User 'admin' logged in.
+2026-04-14 12:52:00.371 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 265.1724 ms
+2026-04-14 12:52:00.376 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0718 ms
+2026-04-14 12:52:00.381 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.8189 ms
+2026-04-14 12:52:00.477 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1006 ms
+2026-04-14 12:52:00.501 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.3805 ms
+2026-04-14 12:52:00.554 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0978 ms
+2026-04-14 12:52:00.557 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0705 ms
+2026-04-14 12:52:00.570 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 11.9892 ms
+2026-04-14 12:52:00.570 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 9.0763 ms
+2026-04-14 12:52:00.682 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=UUJIXWl7dWvBnySLRAF0ug
+2026-04-14 12:52:00.686 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=LUgjbiN6f1tsH8ZS_xKA8g
+2026-04-14 12:52:09.065 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1938 ms
+2026-04-14 12:52:09.155 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 12:52:09.327 +07:00 [INF] HTTP GET /api/bookings responded 200 in 257.3677 ms
+2026-04-14 12:52:22.976 +07:00 [INF] HTTP OPTIONS /api/bookings/checkout responded 204 in 0.2043 ms
+2026-04-14 12:52:23.000 +07:00 [INF] PUT /api/bookings/checkout — BookingId: 6
+2026-04-14 12:52:23.028 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-14 12:52:23.259 +07:00 [INF] Check-out thành công. Booking #6 — Phòng đã chuyển sang Dirty.
+2026-04-14 12:52:23.269 +07:00 [INF] HTTP PUT /api/bookings/checkout responded 200 in 288.0930 ms
+2026-04-14 12:52:23.368 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0618 ms
+2026-04-14 12:52:23.383 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 12:52:23.399 +07:00 [INF] HTTP GET /api/bookings responded 200 in 28.0525 ms
+2026-04-14 12:52:44.984 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.0865 ms
+2026-04-14 12:52:44.987 +07:00 [INF] SignalR Disconnected: ConnId=LUgjbiN6f1tsH8ZS_xKA8g
+2026-04-14 12:52:44.989 +07:00 [INF] HTTP GET /hubs/room responded 101 in 44308.6295 ms
+2026-04-14 12:52:45.008 +07:00 [INF] POST /api/auth/logout — UserId: 1
+2026-04-14 12:52:45.018 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-14 12:52:45.020 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 22.1763 ms
+2026-04-14 12:52:50.279 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1347 ms
+2026-04-14 12:52:50.289 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 12:52:50.534 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 12:52:50.535 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 253.1554 ms
+2026-04-14 12:52:50.544 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0719 ms
+2026-04-14 12:52:50.559 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4482 ms
+2026-04-14 12:52:52.464 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0835 ms
+2026-04-14 12:52:52.481 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-14 12:52:52.520 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 51.4354 ms
+2026-04-14 12:53:21.896 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1048 ms
+2026-04-14 12:53:21.914 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 12:53:21.959 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 59.5446 ms
+2026-04-14 12:53:28.032 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0774 ms
+2026-04-14 12:53:28.043 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 12:53:28.050 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 14.7974 ms
+2026-04-14 12:53:31.100 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0717 ms
+2026-04-14 12:53:31.115 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.2642 ms
+2026-04-14 12:53:49.794 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0559 ms
+2026-04-14 12:53:49.806 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 12:53:50.045 +07:00 [INF] User 'admin' logged in.
+2026-04-14 12:53:50.047 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 248.5793 ms
+2026-04-14 12:53:50.050 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0480 ms
+2026-04-14 12:53:50.055 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4626 ms
+2026-04-14 12:53:50.110 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0517 ms
+2026-04-14 12:53:50.123 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.8750 ms
+2026-04-14 12:53:50.159 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0125 ms
+2026-04-14 12:53:50.159 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0560 ms
+2026-04-14 12:53:50.162 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.6354 ms
+2026-04-14 12:53:50.164 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.3803 ms
+2026-04-14 12:53:50.207 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=pfWQwBSR_6PUujiIq56tqg
+2026-04-14 12:53:50.223 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=SD2sVZKsNQ1L9XiRHQcCpw
+2026-04-14 12:53:57.002 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0544 ms
+2026-04-14 12:53:57.053 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 47.9167 ms
+2026-04-14 12:54:05.511 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.1545 ms
+2026-04-14 12:54:05.524 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 9.9379 ms
+2026-04-14 12:54:18.507 +07:00 [INF] HTTP OPTIONS /api/rooms/2/status responded 204 in 0.0618 ms
+2026-04-14 12:54:18.545 +07:00 [INF] Room #2 status changed: "Dirty" → "Available" by User #1
+2026-04-14 12:54:18.548 +07:00 [INF] HTTP PUT /api/rooms/2/status responded 200 in 36.5306 ms
+2026-04-14 12:54:18.553 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0385 ms
+2026-04-14 12:54:18.565 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.2610 ms
+2026-04-14 12:54:29.815 +07:00 [INF] SignalR Disconnected: ConnId=UUJIXWl7dWvBnySLRAF0ug
+2026-04-14 12:54:29.816 +07:00 [INF] HTTP GET /hubs/room responded 101 in 149165.9890 ms
+2026-04-14 12:54:37.785 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0627 ms
+2026-04-14 12:54:37.796 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 12:54:38.069 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 12:54:38.070 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 281.5470 ms
+2026-04-14 12:54:38.074 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0328 ms
+2026-04-14 12:54:38.078 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.3616 ms
+2026-04-14 12:54:39.638 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0639 ms
+2026-04-14 12:54:39.653 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.3477 ms
+2026-04-14 12:57:46.334 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0337 ms
+2026-04-14 12:57:46.349 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 11.2135 ms
+2026-04-14 12:58:03.329 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0434 ms
+2026-04-14 12:58:03.334 +07:00 [INF] HTTP DELETE /api/rooms/1 responded 403 in 2.1589 ms
+2026-04-14 12:58:15.568 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0438 ms
+2026-04-14 12:58:15.583 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 12.5159 ms
+2026-04-14 12:59:13.186 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0449 ms
+2026-04-14 12:59:13.189 +07:00 [INF] HTTP GET /api/bookings responded 403 in 0.5451 ms
+2026-04-14 12:59:14.638 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0590 ms
+2026-04-14 12:59:14.652 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.8453 ms
+2026-04-14 13:01:39.504 +07:00 [INF] SignalR Disconnected: ConnId=pfWQwBSR_6PUujiIq56tqg
+2026-04-14 13:01:39.504 +07:00 [INF] SignalR Disconnected: ConnId=SD2sVZKsNQ1L9XiRHQcCpw
+2026-04-14 13:01:39.505 +07:00 [INF] HTTP GET /hubs/room responded 101 in 469302.2735 ms
+2026-04-14 13:01:39.506 +07:00 [INF] HTTP GET /hubs/room responded 101 in 469284.2181 ms
+2026-04-14 13:20:40.990 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 13:20:41.152 +07:00 [WRN] The WebRootPath was not found: C:\Users\MSI\source\Do_An_2\Backend\wwwroot. Static files may be unavailable.
+2026-04-14 13:21:46.689 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 13:22:11.496 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 13:22:11.557 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 57.2201 ms

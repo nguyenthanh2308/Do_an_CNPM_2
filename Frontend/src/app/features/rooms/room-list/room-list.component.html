@@ -118,22 +118,32 @@
               <mat-icon>visibility</mat-icon>
             </button>
 
-            <!-- Đổi trạng thái → Available (khi Dirty) -->
-            <button mat-icon-button color="accent"
-                    *ngIf="room.status === 'Dirty'"
-                    (click)="updateStatus(room, 'Available')"
-                    matTooltip="Đánh dấu sẵn sàng">
-              <mat-icon>check_circle</mat-icon>
-            </button>
-
-            <!-- Đổi trạng thái → Maintenance -->
-            <button mat-icon-button
-                    *ngIf="room.status === 'Available' && authService.isManagerOrAbove()"
-                    (click)="updateStatus(room, 'Maintenance')"
-                    matTooltip="Chuyển sang bảo trì"
-                    class="btn-warn">
-              <mat-icon>build</mat-icon>
-            </button>
+            <!-- Dropdown chọn trạng thái -->
+            <mat-form-field appearance="outline" *ngIf="authService.isManagerOrAbove()" class="status-select">
+              <mat-label>Trạng thái</mat-label>
+              <mat-select [value]="room.status" (selectionChange)="updateStatus(room, $event.value)">
+                <mat-option value="Available">
+                  <mat-icon [class]="'icon-' + getStatusClass('Available')">{{ getStatusIcon('Available') }}</mat-icon>
+                  Trống
+                </mat-option>
+                <mat-option value="Occupied">
+                  <mat-icon [class]="'icon-' + getStatusClass('Occupied')">{{ getStatusIcon('Occupied') }}</mat-icon>
+                  Có khách
+                </mat-option>
+                <mat-option value="Dirty">
+                  <mat-icon [class]="'icon-' + getStatusClass('Dirty')">{{ getStatusIcon('Dirty') }}</mat-icon>
+                  Cần dọn
+                </mat-option>
+                <mat-option value="Maintenance">
+                  <mat-icon [class]="'icon-' + getStatusClass('Maintenance')">{{ getStatusIcon('Maintenance') }}</mat-icon>
+                  Bảo trì
+                </mat-option>
+                <mat-option value="OutOfService">
+                  <mat-icon [class]="'icon-' + getStatusClass('OutOfService')">{{ getStatusIcon('OutOfService') }}</mat-icon>
+                  Ngừng HĐ
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
             <!-- Menu thêm -->
             <button mat-icon-button [matMenuTriggerFor]="moreMenu"

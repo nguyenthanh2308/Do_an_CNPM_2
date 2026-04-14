@@ -11,6 +11,7 @@ using HotelManagement.Services.Implementations;
 using HotelManagement.Services.Interfaces;
 using HotelManagement.Validators.Booking;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -53,6 +54,8 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 // ════════════════════════════════════════════════════════════════════════════
 // SERVICES
 // ════════════════════════════════════════════════════════════════════════════
+builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<IRoomTypeService, RoomTypeService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
@@ -116,6 +119,11 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10 MB
+});
 
 // ════════════════════════════════════════════════════════════════════════════
 // CORS — cho phép Angular dev server
@@ -196,6 +204,9 @@ builder.Services.AddSwaggerGen(c =>
 // ════════════════════════════════════════════════════════════════════════════
 var app = builder.Build();
 
+var uploadsRoot = Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "uploads");
+Directory.CreateDirectory(uploadsRoot);
+
 // ── Global Exception Handler (phải đặt ĐẦUST pipeline) ───────────────────
 app.UseGlobalExceptionHandler();
 
@@ -212,6 +223,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();   // log mỗi HTTP request
+app.UseStaticFiles();
 
 app.UseCors("AllowAngular");
 

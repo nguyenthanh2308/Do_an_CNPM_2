@@ -27,6 +27,13 @@ export interface ApiResponse<T> {
   errors: string[];
 }
 
+export interface UploadImageResult {
+  url: string;
+  fileName: string;
+  contentType: string;
+  size: number;
+}
+
 export interface PagedResult<T> {
   data: T[];
   page: number;
@@ -35,6 +42,40 @@ export interface PagedResult<T> {
   totalPages: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
+}
+
+// ── Hotel Models ───────────────────────────────────────────────────────────
+export interface HotelDto {
+  hotelId: number;
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  description?: string;
+  starRating: number;
+  thumbnailUrl?: string;
+  isActive: boolean;
+  totalRooms: number;
+}
+
+export interface CreateHotelDto {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  description?: string;
+  starRating: number;
+  thumbnailUrl?: string;
+}
+
+export interface UpdateHotelDto {
+  name?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  description?: string;
+  starRating?: number;
+  thumbnailUrl?: string;
 }
 
 // ── Room Models ───────────────────────────────────────────────────────────
@@ -80,6 +121,42 @@ export interface RoomTypeSummaryDto {
   name: string;
   basePrice: number;
   maxOccupancy: number;
+  thumbnailUrl?: string;
+  areaSqm?: number;
+}
+
+export interface RoomTypeDto {
+  roomTypeId: number;
+  hotelId: number;
+  hotelName: string;
+  name: string;
+  description?: string;
+  maxOccupancy: number;
+  basePrice: number;
+  thumbnailUrl?: string;
+  areaSqm?: number;
+  isActive: boolean;
+  totalRooms: number;
+  availableRooms: number;
+  amenities: AmenityDto[];
+}
+
+export interface CreateRoomTypeDto {
+  hotelId: number;
+  name: string;
+  description?: string;
+  maxOccupancy?: number;
+  basePrice: number;
+  thumbnailUrl?: string;
+  areaSqm?: number;
+  amenityIds?: number[];
+}
+
+export interface UpdateRoomTypeDto {
+  name?: string;
+  description?: string;
+  maxOccupancy?: number;
+  basePrice?: number;
   thumbnailUrl?: string;
   areaSqm?: number;
 }

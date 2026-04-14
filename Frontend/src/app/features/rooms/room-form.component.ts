@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -9,8 +9,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Subject, takeUntil } from 'rxjs';
 import { RoomService } from '../../core/services/room.service';
-import { CreateRoomDto, RoomStatus } from '../../core/models/models';
+import { HotelService } from '../../core/services/hotel.service';
+import { RoomTypeService } from '../../core/services/room-type.service';
+import { CreateRoomDto, HotelDto, RoomTypeDto } from '../../core/models/models';
 
 @Component({
   selector: 'app-room-form',
@@ -34,6 +37,17 @@ import { CreateRoomDto, RoomStatus } from '../../core/models/models';
     <mat-dialog-content>
       <form [formGroup]="form" class="form-container">
         <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Khach san</mat-label>
+          <mat-icon matPrefix>apartment</mat-icon>
+          <mat-select formControlName="hotelId">
+            <mat-option *ngFor="let hotel of hotels" [value]="hotel.hotelId">
+              {{ hotel.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('hotelId')?.hasError('required')">Khach san la bat buoc</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Số phòng</mat-label>
           <mat-icon matPrefix>door_front</mat-icon>
           <input matInput formControlName="roomNumber" placeholder="VD: 101, A201">
@@ -50,7 +64,7 @@ import { CreateRoomDto, RoomStatus } from '../../core/models/models';
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Loại Phòng</mat-label>
           <mat-icon matPrefix>category</mat-icon>
-          <mat-select formControlName="roomTypeId">
+          <mat-select formControlName="roomTypeId" [disabled]="!form.get('hotelId')?.value || isOptionsLoading">
             <mat-option *ngFor="let rt of roomTypes" [value]="rt.roomTypeId">
               {{ rt.name }}
             </mat-option>
@@ -100,31 +114,97 @@ import { CreateRoomDto, RoomStatus } from '../../core/models/models';
     }
   `]
 })
-export class SimpleRoomFormComponent {
+export class SimpleRoomFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   isLoading = false;
-  roomTypes: any[] = [];
+  isOptionsLoading = false;
+  hotels: HotelDto[] = [];
+  roomTypes: RoomTypeDto[] = [];
+  private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
     private roomService: RoomService,
+    private hotelService: HotelService,
+    private roomTypeService: RoomTypeService,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<SimpleRoomFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
+      hotelId: [null, Validators.required],
       roomNumber: ['', Validators.required],
       floor: [1, Validators.required],
-      roomTypeId: ['', Validators.required],
+      roomTypeId: [null, Validators.required],
       status: ['Available'],
       notes: ['']
     });
 
-    // Mock room types - in production, fetch from API
-    this.roomTypes = [
-      { roomTypeId: 1, name: 'Deluxe' },
-      { roomTypeId: 2, name: 'Suite' }
-    ];
+    if (this.data?.room) {
+      this.form.patchValue({
+        hotelId: this.data.room.hotelId,
+        roomNumber: this.data.room.roomNumber,
+        floor: this.data.room.floor,
+        roomTypeId: this.data.room.roomTypeId,
+        status: this.data.room.status,
+        notes: this.data.room.notes
+      });
+    }
+  }
+
+  ngOnInit(): void {
+    this.loadHotels();
+
+    this.form.get('hotelId')?.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((hotelId) => {
+        this.form.patchValue({ roomTypeId: null }, { emitEvent: false });
+        if (hotelId) {
+          this.loadRoomTypesByHotel(hotelId);
+        } else {
+          this.roomTypes = [];
+        }
+      });
+
+    const initialHotelId = this.form.get('hotelId')?.value;
+    if (initialHotelId) {
+      this.loadRoomTypesByHotel(initialHotelId);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private loadHotels(): void {
+    this.hotelService.getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.hotels = res.data ?? [];
+        },
+        error: () => {
+          this.snackBar.open('Khong the tai danh sach khach san', 'Dong', { duration: 3000 });
+        }
+      });
+  }
+
+  private loadRoomTypesByHotel(hotelId: number): void {
+    this.isOptionsLoading = true;
+    this.roomTypeService.getByHotel(hotelId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res: any) => {
+          this.roomTypes = res?.data ?? [];
+          this.isOptionsLoading = false;
+        },
+        error: () => {
+          this.roomTypes = [];
+          this.isOptionsLoading = false;
+          this.snackBar.open('Khong the tai loai phong theo khach san', 'Dong', { duration: 3000 });
+        }
+      });
   }
 
   onCancel(): void {
@@ -135,10 +215,7 @@ export class SimpleRoomFormComponent {
     if (!this.form.valid) return;
 
     this.isLoading = true;
-    const dto: CreateRoomDto = {
-      ...this.form.value,
-      hotelId: 1 // Default hotel ID
-    };
+    const dto: CreateRoomDto = this.form.value;
 
     this.roomService.create(dto).subscribe({
       next: () => {

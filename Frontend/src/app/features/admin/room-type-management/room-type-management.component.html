@@ -1,0 +1,212 @@
+<div class="room-type-list-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1 class="page-title">
+        <mat-icon>category</mat-icon>
+        Quản lý Loại Phòng
+      </h1>
+      <span class="total-badge">{{ totalRows }} loại</span>
+    </div>
+    <button mat-raised-button color="primary" (click)="openForm()" class="add-btn">
+      <mat-icon>add</mat-icon> Thêm Loại Phòng
+    </button>
+  </div>
+
+  <!-- Thẻ chính -->
+  <mat-card class="data-card">
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+
+    <!-- Form Modal -->
+    <div *ngIf="showForm" class="form-modal-overlay" (click)="closeForm()" [class.visible]="showForm">
+      <mat-card class="form-modal" (click)="$event.stopPropagation()">
+        <mat-card-header>
+          <h2>{{ editingId ? 'Cập nhật Loại Phòng' : 'Tạo Loại Phòng Mới' }}</h2>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="roomTypeForm" class="form-grid">
+            <!-- Khách sạn -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Khách sạn *</mat-label>
+              <mat-select formControlName="hotelId" [disabled]="editingId !== null">
+                <mat-option *ngFor="let hotel of hotels" [value]="hotel.hotelId">
+                  {{ hotel.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="roomTypeForm.get('hotelId')?.hasError('required')">
+                Khách sạn là bắt buộc
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Tên loại phòng -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Tên Loại Phòng *</mat-label>
+              <input matInput formControlName="name" placeholder="VD: Phòng Đơn, Phòng Đôi">
+              <mat-error *ngIf="roomTypeForm.get('name')?.hasError('required')">
+                Tên loại phòng là bắt buộc
+              </mat-error>
+              <mat-error *ngIf="roomTypeForm.get('name')?.hasError('minlength')">
+                Tối thiểu 3 ký tự
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Mô tả -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Mô tả</mat-label>
+              <textarea matInput formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+
+            <!-- Giá cơ bản -->
+            <mat-form-field appearance="outline">
+              <mat-label>Giá cơ bản (VND) *</mat-label>
+              <input matInput formControlName="basePrice" type="number" placeholder="0">
+              <mat-error *ngIf="roomTypeForm.get('basePrice')?.hasError('required')">
+                Giá là bắt buộc
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Sức chứa tối đa -->
+            <mat-form-field appearance="outline">
+              <mat-label>Sức chứa (người)</mat-label>
+              <input matInput formControlName="maxOccupancy" type="number" placeholder="2">
+            </mat-form-field>
+
+            <!-- Diện tích -->
+            <mat-form-field appearance="outline">
+              <mat-label>Diện tích (m²)</mat-label>
+              <input matInput formControlName="areaSqm" type="number" placeholder="0">
+            </mat-form-field>
+
+            <!-- Thumbnail URL -->
+            <div class="full-width">
+              <label>Hình ảnh loại phòng</label>
+              <app-image-upload
+                [imageUrl]="roomTypeForm.get('thumbnailUrl')?.value"
+                buttonText="Tai anh loai phong"
+                (imageUrlChange)="onThumbnailUploaded($event)">
+              </app-image-upload>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Hình ảnh URL</mat-label>
+              <input matInput formControlName="thumbnailUrl" placeholder="https://...">
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button (click)="closeForm()">Hủy</button>
+          <button mat-raised-button color="primary" (click)="saveRoomType()" [disabled]="isFormLoading">
+            <mat-icon *ngIf="isFormLoading" class="spinner">hourglass_empty</mat-icon>
+            {{ isFormLoading ? 'Đang lưu...' : 'Lưu' }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <!-- Data Table -->
+    <div class="table-container">
+      <table mat-table [dataSource]="roomTypes" class="data-table">
+        <!-- ID -->
+        <ng-container matColumnDef="roomTypeId">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.roomTypeId }}</td>
+        </ng-container>
+
+        <!-- Tên -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên Loại Phòng</th>
+          <td mat-cell *matCellDef="let row">
+            <strong>{{ row.name }}</strong>
+            <br>
+            <small *ngIf="row.description" class="description-text">{{ row.description | slice:0:50 }}...</small>
+          </td>
+        </ng-container>
+
+        <!-- Khách sạn -->
+        <ng-container matColumnDef="hotelName">
+          <th mat-header-cell *matHeaderCellDef>Khách sạn</th>
+          <td mat-cell *matCellDef="let row">{{ row.hotelName }}</td>
+        </ng-container>
+
+        <!-- Giá -->
+        <ng-container matColumnDef="basePrice">
+          <th mat-header-cell *matHeaderCellDef>Giá Cơ bản</th>
+          <td mat-cell *matCellDef="let row">{{ row.basePrice | number:'0.0-0' }} VND</td>
+        </ng-container>
+
+        <!-- Sức chứa -->
+        <ng-container matColumnDef="maxOccupancy">
+          <th mat-header-cell *matHeaderCellDef>Sức chứa</th>
+          <td mat-cell *matCellDef="let row">{{ row.maxOccupancy }} người</td>
+        </ng-container>
+
+        <!-- Tổng phòng -->
+        <ng-container matColumnDef="totalRooms">
+          <th mat-header-cell *matHeaderCellDef>Tổng Phòng</th>
+          <td mat-cell *matCellDef="let row">{{ row.totalRooms }}</td>
+        </ng-container>
+
+        <!-- Phòng trống -->
+        <ng-container matColumnDef="availableRooms">
+          <th mat-header-cell *matHeaderCellDef>Phòng Trống</th>
+          <td mat-cell *matCellDef="let row">
+            <span [class.text-success]="row.availableRooms > 0" [class.text-danger]="row.availableRooms === 0">
+              {{ row.availableRooms }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Trạng thái -->
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+          <td mat-cell *matCellDef="let row">
+            <span [class]="getStatusClass(row.isActive)" class="status-badge">
+              <span *ngIf="row.isActive" class="status-circle active"></span>
+              <span *ngIf="!row.isActive" class="status-circle inactive"></span>
+              {{ getStatusLabel(row.isActive) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="actions-header">Thao tác</th>
+          <td mat-cell *matCellDef="let row" class="actions-cell">
+            <button mat-icon-button color="primary" (click)="editRoomType(row)" matTooltip="Chỉnh sửa">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteRoomType(row)" matTooltip="Xóa">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+
+        <!-- Empty state -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell empty-cell" [attr.colspan]="displayedColumns.length">
+            <div class="empty-state">
+              <mat-icon>search_off</mat-icon>
+              <p>Không tìm thấy loại phòng nào</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]"
+                   [pageSize]="pageSize"
+                   [length]="totalRows"
+                   [pageIndex]="pageIndex"
+                   (page)="onPageChange($event)"
+                   showFirstLastButtons
+                   class="table-paginator">
+    </mat-paginator>
+  </mat-card>
+</div>

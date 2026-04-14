@@ -1,0 +1,89 @@
+2026-04-13 08:50:12.868 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-13 08:50:44.717 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-13 08:50:44.724 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.6786 ms
+2026-04-13 08:50:44.965 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-13 08:50:45.228 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 488.2599 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-13 08:50:45.250 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-13 08:50:50.290 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.4882 ms
+2026-04-13 08:50:50.308 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-13 08:50:50.669 +07:00 [INF] User 'Test12' logged in.
+2026-04-13 08:50:50.688 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 394.3605 ms
+2026-04-13 08:50:50.694 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0836 ms
+2026-04-13 08:50:50.745 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 45.7081 ms
+2026-04-13 08:51:01.999 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0823 ms
+2026-04-13 08:51:02.113 +07:00 [INF] HTTP GET /api/rooms responded 200 in 109.2745 ms
+2026-04-13 08:51:08.852 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1464 ms
+2026-04-13 08:51:08.900 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-13 08:51:09.012 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 154.7253 ms
+2026-04-13 08:51:25.191 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.3060 ms
+2026-04-13 08:51:25.220 +07:00 [INF] POST /api/auth/logout — UserId: 2
+2026-04-13 08:51:25.241 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-13 08:51:25.243 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 40.3900 ms
+2026-04-13 08:51:34.417 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0871 ms
+2026-04-13 08:51:34.427 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-13 08:51:34.688 +07:00 [INF] User 'admin' logged in.
+2026-04-13 08:51:34.689 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 268.6237 ms
+2026-04-13 08:51:34.693 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0686 ms
+2026-04-13 08:51:34.697 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.7511 ms
+2026-04-13 08:51:34.760 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0768 ms
+2026-04-13 08:51:34.776 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.8539 ms
+2026-04-13 08:51:34.808 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0746 ms
+2026-04-13 08:51:34.809 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0558 ms
+2026-04-13 08:51:34.820 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 8.9209 ms
+2026-04-13 08:51:34.820 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 6.6935 ms
+2026-04-13 08:51:34.874 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=a1y2J9Vs8CMTqvMgJsIgVQ
+2026-04-13 08:51:34.878 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=KN8veWQcMCxh4nW3dzdrEA
+2026-04-13 08:51:42.288 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1824 ms
+2026-04-13 08:51:42.315 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-13 08:51:42.402 +07:00 [INF] HTTP GET /api/bookings responded 200 in 109.1322 ms
+2026-04-13 08:51:50.424 +07:00 [INF] HTTP OPTIONS /api/bookings/checkin responded 204 in 0.0812 ms
+2026-04-13 08:51:50.446 +07:00 [INF] PUT /api/bookings/checkin — BookingId: 6
+2026-04-13 08:51:50.475 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-13 08:51:50.652 +07:00 [INF] Check-in thành công. Booking #6 — Guest: Test12
+2026-04-13 08:51:50.662 +07:00 [INF] HTTP PUT /api/bookings/checkin responded 200 in 234.2924 ms
+2026-04-13 08:51:50.668 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0520 ms
+2026-04-13 08:51:50.680 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-13 08:51:50.693 +07:00 [INF] HTTP GET /api/bookings responded 200 in 21.9114 ms
+2026-04-13 08:52:41.488 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0895 ms
+2026-04-13 08:52:41.509 +07:00 [INF] HTTP GET /api/rooms responded 200 in 15.7809 ms
+2026-04-13 08:52:48.708 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0769 ms
+2026-04-13 08:52:48.761 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 49.1361 ms
+2026-04-13 08:52:54.875 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0692 ms
+2026-04-13 08:52:54.890 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.6204 ms
+2026-04-13 08:53:00.710 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0521 ms
+2026-04-13 08:53:00.758 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 42.7143 ms
+2026-04-13 08:53:11.094 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.0791 ms
+2026-04-13 08:53:11.099 +07:00 [INF] SignalR Disconnected: ConnId=KN8veWQcMCxh4nW3dzdrEA
+2026-04-13 08:53:11.102 +07:00 [INF] HTTP GET /hubs/room responded 101 in 96226.7576 ms
+2026-04-13 08:53:11.117 +07:00 [INF] POST /api/auth/logout — UserId: 1
+2026-04-13 08:53:11.124 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-13 08:53:11.126 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 17.0390 ms
+2026-04-13 08:53:22.334 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1133 ms
+2026-04-13 08:53:22.345 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-13 08:53:22.585 +07:00 [INF] User 'Test12' logged in.
+2026-04-13 08:53:22.586 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 248.5150 ms
+2026-04-13 08:53:22.592 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0513 ms
+2026-04-13 08:53:22.606 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4172 ms
+2026-04-13 08:53:28.535 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0665 ms
+2026-04-13 08:53:28.549 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-13 08:53:28.554 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 14.0901 ms
+2026-04-13 08:53:35.354 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0469 ms
+2026-04-13 08:53:35.366 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-13 08:53:35.371 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 12.1501 ms
+2026-04-13 08:53:50.830 +07:00 [INF] SignalR Disconnected: ConnId=a1y2J9Vs8CMTqvMgJsIgVQ
+2026-04-13 08:53:50.832 +07:00 [INF] HTTP GET /hubs/room responded 101 in 135974.9963 ms
