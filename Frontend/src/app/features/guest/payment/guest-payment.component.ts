@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { GuestHeaderComponent } from '../components/guest-header.component';
 
 @Component({
   selector: 'app-guest-payment',
@@ -25,6 +26,7 @@ import { MatPrefix, MatSuffix } from '@angular/material/form-field';
   imports: [
     CommonModule,
     RouterModule,
+    GuestHeaderComponent,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,

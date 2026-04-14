@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GuestHeaderComponent } from '../components/guest-header.component';
 
 @Component({
   selector: 'app-guest-booking',
@@ -26,6 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     RouterModule,
+    GuestHeaderComponent,
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,

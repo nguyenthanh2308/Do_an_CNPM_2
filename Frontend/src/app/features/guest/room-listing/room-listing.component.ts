@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RoomService } from '../../../core/services/room.service';
 import { RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
+import { GuestHeaderComponent } from '../components/guest-header.component';
 
 @Component({
   selector: 'app-room-listing',
@@ -20,6 +21,7 @@ import { environment } from '../../../../environments/environment';
   imports: [
     CommonModule,
     RouterModule,
+    GuestHeaderComponent,
     MatCardModule,
     MatIconModule,
     MatButtonModule,

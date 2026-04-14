@@ -470,3 +470,192 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-04-14 14:24:19.614 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.2854 ms
 2026-04-14 14:24:19.616 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.7871 ms
 2026-04-14 14:24:19.647 +07:00 [INF] HTTP GET /uploads/202604/c595ef30523a44bb9d8d40075a4d9c8c.jpg responded 304 in 0.4540 ms
+2026-04-14 14:35:05.361 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 14:35:29.332 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 14:35:29.338 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4690 ms
+2026-04-14 14:35:29.554 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 14:35:29.861 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 14:35:29.893 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 541.7520 ms
+2026-04-14 14:35:29.899 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3138 ms
+2026-04-14 14:35:29.943 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 40.2677 ms
+2026-04-14 14:35:29.973 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1485 ms
+2026-04-14 14:35:29.975 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1438 ms
+2026-04-14 14:35:30.191 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 211.8822 ms
+2026-04-14 14:35:30.194 +07:00 [INF] HTTP GET /api/rooms responded 200 in 214.5793 ms
+2026-04-14 14:35:30.201 +07:00 [INF] HTTP GET /uploads/202604/c595ef30523a44bb9d8d40075a4d9c8c.jpg responded 304 in 2.8429 ms
+2026-04-14 14:35:57.381 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.1530 ms
+2026-04-14 14:35:57.436 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
+2026-04-14 14:35:57.536 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 150.0079 ms
+2026-04-14 14:36:00.531 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1081 ms
+2026-04-14 14:36:00.533 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0967 ms
+2026-04-14 14:36:00.551 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.8143 ms
+2026-04-14 14:36:00.551 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 13.8144 ms
+2026-04-14 14:36:09.407 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0802 ms
+2026-04-14 14:36:09.433 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 14:36:09.485 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 74.3597 ms
+2026-04-14 14:36:23.617 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1856 ms
+2026-04-14 14:36:23.633 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 14:36:23.640 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 19.6286 ms
+2026-04-14 14:36:26.964 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0851 ms
+2026-04-14 14:36:26.976 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 14:36:26.981 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 13.5991 ms
+2026-04-14 14:36:32.807 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0879 ms
+2026-04-14 14:36:32.825 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.6673 ms
+2026-04-14 14:36:37.279 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0836 ms
+2026-04-14 14:36:37.296 +07:00 [INF] HTTP GET /api/rooms responded 200 in 15.5825 ms
+2026-04-14 14:36:37.298 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 13.2348 ms
+2026-04-14 14:36:38.709 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.9128 ms
+2026-04-14 14:36:38.713 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1774 ms
+2026-04-14 14:36:38.742 +07:00 [INF] HTTP GET /api/rooms responded 200 in 26.2324 ms
+2026-04-14 14:36:43.407 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0950 ms
+2026-04-14 14:36:43.422 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.9015 ms
+2026-04-14 14:36:45.679 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0620 ms
+2026-04-14 14:36:45.698 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.5857 ms
+2026-04-14 14:36:45.702 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0669 ms
+2026-04-14 14:36:45.716 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.7683 ms
+2026-04-14 14:36:46.731 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.2326 ms
+2026-04-14 14:36:50.226 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0672 ms
+2026-04-14 14:36:50.237 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.1774 ms
+2026-04-14 14:36:50.243 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.5745 ms
+2026-04-14 14:36:53.285 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.4117 ms
+2026-04-14 14:37:15.232 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0681 ms
+2026-04-14 14:37:15.235 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0740 ms
+2026-04-14 14:37:15.248 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.1138 ms
+2026-04-14 14:37:15.251 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.9163 ms
+2026-04-14 14:37:18.905 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.3701 ms
+2026-04-14 14:37:18.926 +07:00 [INF] POST /api/auth/logout — UserId: 2
+2026-04-14 14:37:18.945 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-14 14:37:18.947 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 35.6193 ms
+2026-04-14 14:37:25.639 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0685 ms
+2026-04-14 14:37:25.651 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 14:37:25.886 +07:00 [INF] User 'admin' logged in.
+2026-04-14 14:37:25.887 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 244.9541 ms
+2026-04-14 14:37:25.891 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0408 ms
+2026-04-14 14:37:25.895 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.2697 ms
+2026-04-14 14:37:25.947 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0556 ms
+2026-04-14 14:37:25.960 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.1299 ms
+2026-04-14 14:37:25.987 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0557 ms
+2026-04-14 14:37:25.987 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0226 ms
+2026-04-14 14:37:25.994 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 4.3838 ms
+2026-04-14 14:37:25.994 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 2.6063 ms
+2026-04-14 14:37:26.071 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=MTx3553NcAfi7crzNQJyCA
+2026-04-14 14:37:26.094 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=1P1KPq4SCraBi9g9xlbMDg
+2026-04-14 14:37:27.404 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0467 ms
+2026-04-14 14:37:27.450 +07:00 [INF] HTTP GET /api/hotels responded 200 in 42.6156 ms
+2026-04-14 14:37:29.354 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0631 ms
+2026-04-14 14:37:29.355 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0405 ms
+2026-04-14 14:37:29.371 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.6933 ms
+2026-04-14 14:37:29.400 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 39.1843 ms
+2026-04-14 14:37:38.219 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0671 ms
+2026-04-14 14:37:38.239 +07:00 [INF] HTTP GET /api/hotels responded 200 in 14.7555 ms
+2026-04-14 14:37:39.602 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0535 ms
+2026-04-14 14:37:39.616 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.4657 ms
+2026-04-14 14:37:40.797 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1029 ms
+2026-04-14 14:37:40.817 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 14:37:40.887 +07:00 [INF] HTTP GET /api/bookings responded 200 in 85.7580 ms
+2026-04-14 14:37:44.008 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0577 ms
+2026-04-14 14:37:44.092 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 79.2308 ms
+2026-04-14 14:37:47.333 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.0505 ms
+2026-04-14 14:37:47.337 +07:00 [INF] HTTP PATCH /api/housekeeping/1/status responded 405 in 0.2763 ms
+2026-04-14 14:37:49.517 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0407 ms
+2026-04-14 14:37:49.600 +07:00 [INF] HTTP GET /api/payments responded 200 in 79.7875 ms
+2026-04-14 14:37:51.497 +07:00 [INF] HTTP GET /api/payments responded 200 in 12.1337 ms
+2026-04-14 14:38:09.538 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.0515 ms
+2026-04-14 14:38:09.542 +07:00 [INF] SignalR Disconnected: ConnId=1P1KPq4SCraBi9g9xlbMDg
+2026-04-14 14:38:09.545 +07:00 [INF] HTTP GET /hubs/room responded 101 in 43455.2175 ms
+2026-04-14 14:38:09.563 +07:00 [INF] POST /api/auth/logout — UserId: 1
+2026-04-14 14:38:09.572 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-14 14:38:09.573 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 19.3108 ms
+2026-04-14 14:38:14.132 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0331 ms
+2026-04-14 14:38:14.142 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 14:38:14.377 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 241.0088 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-14 14:38:14.394 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-14 14:38:17.910 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 14:38:18.137 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 233.2829 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-04-14 14:38:18.142 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-04-14 14:38:23.524 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0416 ms
+2026-04-14 14:38:23.533 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 14:38:23.765 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 14:38:23.766 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 239.3668 ms
+2026-04-14 14:38:23.769 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0272 ms
+2026-04-14 14:38:23.781 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.2949 ms
+2026-04-14 14:38:23.781 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0202 ms
+2026-04-14 14:38:23.782 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0431 ms
+2026-04-14 14:38:23.800 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.6313 ms
+2026-04-14 14:38:23.800 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.5302 ms
+2026-04-14 14:42:13.766 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0439 ms
+2026-04-14 14:42:13.794 +07:00 [INF] HTTP GET /api/rooms responded 200 in 22.4290 ms
+2026-04-14 14:42:21.689 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0335 ms
+2026-04-14 14:42:21.694 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0448 ms
+2026-04-14 14:42:21.706 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.9951 ms
+2026-04-14 14:42:21.714 +07:00 [INF] HTTP GET /api/rooms responded 200 in 16.3309 ms
+2026-04-14 14:42:23.031 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 8.8112 ms
+2026-04-14 14:42:23.035 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0260 ms
+2026-04-14 14:42:23.047 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.2195 ms
+2026-04-14 14:42:44.571 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0312 ms
+2026-04-14 14:42:44.581 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.0511 ms
+2026-04-14 14:42:48.904 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0452 ms
+2026-04-14 14:42:48.916 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.7325 ms
+2026-04-14 14:42:50.418 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0310 ms
+2026-04-14 14:42:50.429 +07:00 [INF] HTTP GET /api/rooms responded 200 in 7.8879 ms
+2026-04-14 14:42:51.640 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.1202 ms
+2026-04-14 14:42:52.462 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.2241 ms
+2026-04-14 14:42:54.555 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0316 ms
+2026-04-14 14:42:54.568 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 8.5532 ms
+2026-04-14 14:42:54.571 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0378 ms
+2026-04-14 14:42:54.585 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.1149 ms
+2026-04-14 14:42:55.630 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0328 ms
+2026-04-14 14:42:55.641 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.2637 ms
+2026-04-14 14:43:00.456 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0491 ms
+2026-04-14 14:43:00.469 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.9963 ms
+2026-04-14 14:43:13.230 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0369 ms
+2026-04-14 14:43:13.241 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.3606 ms
+2026-04-14 14:43:14.603 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0337 ms
+2026-04-14 14:43:14.614 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.5813 ms
+2026-04-14 14:44:35.913 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0448 ms
+2026-04-14 14:44:35.915 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0658 ms
+2026-04-14 14:44:35.927 +07:00 [INF] HTTP GET /api/rooms responded 200 in 7.9321 ms
+2026-04-14 14:44:35.928 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 10.2075 ms
+2026-04-14 14:45:17.196 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0338 ms
+2026-04-14 14:45:17.209 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.6634 ms
+2026-04-14 14:45:18.958 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0419 ms
+2026-04-14 14:45:18.969 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.0004 ms
+2026-04-14 14:45:18.969 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 7.1924 ms
+2026-04-14 14:45:37.673 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0426 ms
+2026-04-14 14:45:37.687 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.8367 ms
+2026-04-14 14:45:46.143 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0435 ms
+2026-04-14 14:45:46.143 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0157 ms
+2026-04-14 14:45:46.156 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.0849 ms
+2026-04-14 14:45:46.156 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.8040 ms
+2026-04-14 14:45:59.232 +07:00 [INF] SignalR Disconnected: ConnId=MTx3553NcAfi7crzNQJyCA
+2026-04-14 14:45:59.233 +07:00 [INF] HTTP GET /hubs/room responded 101 in 513175.4215 ms

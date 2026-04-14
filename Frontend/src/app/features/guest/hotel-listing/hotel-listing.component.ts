@@ -13,6 +13,7 @@ import { HotelService } from '../../../core/services/hotel.service';
 import { RoomService } from '../../../core/services/room.service';
 import { HotelDto, RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
+import { GuestHeaderComponent } from '../components/guest-header.component';
 
 @Component({
   selector: 'app-hotel-listing',
@@ -20,6 +21,7 @@ import { environment } from '../../../../environments/environment';
   imports: [
     CommonModule,
     RouterModule,
+    GuestHeaderComponent,
     MatCardModule,
     MatButtonModule,
     MatIconModule,

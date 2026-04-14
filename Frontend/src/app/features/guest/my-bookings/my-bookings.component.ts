@@ -16,6 +16,7 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { GuestHeaderComponent } from '../components/guest-header.component';
 
 @Component({
   selector: 'app-my-bookings',
@@ -23,6 +24,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     CommonModule,
     RouterModule,
+    GuestHeaderComponent,
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
