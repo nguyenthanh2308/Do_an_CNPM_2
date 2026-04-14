@@ -112,3 +112,102 @@
 2026-04-14 13:21:46.689 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
 2026-04-14 13:22:11.496 +07:00 [WRN] Failed to determine the https port for redirect.
 2026-04-14 13:22:11.557 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 57.2201 ms
+2026-04-14 13:28:19.417 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 13:28:42.382 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 13:28:42.391 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.4272 ms
+2026-04-14 13:28:42.627 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 13:28:42.950 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 13:28:42.982 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 570.6041 ms
+2026-04-14 13:28:42.988 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3177 ms
+2026-04-14 13:28:43.044 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 51.8450 ms
+2026-04-14 13:28:47.625 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.3405 ms
+2026-04-14 13:28:47.663 +07:00 [INF] POST /api/auth/logout — UserId: 2
+2026-04-14 13:28:47.738 +07:00 [INF] RefreshToken revoked during logout.
+2026-04-14 13:28:47.740 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 102.7954 ms
+2026-04-14 13:29:00.111 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0799 ms
+2026-04-14 13:29:00.125 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 13:29:00.370 +07:00 [INF] User 'admin' logged in.
+2026-04-14 13:29:00.372 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 256.1139 ms
+2026-04-14 13:29:00.377 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0725 ms
+2026-04-14 13:29:00.383 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 2.0653 ms
+2026-04-14 13:29:00.501 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0946 ms
+2026-04-14 13:29:00.580 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1027 ms
+2026-04-14 13:29:00.582 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0723 ms
+2026-04-14 13:29:00.593 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 9.7109 ms
+2026-04-14 13:29:00.593 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 7.6318 ms
+2026-04-14 13:29:00.662 +07:00 [INF] HTTP GET /api/rooms responded 200 in 157.7727 ms
+2026-04-14 13:29:00.670 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=Dvku3fZihwKD72EIYWgniA
+2026-04-14 13:29:00.670 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=7To-tHbK2MKa0LbN-7D9PA
+2026-04-14 13:29:10.713 +07:00 [INF] HTTP OPTIONS /api/rooms/1/status responded 204 in 0.1768 ms
+2026-04-14 13:29:10.777 +07:00 [INF] Room #1 status changed: "Maintenance" → "Available" by User #1
+2026-04-14 13:29:10.783 +07:00 [INF] HTTP PUT /api/rooms/1/status responded 200 in 65.9862 ms
+2026-04-14 13:29:10.792 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0684 ms
+2026-04-14 13:29:10.806 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.0729 ms
+2026-04-14 13:29:17.451 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0714 ms
+2026-04-14 13:29:17.517 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 62.6490 ms
+2026-04-14 13:29:27.970 +07:00 [INF] HTTP OPTIONS /api/rooms/5/status responded 204 in 0.0934 ms
+2026-04-14 13:29:27.988 +07:00 [INF] Room #5 status changed: "Occupied" → "Available" by User #1
+2026-04-14 13:29:27.990 +07:00 [INF] HTTP PUT /api/rooms/5/status responded 200 in 16.1452 ms
+2026-04-14 13:29:27.998 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0762 ms
+2026-04-14 13:29:28.011 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3524 ms
+2026-04-14 13:29:30.909 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1809 ms
+2026-04-14 13:29:30.965 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 13:29:31.128 +07:00 [INF] HTTP GET /api/bookings responded 200 in 215.7474 ms
+2026-04-14 13:29:31.958 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.2604 ms
+2026-04-14 13:29:33.300 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1458 ms
+2026-04-14 13:29:33.337 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 33.5404 ms
+2026-04-14 13:29:51.917 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1455 ms
+2026-04-14 13:29:51.930 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.7145 ms
+2026-04-14 13:29:59.746 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0709 ms
+2026-04-14 13:29:59.748 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0831 ms
+2026-04-14 13:29:59.768 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-07T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000"
+2026-04-14 13:29:59.770 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-14T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000", Hotel: null
+2026-04-14 13:29:59.821 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 70.9607 ms
+2026-04-14 13:29:59.825 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 73.6642 ms
+2026-04-14 13:30:13.107 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0676 ms
+2026-04-14 13:30:13.124 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.2458 ms
+2026-04-14 13:30:14.103 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0708 ms
+2026-04-14 13:30:14.119 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 13:30:14.129 +07:00 [INF] HTTP GET /api/bookings responded 200 in 21.3483 ms
+2026-04-14 13:30:19.986 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0459 ms
+2026-04-14 13:30:20.085 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 93.5652 ms
+2026-04-14 13:30:23.772 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.0624 ms
+2026-04-14 13:30:23.776 +07:00 [INF] HTTP PATCH /api/housekeeping/1/status responded 405 in 0.2769 ms
+2026-04-14 13:30:31.049 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0553 ms
+2026-04-14 13:30:31.116 +07:00 [INF] HTTP GET /api/payments responded 200 in 63.6141 ms
+2026-04-14 13:30:44.591 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0564 ms
+2026-04-14 13:30:44.629 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 32.9685 ms
+2026-04-14 13:30:48.366 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0457 ms
+2026-04-14 13:30:48.434 +07:00 [INF] HTTP GET /api/promotions responded 200 in 63.4518 ms
+2026-04-14 13:30:58.945 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0577 ms
+2026-04-14 13:30:58.961 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.6092 ms
+2026-04-14 13:31:07.162 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0543 ms
+2026-04-14 13:31:07.163 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0351 ms
+2026-04-14 13:31:07.175 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-07T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000"
+2026-04-14 13:31:07.175 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-14T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000", Hotel: null
+2026-04-14 13:31:07.181 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 13.6868 ms
+2026-04-14 13:31:07.181 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 13.7350 ms
+2026-04-14 13:31:08.437 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0520 ms
+2026-04-14 13:31:08.455 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 13:31:08.464 +07:00 [INF] HTTP GET /api/bookings responded 200 in 22.8626 ms
+2026-04-14 13:31:09.638 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0492 ms
+2026-04-14 13:31:09.651 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":"Pending","CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 13:31:09.684 +07:00 [INF] HTTP GET /api/bookings responded 200 in 43.1435 ms
+2026-04-14 13:31:10.795 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-14 13:31:10.806 +07:00 [INF] HTTP GET /api/bookings responded 200 in 17.6201 ms
+2026-04-14 13:31:22.409 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0810 ms
+2026-04-14 13:31:22.410 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0504 ms
+2026-04-14 13:31:22.423 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-07T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000"
+2026-04-14 13:31:22.423 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-14T00:00:00.0000000", To: "2026-04-14T00:00:00.0000000", Hotel: null
+2026-04-14 13:31:22.429 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 14.0863 ms
+2026-04-14 13:31:22.429 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 14.8484 ms
+2026-04-14 13:31:23.404 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0795 ms
+2026-04-14 13:31:23.419 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3985 ms
+2026-04-14 13:31:27.455 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0407 ms
+2026-04-14 13:31:27.467 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.7022 ms
+2026-04-14 13:31:41.449 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0326 ms
+2026-04-14 13:31:41.460 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 7.6983 ms
+2026-04-14 13:34:27.829 +07:00 [INF] SignalR Disconnected: ConnId=Dvku3fZihwKD72EIYWgniA
+2026-04-14 13:34:27.829 +07:00 [INF] SignalR Disconnected: ConnId=7To-tHbK2MKa0LbN-7D9PA
+2026-04-14 13:34:27.833 +07:00 [INF] HTTP GET /hubs/room responded 101 in 327208.4635 ms
+2026-04-14 13:34:27.833 +07:00 [INF] HTTP GET /hubs/room responded 101 in 327183.6567 ms

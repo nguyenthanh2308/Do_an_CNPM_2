@@ -91,6 +91,7 @@ export interface RoomDto {
   floor: number;
   status: RoomStatus;
   notes?: string;
+  thumbnailUrl?: string;
   isActive: boolean;
   roomTypeDetails?: RoomTypeSummaryDto;
 }
@@ -187,6 +188,16 @@ export interface CreateRoomDto {
   roomNumber: string;
   floor: number;
   notes?: string;
+  thumbnailUrl?: string;
+}
+
+export interface UpdateRoomDto {
+  roomTypeId?: number;
+  roomNumber?: string;
+  floor?: number;
+  notes?: string;
+  thumbnailUrl?: string;
+  isActive?: boolean;
 }
 
 // ── Booking Models ────────────────────────────────────────────────────────

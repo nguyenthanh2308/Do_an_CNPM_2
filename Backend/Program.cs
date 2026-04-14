@@ -515,6 +515,35 @@ using (var scope = app.Services.CreateScope())
     await EnsureUserColumnAsync("created_at");
     await EnsureUserColumnAsync("is_active");
 
+    async Task EnsureRoomColumnAsync(string columnName)
+    {
+        await using var check = conn.CreateCommand();
+        check.CommandText = @"SELECT COUNT(*)
+                             FROM INFORMATION_SCHEMA.COLUMNS
+                             WHERE TABLE_SCHEMA = DATABASE()
+                               AND TABLE_NAME = 'rooms'
+                               AND COLUMN_NAME = @columnName";
+
+        var param = check.CreateParameter();
+        param.ParameterName = "@columnName";
+        param.Value = columnName;
+        check.Parameters.Add(param);
+
+        var exists = Convert.ToInt32(await check.ExecuteScalarAsync()) > 0;
+        if (!exists)
+        {
+            var sql = columnName switch
+            {
+                "thumbnail_url" => "ALTER TABLE rooms ADD COLUMN thumbnail_url VARCHAR(500) NULL",
+                _ => throw new InvalidOperationException($"Unsupported rooms column bootstrap: {columnName}")
+            };
+
+            await db.Database.ExecuteSqlRawAsync(sql);
+        }
+    }
+
+    await EnsureRoomColumnAsync("thumbnail_url");
+
     // Đồng bộ kiểu cột role để lưu enum dưới dạng string nhất quán với EF conversion.
     await db.Database.ExecuteSqlRawAsync("ALTER TABLE users MODIFY COLUMN role VARCHAR(30) NOT NULL");
 

@@ -39,6 +39,8 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   menuItems = [
     { label: 'Dashboard',    icon: 'dashboard',         route: '/dashboard',    roles: ['Manager', 'Admin'] },
+    { label: 'Quản lý Khách sạn', icon: 'apartment',    route: '/hotels',       roles: ['Admin', 'Manager'] },
+    { label: 'Quản lý Loại phòng', icon: 'category',    route: '/room-types',   roles: ['Admin', 'Manager'] },
     { label: 'Room List',    icon: 'meeting_room',      route: '/rooms',        roles: ['Admin', 'Manager', 'Receptionist', 'Housekeeping'] },
     { label: 'Bookings',     icon: 'book_online',       route: '/bookings',     roles: ['Admin', 'Manager', 'Receptionist'] },
     { label: 'Housekeeping', icon: 'cleaning_services', route: '/housekeeping', roles: ['Admin', 'Manager', 'Housekeeping'] },

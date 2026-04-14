@@ -185,6 +185,20 @@ export class RoomListComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  openEditRoomDialog(room: RoomDto): void {
+    const dialogRef = this.dialog.open(SimpleRoomFormComponent, {
+      width: '600px',
+      data: { mode: 'edit', room }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadRooms();
+      }
+    });
+  }
+
   viewDetail(room: RoomDto): void {
     this.dialog.open(RoomDetailDialogComponent, {
       width: '800px',
@@ -240,6 +254,10 @@ export class RoomListComponent implements OnInit, OnDestroy {
       OutOfService: 'block'
     };
     return map[status] ?? 'help';
+  }
+
+  getRoomThumbnail(room: RoomDto): string | null {
+    return room.thumbnailUrl || room.roomTypeDetails?.thumbnailUrl || null;
   }
 
   private showSuccess(msg: string): void {

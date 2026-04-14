@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   ApiResponse, RoomDto, AvailableRoomDto,
-  SearchAvailableRoomsDto, UpdateRoomStatusDto, CreateRoomDto
+  SearchAvailableRoomsDto, UpdateRoomStatusDto, CreateRoomDto, UpdateRoomDto
 } from '../models/models';
 
 @Injectable({ providedIn: 'root' })
@@ -53,6 +53,11 @@ export class RoomService {
   /** Tạo phòng mới */
   create(dto: CreateRoomDto): Observable<ApiResponse<RoomDto>> {
     return this.http.post<ApiResponse<RoomDto>>(this.API, dto);
+  }
+
+  /** Cập nhật phòng */
+  update(id: number, dto: UpdateRoomDto): Observable<ApiResponse<RoomDto>> {
+    return this.http.put<ApiResponse<RoomDto>>(`${this.API}/${id}`, dto);
   }
 
   /** Xóa mềm phòng */

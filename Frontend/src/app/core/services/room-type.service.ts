@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { ApiResponse, RoomTypeDto, CreateRoomTypeDto, UpdateRoomTypeDto } from '../models/models';
 
@@ -29,8 +30,15 @@ export class RoomTypeService {
   }
 
   /** Lấy các loại phòng theo khách sạn */
-  getByHotel(hotelId: number): Observable<ApiResponse<RoomTypeDto[]>> {
-    return this.http.get<ApiResponse<RoomTypeDto[]>>(`${this.apiUrl}/hotel/${hotelId}`);
+  getByHotel(hotelId: number): Observable<RoomTypeDto[]> {
+    return this.http.get<any>(`${this.apiUrl}/hotel/${hotelId}`).pipe(
+      map((res: any) => {
+        if (Array.isArray(res)) return res as RoomTypeDto[];
+        if (Array.isArray(res?.data)) return res.data as RoomTypeDto[];
+        if (Array.isArray(res?.data?.data)) return res.data.data as RoomTypeDto[];
+        return [];
+      })
+    );
   }
 
   /** Tạo loại phòng mới */

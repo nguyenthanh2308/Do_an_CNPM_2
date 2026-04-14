@@ -15,6 +15,7 @@ namespace HotelManagement.DTOs.Room
         public int Floor { get; set; }
         public string Status { get; set; } = null!;   // Available, Occupied, Dirty...
         public string? Notes { get; set; }
+        public string? ThumbnailUrl { get; set; }
         public bool IsActive { get; set; }
         public RoomTypeSummaryDto? RoomTypeDetails { get; set; }
     }
@@ -52,6 +53,7 @@ namespace HotelManagement.DTOs.Room
         [Required] [MaxLength(20)] public string RoomNumber { get; set; } = null!;
         [Range(1, 100)] public int Floor { get; set; } = 1;
         public string? Notes { get; set; }
+        public string? ThumbnailUrl { get; set; }
     }
 
     // ── Update DTO ────────────────────────────────────────────────────────────
@@ -61,6 +63,7 @@ namespace HotelManagement.DTOs.Room
         [MaxLength(20)] public string? RoomNumber { get; set; }
         [Range(1, 100)] public int? Floor { get; set; }
         public string? Notes { get; set; }
+        public string? ThumbnailUrl { get; set; }
         public bool? IsActive { get; set; }
     }
 

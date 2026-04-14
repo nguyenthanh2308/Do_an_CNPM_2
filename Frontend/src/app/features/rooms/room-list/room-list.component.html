@@ -66,8 +66,13 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Số phòng</th>
           <td mat-cell *matCellDef="let room">
             <div class="room-number-cell">
-              <span class="room-num">{{ room.roomNumber }}</span>
-              <span class="floor-badge">Tầng {{ room.floor }}</span>
+              <div class="room-thumb" *ngIf="getRoomThumbnail(room) as thumb">
+                <img [src]="thumb" [alt]="'Room ' + room.roomNumber">
+              </div>
+              <div class="room-meta">
+                <span class="room-num">{{ room.roomNumber }}</span>
+                <span class="floor-badge">Tầng {{ room.floor }}</span>
+              </div>
             </div>
           </td>
         </ng-container>
@@ -151,7 +156,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #moreMenu="matMenu">
-              <button mat-menu-item (click)="viewDetail(room)">
+              <button mat-menu-item (click)="openEditRoomDialog(room)">
                 <mat-icon>edit</mat-icon> Chỉnh sửa
               </button>
               <mat-divider></mat-divider>

@@ -35,6 +35,10 @@ namespace HotelManagement.Models
         [Column("notes")]
         public string? Notes { get; set; }
 
+        [MaxLength(500)]
+        [Column("thumbnail_url")]
+        public string? ThumbnailUrl { get; set; }
+
         [Column("is_active")]
         public bool IsActive { get; set; } = true;
 

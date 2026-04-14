@@ -13,7 +13,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { RoomService } from '../../core/services/room.service';
 import { HotelService } from '../../core/services/hotel.service';
 import { RoomTypeService } from '../../core/services/room-type.service';
-import { CreateRoomDto, HotelDto, RoomTypeDto } from '../../core/models/models';
+import { CreateRoomDto, HotelDto, RoomTypeDto, UpdateRoomDto } from '../../core/models/models';
+import { ImageUploadComponent } from '../../shared/components/image-upload/image-upload.component';
 
 @Component({
   selector: 'app-room-form',
@@ -28,7 +29,8 @@ import { CreateRoomDto, HotelDto, RoomTypeDto } from '../../core/models/models';
     MatSelectModule,
     MatCardModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ImageUploadComponent
   ],
   providers: [RoomService],
   template: `
@@ -89,6 +91,20 @@ import { CreateRoomDto, HotelDto, RoomTypeDto } from '../../core/models/models';
           <mat-icon matPrefix>note</mat-icon>
           <input matInput formControlName="notes" placeholder="Ghi chú thêm về phòng">
         </mat-form-field>
+
+        <div class="full-width">
+          <label>Hình ảnh phòng</label>
+          <app-image-upload
+            [imageUrl]="form.get('thumbnailUrl')?.value"
+            buttonText="Tải ảnh phòng"
+            (imageUrlChange)="onThumbnailUploaded($event)">
+          </app-image-upload>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>URL hình ảnh</mat-label>
+          <input matInput formControlName="thumbnailUrl" placeholder="https://...">
+        </mat-form-field>
       </form>
     </mat-dialog-content>
 
@@ -137,7 +153,8 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
       floor: [1, Validators.required],
       roomTypeId: [null, Validators.required],
       status: ['Available'],
-      notes: ['']
+      notes: [''],
+      thumbnailUrl: ['']
     });
 
     if (this.data?.room) {
@@ -147,7 +164,8 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
         floor: this.data.room.floor,
         roomTypeId: this.data.room.roomTypeId,
         status: this.data.room.status,
-        notes: this.data.room.notes
+        notes: this.data.room.notes,
+        thumbnailUrl: this.data.room.thumbnailUrl
       });
     }
   }
@@ -195,8 +213,8 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
     this.roomTypeService.getByHotel(hotelId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (res: any) => {
-          this.roomTypes = res?.data ?? [];
+        next: (roomTypes) => {
+          this.roomTypes = roomTypes;
           this.isOptionsLoading = false;
         },
         error: () => {
@@ -215,9 +233,31 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
     if (!this.form.valid) return;
 
     this.isLoading = true;
-    const dto: CreateRoomDto = this.form.value;
+    if (this.data.mode === 'edit' && this.data?.room?.roomId) {
+      const updateDto: UpdateRoomDto = {
+        roomTypeId: this.form.value.roomTypeId,
+        roomNumber: this.form.value.roomNumber,
+        floor: this.form.value.floor,
+        notes: this.form.value.notes,
+        thumbnailUrl: this.form.value.thumbnailUrl
+      };
 
-    this.roomService.create(dto).subscribe({
+      this.roomService.update(this.data.room.roomId, updateDto).subscribe({
+        next: () => {
+          this.snackBar.open('Phòng đã được cập nhật thành công', 'Đóng', { duration: 3000, panelClass: 'snack-success' });
+          this.isLoading = false;
+          this.dialogRef.close(true);
+        },
+        error: (err: any) => {
+          this.snackBar.open(err.error?.errors?.[0] ?? 'Cập nhật phòng thất bại', 'Đóng', { duration: 4000, panelClass: 'snack-error' });
+          this.isLoading = false;
+        }
+      });
+      return;
+    }
+
+    const createDto: CreateRoomDto = this.form.value;
+    this.roomService.create(createDto).subscribe({
       next: () => {
         this.snackBar.open('Phòng đã được thêm thành công', 'Đóng', { duration: 3000, panelClass: 'snack-success' });
         this.isLoading = false;
@@ -228,5 +268,9 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     });
+  }
+
+  onThumbnailUploaded(url: string): void {
+    this.form.patchValue({ thumbnailUrl: url });
   }
 }
