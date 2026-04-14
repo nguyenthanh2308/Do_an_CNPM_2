@@ -1,19 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { AuthService } from '../../../core/services/auth.service';
 import { RoomService } from '../../../core/services/room.service';
 import { HotelService } from '../../../core/services/hotel.service';
-import { AvailableRoomDto, HotelDto, RoomDto } from '../../../core/models/models';
+import { HotelDto, RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
 import { GuestHeaderComponent } from '../components/guest-header.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -22,13 +14,6 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     CommonModule,
     GuestHeaderComponent,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatCardModule
   ],
   templateUrl: './guest-home.component.html',
@@ -50,35 +35,15 @@ export class GuestHomeComponent implements OnInit, OnDestroy {
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80'
   ];
 
-  fullName: string;
-  searchForm: FormGroup;
-  availableRooms: AvailableRoomDto[] = [];
   hotelCards: Array<{ title: string; subtitle: string; imageUrl: string; tag: string }> = [];
   roomCards: Array<{ title: string; subtitle: string; imageUrl: string; tag: string }> = [];
-  isLoading = false;
-  searchError = '';
-  hasSearched = false;
+  achievements: Array<{ value: string; label: string; tone: string }> = [];
   introPoints = ['Khách sạn đối tác chọn lọc', 'Nhiều hạng phòng theo ngân sách', 'Quy trình đặt phòng đơn giản'];
 
   constructor(
-    private authService: AuthService,
     private roomService: RoomService,
-    private hotelService: HotelService,
-    private fb: FormBuilder
-  ) {
-    this.fullName = this.authService.getCurrentUser()?.fullName || 'Khách';
-
-    const checkIn = new Date();
-    checkIn.setDate(checkIn.getDate() + 1);
-    const checkOut = new Date();
-    checkOut.setDate(checkOut.getDate() + 2);
-
-    this.searchForm = this.fb.group({
-      checkInDate: [checkIn, Validators.required],
-      checkOutDate: [checkOut, Validators.required],
-      guests: [1, [Validators.required, Validators.min(1), Validators.max(10)]]
-    });
-  }
+    private hotelService: HotelService
+  ) {}
 
   ngOnInit(): void {
     this.loadHotels();
@@ -90,51 +55,12 @@ export class GuestHomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  signOut() {
-    this.authService.logout();
-  }
-
   get hotelTrackCards(): Array<{ title: string; subtitle: string; imageUrl: string; tag: string }> {
     return [...this.hotelCards, ...this.hotelCards];
   }
 
   get roomTrackCards(): Array<{ title: string; subtitle: string; imageUrl: string; tag: string }> {
     return [...this.roomCards, ...this.roomCards];
-  }
-
-  searchRooms() {
-    if (this.searchForm.invalid) {
-      this.searchForm.markAllAsTouched();
-      return;
-    }
-
-    const checkInDate = this.searchForm.value.checkInDate as Date;
-    const checkOutDate = this.searchForm.value.checkOutDate as Date;
-
-    if (checkOutDate <= checkInDate) {
-      this.searchError = 'Ngày trả phòng phải sau ngày nhận phòng.';
-      return;
-    }
-
-    this.isLoading = true;
-    this.searchError = '';
-    this.hasSearched = true;
-
-    this.roomService.getAvailableRooms({
-      checkIn: this.toApiDate(checkInDate),
-      checkOut: this.toApiDate(checkOutDate),
-      guests: this.searchForm.value.guests
-    }).subscribe({
-      next: (res) => {
-        this.availableRooms = res.data ?? [];
-        this.isLoading = false;
-      },
-      error: () => {
-        this.availableRooms = [];
-        this.isLoading = false;
-        this.searchError = 'Không thể tải danh sách phòng trống. Vui lòng thử lại.';
-      }
-    });
   }
 
   resolveImageUrl(url: string | undefined, fallback: string): string {
@@ -156,9 +82,11 @@ export class GuestHomeComponent implements OnInit, OnDestroy {
         next: (res) => {
           const hotels = (res.data ?? []).filter(h => h.isActive);
           this.hotelCards = this.buildHotelCards(hotels);
+          this.refreshAchievements();
         },
         error: () => {
           this.hotelCards = this.buildHotelCards([]);
+          this.refreshAchievements();
         }
       });
   }
@@ -170,11 +98,25 @@ export class GuestHomeComponent implements OnInit, OnDestroy {
         next: (res) => {
           const rooms = (res.data ?? []).filter(r => r.isActive);
           this.roomCards = this.buildRoomCards(rooms);
+          this.refreshAchievements();
         },
         error: () => {
           this.roomCards = this.buildRoomCards([]);
+          this.refreshAchievements();
         }
       });
+  }
+
+  private refreshAchievements(): void {
+    const hotels = this.hotelCards.length;
+    const rooms = this.roomCards.length;
+
+    this.achievements = [
+      { value: `${hotels}+`, label: 'Khách sạn đối tác', tone: 'a' },
+      { value: `${rooms}+`, label: 'Hình ảnh phòng cập nhật', tone: 'b' },
+      { value: '24/7', label: 'Nền tảng hoạt động', tone: 'c' },
+      { value: '99%', label: 'Khách hàng hài lòng', tone: 'd' }
+    ];
   }
 
   private buildHotelCards(hotels: HotelDto[]): Array<{ title: string; subtitle: string; imageUrl: string; tag: string }> {
@@ -213,9 +155,4 @@ export class GuestHomeComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private toApiDate(date: Date): string {
-    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
-      .toISOString()
-      .split('T')[0];
-  }
 }
