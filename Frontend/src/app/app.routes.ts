@@ -28,6 +28,12 @@ export const routes: Routes = [
     data: { roles: ['Guest'] }
   },
   {
+    path: 'guest/hotels',
+    loadComponent: () => import('./features/guest/hotel-listing/hotel-listing.component').then(m => m.HotelListingComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
     path: 'guest/booking',
     loadComponent: () => import('./features/guest/booking/guest-booking.component').then(m => m.GuestBookingComponent),
     canActivate: [roleGuard],

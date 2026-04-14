@@ -1,16 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { RoomService } from '../../../core/services/room.service';
-import { RoomDto } from '../../../core/models/models';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { RoomService } from '../../../core/services/room.service';
+import { RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -22,82 +23,71 @@ import { environment } from '../../../../environments/environment';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatChipsModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   templateUrl: './room-listing.component.html',
   styleUrl: './room-listing.component.scss'
 })
 export class RoomListingComponent implements OnInit, OnDestroy {
+  private readonly destroy$ = new Subject<void>();
   private readonly mediaBaseUrl = environment.apiUrl.replace(/\/api\/?$/, '');
   private readonly fallbackRoomImage = 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80';
+
   rooms: RoomDto[] = [];
   isLoading = true;
-  filterStatus: string = '';
-  private destroy$ = new Subject<void>();
-
-  // Status configurations
-  statusConfig = {
-    'Available': { label: 'Trống', color: 'status-available', icon: 'check_circle', canBook: true },
-    'Occupied': { label: 'Có khách', color: 'status-occupied', icon: 'person', canBook: false },
-    'Dirty': { label: 'Đang dọn', color: 'status-dirty', icon: 'cleaning_services', canBook: false },
-    'Maintenance': { label: 'Bảo trì', color: 'status-maintenance', icon: 'build', canBook: false },
-    'OutOfService': { label: 'Ngừng hoạt động', color: 'status-outofservice', icon: 'block', canBook: false }
-  };
+  selectedGuests = 0;
+  selectedHotelId: number | null = null;
 
   constructor(
-    private roomService: RoomService,
-    private snackBar: MatSnackBar,
-    private router: Router
+    private readonly roomService: RoomService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loadAllRooms();
-  }
-
-  loadAllRooms(): void {
-    this.isLoading = true;
-    this.roomService.getAll().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (res) => {
-        this.rooms = res.data || [];
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.showError('Không thể tải danh sách phòng');
-        this.isLoading = false;
-      }
+    this.route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
+      const hotelId = Number(params.get('hotelId'));
+      this.selectedHotelId = Number.isFinite(hotelId) && hotelId > 0 ? hotelId : null;
+      this.loadRooms();
     });
   }
 
-  filterByStatus(status: string): void {
-    this.filterStatus = this.filterStatus === status ? '' : status;
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  loadRooms(): void {
+    this.isLoading = true;
+    this.roomService.getAll(this.selectedHotelId ? { hotelId: this.selectedHotelId } : undefined)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.rooms = (res.data || []).filter(r => r.isActive);
+          this.isLoading = false;
+        },
+        error: () => {
+          this.rooms = [];
+          this.isLoading = false;
+          this.showError('Không thể tải danh sách phòng.');
+        }
+      });
   }
 
   getFilteredRooms(): RoomDto[] {
-    if (!this.filterStatus) return this.rooms;
-    return this.rooms.filter(r => r.status === this.filterStatus);
+    if (!this.selectedGuests) {
+      return this.rooms;
+    }
+    return this.rooms.filter(room => this.getRoomCapacity(room) >= this.selectedGuests);
   }
 
-  isUnavailable(status: string): boolean {
-    return status !== 'Available';
-  }
-
-  getStatusLabel(status: string): string {
-    return (this.statusConfig as any)[status]?.label || status;
-  }
-
-  getStatusIcon(status: string): string {
-    return (this.statusConfig as any)[status]?.icon || 'info';
-  }
-
-  getStatusClass(status: string): string {
-    return (this.statusConfig as any)[status]?.color || '';
-  }
-
-  canBook(room: RoomDto): boolean {
-    return room.status === 'Available' && room.isActive;
+  getRoomCapacity(room: RoomDto): number {
+    return room.roomTypeDetails?.maxOccupancy ?? 1;
   }
 
   getRoomImage(room: RoomDto): string {
@@ -113,24 +103,42 @@ export class RoomListingComponent implements OnInit, OnDestroy {
     return imageUrl.startsWith('/') ? `${this.mediaBaseUrl}${imageUrl}` : `${this.mediaBaseUrl}/${imageUrl}`;
   }
 
-  getRoomTypeDisplayName(room: RoomDto): string {
-    return room.roomTypeDetails?.name || room.roomTypeName || 'Phòng';
+  canBook(room: RoomDto): boolean {
+    return room.status === 'Available' && room.isActive;
+  }
+
+  getStatusLabel(status: string): string {
+    const map: Record<string, string> = {
+      Available: 'Trống',
+      Occupied: 'Có khách',
+      Dirty: 'Đang dọn',
+      Maintenance: 'Bảo trì',
+      OutOfService: 'Ngừng hoạt động'
+    };
+    return map[status] ?? status;
+  }
+
+  getStatusClass(status: string): string {
+    const map: Record<string, string> = {
+      Available: 'status-available',
+      Occupied: 'status-occupied',
+      Dirty: 'status-dirty',
+      Maintenance: 'status-maintenance',
+      OutOfService: 'status-outofservice'
+    };
+    return map[status] ?? '';
   }
 
   onBookClick(room: RoomDto): void {
-    if (this.canBook(room)) {
-      // Store selected room in session storage for booking page
-      sessionStorage.setItem('selectedRoomForBooking', JSON.stringify(room));
-      this.router.navigate(['/guest/booking']);
+    if (!this.canBook(room)) {
+      return;
     }
+
+    sessionStorage.setItem('selectedRoomForBooking', JSON.stringify(room));
+    this.router.navigate(['/guest/booking']);
   }
 
-  private showError(msg: string): void {
-    this.snackBar.open(msg, 'Đóng', { duration: 4000, panelClass: 'snack-error' });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Đóng', { duration: 4000, panelClass: 'snack-error' });
   }
 }

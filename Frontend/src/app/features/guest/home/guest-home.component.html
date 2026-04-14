@@ -5,9 +5,28 @@
       <span>Hotel Showcase</span>
     </div>
 
+    <nav class="main-nav">
+      <a mat-button [routerLink]="['/home']" routerLinkActive="active">Trang chủ</a>
+      <a mat-button [routerLink]="['/guest/rooms']" routerLinkActive="active">Phòng</a>
+      <a mat-button [routerLink]="['/guest/hotels']" routerLinkActive="active">Khách sạn</a>
+    </nav>
+
     <div class="top-actions">
-      <span class="hello">Xin chào, {{ fullName }}</span>
-      <button mat-stroked-button class="logout" (click)="signOut()">Đăng xuất</button>
+      <button mat-stroked-button class="profile-trigger" [matMenuTriggerFor]="accountMenu">
+        <span class="hello">Xin chào, {{ fullName }}</span>
+        <mat-icon>expand_more</mat-icon>
+      </button>
+
+      <mat-menu #accountMenu="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="['/guest/my-bookings']">
+          <mat-icon>history</mat-icon>
+          <span>Lịch sử đặt phòng</span>
+        </button>
+        <button mat-menu-item (click)="signOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Đăng xuất</span>
+        </button>
+      </mat-menu>
     </div>
   </header>
 

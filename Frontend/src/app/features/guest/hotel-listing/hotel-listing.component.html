@@ -1,0 +1,63 @@
+<div class="hotel-listing-page">
+  <header class="page-header">
+    <h1>
+      <mat-icon>apartment</mat-icon>
+      Trang Khách sạn
+    </h1>
+    <p>Mỗi khách sạn hiển thị số lượng phòng hiện có. Chọn khách sạn để xem phòng, không cần lọc theo thời gian.</p>
+  </header>
+
+  <div class="loading" *ngIf="isLoadingHotels">
+    <mat-spinner></mat-spinner>
+    <p>Đang tải danh sách khách sạn...</p>
+  </div>
+
+  <section class="hotel-grid" *ngIf="!isLoadingHotels && hotels.length > 0">
+    <mat-card class="hotel-card" *ngFor="let hotel of hotels" [class.active]="hotel.hotelId === selectedHotelId">
+      <img [src]="resolveImageUrl(hotel.thumbnailUrl, fallbackHotelImage)" [alt]="hotel.name">
+      <div class="hotel-body">
+        <h2>{{ hotel.name }}</h2>
+        <p class="address">{{ hotel.address }}</p>
+        <p class="stats">{{ hotel.totalRooms }} phòng • {{ hotel.starRating }} sao</p>
+      </div>
+      <div class="hotel-actions">
+        <button mat-stroked-button (click)="selectHotel(hotel.hotelId)">Xem phòng tại đây</button>
+        <button mat-button (click)="goToRoomPage(hotel.hotelId)">Mở trang Phòng</button>
+      </div>
+    </mat-card>
+  </section>
+
+  <section class="rooms-section" *ngIf="selectedHotel">
+    <div class="rooms-header">
+      <h3>Phòng tại {{ selectedHotel.name }}</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Lọc theo số người</mat-label>
+        <mat-select [(value)]="selectedGuests">
+          <mat-option [value]="0">Tất cả sức chứa</mat-option>
+          <mat-option *ngFor="let g of [1,2,3,4,5,6,7,8,9,10]" [value]="g">Từ {{ g }} người</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="loading" *ngIf="isLoadingRooms">
+      <mat-spinner diameter="34"></mat-spinner>
+      <p>Đang tải danh sách phòng...</p>
+    </div>
+
+    <div class="room-grid" *ngIf="!isLoadingRooms && getFilteredRooms().length > 0">
+      <mat-card class="room-card" *ngFor="let room of getFilteredRooms()">
+        <img [src]="resolveImageUrl(room.thumbnailUrl, fallbackRoomImage)" [alt]="'Phòng ' + room.roomNumber">
+        <div class="room-body">
+          <h4>Phòng {{ room.roomNumber }}</h4>
+          <p>{{ room.roomTypeName }} • Tầng {{ room.floor }}</p>
+          <p>Sức chứa: {{ getRoomCapacity(room) }} người</p>
+        </div>
+        <button mat-flat-button [disabled]="room.status !== 'Available'" (click)="onBookClick(room)">
+          {{ room.status === 'Available' ? 'Đặt phòng' : 'Không khả dụng' }}
+        </button>
+      </mat-card>
+    </div>
+
+    <p class="empty" *ngIf="!isLoadingRooms && getFilteredRooms().length === 0">Không có phòng phù hợp với bộ lọc.</p>
+  </section>
+</div>
