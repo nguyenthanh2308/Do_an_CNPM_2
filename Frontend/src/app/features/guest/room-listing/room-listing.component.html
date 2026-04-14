@@ -54,9 +54,7 @@
       
       <!-- Room Image -->
       <div class="image-container" [class.dimmed]="isUnavailable(room.status)">
-        <div class="placeholder-image">
-          <mat-icon>image</mat-icon>
-        </div>
+        <img [src]="getRoomImage(room)" [alt]="'Phòng ' + room.roomNumber" class="room-image">
         <div class="overlay" *ngIf="isUnavailable(room.status)"></div>
       </div>
 

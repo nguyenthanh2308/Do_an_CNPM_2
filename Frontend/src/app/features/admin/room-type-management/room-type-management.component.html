@@ -92,20 +92,6 @@
               <input matInput formControlName="areaSqm" type="number" placeholder="0">
             </mat-form-field>
 
-            <!-- Thumbnail URL -->
-            <div class="full-width">
-              <label>Hình ảnh loại phòng</label>
-              <app-image-upload
-                [imageUrl]="roomTypeForm.get('thumbnailUrl')?.value"
-                buttonText="Tai anh loai phong"
-                (imageUrlChange)="onThumbnailUploaded($event)">
-              </app-image-upload>
-            </div>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Hình ảnh URL</mat-label>
-              <input matInput formControlName="thumbnailUrl" placeholder="https://...">
-            </mat-form-field>
           </form>
         </mat-card-content>
         <mat-card-actions align="end">

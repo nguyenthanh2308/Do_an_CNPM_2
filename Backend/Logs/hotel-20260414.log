@@ -350,3 +350,48 @@ HotelManagement.Controllers.RoomsController.GetRoomTypes (HotelManagement)
 2026-04-14 14:01:13.897 +07:00 [WRN] Failed to determine the https port for redirect.
 2026-04-14 14:01:14.145 +07:00 [INF] HTTP GET /api/room-types responded 200 in 244.8675 ms
 2026-04-14 14:01:16.529 +07:00 [INF] HTTP GET /api/room-types/hotel/1 responded 200 in 72.0916 ms
+2026-04-14 14:03:01.780 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-14 14:03:24.219 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-14 14:03:24.226 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.7251 ms
+2026-04-14 14:03:24.481 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-14 14:03:24.831 +07:00 [INF] User 'admin' logged in.
+2026-04-14 14:03:24.862 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 624.0001 ms
+2026-04-14 14:03:24.869 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3681 ms
+2026-04-14 14:03:24.917 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 44.9578 ms
+2026-04-14 14:03:25.006 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0828 ms
+2026-04-14 14:03:25.099 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.2942 ms
+2026-04-14 14:03:25.100 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0899 ms
+2026-04-14 14:03:25.116 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 10.5667 ms
+2026-04-14 14:03:25.116 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 12.0386 ms
+2026-04-14 14:03:25.182 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=CyRgL1OcZoiUPrHVlofDdQ
+2026-04-14 14:03:25.193 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=PsAFtp5RGCxYtnDxbkF_FQ
+2026-04-14 14:03:25.282 +07:00 [INF] HTTP GET /api/rooms responded 200 in 270.0043 ms
+2026-04-14 14:03:31.941 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1421 ms
+2026-04-14 14:03:32.008 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 62.1425 ms
+2026-04-14 14:03:36.302 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.1678 ms
+2026-04-14 14:03:36.366 +07:00 [INF] HTTP GET /api/hotels responded 200 in 58.3346 ms
+2026-04-14 14:03:49.613 +07:00 [INF] HTTP GET /uploads/202604/c595ef30523a44bb9d8d40075a4d9c8c.jpg responded 304 in 3.5764 ms
+2026-04-14 14:04:02.622 +07:00 [INF] HTTP OPTIONS /api/hotels/2 responded 204 in 0.1809 ms
+2026-04-14 14:04:02.672 +07:00 [INF] HTTP PUT /api/hotels/2 responded 200 in 46.0594 ms
+2026-04-14 14:04:02.680 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0701 ms
+2026-04-14 14:04:02.701 +07:00 [INF] HTTP GET /api/hotels responded 200 in 14.9357 ms
+2026-04-14 14:04:07.561 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0975 ms
+2026-04-14 14:04:07.565 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0933 ms
+2026-04-14 14:04:07.581 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 15.9461 ms
+2026-04-14 14:04:07.616 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 46.1250 ms
+2026-04-14 14:04:35.811 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/2 responded 204 in 0.2172 ms
+2026-04-14 14:04:35.838 +07:00 [INF] HTTP GET /api/room-types/hotel/2 responded 200 in 24.2169 ms
+2026-04-14 14:07:29.365 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.0822 ms
+2026-04-14 14:07:29.469 +07:00 [INF] HTTP POST /api/room-types responded 201 in 101.4752 ms
+2026-04-14 14:07:29.477 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/2 responded 204 in 0.0647 ms
+2026-04-14 14:07:29.494 +07:00 [INF] HTTP GET /api/room-types/hotel/2 responded 200 in 11.7745 ms
+2026-04-14 14:07:34.593 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1557 ms
+2026-04-14 14:07:34.612 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.6642 ms
+2026-04-14 14:07:36.409 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1698 ms
+2026-04-14 14:07:36.421 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 8.6556 ms
+2026-04-14 14:07:39.336 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/2 responded 204 in 0.0594 ms
+2026-04-14 14:07:39.350 +07:00 [INF] HTTP GET /api/room-types/hotel/2 responded 200 in 10.6751 ms
+2026-04-14 14:07:47.885 +07:00 [INF] SignalR Disconnected: ConnId=CyRgL1OcZoiUPrHVlofDdQ
+2026-04-14 14:07:47.885 +07:00 [INF] SignalR Disconnected: ConnId=PsAFtp5RGCxYtnDxbkF_FQ
+2026-04-14 14:07:47.888 +07:00 [INF] HTTP GET /hubs/room responded 101 in 262734.8410 ms
+2026-04-14 14:07:47.888 +07:00 [INF] HTTP GET /hubs/room responded 101 in 262707.9059 ms

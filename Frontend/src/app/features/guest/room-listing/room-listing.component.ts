@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-room-listing',
@@ -30,6 +31,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './room-listing.component.scss'
 })
 export class RoomListingComponent implements OnInit, OnDestroy {
+  private readonly mediaBaseUrl = environment.apiUrl.replace(/\/api\/?$/, '');
+  private readonly fallbackRoomImage = 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80';
   rooms: RoomDto[] = [];
   isLoading = true;
   filterStatus: string = '';
@@ -95,6 +98,19 @@ export class RoomListingComponent implements OnInit, OnDestroy {
 
   canBook(room: RoomDto): boolean {
     return room.status === 'Available' && room.isActive;
+  }
+
+  getRoomImage(room: RoomDto): string {
+    const imageUrl = room.thumbnailUrl;
+    if (!imageUrl || !imageUrl.trim()) {
+      return this.fallbackRoomImage;
+    }
+
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      return imageUrl;
+    }
+
+    return imageUrl.startsWith('/') ? `${this.mediaBaseUrl}${imageUrl}` : `${this.mediaBaseUrl}/${imageUrl}`;
   }
 
   getRoomTypeDisplayName(room: RoomDto): string {

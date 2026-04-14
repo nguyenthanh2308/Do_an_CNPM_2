@@ -257,7 +257,7 @@ export class RoomListComponent implements OnInit, OnDestroy {
   }
 
   getRoomThumbnail(room: RoomDto): string | null {
-    return room.thumbnailUrl || room.roomTypeDetails?.thumbnailUrl || null;
+    return room.thumbnailUrl || null;
   }
 
   private showSuccess(msg: string): void {

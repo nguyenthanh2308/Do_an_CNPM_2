@@ -106,9 +106,9 @@ import { RoomDto } from '../../core/models/models';
               <span class="label">Diện tích:</span>
               <span class="value">{{ room.roomTypeDetails.areaSqm }}m²</span>
             </div>
-            <div class="type-detail" *ngIf="room.roomTypeDetails.thumbnailUrl">
-              <span class="label">Hình ảnh:</span>
-              <img [src]="room.roomTypeDetails.thumbnailUrl" alt="Room thumbnail" class="room-thumbnail">
+            <div class="type-detail" *ngIf="room.thumbnailUrl">
+              <span class="label">Hình ảnh phòng:</span>
+              <img [src]="room.thumbnailUrl" alt="Room thumbnail" class="room-thumbnail">
             </div>
           </div>
         </div>

@@ -14,7 +14,6 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatConfirmDialogComponent } from '../../../shared/components/mat-confirm-dialog/mat-confirm-dialog.component';
-import { ImageUploadComponent } from '../../../shared/components/image-upload/image-upload.component';
 import { Subject, takeUntil } from 'rxjs';
 import { RoomTypeService } from '../../../core/services/room-type.service';
 import { HotelService } from '../../../core/services/hotel.service';
@@ -37,8 +36,7 @@ import { RoomTypeDto, CreateRoomTypeDto, UpdateRoomTypeDto, HotelDto } from '../
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatTooltipModule,
-    ImageUploadComponent
+    MatTooltipModule
   ],
   templateUrl: './room-type-management.component.html',
   styleUrl: './room-type-management.component.scss'
@@ -87,7 +85,6 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
       description: [''],
       basePrice: ['', [Validators.required, Validators.min(0)]],
       maxOccupancy: [2, [Validators.required, Validators.min(1), Validators.max(20)]],
-      thumbnailUrl: [''],
       areaSqm: ['']
     });
   }
@@ -150,7 +147,6 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
         description: roomType.description,
         basePrice: roomType.basePrice,
         maxOccupancy: roomType.maxOccupancy,
-        thumbnailUrl: roomType.thumbnailUrl,
         areaSqm: roomType.areaSqm
       });
     } else {
@@ -177,7 +173,6 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
         description: formValue.description,
         basePrice: formValue.basePrice,
         maxOccupancy: formValue.maxOccupancy,
-        thumbnailUrl: formValue.thumbnailUrl,
         areaSqm: formValue.areaSqm
       };
       
@@ -202,7 +197,6 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
         description: formValue.description,
         basePrice: formValue.basePrice,
         maxOccupancy: formValue.maxOccupancy,
-        thumbnailUrl: formValue.thumbnailUrl,
         areaSqm: formValue.areaSqm
       };
       
@@ -275,10 +269,6 @@ export class RoomTypeManagementComponent implements OnInit, OnDestroy {
 
   getStatusClass(isActive: boolean): string {
     return isActive ? 'status-active' : 'status-inactive';
-  }
-
-  onThumbnailUploaded(url: string): void {
-    this.roomTypeForm.patchValue({ thumbnailUrl: url });
   }
 
   private showSuccess(msg: string): void {

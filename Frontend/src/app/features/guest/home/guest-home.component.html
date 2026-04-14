@@ -2,22 +2,8 @@
   <header class="topbar">
     <div class="brand">
       <mat-icon>apartment</mat-icon>
-      <span>Hotel Management</span>
+      <span>Hotel Showcase</span>
     </div>
-
-    <nav class="nav-links">
-      <button mat-button type="button" (click)="scrollTo('intro')">Giới thiệu</button>
-      <button mat-button type="button" (click)="scrollTo('features')">Tính năng</button>
-      <button mat-button type="button" (click)="scrollTo('achievements')">Thành tựu</button>
-      <a [routerLink]="['/guest/rooms']" mat-button class="nav-rooms">
-        <mat-icon>meeting_room</mat-icon>
-        Danh sách phòng
-      </a>
-      <a [routerLink]="['/guest/my-bookings']" mat-button class="nav-bookings">
-        <mat-icon>event_note</mat-icon>
-        My Bookings
-      </a>
-    </nav>
 
     <div class="top-actions">
       <span class="hello">Xin chào, {{ fullName }}</span>
@@ -25,37 +11,7 @@
     </div>
   </header>
 
-  <section class="hero" id="intro">
-    <div class="hero-left">
-      <div class="pill-row">
-        <span class="pill" *ngFor="let item of highlights">
-          <mat-icon>check_circle</mat-icon>
-          {{ item }}
-        </span>
-      </div>
-
-      <h1>Đặt phòng trực tuyến nhanh chóng, an toàn và dễ dàng</h1>
-      <p>
-        Nền tảng quản lý và đặt phòng thông minh giúp bạn tìm phòng trống phù hợp, thanh toán linh hoạt,
-        và nhận hỗ trợ xuyên suốt 24/7.
-      </p>
-
-      <div class="hero-actions">
-        <a [routerLink]="['/guest/booking']" mat-flat-button class="cta">
-          <mat-icon>event_available</mat-icon>
-          Đặt phòng
-        </a>
-        <button mat-button class="ghost" (click)="scrollTo('features')">
-          Khám phá tính năng
-        </button>
-      </div>
-    </div>
-
-    <div class="hero-image" aria-hidden="true"></div>
-  </section>
-
-  <section class="quick-booking" id="booking">
-    <h2>Tìm phòng trống nhanh</h2>
+  <section class="search-dock">
     <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchRooms()">
       <mat-form-field appearance="outline">
         <mat-label>Ngày nhận phòng</mat-label>
@@ -81,46 +37,75 @@
         {{ isLoading ? 'Đang tìm...' : 'Tìm phòng' }}
       </button>
     </form>
-
     <p class="error" *ngIf="searchError">{{ searchError }}</p>
+  </section>
 
-    <div class="results" *ngIf="hasSearched">
-      <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phòng trống phù hợp</p>
-
-      <div class="room-grid" *ngIf="availableRooms.length > 0">
-        <mat-card class="room-card" *ngFor="let room of availableRooms">
-          <h3>{{ room.roomTypeName }} - Phòng {{ room.roomNumber }}</h3>
-          <p>Tầng {{ room.floor }} • Tối đa {{ room.maxOccupancy }} khách</p>
-          <div class="price">{{ room.pricePerNight | number }} VND / đêm</div>
-        </mat-card>
-      </div>
-
-      <p class="empty" *ngIf="!isLoading && availableRooms.length === 0">
-        Hiện chưa có phòng trống trong khoảng thời gian bạn chọn.
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">NEN TANG GIOI THIEU KHACH SAN DOI TAC</p>
+      <h1>Khám phá hệ thống khách sạn hợp tác và các hạng phòng nổi bật</h1>
+      <p>
+        Trang Home đóng vai trò giới thiệu tổng quan. Bạn có thể dùng công cụ tìm kiếm ở phía trên để kiểm tra phòng trống,
+        còn bên dưới là các hình ảnh khách sạn và phòng đang được hệ thống đồng bộ.
       </p>
+      <div class="point-list">
+        <span *ngFor="let item of introPoints">{{ item }}</span>
+      </div>
     </div>
   </section>
 
-  <section class="feature-section" id="features">
-    <p class="section-tag">TÍNH NĂNG</p>
-    <h2>Tính Năng Nổi Bật</h2>
+  <section class="results" *ngIf="hasSearched">
+    <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phòng trống phù hợp</p>
 
-    <div class="feature-grid">
-      <article class="feature-card" *ngFor="let feature of features">
-        <div class="icon-wrap">
-          <mat-icon>{{ feature.icon }}</mat-icon>
+    <div class="room-grid" *ngIf="availableRooms.length > 0">
+      <mat-card class="room-card" *ngFor="let room of availableRooms">
+        <div class="thumb">
+          <img [src]="resolveImageUrl(room.thumbnailUrl, 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80')" [alt]="room.roomTypeName">
         </div>
-        <h3>{{ feature.title }}</h3>
-        <p>{{ feature.description }}</p>
+        <h3>{{ room.roomTypeName }} - Phòng {{ room.roomNumber }}</h3>
+        <p>Tầng {{ room.floor }} • Tối đa {{ room.maxOccupancy }} khách</p>
+        <div class="price">{{ room.pricePerNight | number }} VND / đêm</div>
+      </mat-card>
+    </div>
+
+    <p class="empty" *ngIf="!isLoading && availableRooms.length === 0">
+      Hiện chưa có phòng trống trong khoảng thời gian bạn chọn.
+    </p>
+  </section>
+
+  <section class="showcase-section">
+    <div class="section-head">
+      <p class="section-tag">KHACH SAN DOI TAC</p>
+      <h2>Danh sách khách sạn đang hợp tác</h2>
+    </div>
+
+    <div class="marquee-track hotels">
+      <article class="showcase-card" *ngFor="let card of hotelTrackCards">
+        <img [src]="card.imageUrl" [alt]="card.title">
+        <div class="overlay">
+          <span class="tag">{{ card.tag }}</span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.subtitle }}</p>
+        </div>
       </article>
     </div>
   </section>
 
-  <section class="achievement" id="achievements">
-    <article class="stat-card" *ngFor="let item of achievements">
-      <mat-icon>{{ item.icon }}</mat-icon>
-      <div class="value">{{ item.value }}</div>
-      <div class="label">{{ item.label }}</div>
-    </article>
+  <section class="showcase-section rooms">
+    <div class="section-head">
+      <p class="section-tag">KHONG GIAN PHONG</p>
+      <h2>Hình ảnh phòng khách sạn</h2>
+    </div>
+
+    <div class="marquee-track rooms-track">
+      <article class="showcase-card" *ngFor="let card of roomTrackCards">
+        <img [src]="card.imageUrl" [alt]="card.title">
+        <div class="overlay">
+          <span class="tag">{{ card.tag }}</span>
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.subtitle }}</p>
+        </div>
+      </article>
+    </div>
   </section>
 </div>
