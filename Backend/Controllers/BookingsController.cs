@@ -61,14 +61,18 @@ namespace HotelManagement.Controllers
             _logger.LogInformation("GET /api/bookings/{Id}", id);
             var booking = await _bookingService.GetByIdAsync(id);
             
-            // Allow staff to view any booking, guests only their own
+            // Staff có thể xem tất cả booking; Guest chỉ xem booking của mình
             var userId = GetCurrentUserId();
-            var userRole = User.FindFirst("role")?.Value;
+            // Đọc role từ cả custom claim "role" lẫn ClaimTypes.Role
+            var userRole = GetCurrentUserRole()
+                ?? User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
             
-            // If not staff, verify guest owns this booking
-            if (string.IsNullOrEmpty(userRole) || !new[] { "Admin", "Manager", "Receptionist" }.Contains(userRole))
+            var staffRoles = new[] { "Admin", "Manager", "Receptionist", "Housekeeping" };
+            bool isStaff = !string.IsNullOrEmpty(userRole) && staffRoles.Contains(userRole);
+            
+            if (!isStaff)
             {
-                // Guest viewing their own booking
+                // Guest chỉ xem booking của chính mình
                 var guest = await _context.Guests.FirstOrDefaultAsync(g => g.UserId == userId && g.GuestId == booking.GuestId);
                 if (guest == null)
                     return Fail("Bạn không có quyền xem booking này.", 403);

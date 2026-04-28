@@ -107,25 +107,40 @@
       background: #f1f5f9;
       color: #64748b;
 
-      &.completed {
+      &.st-completed {
         background: rgba(16, 185, 129, 0.14);
         color: #047857;
       }
 
-      &.failed {
+      &.st-failed {
         background: rgba(239, 68, 68, 0.14);
         color: #b91c1c;
       }
 
-      &.refunded {
+      &.st-refunded {
         background: rgba(245, 158, 11, 0.18);
         color: #92400e;
       }
 
-      &.pending {
+      &.st-pending {
         background: rgba(99, 102, 241, 0.14);
         color: #3730a3;
       }
+    }
+
+    .pay-id {
+      font-weight: 700;
+      color: #6366f1;
+    }
+
+    .inv-num {
+      font-size: 12px;
+      font-family: monospace;
+      color: #475569;
+    }
+
+    .btn-refund {
+      color: #f59e0b;
     }
 
     .text-right {

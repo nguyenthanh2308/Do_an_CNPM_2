@@ -49,6 +49,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     { label: 'Guests',       icon: 'group',             route: '/guests',       roles: ['Admin', 'Manager', 'Receptionist'] },
     { label: 'Rate Plans',   icon: 'price_change',      route: '/rate-plans',   roles: ['Admin', 'Manager'] },
     { label: 'Promotions',   icon: 'local_offer',       route: '/promotions',   roles: ['Admin', 'Manager'] },
+    { label: 'Quản lý Nhân viên', icon: 'badge',       route: '/staff',        roles: ['Admin'] },
     { label: 'Tạo tài khoản NV', icon: 'person_add',   route: '/staff/create', roles: ['Admin'] }
   ];
 

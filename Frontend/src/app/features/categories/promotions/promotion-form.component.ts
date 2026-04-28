@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -18,6 +18,7 @@ import { PromotionService } from '../../../core/services/promotion.service';
 @Component({
   selector: 'app-promotion-form',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -28,7 +29,6 @@ import { PromotionService } from '../../../core/services/promotion.service';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
@@ -84,7 +84,7 @@ import { PromotionService } from '../../../core/services/promotion.service';
             <mat-icon matPrefix>percent</mat-icon>
             <mat-select formControlName="discountType" id="promoDiscountType">
               <mat-option value="Percentage">Phần trăm (%)</mat-option>
-              <mat-option value="FixedAmount">Số tiền cố định (VND)</mat-option>
+              <mat-option value="Fixed">Số tiền cố định (VND)</mat-option>
             </mat-select>
           </mat-form-field>
 

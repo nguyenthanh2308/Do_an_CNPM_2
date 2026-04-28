@@ -9,24 +9,26 @@
     </button>
   </div>
 
+  <!-- Loading bar -->
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary" style="margin-bottom: 8px;"></mat-progress-bar>
+
   <mat-card class="glass-card">
     <div class="filters-row">
       <mat-form-field appearance="outline" class="search-field">
         <mat-label>Tìm theo mã TT / hóa đơn / khách</mat-label>
-        <input
-          matInput
-          [(ngModel)]="searchTerm"
-          (ngModelChange)="applyFilters()"
-          placeholder="Ví dụ: #1024, INV-2026-001, Nguyen Van A" />
+        <input matInput [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()"
+               placeholder="Ví dụ: #1024, INV-2026-001, Nguyen Van A">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="status-field">
         <mat-label>Trạng thái</mat-label>
         <mat-select [(ngModel)]="selectedStatus" (selectionChange)="applyFilters()">
-          <mat-option *ngFor="let status of statusOptions" [value]="status">
-            {{ status }}
-          </mat-option>
+          <mat-option value="All">Tất cả</mat-option>
+          <mat-option value="Pending">Chờ xử lý</mat-option>
+          <mat-option value="Completed">Thành công</mat-option>
+          <mat-option value="Failed">Thất bại</mat-option>
+          <mat-option value="Refunded">Hoàn tiền</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -40,57 +42,92 @@
     </div>
 
     <table mat-table [dataSource]="filteredDataSource" class="premium-table" *ngIf="!isLoading">
+
+      <!-- Mã TT -->
       <ng-container matColumnDef="paymentId">
-        <th mat-header-cell *matHeaderCellDef> Mã TT </th>
-        <td mat-cell *matCellDef="let element"> #{{ element.paymentId }} </td>
+        <th mat-header-cell *matHeaderCellDef>Mã TT</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="pay-id">#{{ element.paymentId }}</span>
+        </td>
       </ng-container>
 
+      <!-- Hóa đơn -->
       <ng-container matColumnDef="invoiceNumber">
-        <th mat-header-cell *matHeaderCellDef> Hóa đơn </th>
-        <td mat-cell *matCellDef="let element"> {{ element.invoiceNumber }} </td>
+        <th mat-header-cell *matHeaderCellDef>Hóa đơn</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="inv-num">{{ element.invoiceNumber }}</span>
+        </td>
       </ng-container>
 
+      <!-- Khách hàng -->
       <ng-container matColumnDef="guestName">
-        <th mat-header-cell *matHeaderCellDef> Khách hàng </th>
-        <td mat-cell *matCellDef="let element"> {{ element.guestName }} </td>
+        <th mat-header-cell *matHeaderCellDef>Khách hàng</th>
+        <td mat-cell *matCellDef="let element">{{ element.guestName }}</td>
       </ng-container>
 
+      <!-- Số tiền -->
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Số tiền </th>
+        <th mat-header-cell *matHeaderCellDef>Số tiền</th>
         <td mat-cell *matCellDef="let element">
-          <span class="price-tag">{{ element.amount | currency:'VND' }}</span>
+          <span class="price-tag">{{ formatCurrency(element.amount) }}</span>
         </td>
       </ng-container>
 
+      <!-- Phương thức -->
       <ng-container matColumnDef="paymentMethod">
-        <th mat-header-cell *matHeaderCellDef> Phương thức </th>
-        <td mat-cell *matCellDef="let element"> {{ element.paymentMethod }} </td>
+        <th mat-header-cell *matHeaderCellDef>Phương thức</th>
+        <td mat-cell *matCellDef="let element">{{ element.paymentMethod }}</td>
       </ng-container>
 
+      <!-- Trạng thái -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Trạng thái </th>
+        <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
         <td mat-cell *matCellDef="let element">
-          <span class="status-chip" [ngClass]="element.status.toLowerCase()">{{ element.status }}</span>
+          <span class="status-chip" [ngClass]="getStatusClass(element.status)">
+            {{ getStatusLabel(element.status) }}
+          </span>
         </td>
       </ng-container>
 
+      <!-- Thời gian -->
       <ng-container matColumnDef="paymentDate">
-        <th mat-header-cell *matHeaderCellDef> Thời gian </th>
-        <td mat-cell *matCellDef="let element"> {{ element.paymentDate | date:'dd/MM/yyyy HH:mm' }} </td>
+        <th mat-header-cell *matHeaderCellDef>Thời gian</th>
+        <td mat-cell *matCellDef="let element">{{ formatDate(element.paymentDate) }}</td>
       </ng-container>
 
+      <!-- Thao tác -->
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef class="text-right"> Thao tác </th>
+        <th mat-header-cell *matHeaderCellDef class="text-right">Thao tác</th>
         <td mat-cell *matCellDef="let element" class="text-right actions-col">
-          <button mat-icon-button color="primary" (click)="updateStatus(element, 'Completed')" matTooltip="Đánh dấu thành công">
-            <mat-icon>check_circle</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="updateStatus(element, 'Failed')" matTooltip="Đánh dấu thất bại">
-            <mat-icon>cancel</mat-icon>
-          </button>
-          <button mat-icon-button (click)="updateStatus(element, 'Refunded')" matTooltip="Đánh dấu hoàn tiền">
-            <mat-icon>replay</mat-icon>
-          </button>
+
+          <!-- Đang xử lý -->
+          <mat-spinner *ngIf="isUpdating(element.paymentId)" diameter="20" style="display:inline-block;"></mat-spinner>
+
+          <ng-container *ngIf="!isUpdating(element.paymentId)">
+            <!-- Xác nhận thành công — chỉ hiện khi Pending -->
+            <button mat-icon-button color="primary"
+                    *ngIf="canComplete(element.status)"
+                    (click)="updateStatus(element, 'Completed')"
+                    matTooltip="Xác nhận thanh toán thành công">
+              <mat-icon>check_circle</mat-icon>
+            </button>
+
+            <!-- Đánh dấu thất bại — chỉ hiện khi Pending -->
+            <button mat-icon-button color="warn"
+                    *ngIf="canFail(element.status)"
+                    (click)="updateStatus(element, 'Failed')"
+                    matTooltip="Đánh dấu giao dịch thất bại">
+              <mat-icon>cancel</mat-icon>
+            </button>
+
+            <!-- Hoàn tiền — chỉ hiện khi Completed -->
+            <button mat-icon-button class="btn-refund"
+                    *ngIf="canRefund(element.status)"
+                    (click)="updateStatus(element, 'Refunded')"
+                    matTooltip="Hoàn tiền cho khách">
+              <mat-icon>replay</mat-icon>
+            </button>
+          </ng-container>
         </td>
       </ng-container>
 

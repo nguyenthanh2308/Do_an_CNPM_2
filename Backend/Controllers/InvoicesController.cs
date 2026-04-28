@@ -1,6 +1,8 @@
 using HotelManagement.Data;
 using HotelManagement.DTOs.Common;
 using HotelManagement.DTOs.Invoice;
+using HotelManagement.Enums;
+using HotelManagement.Exceptions;
 using HotelManagement.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +59,30 @@ namespace HotelManagement.Controllers
         {
             var result = await _invoiceService.GetPagedInvoicesAsync(page, pageSize);
             return Success(result);
+        }
+
+        /// <summary>
+        /// Cập nhật trạng thái hóa đơn (Admin/Manager đánh dấu Paid, Cancelled...)
+        /// </summary>
+        [HttpPut("{id:long}/status")]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
+        [ProducesResponseType(typeof(ApiResponse<InvoiceDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 400)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 404)]
+        public async Task<IActionResult> UpdateStatus(long id, [FromBody] UpdateInvoiceStatusDto dto)
+        {
+            var invoice = await _context.Invoices.FindAsync(id)
+                ?? throw AppException.NotFound($"Hóa đơn #{id} không tồn tại.");
+
+            if (!Enum.TryParse<InvoiceStatus>(dto.Status, true, out var newStatus))
+                throw new AppException($"Trạng thái '{dto.Status}' không hợp lệ. Giá trị hợp lệ: Pending, Paid, Cancelled.");
+
+            invoice.Status = newStatus;
+            await _context.SaveChangesAsync();
+
+            // Reload with navigation properties via service
+            var result = await _invoiceService.GetInvoiceByIdAsync(id);
+            return Success(result, $"Hóa đơn #{id} đã chuyển sang trạng thái {dto.Status}.");
         }
     }
 }

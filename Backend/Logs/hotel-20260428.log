@@ -31,3 +31,146 @@
 2026-04-28 14:11:52.703 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 11.0577 ms
 2026-04-28 14:11:54.862 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.1587 ms
 2026-04-28 14:11:54.866 +07:00 [INF] HTTP PATCH /api/housekeeping/1/status responded 405 in 0.3051 ms
+2026-04-28 14:15:43.897 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.1032 ms
+2026-04-28 14:15:43.927 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 25.8923 ms
+2026-04-28 14:15:51.261 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.1453 ms
+2026-04-28 14:15:51.282 +07:00 [INF] HTTP GET /api/payments responded 200 in 17.0527 ms
+2026-04-28 14:15:53.207 +07:00 [INF] HTTP GET /api/payments responded 200 in 16.2136 ms
+2026-04-28 14:15:55.243 +07:00 [INF] HTTP GET /api/payments responded 200 in 10.6981 ms
+2026-04-28 14:15:58.424 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0779 ms
+2026-04-28 14:15:58.439 +07:00 [INF] HTTP GET /api/payments responded 200 in 11.6772 ms
+2026-04-28 14:16:12.479 +07:00 [INF] HTTP OPTIONS /api/payments/2/status responded 204 in 0.0810 ms
+2026-04-28 14:16:12.581 +07:00 [INF] HTTP PUT /api/payments/2/status responded 200 in 98.8651 ms
+2026-04-28 14:16:12.590 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0502 ms
+2026-04-28 14:16:12.606 +07:00 [INF] HTTP GET /api/payments responded 200 in 13.9003 ms
+2026-04-28 14:16:15.054 +07:00 [INF] HTTP PUT /api/payments/2/status responded 200 in 15.5774 ms
+2026-04-28 14:16:15.069 +07:00 [INF] HTTP GET /api/payments responded 200 in 9.8291 ms
+2026-04-28 14:16:21.082 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0585 ms
+2026-04-28 14:16:21.099 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 12.1884 ms
+2026-04-28 14:16:21.837 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1183 ms
+2026-04-28 14:16:21.852 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 14:16:21.861 +07:00 [INF] HTTP GET /api/bookings responded 200 in 21.0057 ms
+2026-04-28 14:16:36.234 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0641 ms
+2026-04-28 14:16:36.249 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.0125 ms
+2026-04-28 14:16:38.270 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0566 ms
+2026-04-28 14:16:38.321 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 47.3635 ms
+2026-04-28 14:16:43.525 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0670 ms
+2026-04-28 14:16:43.527 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/1 responded 204 in 0.0383 ms
+2026-04-28 14:16:43.572 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 42.1418 ms
+2026-04-28 14:16:43.584 +07:00 [INF] HTTP GET /api/room-types/hotel/1 responded 200 in 53.2526 ms
+2026-04-28 14:16:51.058 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0595 ms
+2026-04-28 14:16:51.070 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 14:16:51.081 +07:00 [INF] HTTP GET /api/bookings responded 200 in 19.3150 ms
+2026-04-28 14:17:15.630 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0793 ms
+2026-04-28 14:17:15.647 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 13.5959 ms
+2026-04-28 14:17:17.632 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0910 ms
+2026-04-28 14:17:17.644 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 14:17:17.651 +07:00 [INF] HTTP GET /api/bookings responded 200 in 15.7867 ms
+2026-04-28 14:19:54.598 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0699 ms
+2026-04-28 14:19:54.614 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 12.7840 ms
+2026-04-28 14:20:09.421 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.2470 ms
+2026-04-28 14:20:09.424 +07:00 [INF] HTTP PATCH /api/housekeeping/1/status responded 405 in 0.3388 ms
+2026-04-28 14:20:25.293 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0452 ms
+2026-04-28 14:20:25.303 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 7.6820 ms
+2026-04-28 14:21:14.111 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0468 ms
+2026-04-28 14:21:14.131 +07:00 [INF] HTTP GET /api/payments responded 200 in 16.3570 ms
+2026-04-28 14:22:08.049 +07:00 [INF] HTTP OPTIONS /api/payments/2/status responded 204 in 0.1763 ms
+2026-04-28 14:22:08.068 +07:00 [INF] HTTP PUT /api/payments/2/status responded 200 in 16.1923 ms
+2026-04-28 14:22:08.074 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0411 ms
+2026-04-28 14:22:08.087 +07:00 [INF] HTTP GET /api/payments responded 200 in 9.8294 ms
+2026-04-28 14:22:09.639 +07:00 [INF] HTTP PUT /api/payments/2/status responded 200 in 14.1527 ms
+2026-04-28 14:22:09.652 +07:00 [INF] HTTP GET /api/payments responded 200 in 7.9439 ms
+2026-04-28 14:23:10.439 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0640 ms
+2026-04-28 14:23:10.453 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 10.3592 ms
+2026-04-28 14:23:14.674 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0341 ms
+2026-04-28 14:23:14.707 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 30.1320 ms
+2026-04-28 14:23:32.035 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0354 ms
+2026-04-28 14:23:32.046 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 8.3241 ms
+2026-04-28 14:23:59.889 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0563 ms
+2026-04-28 14:23:59.945 +07:00 [INF] HTTP GET /api/promotions responded 200 in 52.9087 ms
+2026-04-28 14:25:27.065 +07:00 [INF] HTTP OPTIONS /api/auth/register responded 204 in 0.0479 ms
+2026-04-28 14:25:27.116 +07:00 [INF] HTTP POST /api/auth/register responded 400 in 46.0740 ms
+2026-04-28 14:27:26.914 +07:00 [INF] SignalR Disconnected: ConnId=3xa-IUWTlBgU79Ua4kU8IA
+2026-04-28 14:27:26.914 +07:00 [INF] SignalR Disconnected: ConnId=_tXj_OI-Fw3BJ-lCmBJk8A
+2026-04-28 14:27:26.917 +07:00 [INF] HTTP GET /hubs/room responded 101 in 962106.3828 ms
+2026-04-28 14:27:26.917 +07:00 [INF] HTTP GET /hubs/room responded 101 in 962129.2378 ms
+2026-04-28 14:54:56.235 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-28 14:59:50.314 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-28 14:59:50.320 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4964 ms
+2026-04-28 14:59:50.540 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-28 14:59:50.875 +07:00 [INF] User 'admin' logged in.
+2026-04-28 14:59:50.906 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 573.5372 ms
+2026-04-28 14:59:50.912 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3357 ms
+2026-04-28 14:59:50.957 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 42.4794 ms
+2026-04-28 14:59:51.003 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0845 ms
+2026-04-28 14:59:51.063 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.2200 ms
+2026-04-28 14:59:51.064 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0362 ms
+2026-04-28 14:59:51.077 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 9.4760 ms
+2026-04-28 14:59:51.077 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 10.6008 ms
+2026-04-28 14:59:51.116 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=unr55B0foz9m-_m3Ee94vg
+2026-04-28 14:59:51.120 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=uXQ0fYhjK6EYC9a8_cUKuA
+2026-04-28 14:59:51.193 +07:00 [INF] HTTP GET /api/rooms responded 200 in 186.1014 ms
+2026-04-28 15:04:26.215 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.2344 ms
+2026-04-28 15:04:26.274 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 15:04:26.481 +07:00 [INF] HTTP GET /api/bookings responded 200 in 262.0001 ms
+2026-04-28 15:04:29.004 +07:00 [INF] HTTP OPTIONS /api/bookings/6 responded 204 in 0.0981 ms
+2026-04-28 15:04:29.020 +07:00 [INF] GET /api/bookings/6
+2026-04-28 15:04:29.049 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-28 15:04:29.140 +07:00 [INF] HTTP GET /api/bookings/6 responded 403 in 131.6381 ms
+2026-04-28 15:05:25.034 +07:00 [INF] HTTP OPTIONS /api/bookings/5 responded 204 in 0.2648 ms
+2026-04-28 15:05:25.052 +07:00 [INF] GET /api/bookings/5
+2026-04-28 15:05:25.064 +07:00 [INF] HTTP GET /api/bookings/5 responded 403 in 25.1242 ms
+2026-04-28 15:06:01.097 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.1056 ms
+2026-04-28 15:06:01.220 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 108.9140 ms
+2026-04-28 15:06:02.474 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.1822 ms
+2026-04-28 15:06:02.527 +07:00 [INF] HousekeepingTask #1 status: "Pending" → "InProgress" by User #1.
+2026-04-28 15:06:02.551 +07:00 [INF] HTTP PUT /api/housekeeping/1/status responded 200 in 73.7785 ms
+2026-04-28 15:06:05.205 +07:00 [INF] Room #2 (D102) → Available after cleaning task #1.
+2026-04-28 15:06:05.228 +07:00 [INF] HousekeepingTask #1 status: "InProgress" → "Completed" by User #1.
+2026-04-28 15:06:05.231 +07:00 [INF] HTTP PUT /api/housekeeping/1/status responded 200 in 36.1815 ms
+2026-04-28 15:06:10.620 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0784 ms
+2026-04-28 15:06:10.634 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.7759 ms
+2026-04-28 15:06:13.615 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0992 ms
+2026-04-28 15:06:13.649 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-28 15:06:13.684 +07:00 [INF] HTTP GET /api/invoices responded 200 in 65.1082 ms
+2026-04-28 15:07:13.642 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0741 ms
+2026-04-28 15:07:13.692 +07:00 [INF] HTTP GET /api/payments responded 200 in 46.9878 ms
+2026-04-28 15:07:21.127 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.1789 ms
+2026-04-28 15:07:21.147 +07:00 [INF] HTTP GET /api/invoices responded 200 in 15.3249 ms
+2026-04-28 15:07:23.559 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.1137 ms
+2026-04-28 15:07:23.575 +07:00 [INF] HTTP GET /api/payments responded 200 in 11.6312 ms
+2026-04-28 15:09:35.308 +07:00 [INF] HTTP OPTIONS /api/guests responded 204 in 0.1104 ms
+2026-04-28 15:09:35.355 +07:00 [INF] HTTP GET /api/guests responded 200 in 43.5149 ms
+2026-04-28 15:10:11.981 +07:00 [INF] HTTP OPTIONS /api/bookings/guest/1 responded 204 in 0.0626 ms
+2026-04-28 15:10:11.994 +07:00 [INF] GET /api/bookings/guest/1
+2026-04-28 15:10:12.029 +07:00 [INF] HTTP GET /api/bookings/guest/1 responded 200 in 45.0597 ms
+2026-04-28 15:10:19.710 +07:00 [INF] HTTP OPTIONS /api/bookings/guest/2 responded 204 in 0.0515 ms
+2026-04-28 15:10:19.722 +07:00 [INF] GET /api/bookings/guest/2
+2026-04-28 15:10:19.755 +07:00 [INF] HTTP GET /api/bookings/guest/2 responded 200 in 41.6454 ms
+2026-04-28 15:16:02.628 +07:00 [INF] HTTP OPTIONS /api/bookings/guest/1 responded 204 in 0.0680 ms
+2026-04-28 15:16:02.643 +07:00 [INF] GET /api/bookings/guest/1
+2026-04-28 15:16:02.652 +07:00 [INF] HTTP GET /api/bookings/guest/1 responded 200 in 21.2386 ms
+2026-04-28 15:16:31.573 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0793 ms
+2026-04-28 15:16:31.617 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 40.6783 ms
+2026-04-28 15:16:36.547 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0456 ms
+2026-04-28 15:16:36.583 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 31.7359 ms
+2026-04-28 15:16:47.530 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0518 ms
+2026-04-28 15:16:47.543 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 9.9163 ms
+2026-04-28 15:16:55.259 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0624 ms
+2026-04-28 15:16:55.271 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 8.7997 ms
+2026-04-28 15:17:03.366 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0621 ms
+2026-04-28 15:17:03.425 +07:00 [INF] HTTP GET /api/promotions responded 200 in 54.4152 ms
+2026-04-28 15:17:12.396 +07:00 [INF] HTTP OPTIONS /api/promotions/1 responded 204 in 0.0528 ms
+2026-04-28 15:17:12.451 +07:00 [INF] HTTP PUT /api/promotions/1 responded 200 in 52.3277 ms
+2026-04-28 15:17:12.550 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0515 ms
+2026-04-28 15:17:12.563 +07:00 [INF] HTTP GET /api/promotions responded 200 in 9.4444 ms
+2026-04-28 15:18:51.578 +07:00 [INF] HTTP OPTIONS /api/promotions/1 responded 204 in 0.1496 ms
+2026-04-28 15:18:51.594 +07:00 [INF] HTTP PUT /api/promotions/1 responded 200 in 13.0013 ms
+2026-04-28 15:18:51.694 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0508 ms
+2026-04-28 15:18:51.717 +07:00 [INF] HTTP GET /api/promotions responded 200 in 19.6438 ms
+2026-04-28 15:22:40.048 +07:00 [INF] HTTP OPTIONS /api/auth/register responded 204 in 0.0663 ms
+2026-04-28 15:22:40.083 +07:00 [INF] HTTP POST /api/auth/register responded 400 in 31.1251 ms
+2026-04-28 15:23:29.733 +07:00 [INF] SignalR Disconnected: ConnId=uXQ0fYhjK6EYC9a8_cUKuA
+2026-04-28 15:23:29.734 +07:00 [INF] SignalR Disconnected: ConnId=unr55B0foz9m-_m3Ee94vg
+2026-04-28 15:23:29.736 +07:00 [INF] HTTP GET /hubs/room responded 101 in 1418620.0568 ms
+2026-04-28 15:23:29.736 +07:00 [INF] HTTP GET /hubs/room responded 101 in 1418640.9635 ms

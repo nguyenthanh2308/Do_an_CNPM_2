@@ -42,4 +42,10 @@ namespace HotelManagement.DTOs.Invoice
         public decimal TaxAmount { get; set; } = 0;
         public string? Notes { get; set; }
     }
+
+    // ── Update Status DTO ─────────────────────────────────────────────────────
+    public class UpdateInvoiceStatusDto
+    {
+        [Required] public string Status { get; set; } = null!; // Pending | Paid | Cancelled
+    }
 }

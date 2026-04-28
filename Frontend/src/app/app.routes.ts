@@ -135,6 +135,12 @@ export const routes: Routes = [
         canActivate: [roleGuard]
       },
       {
+        path: 'staff',
+        loadComponent: () => import('./features/staff/staff-list.component').then(m => m.StaffListComponent),
+        data: { roles: ['Admin'] },
+        canActivate: [roleGuard]
+      },
+      {
         path: 'staff/create',
         loadComponent: () => import('./features/staff/create-staff.component').then(m => m.CreateStaffComponent),
         data: { roles: ['Admin'] },

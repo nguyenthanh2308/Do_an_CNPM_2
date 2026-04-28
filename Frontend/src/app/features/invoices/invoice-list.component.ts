@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -20,6 +20,7 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -230,7 +231,7 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
     .status-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; cursor: pointer; font-size: 0.8rem; color: #94a3b8; transition: all 0.2s; }
     .chip-btn:hover { background: rgba(255,255,255,0.05); }
-    .chip-btn.active { border-color: currentColor; background: rgba(currentColor, 0.1); }
+    .chip-btn.active { background: rgba(255,255,255,0.06); }
     .chip-btn mat-icon { font-size: 1rem; width: 1rem; height: 1rem; }
     .chip-count { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1px 6px; font-size: 0.7rem; }
     .chip-btn.chip-paid.active, .chip-btn.chip-paid:hover { color: #4ade80; background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
@@ -247,10 +248,17 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
     .status-badge mat-icon { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; }
     .badge-paid { background: rgba(34,197,94,0.12); color: #4ade80; }
     .badge-issued { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .badge-pending { background: rgba(59,130,246,0.12); color: #60a5fa; }
     .badge-draft { background: rgba(100,116,139,0.12); color: #94a3b8; }
     .badge-overdue { background: rgba(239,68,68,0.12); color: #f87171; }
     .badge-cancelled { background: rgba(239,68,68,0.08); color: #f87171; }
     .table-row:hover { background: rgba(99,102,241,0.05) !important; }
+    /* Dark theme overrides for Material table */
+    ::ng-deep .invoice-page .mat-mdc-header-cell { background: rgba(15,23,42,0.6) !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+    ::ng-deep .invoice-page .mat-mdc-cell { color: #cbd5e1 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
+    ::ng-deep .invoice-page .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
+    ::ng-deep .invoice-page .mat-mdc-paginator-icon { fill: #64748b !important; }
+    ::ng-deep .invoice-page .mat-mdc-select-value { color: #94a3b8 !important; }
     .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #475569; }
     .empty-state mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
     /* Side Panel */
@@ -335,7 +343,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   viewDetail(inv: InvoiceDto): void { this.selectedInvoice = inv; }
   closeDetail(): void { this.selectedInvoice = null; }
 
-  canMarkPaid(status: string): boolean { return ['Issued', 'Draft', 'Overdue'].includes(status); }
+  canMarkPaid(status: string): boolean { return ['Issued', 'Draft', 'Overdue', 'Pending'].includes(status); }
 
   markAsPaid(inv: InvoiceDto): void {
     this.invoiceService.updateStatus(inv.invoiceId, 'Paid').subscribe({
@@ -353,7 +361,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   getStatusLabel(s: string): string {
     const map: Record<string, string> = {
       Paid: 'Đã thanh toán', Issued: 'Chờ TT', Draft: 'Nháp',
-      Overdue: 'Quá hạn', Cancelled: 'Đã hủy'
+      Pending: 'Chờ TT', Overdue: 'Quá hạn', Cancelled: 'Đã hủy'
     };
     return map[s] ?? s;
   }
@@ -361,7 +369,7 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
   getStatusIcon(s: string): string {
     const map: Record<string, string> = {
       Paid: 'check_circle', Issued: 'pending', Draft: 'drafts',
-      Overdue: 'warning', Cancelled: 'cancel'
+      Pending: 'pending', Overdue: 'warning', Cancelled: 'cancel'
     };
     return map[s] ?? 'receipt';
   }

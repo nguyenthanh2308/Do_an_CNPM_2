@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -23,6 +23,7 @@ import { BookingSummaryDto } from '../../core/models/models';
 @Component({
   selector: 'app-guest-list',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -240,6 +241,13 @@ import { BookingSummaryDto } from '../../core/models/models';
     .table-row:hover { background: rgba(99,102,241,0.05) !important; }
     .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #475569; }
     .empty-state mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
+    /* Dark theme overrides for Material table */
+    ::ng-deep .guest-page .mat-mdc-header-cell { background: rgba(15,23,42,0.6) !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+    ::ng-deep .guest-page .mat-mdc-cell { color: #cbd5e1 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
+    ::ng-deep .guest-page .mat-mdc-row { background: transparent !important; }
+    ::ng-deep .guest-page .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
+    ::ng-deep .guest-page .mat-mdc-paginator-icon { fill: #64748b !important; }
+    ::ng-deep .guest-page .mdc-data-table__header-row { background: rgba(15,23,42,0.6) !important; }
     /* Detail Panel */
     .detail-panel-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: flex-start; justify-content: flex-end; }
     .detail-panel { background: #1e293b; border-left: 1px solid rgba(255,255,255,0.08); width: 420px; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }

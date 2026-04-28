@@ -90,7 +90,15 @@ export class CreateStaffComponent implements OnDestroy {
     this.isLoading = true;
     const { fullName, email, username, phone, role, password } = this.staffForm.value;
 
-    this.authService.register({ fullName, email, username, phone, password, role })
+    this.authService.register({
+      fullName,
+      email,
+      username,
+      phone,
+      password,
+      confirmPassword: password,   // Backend yêu cầu ConfirmPassword khớp Password
+      role
+    })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
