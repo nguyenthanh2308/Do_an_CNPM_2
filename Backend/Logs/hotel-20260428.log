@@ -1,0 +1,33 @@
+2026-04-28 14:10:19.368 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-28 14:11:24.025 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-28 14:11:24.033 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.0596 ms
+2026-04-28 14:11:24.256 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-28 14:11:24.581 +07:00 [INF] User 'admin' logged in.
+2026-04-28 14:11:24.613 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 565.9790 ms
+2026-04-28 14:11:24.618 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.2869 ms
+2026-04-28 14:11:24.666 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 44.5242 ms
+2026-04-28 14:11:24.710 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0901 ms
+2026-04-28 14:11:24.762 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.3380 ms
+2026-04-28 14:11:24.762 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0546 ms
+2026-04-28 14:11:24.780 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 12.6077 ms
+2026-04-28 14:11:24.780 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 14.3077 ms
+2026-04-28 14:11:24.813 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=_tXj_OI-Fw3BJ-lCmBJk8A
+2026-04-28 14:11:24.819 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=3xa-IUWTlBgU79Ua4kU8IA
+2026-04-28 14:11:24.908 +07:00 [INF] HTTP GET /api/rooms responded 200 in 193.3548 ms
+2026-04-28 14:11:32.865 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.2351 ms
+2026-04-28 14:11:32.925 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 55.9705 ms
+2026-04-28 14:11:34.819 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0919 ms
+2026-04-28 14:11:34.994 +07:00 [INF] HTTP GET /api/payments responded 200 in 170.5685 ms
+2026-04-28 14:11:44.276 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.2742 ms
+2026-04-28 14:11:44.366 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 86.1374 ms
+2026-04-28 14:11:45.179 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1320 ms
+2026-04-28 14:11:45.231 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 14:11:45.324 +07:00 [INF] HTTP GET /api/bookings responded 200 in 141.7574 ms
+2026-04-28 14:11:45.952 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1066 ms
+2026-04-28 14:11:45.970 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.4119 ms
+2026-04-28 14:11:49.533 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-28 14:11:49.543 +07:00 [INF] HTTP GET /api/bookings responded 200 in 21.6830 ms
+2026-04-28 14:11:52.688 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0709 ms
+2026-04-28 14:11:52.703 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 11.0577 ms
+2026-04-28 14:11:54.862 +07:00 [INF] HTTP OPTIONS /api/housekeeping/1/status responded 204 in 0.1587 ms
+2026-04-28 14:11:54.866 +07:00 [INF] HTTP PATCH /api/housekeeping/1/status responded 405 in 0.3051 ms

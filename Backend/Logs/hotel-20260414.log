@@ -717,3 +717,26 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-04-14 15:01:05.817 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0226 ms
 2026-04-14 15:01:05.832 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 10.4363 ms
 2026-04-14 15:01:05.833 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.6721 ms
+2026-04-14 15:10:29.516 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0625 ms
+2026-04-14 15:10:29.538 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-14 15:10:29.783 +07:00 [INF] User 'Test12' logged in.
+2026-04-14 15:10:29.784 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 264.8922 ms
+2026-04-14 15:10:29.789 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0400 ms
+2026-04-14 15:10:29.793 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.5244 ms
+2026-04-14 15:10:29.837 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0855 ms
+2026-04-14 15:10:29.839 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0788 ms
+2026-04-14 15:10:29.859 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 16.7889 ms
+2026-04-14 15:10:29.864 +07:00 [INF] HTTP GET /api/rooms responded 200 in 16.5753 ms
+2026-04-14 15:10:29.892 +07:00 [INF] HTTP GET /uploads/202604/c595ef30523a44bb9d8d40075a4d9c8c.jpg responded 304 in 0.4952 ms
+2026-04-14 15:10:39.173 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0467 ms
+2026-04-14 15:10:39.221 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-15T00:00:00.0000000", CheckOut: "2026-04-16T00:00:00.0000000"
+2026-04-14 15:10:39.278 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 100.5415 ms
+2026-04-14 15:10:42.026 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0525 ms
+2026-04-14 15:10:42.041 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.0449 ms
+2026-04-14 15:10:46.299 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0511 ms
+2026-04-14 15:10:46.314 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.8545 ms
+2026-04-14 15:10:46.318 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0577 ms
+2026-04-14 15:10:46.331 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3053 ms
+2026-04-14 15:10:49.042 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0298 ms
+2026-04-14 15:10:49.052 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 10.7614 ms
+2026-04-14 15:10:49.057 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.0053 ms

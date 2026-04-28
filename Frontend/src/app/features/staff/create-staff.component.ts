@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, takeUntil } from 'rxjs';
 
 /**
@@ -33,7 +34,8 @@ import { Subject, takeUntil } from 'rxjs';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTooltipModule
   ],
   templateUrl: './create-staff.component.html',
   styleUrls: ['./create-staff.component.scss']
@@ -47,9 +49,9 @@ export class CreateStaffComponent implements OnDestroy {
 
   roleOptions = [
     { value: 'Receptionist', label: 'Lễ tân',         icon: 'support_agent' },
-    { value: 'Housekeeping', label: 'Buồng phòng',    icon: 'cleaning_services' },
-    { value: 'Manager',      label: 'Quản lý',         icon: 'manage_accounts' },
-    { value: 'Admin',        label: 'Quản trị viên',   icon: 'admin_panel_settings' },
+    { value: 'Housekeeping', label: 'Buồng phòng',     icon: 'cleaning_services' },
+    { value: 'Manager',      label: 'Quản lý',          icon: 'manage_accounts' },
+    { value: 'Admin',        label: 'Quản trị viên',    icon: 'admin_panel_settings' },
   ];
 
   constructor(
@@ -61,8 +63,21 @@ export class CreateStaffComponent implements OnDestroy {
     this.staffForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.maxLength(150)]],
       email:    ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50),
+                      Validators.pattern(/^[a-zA-Z0-9._-]+$/)]],
+      phone:    ['', [Validators.pattern(/^[0-9]{9,11}$/)]],
       role:     ['Receptionist', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+
+    // Auto-generate username khi nhập email (chỉ khi user chưa tự nhập username)
+    this.staffForm.get('email')?.valueChanges.subscribe((email: string) => {
+      if (email && !this.staffForm.get('username')?.dirty) {
+        const suggested = email.split('@')[0]
+          .toLowerCase()
+          .replace(/[^a-z0-9._-]/g, '');
+        this.staffForm.get('username')?.setValue(suggested, { emitEvent: false });
+      }
     });
   }
 
@@ -73,15 +88,15 @@ export class CreateStaffComponent implements OnDestroy {
     }
 
     this.isLoading = true;
-    const { fullName, email, role, password } = this.staffForm.value;
+    const { fullName, email, username, phone, role, password } = this.staffForm.value;
 
-    this.authService.register({ fullName, email, password, role })
+    this.authService.register({ fullName, email, username, phone, password, role })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
           this.isLoading = false;
           this.snackBar.open(
-            `✅ Tài khoản "${fullName}" (${role}) đã được tạo thành công!`,
+            `✅ Tài khoản "${fullName}" (${this.getRoleLabel(role)}) đã được tạo thành công!`,
             'Đóng', { duration: 5000, panelClass: 'snack-success' }
           );
           this.staffForm.reset({ role: 'Receptionist' });
@@ -89,7 +104,7 @@ export class CreateStaffComponent implements OnDestroy {
         error: (err: { error?: { message?: string; Message?: string; errors?: string[] } }) => {
           this.isLoading = false;
           const msg = err.error?.message || err.error?.Message || err.error?.errors?.[0]
-            || 'Không thể tạo tài khoản. Email có thể đã tồn tại.';
+            || 'Không thể tạo tài khoản. Email hoặc username có thể đã tồn tại.';
           this.snackBar.open(`❌ ${msg}`, 'Đóng', { duration: 5000, panelClass: 'snack-error' });
         }
       });

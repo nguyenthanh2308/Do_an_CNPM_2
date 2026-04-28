@@ -47,6 +47,30 @@
           </mat-form-field>
         </div>
 
+        <!-- Username -->
+        <div class="field-row">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Tên đăng nhập (username)</mat-label>
+            <mat-icon matPrefix>alternate_email</mat-icon>
+            <input matInput formControlName="username" placeholder="nhanvien01" id="staffUsername"
+                   matTooltip="Tự động sinh từ email, có thể chỉnh sửa">
+            <mat-hint>Chỉ dùng chữ thường, số, dấu chấm, gạch dưới</mat-hint>
+            <mat-error *ngIf="staffForm.get('username')?.hasError('required')">Username là bắt buộc</mat-error>
+            <mat-error *ngIf="staffForm.get('username')?.hasError('minlength')">Tối thiểu 3 ký tự</mat-error>
+            <mat-error *ngIf="staffForm.get('username')?.hasError('pattern')">Chỉ dùng chữ cái, số, dấu chấm, gạch dưới</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Phone -->
+        <div class="field-row">
+          <mat-form-field appearance="fill" class="staff-input">
+            <mat-label>Số điện thoại (tùy chọn)</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput formControlName="phone" type="tel" placeholder="0912345678" id="staffPhone">
+            <mat-error *ngIf="staffForm.get('phone')?.hasError('pattern')">Số điện thoại không hợp lệ (9-11 số)</mat-error>
+          </mat-form-field>
+        </div>
+
         <!-- Role -->
         <div class="field-row">
           <mat-form-field appearance="fill" class="staff-input">

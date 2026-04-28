@@ -12,6 +12,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { BookingSummaryDto, BookingFilterDto } from '../../../core/models/models';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CheckoutDialogComponent } from '../checkout-dialog/checkout-dialog.component';
+import { BookingDetailDialogComponent } from '../booking-detail-dialog/booking-detail-dialog.component';
+import { EditBookingDialogComponent } from '../edit-booking-dialog/edit-booking-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -76,7 +78,7 @@ export class BookingListComponent implements OnInit, OnDestroy {
   // ── Filter ─────────────────────────────────────────────────────────────
   filterForm: FormGroup;
   statusOptions = [
-    { value: '',           label: 'Tất cả',      icon: 'list' },
+    { value: '',           label: 'Tất cả',       icon: 'list' },
     { value: 'Pending',    label: 'Chờ xác nhận', icon: 'schedule' },
     { value: 'Confirmed',  label: 'Đã xác nhận',  icon: 'verified' },
     { value: 'CheckedIn',  label: 'Đang ở',        icon: 'login' },
@@ -164,8 +166,23 @@ export class BookingListComponent implements OnInit, OnDestroy {
   // ── Actions ────────────────────────────────────────────────────────────
 
   viewDetail(booking: BookingSummaryDto): void {
-    // this.router.navigate(['/bookings', booking.bookingId]);
-    console.log('View booking:', booking.bookingId);
+    this.dialog.open(BookingDetailDialogComponent, {
+      width: '780px',
+      maxHeight: '90vh',
+      data: { bookingId: booking.bookingId },
+      panelClass: 'dark-dialog'
+    });
+  }
+
+  editBooking(booking: BookingSummaryDto): void {
+    const dialogRef = this.dialog.open(EditBookingDialogComponent, {
+      width: '600px',
+      data: { bookingId: booking.bookingId, guestName: booking.guestName },
+      panelClass: 'dark-dialog'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.loadBookings();
+    });
   }
 
   checkIn(booking: BookingSummaryDto): void {
@@ -181,17 +198,15 @@ export class BookingListComponent implements OnInit, OnDestroy {
       width: '800px',
       data: {
         bookingId: booking.bookingId,
-        baseAmount: booking.finalAmount, // Truyền giá tạm tính
-        discountAmount: 0, // Cần call API detail nếu muốn show chi tiết
+        baseAmount: booking.finalAmount,
+        discountAmount: 0,
         guestName: booking.guestName,
         roomNumbers: booking.roomNumbers
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadBookings(); // Tải lại danh sách sau khi checkout thành công
-      }
+      if (result) this.loadBookings();
     });
   }
 
@@ -234,6 +249,7 @@ export class BookingListComponent implements OnInit, OnDestroy {
   canCheckIn(status: string): boolean  { return status === 'Confirmed'; }
   canCheckOut(status: string): boolean { return status === 'CheckedIn'; }
   canCancel(status: string): boolean   { return ['Pending', 'Confirmed'].includes(status); }
+  canEdit(status: string): boolean     { return ['Pending', 'Confirmed'].includes(status); }
 
   formatCurrency(amount: number): string {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);

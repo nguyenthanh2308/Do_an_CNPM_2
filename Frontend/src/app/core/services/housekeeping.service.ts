@@ -37,7 +37,7 @@ export class HousekeepingService {
   }
 
   updateStatus(taskId: number, dto: UpdateTaskStatusDto): Observable<ApiResponse<HousekeepingTaskDto>> {
-    return this.http.patch<ApiResponse<HousekeepingTaskDto>>(`${this.APIUrl}/${taskId}/status`, dto);
+    return this.http.put<ApiResponse<HousekeepingTaskDto>>(`${this.APIUrl}/${taskId}/status`, dto);
   }
 
   assignTask(taskId: number, userId: number): Observable<ApiResponse<any>> {

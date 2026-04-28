@@ -176,8 +176,8 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #bookingMenu="matMenu">
-              <button mat-menu-item (click)="viewDetail(b)">
-                <mat-icon>edit</mat-icon> Chỉnh sửa
+              <button mat-menu-item (click)="editBooking(b)" *ngIf="canEdit(b.status)">
+                <mat-icon>edit_calendar</mat-icon> Chỉnh sửa
               </button>
               <mat-divider></mat-divider>
               <button mat-menu-item class="cancel-item"

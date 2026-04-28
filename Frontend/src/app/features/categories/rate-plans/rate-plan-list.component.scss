@@ -107,4 +107,67 @@
       margin-bottom: 16px;
     }
   }
+
+  // New styles for Rate Plans
+  .plan-name-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    .plan-name { font-weight: 600; color: #1e293b; }
+    .plan-desc { font-size: 12px; color: #94a3b8; }
+  }
+
+  .room-type-badge {
+    background: rgba(99,102,241,0.1);
+    color: #4f46e5;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .min-stay-badge {
+    background: rgba(234,179,8,0.1);
+    color: #d97706;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .refund-yes { color: #059669; font-size: 13px; }
+  .refund-no  { color: #dc2626; font-size: 13px; }
+  .policy-text { font-size: 12px; color: #64748b; }
+  .na { color: #cbd5e1; }
+
+  // New styles for Promotions
+  .code-badge {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(99,102,241,0.1);
+    color: #4f46e5;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .name-cell {
+    display: flex; flex-direction: column; gap: 2px;
+    .promo-name { font-weight: 600; color: #1e293b; }
+    .promo-desc { font-size: 11px; color: #94a3b8; }
+  }
+
+  .dates-cell {
+    display: flex; align-items: center; gap: 4px; font-size: 12px; color: #64748b;
+    .date-sep { color: #cbd5e1; }
+    .expired { color: #dc2626 !important; }
+  }
+
+  .usage-text { font-size: 13px; color: #475569; }
+
+  .status-chip.expired {
+    background: rgba(239,68,68,0.1);
+    color: #dc2626;
+  }
 }
