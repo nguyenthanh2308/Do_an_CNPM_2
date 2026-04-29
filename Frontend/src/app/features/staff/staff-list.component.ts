@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -28,10 +28,10 @@ import { Component as Comp, Inject } from '@angular/core';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatIconModule],
   template: `
-    <div style="background:#1e293b;color:#e2e8f0;border-radius:14px;overflow:hidden;min-width:360px;">
-      <div style="padding:20px 24px;background:linear-gradient(135deg,#1a2744,#1e293b);display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.08)">
-        <mat-icon style="color:#818cf8">manage_accounts</mat-icon>
-        <h3 style="margin:0;font-size:1.1rem;font-weight:600">Đổi chức vụ — {{data.staff.fullName || data.staff.username}}</h3>
+    <div style="background:#ffffff;color:#1e293b;border-radius:14px;overflow:hidden;min-width:360px;box-shadow:0 4px 24px rgba(0,0,0,0.12);">
+      <div style="padding:20px 24px;background:linear-gradient(135deg,#eef2ff,#f8fafc);display:flex;align-items:center;gap:12px;border-bottom:1px solid #e2e8f0">
+        <mat-icon style="color:#6366f1">manage_accounts</mat-icon>
+        <h3 style="margin:0;font-size:1.1rem;font-weight:600;color:#1e293b">Đổi chức vụ — {{data.staff.fullName || data.staff.username}}</h3>
       </div>
       <form [formGroup]="form" (ngSubmit)="save()" style="padding:20px 24px">
         <mat-form-field appearance="fill" style="width:100%">
@@ -43,7 +43,7 @@ import { Component as Comp, Inject } from '@angular/core';
             <mat-option value="Housekeeping">Dọn phòng (Housekeeping)</mat-option>
           </mat-select>
         </mat-form-field>
-        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px">
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px;border-top:1px solid #e2e8f0;padding-top:16px">
           <button mat-button type="button" mat-dialog-close>Hủy</button>
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">✅ Lưu</button>
         </div>
@@ -69,10 +69,10 @@ export class ChangeRoleDialogComponent {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule],
   template: `
-    <div style="background:#1e293b;color:#e2e8f0;border-radius:14px;overflow:hidden;min-width:360px;">
-      <div style="padding:20px 24px;background:linear-gradient(135deg,#7f1d1d,#1e293b);display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.08)">
-        <mat-icon style="color:#f87171">lock_reset</mat-icon>
-        <h3 style="margin:0;font-size:1.1rem;font-weight:600">Đặt lại mật khẩu — {{data.staff.username}}</h3>
+    <div style="background:#ffffff;color:#1e293b;border-radius:14px;overflow:hidden;min-width:360px;box-shadow:0 4px 24px rgba(0,0,0,0.12);">
+      <div style="padding:20px 24px;background:linear-gradient(135deg,#fef2f2,#fff7ed);display:flex;align-items:center;gap:12px;border-bottom:1px solid #fecaca">
+        <mat-icon style="color:#dc2626">lock_reset</mat-icon>
+        <h3 style="margin:0;font-size:1.1rem;font-weight:600;color:#1e293b">Đặt lại mật khẩu — {{data.staff.username}}</h3>
       </div>
       <form [formGroup]="form" (ngSubmit)="save()" style="padding:20px 24px">
         <mat-form-field appearance="fill" style="width:100%">
@@ -84,7 +84,7 @@ export class ChangeRoleDialogComponent {
           </button>
           <mat-error *ngIf="form.get('newPassword')?.hasError('minlength')">Ít nhất 6 ký tự</mat-error>
         </mat-form-field>
-        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px">
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px;border-top:1px solid #e2e8f0;padding-top:16px">
           <button mat-button type="button" mat-dialog-close>Hủy</button>
           <button mat-raised-button color="warn" type="submit" [disabled]="form.invalid">🔑 Đặt lại</button>
         </div>
@@ -109,7 +109,6 @@ export class ResetPwdDialogComponent {
 @Component({
   selector: 'app-staff-list',
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, RouterModule,
     MatTableModule, MatCardModule, MatButtonModule, MatIconModule,
@@ -260,34 +259,35 @@ export class ResetPwdDialogComponent {
     .staff-page { padding: 0; }
     .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .header-left { display: flex; align-items: center; gap: 14px; }
-    .page-title { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin: 0; }
-    .total-badge { background: rgba(99,102,241,0.15); color: #818cf8; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .page-title { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 0; }
+    .page-title mat-icon { color: #6366f1; }
+    .total-badge { background: rgba(99,102,241,0.1); color: #6366f1; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(99,102,241,0.2); }
     .create-btn { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; border-radius: 8px !important; }
-    .filter-card { background: rgba(30,41,59,0.8) !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 12px !important; margin-bottom: 16px; padding: 16px 20px !important; }
+    .filter-card { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 12px !important; margin-bottom: 16px; padding: 16px 20px !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
     .filter-row { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
     .search-field { flex: 1; min-width: 250px; }
     .refresh-btn { color: #64748b; margin-top: 8px; }
-    .table-card { background: rgba(30,41,59,0.8) !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 12px !important; overflow: hidden; }
+    .table-card { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 12px !important; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
     .staff-table { width: 100%; background: transparent; }
-    /* Dark theme overrides */
-    .staff-page .mat-mdc-header-cell { background: rgba(15,23,42,0.6) !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
-    .staff-page .mat-mdc-cell { color: #cbd5e1 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
-    .staff-page .mat-mdc-row:hover { background: rgba(99,102,241,0.05) !important; }
-    .staff-page .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
+    /* Mat table overrides */
+    .mat-mdc-header-cell { background: #f8fafc !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid #e2e8f0 !important; }
+    .mat-mdc-cell { color: #1e293b !important; border-bottom: 1px solid #f1f5f9 !important; }
+    .mat-mdc-row:hover { background: #f8fafc !important; }
+    .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
     .staff-cell { display: flex; align-items: center; gap: 12px; }
     .staff-avatar { width: 38px; height: 38px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
     .staff-info { display: flex; flex-direction: column; }
-    .staff-name { font-weight: 600; color: #f1f5f9; font-size: 0.9rem; }
+    .staff-name { font-weight: 600; color: #1e293b; font-size: 0.9rem; }
     .staff-email { font-size: 0.75rem; color: #64748b; }
-    .username-badge { font-family: monospace; background: rgba(99,102,241,0.1); color: #818cf8; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+    .username-badge { font-family: monospace; background: rgba(99,102,241,0.08); color: #6366f1; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; border: 1px solid rgba(99,102,241,0.15); }
     .role-badge { padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
-    .role-admin { background: rgba(239,68,68,0.15); color: #f87171; }
-    .role-manager { background: rgba(245,158,11,0.15); color: #fbbf24; }
-    .role-receptionist { background: rgba(59,130,246,0.15); color: #60a5fa; }
-    .role-housekeeping { background: rgba(16,185,129,0.15); color: #34d399; }
+    .role-admin { background: rgba(239,68,68,0.1); color: #b91c1c; }
+    .role-manager { background: rgba(245,158,11,0.1); color: #92400e; }
+    .role-receptionist { background: rgba(59,130,246,0.1); color: #1d4ed8; }
+    .role-housekeeping { background: rgba(16,185,129,0.1); color: #047857; }
     .status-dot { font-size: 0.8rem; }
     .text-right { text-align: right; }
-    .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #475569; }
+    .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #94a3b8; }
     .empty-state mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
   `]
 })

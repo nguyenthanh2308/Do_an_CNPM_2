@@ -1,0 +1,104 @@
+2026-04-29 09:22:42.037 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-29 09:25:33.237 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-29 09:25:33.245 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.6924 ms
+2026-04-29 09:25:33.468 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-04-29 09:25:33.796 +07:00 [INF] User 'admin' logged in.
+2026-04-29 09:25:33.828 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 566.8915 ms
+2026-04-29 09:25:33.834 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.5936 ms
+2026-04-29 09:25:33.879 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 41.8086 ms
+2026-04-29 09:25:33.896 +07:00 [INF] HTTP OPTIONS /api/reports/occupancy responded 204 in 0.0995 ms
+2026-04-29 09:25:33.898 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.1088 ms
+2026-04-29 09:25:33.919 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.3523 ms
+2026-04-29 09:25:33.929 +07:00 [INF] GET /api/reports/revenue — From: "2026-04-22T00:00:00.0000000", To: "2026-04-29T00:00:00.0000000"
+2026-04-29 09:25:33.930 +07:00 [INF] GET /api/reports/occupancy — From: "2026-04-29T00:00:00.0000000", To: "2026-04-29T00:00:00.0000000", Hotel: null
+2026-04-29 09:25:33.930 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 6.5556 ms
+2026-04-29 09:25:33.955 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=4jrZa-U5e-7TSYXiUI5Ttw
+2026-04-29 09:25:34.088 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 187.4718 ms
+2026-04-29 09:25:34.107 +07:00 [INF] HTTP GET /api/reports/occupancy responded 200 in 207.6621 ms
+2026-04-29 09:25:45.061 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.2181 ms
+2026-04-29 09:25:45.168 +07:00 [INF] HTTP GET /api/hotels responded 200 in 103.0270 ms
+2026-04-29 09:25:47.344 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1484 ms
+2026-04-29 09:25:47.344 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0706 ms
+2026-04-29 09:25:47.384 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 36.2574 ms
+2026-04-29 09:25:47.392 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 41.7537 ms
+2026-04-29 09:26:08.469 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2640 ms
+2026-04-29 09:26:08.514 +07:00 [INF] HTTP GET /api/rooms responded 200 in 40.1519 ms
+2026-04-29 09:26:10.773 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.1297 ms
+2026-04-29 09:26:10.827 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-29 09:26:10.965 +07:00 [INF] HTTP GET /api/bookings responded 200 in 187.4298 ms
+2026-04-29 09:26:13.517 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.1819 ms
+2026-04-29 09:26:13.602 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 80.4791 ms
+2026-04-29 09:26:15.843 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0627 ms
+2026-04-29 09:26:15.877 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-29 09:26:15.961 +07:00 [INF] HTTP GET /api/invoices responded 200 in 113.8122 ms
+2026-04-29 09:26:27.177 +07:00 [INF] HTTP OPTIONS /api/invoices/5/status responded 204 in 0.0851 ms
+2026-04-29 09:26:27.228 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-04-29 09:26:27.255 +07:00 [INF] HTTP PUT /api/invoices/5/status responded 200 in 74.0565 ms
+2026-04-29 09:26:27.263 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0547 ms
+2026-04-29 09:26:27.283 +07:00 [INF] HTTP GET /api/invoices responded 200 in 18.0154 ms
+2026-04-29 09:26:30.056 +07:00 [INF] HTTP OPTIONS /api/invoices/3/status responded 204 in 0.0788 ms
+2026-04-29 09:26:30.074 +07:00 [INF] HTTP PUT /api/invoices/3/status responded 200 in 14.5801 ms
+2026-04-29 09:26:30.093 +07:00 [INF] HTTP GET /api/invoices responded 200 in 15.2860 ms
+2026-04-29 09:26:31.080 +07:00 [INF] HTTP OPTIONS /api/invoices/2/status responded 204 in 0.0917 ms
+2026-04-29 09:26:31.096 +07:00 [INF] HTTP PUT /api/invoices/2/status responded 200 in 13.0996 ms
+2026-04-29 09:26:31.111 +07:00 [INF] HTTP GET /api/invoices responded 200 in 10.3469 ms
+2026-04-29 09:26:32.020 +07:00 [INF] HTTP OPTIONS /api/invoices/1/status responded 204 in 0.0691 ms
+2026-04-29 09:26:32.038 +07:00 [INF] HTTP PUT /api/invoices/1/status responded 200 in 15.7501 ms
+2026-04-29 09:26:32.056 +07:00 [INF] HTTP GET /api/invoices responded 200 in 13.3890 ms
+2026-04-29 09:27:14.698 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0666 ms
+2026-04-29 09:27:14.750 +07:00 [INF] HTTP GET /api/payments responded 200 in 47.9234 ms
+2026-04-29 09:27:16.160 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0529 ms
+2026-04-29 09:27:16.177 +07:00 [INF] HTTP GET /api/invoices responded 200 in 11.8007 ms
+2026-04-29 09:27:23.206 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0726 ms
+2026-04-29 09:27:23.220 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.3269 ms
+2026-04-29 09:27:23.921 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0736 ms
+2026-04-29 09:27:23.940 +07:00 [INF] HTTP GET /api/invoices responded 200 in 14.2608 ms
+2026-04-29 09:27:26.256 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0733 ms
+2026-04-29 09:27:26.272 +07:00 [INF] HTTP GET /api/payments responded 200 in 11.9922 ms
+2026-04-29 09:27:27.202 +07:00 [INF] HTTP GET /api/invoices responded 200 in 13.7886 ms
+2026-04-29 09:28:30.825 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0732 ms
+2026-04-29 09:28:30.839 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.1185 ms
+2026-04-29 09:28:31.910 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0610 ms
+2026-04-29 09:28:31.927 +07:00 [INF] HTTP GET /api/invoices responded 200 in 12.6287 ms
+2026-04-29 09:28:44.010 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.1123 ms
+2026-04-29 09:28:44.026 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 11.1351 ms
+2026-04-29 09:28:44.884 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0633 ms
+2026-04-29 09:28:44.899 +07:00 [INF] HTTP GET /api/invoices responded 200 in 11.1274 ms
+2026-04-29 09:28:45.611 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0496 ms
+2026-04-29 09:28:45.627 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-04-29 09:28:45.636 +07:00 [INF] HTTP GET /api/bookings responded 200 in 20.5472 ms
+2026-04-29 09:28:47.383 +07:00 [INF] HTTP GET /api/invoices responded 200 in 12.4636 ms
+2026-04-29 09:28:48.088 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0620 ms
+2026-04-29 09:28:48.102 +07:00 [INF] HTTP GET /api/payments responded 200 in 10.9593 ms
+2026-04-29 09:28:49.011 +07:00 [INF] HTTP GET /api/invoices responded 200 in 10.2970 ms
+2026-04-29 09:28:50.491 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0750 ms
+2026-04-29 09:28:50.505 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.3067 ms
+2026-04-29 09:28:51.270 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0562 ms
+2026-04-29 09:28:51.285 +07:00 [INF] HTTP GET /api/invoices responded 200 in 9.7756 ms
+2026-04-29 09:28:55.672 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.1193 ms
+2026-04-29 09:28:55.686 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 9.0531 ms
+2026-04-29 09:28:56.420 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0393 ms
+2026-04-29 09:28:56.434 +07:00 [INF] HTTP GET /api/invoices responded 200 in 10.7412 ms
+2026-04-29 09:30:07.771 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0429 ms
+2026-04-29 09:30:07.784 +07:00 [INF] HTTP GET /api/payments responded 200 in 9.1326 ms
+2026-04-29 09:30:12.224 +07:00 [INF] HTTP GET /api/payments responded 200 in 9.6668 ms
+2026-04-29 09:30:14.767 +07:00 [INF] HTTP OPTIONS /api/guests responded 204 in 0.0534 ms
+2026-04-29 09:30:14.810 +07:00 [INF] HTTP GET /api/guests responded 200 in 39.6029 ms
+2026-04-29 09:30:18.679 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0448 ms
+2026-04-29 09:30:18.710 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 28.1055 ms
+2026-04-29 09:30:19.482 +07:00 [INF] HTTP GET /api/guests responded 200 in 10.8827 ms
+2026-04-29 09:30:50.086 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0411 ms
+2026-04-29 09:30:50.098 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 8.7370 ms
+2026-04-29 09:30:57.832 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0347 ms
+2026-04-29 09:30:57.842 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 7.3220 ms
+2026-04-29 09:31:18.538 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0414 ms
+2026-04-29 09:31:18.597 +07:00 [INF] HTTP GET /api/promotions responded 200 in 55.6667 ms
+2026-04-29 09:32:27.674 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0499 ms
+2026-04-29 09:32:27.756 +07:00 [INF] HTTP POST /api/promotions responded 201 in 78.8510 ms
+2026-04-29 09:32:27.853 +07:00 [INF] HTTP GET /api/promotions responded 200 in 9.6347 ms
+2026-04-29 09:32:36.784 +07:00 [INF] HTTP OPTIONS /api/staff responded 204 in 0.0420 ms
+2026-04-29 09:32:36.822 +07:00 [INF] GET /api/staff — 2 records
+2026-04-29 09:32:36.825 +07:00 [INF] HTTP GET /api/staff responded 200 in 37.6677 ms
+2026-04-29 09:32:46.963 +07:00 [INF] HTTP OPTIONS /api/staff responded 204 in 0.0448 ms
+2026-04-29 09:32:46.978 +07:00 [INF] GET /api/staff — 2 records
+2026-04-29 09:32:46.979 +07:00 [INF] HTTP GET /api/staff responded 200 in 12.0720 ms

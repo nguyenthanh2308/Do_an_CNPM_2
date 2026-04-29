@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -20,7 +20,6 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -224,61 +223,59 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
     .invoice-page { padding: 0; }
     .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
     .header-left { display: flex; align-items: center; gap: 16px; }
-    .page-title { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: #f1f5f9; margin: 0; }
-    .total-badge { background: rgba(99,102,241,0.15); color: #818cf8; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-    .filter-card { background: rgba(30,41,59,0.8) !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 12px !important; margin-bottom: 16px; padding: 16px 20px !important; }
+    .page-title { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 0; }
+    .page-title mat-icon { color: #6366f1; }
+    .total-badge { background: rgba(99,102,241,0.1); color: #6366f1; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(99,102,241,0.2); }
+    .filter-card { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 12px !important; margin-bottom: 16px; padding: 16px 20px !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
     .filter-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
     .status-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; cursor: pointer; font-size: 0.8rem; color: #94a3b8; transition: all 0.2s; }
-    .chip-btn:hover { background: rgba(255,255,255,0.05); }
-    .chip-btn.active { background: rgba(255,255,255,0.06); }
+    .chip-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; background: #f8fafc; cursor: pointer; font-size: 0.8rem; color: #64748b; transition: all 0.2s; }
+    .chip-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+    .chip-btn.active { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
     .chip-btn mat-icon { font-size: 1rem; width: 1rem; height: 1rem; }
-    .chip-count { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 1px 6px; font-size: 0.7rem; }
-    .chip-btn.chip-paid.active, .chip-btn.chip-paid:hover { color: #4ade80; background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
-    .chip-btn.chip-issued.active { color: #60a5fa; background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); }
-    .chip-btn.chip-overdue.active { color: #f87171; background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); }
-    .table-card { background: rgba(30,41,59,0.8) !important; border: 1px solid rgba(255,255,255,0.06) !important; border-radius: 12px !important; overflow: hidden; }
+    .chip-count { background: #e2e8f0; border-radius: 10px; padding: 1px 6px; font-size: 0.7rem; color: #475569; }
+    .chip-btn.chip-paid.active, .chip-btn.chip-paid:hover { color: #047857; background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
+    .chip-btn.chip-issued.active { color: #1d4ed8; background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); }
+    .chip-btn.chip-overdue.active { color: #b91c1c; background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+    .table-card { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 12px !important; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
     .table-wrapper { overflow-x: auto; }
     .invoice-table { width: 100%; background: transparent; }
-    .invoice-num { font-weight: 600; color: #818cf8; }
-    .booking-ref { background: rgba(99,102,241,0.12); color: #818cf8; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
-    .guest-name { color: #e2e8f0; }
-    .amount { font-weight: 700; color: #f1f5f9; }
+    .invoice-num { font-weight: 600; color: #6366f1; }
+    .booking-ref { background: rgba(99,102,241,0.08); color: #6366f1; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; border: 1px solid rgba(99,102,241,0.15); }
+    .guest-name { color: #1e293b; }
+    .amount { font-weight: 700; color: #0f766e; }
     .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
     .status-badge mat-icon { font-size: 0.9rem; width: 0.9rem; height: 0.9rem; }
-    .badge-paid { background: rgba(34,197,94,0.12); color: #4ade80; }
-    .badge-issued { background: rgba(59,130,246,0.12); color: #60a5fa; }
-    .badge-pending { background: rgba(59,130,246,0.12); color: #60a5fa; }
-    .badge-draft { background: rgba(100,116,139,0.12); color: #94a3b8; }
-    .badge-overdue { background: rgba(239,68,68,0.12); color: #f87171; }
-    .badge-cancelled { background: rgba(239,68,68,0.08); color: #f87171; }
-    .table-row:hover { background: rgba(99,102,241,0.05) !important; }
-    /* Dark theme overrides for Material table */
-    ::ng-deep .invoice-page .mat-mdc-header-cell { background: rgba(15,23,42,0.6) !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
-    ::ng-deep .invoice-page .mat-mdc-cell { color: #cbd5e1 !important; border-bottom: 1px solid rgba(255,255,255,0.04) !important; }
-    ::ng-deep .invoice-page .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
-    ::ng-deep .invoice-page .mat-mdc-paginator-icon { fill: #64748b !important; }
-    ::ng-deep .invoice-page .mat-mdc-select-value { color: #94a3b8 !important; }
-    .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #475569; }
+    .badge-paid { background: rgba(16,185,129,0.1); color: #047857; }
+    .badge-issued { background: rgba(59,130,246,0.1); color: #1d4ed8; }
+    .badge-pending { background: rgba(59,130,246,0.1); color: #1d4ed8; }
+    .badge-draft { background: #f1f5f9; color: #64748b; }
+    .badge-overdue { background: rgba(239,68,68,0.1); color: #b91c1c; }
+    .badge-cancelled { background: rgba(239,68,68,0.06); color: #b91c1c; }
+    .table-row:hover { background: #f8fafc !important; }
+    .mat-mdc-header-cell { background: #f8fafc !important; color: #64748b !important; font-size: 0.75rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; border-bottom: 1px solid #e2e8f0 !important; }
+    .mat-mdc-cell { color: #1e293b !important; border-bottom: 1px solid #f1f5f9 !important; }
+    .mat-mdc-paginator { background: transparent !important; color: #64748b !important; }
+    .empty-state { display: flex; flex-direction: column; align-items: center; padding: 48px; gap: 12px; color: #94a3b8; }
     .empty-state mat-icon { font-size: 3rem; width: 3rem; height: 3rem; }
     /* Side Panel */
-    .detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: flex-start; justify-content: flex-end; }
-    .detail-panel { background: #1e293b; border-left: 1px solid rgba(255,255,255,0.08); width: 380px; height: 100vh; overflow-y: auto; }
-    .panel-header { display: flex; align-items: center; gap: 14px; padding: 24px; background: linear-gradient(135deg, #1a2744, #1e293b); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .panel-icon { font-size: 2rem; width: 2rem; height: 2rem; color: #60a5fa; }
-    .panel-header h3 { margin: 0 0 2px; color: #f1f5f9; font-size: 1rem; }
+    .detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: flex-start; justify-content: flex-end; }
+    .detail-panel { background: #ffffff; border-left: 1px solid #e2e8f0; width: 380px; height: 100vh; overflow-y: auto; box-shadow: -4px 0 24px rgba(0,0,0,0.08); }
+    .panel-header { display: flex; align-items: center; gap: 14px; padding: 24px; background: linear-gradient(135deg, #eef2ff, #f8fafc); border-bottom: 1px solid #e2e8f0; }
+    .panel-icon { font-size: 2rem; width: 2rem; height: 2rem; color: #6366f1; }
+    .panel-header h3 { margin: 0 0 2px; color: #1e293b; font-size: 1rem; }
     .panel-header p { margin: 0; color: #64748b; font-size: 0.8rem; }
-    .close-btn { margin-left: auto; color: #64748b; }
+    .close-btn { margin-left: auto; color: #94a3b8; }
     .panel-body { padding: 20px; }
     .panel-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.875rem; }
     .p-label { color: #64748b; }
-    .p-value { color: #e2e8f0; font-weight: 500; }
-    .price-row { display: flex; justify-content: space-between; padding: 5px 0; color: #94a3b8; font-size: 0.9rem; }
-    .price-row.discount { color: #4ade80; }
-    .price-row.tax { color: #f59e0b; }
-    .price-row.total { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 6px; padding-top: 10px; font-size: 1.1rem; font-weight: 700; color: #f1f5f9; }
+    .p-value { color: #1e293b; font-weight: 500; }
+    .price-row { display: flex; justify-content: space-between; padding: 5px 0; color: #475569; font-size: 0.9rem; }
+    .price-row.discount { color: #047857; }
+    .price-row.tax { color: #92400e; }
+    .price-row.total { border-top: 1px solid #e2e8f0; margin-top: 6px; padding-top: 10px; font-size: 1.1rem; font-weight: 700; color: #1e293b; }
     .status-display { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin: 8px 0; }
-    .note-box { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 10px; color: #94a3b8; font-size: 0.875rem; margin-top: 8px; }
+    .note-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; color: #64748b; font-size: 0.875rem; margin-top: 8px; }
     .pay-btn { width: 100%; margin-top: 16px; }
   `]
 })

@@ -1,7 +1,6 @@
 .admin-layout-container {
   height: 100vh;
-  background-color: #f8fafc; // Light background for the main canvas, or use #0f172a for dark
-  // To match standard premium web apps, keep content light/clean but sidebar/header dark/glass
+  background-color: #f8fafc !important;
 }
 
 .glass-sidenav {
