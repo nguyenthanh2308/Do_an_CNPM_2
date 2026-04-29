@@ -1,22 +1,62 @@
 <div class="home-page">
   <app-guest-header></app-guest-header>
 
+  <!-- ─── HERO ─── -->
   <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">Nền tảng giới thiệu khách sạn </p>
-      <h1>Khám phá hệ thống khách sạn hợp tác và các hạng phòng nổi bật</h1>
-      <div class="point-list">
-        <span *ngFor="let item of introPoints">{{ item }}</span>
+    <div class="hero-inner">
+      <!-- Left: Text + CTA -->
+      <div class="hero-copy">
+        <p class="eyebrow">✦ Nền tảng đặt phòng khách sạn hàng đầu</p>
+        <h1>Khám phá kỳ nghỉ <span class="accent-text">hoàn hảo</span> của bạn</h1>
+        <p class="hero-desc">
+          Hàng trăm khách sạn 3–5 sao được chọn lọc kỹ càng, đặt phòng dễ dàng
+          và trải nghiệm dịch vụ đẳng cấp — tất cả chỉ trong một nền tảng.
+        </p>
+        <div class="point-list">
+          <span *ngFor="let item of introPoints">{{ item }}</span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" (click)="navigateTo('/guest/rooms')">
+            <mat-icon>king_bed</mat-icon>
+            Khám phá phòng
+          </button>
+          <button class="btn-outline" (click)="navigateTo('/guest/hotels')">
+            <mat-icon>apartment</mat-icon>
+            Xem khách sạn
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Hero Image -->
+      <div class="hero-visual">
+        <div class="hero-img-wrap">
+          <img [src]="heroImageUrl" alt="Luxury Hotel" class="hero-img" loading="lazy">
+          <!-- Floating badge -->
+          <div class="float-badge top-badge">
+            <mat-icon>star</mat-icon>
+            <div>
+              <strong>4.9/5</strong>
+              <span>Đánh giá trung bình</span>
+            </div>
+          </div>
+          <div class="float-badge bottom-badge">
+            <mat-icon>check_circle</mat-icon>
+            <div>
+              <strong>99%</strong>
+              <span>Khách hài lòng</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ─── ACHIEVEMENT STATS ─── -->
   <section class="achievement-section">
     <div class="section-head">
       <p class="section-tag">Thành tựu</p>
       <h2>Những con số nổi bật</h2>
     </div>
-
     <div class="achievement-grid">
       <mat-card class="achievement-card" *ngFor="let item of achievements" [ngClass]="'tone-' + item.tone">
         <p class="value">{{ item.value }}</p>
@@ -25,15 +65,32 @@
     </div>
   </section>
 
+  <!-- ─── WHY CHOOSE US ─── -->
+  <section class="features-section">
+    <div class="section-head">
+      <p class="section-tag">Tại sao chọn chúng tôi</p>
+      <h2>Dịch vụ vượt trội cho mọi kỳ nghỉ</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let f of features">
+        <div class="feature-icon" [style.background]="f.iconBg">
+          <mat-icon [style.color]="f.iconColor">{{ f.icon }}</mat-icon>
+        </div>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOTEL SHOWCASE MARQUEE ─── -->
   <section class="showcase-section">
     <div class="section-head">
       <p class="section-tag">Khách sạn đối tác</p>
       <h2>Danh sách khách sạn đang hợp tác</h2>
     </div>
-
     <div class="marquee-track hotels">
       <article class="showcase-card" *ngFor="let card of hotelTrackCards">
-        <img [src]="card.imageUrl" [alt]="card.title">
+        <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
         <div class="overlay">
           <span class="tag">{{ card.tag }}</span>
           <h3>{{ card.title }}</h3>
@@ -43,15 +100,15 @@
     </div>
   </section>
 
+  <!-- ─── ROOM SHOWCASE MARQUEE ─── -->
   <section class="showcase-section rooms">
     <div class="section-head">
       <p class="section-tag">Không gian phòng</p>
       <h2>Hình ảnh phòng khách sạn</h2>
     </div>
-
     <div class="marquee-track rooms-track">
       <article class="showcase-card" *ngFor="let card of roomTrackCards">
-        <img [src]="card.imageUrl" [alt]="card.title">
+        <img [src]="card.imageUrl" [alt]="card.title" loading="lazy">
         <div class="overlay">
           <span class="tag">{{ card.tag }}</span>
           <h3>{{ card.title }}</h3>
@@ -60,4 +117,60 @@
       </article>
     </div>
   </section>
+
+  <!-- ─── LIFESTYLE GALLERY ─── -->
+  <section class="lifestyle-section">
+    <div class="section-head">
+      <p class="section-tag">Trải nghiệm kỳ nghỉ</p>
+      <h2>Đắm mình vào không gian đẳng cấp</h2>
+    </div>
+    <div class="lifestyle-grid">
+      <div class="lifestyle-card" *ngFor="let img of lifestyleImages" [ngClass]="'ls-' + img.span">
+        <img [src]="img.url" [alt]="img.label" loading="lazy">
+        <div class="ls-overlay">
+          <span class="ls-tag">{{ img.tag }}</span>
+          <h3>{{ img.label }}</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="testimonials-section">
+    <div class="section-head">
+      <p class="section-tag">Khách hàng nói gì</p>
+      <h2>Hàng nghìn khách hàng đã tin tưởng</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let t of testimonials">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">{{ t.text }}</p>
+        <div class="testimonial-stars">
+          <mat-icon *ngFor="let s of getStars(t.rating)">star</mat-icon>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">{{ t.avatar }}</div>
+          <div>
+            <strong>{{ t.name }}</strong>
+            <span>{{ t.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BANNER ─── -->
+  <section class="cta-banner">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Sẵn sàng trải nghiệm?</h2>
+        <p>Khám phá hàng trăm phòng khách sạn cao cấp và đặt phòng ngay hôm nay.</p>
+      </div>
+      <button class="btn-cta" (click)="navigateTo('/guest/rooms')">
+        <mat-icon>explore</mat-icon>
+        Khám phá ngay
+      </button>
+    </div>
+  </section>
+
 </div>

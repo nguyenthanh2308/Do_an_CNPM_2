@@ -151,8 +151,8 @@
     align-items: center;
     gap: 12px;
     margin-right: 16px;
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 6px 14px 6px 6px;
+    border-radius: 50px;
     background: rgba(99, 102, 241, 0.05);
     transition: background 0.3s ease;
 
@@ -161,9 +161,9 @@
     }
 
     .avatar-small {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
       display: flex;
       align-items: center;
@@ -172,6 +172,7 @@
       font-size: 14px;
       color: white;
       flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
     }
 
     .user-details-small {
