@@ -2,3 +2,24 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Session warning snackbar */
+.session-warning-snack {
+  background: linear-gradient(135deg, #f59e0b, #ef4444) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35) !important;
+
+  .mat-mdc-snack-bar-action {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0 12px !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.35) !important;
+    }
+  }
+}

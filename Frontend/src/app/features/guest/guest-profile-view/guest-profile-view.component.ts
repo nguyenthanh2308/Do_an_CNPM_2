@@ -66,4 +66,11 @@ export class GuestProfileViewComponent implements OnInit, OnDestroy {
     const d = new Date(iso);
     return Number.isNaN(d.getTime()) ? '—' : d.toLocaleDateString('vi-VN');
   }
+
+  getInitials(fullName: string | null | undefined): string {
+    if (!fullName) return '?';
+    const parts = fullName.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+    return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+  }
 }

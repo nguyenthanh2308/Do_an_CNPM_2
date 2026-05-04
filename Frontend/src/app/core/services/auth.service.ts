@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, firstValueFrom, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
 import { ApiResponse, LoginRequest, LoginResponse, UserInfo } from '../models/models';
 
@@ -10,7 +11,8 @@ export class AuthService {
   private readonly API = `${environment.apiUrl}/auth`;
   private readonly SESSION_RUNTIME_ID_KEY = 'sessionRuntimeId';
   private readonly SESSION_STARTED_AT_KEY = 'sessionStartedAt';
-  private readonly SESSION_TIMEOUT_MS = (environment.sessionTimeoutMinutes ?? 30) * 60 * 1000;
+  private readonly SESSION_TIMEOUT_MS = (environment.sessionTimeoutMinutes ?? 10) * 60 * 1000;
+  private readonly SESSION_WARNING_BEFORE_MS = 2 * 60 * 1000; // Cảnh báo trước 2 phút
   private readonly SESSION_STORAGE_KEYS = [
     'accessToken',
     'refreshToken',
@@ -21,9 +23,14 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<UserInfo | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
   private autoLogoutTimer: ReturnType<typeof setTimeout> | null = null;
+  private warningTimer: ReturnType<typeof setTimeout> | null = null;
   private initialized = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
     this.initializeSession();
   }
 
@@ -34,7 +41,7 @@ export class AuthService {
 
     this.initialized = true;
 
-    const stored = localStorage.getItem('user');
+    const stored = sessionStorage.getItem('user');
     if (stored) {
       this.currentUserSubject.next(JSON.parse(stored));
     }
@@ -61,10 +68,10 @@ export class AuthService {
     return this.http.post<ApiResponse<LoginResponse>>(`${this.API}/login`, dto).pipe(
       tap(res => {
         if (res.success) {
-          localStorage.setItem('accessToken', res.data.accessToken);
-          localStorage.setItem('refreshToken', res.data.refreshToken);
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-          localStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
+          sessionStorage.setItem('accessToken', res.data.accessToken);
+          sessionStorage.setItem('refreshToken', res.data.refreshToken);
+          sessionStorage.setItem('user', JSON.stringify(res.data.user));
+          sessionStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
           this.currentUserSubject.next(res.data.user);
           void this.syncCurrentRuntimeId();
           this.scheduleAutoLogout();
@@ -78,20 +85,20 @@ export class AuthService {
   }
 
   logout(): void {
-    const rt = localStorage.getItem('refreshToken');
+    const rt = sessionStorage.getItem('refreshToken');
     if (rt) this.http.post(`${this.API}/logout`, { refreshToken: rt }).subscribe();
     this.clearLocalSession();
   }
 
   refreshToken(): Observable<ApiResponse<LoginResponse>> {
-    const refreshToken = localStorage.getItem('refreshToken') ?? '';
+    const refreshToken = sessionStorage.getItem('refreshToken') ?? '';
     return this.http.post<ApiResponse<LoginResponse>>(`${this.API}/refresh`, { refreshToken }).pipe(
       tap(res => {
         if (res.success) {
-          localStorage.setItem('accessToken', res.data.accessToken);
-          localStorage.setItem('refreshToken', res.data.refreshToken);
+          sessionStorage.setItem('accessToken', res.data.accessToken);
+          sessionStorage.setItem('refreshToken', res.data.refreshToken);
           if (res.data.user) {
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            sessionStorage.setItem('user', JSON.stringify(res.data.user));
             this.currentUserSubject.next(res.data.user);
           }
         }
@@ -99,7 +106,7 @@ export class AuthService {
     );
   }
 
-  getAccessToken(): string | null   { return localStorage.getItem('accessToken'); }
+  getAccessToken(): string | null   { return sessionStorage.getItem('accessToken'); }
   getCurrentUser(): UserInfo | null  { return this.currentUserSubject.value; }
   isLoggedIn(): boolean              { return !!this.getAccessToken(); }
   hasRole(role: string): boolean     { return this.getCurrentUser()?.role === role; }
@@ -110,9 +117,9 @@ export class AuthService {
       return;
     }
 
-    const startedAtRaw = localStorage.getItem(this.SESSION_STARTED_AT_KEY);
+    const startedAtRaw = sessionStorage.getItem(this.SESSION_STARTED_AT_KEY);
     if (!startedAtRaw) {
-      localStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
+      sessionStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
       return;
     }
 
@@ -123,16 +130,21 @@ export class AuthService {
   }
 
   private scheduleAutoLogout(): void {
+    // Hủy tất cả timer cũ
     if (this.autoLogoutTimer) {
       clearTimeout(this.autoLogoutTimer);
       this.autoLogoutTimer = null;
+    }
+    if (this.warningTimer) {
+      clearTimeout(this.warningTimer);
+      this.warningTimer = null;
     }
 
     if (!this.getAccessToken()) {
       return;
     }
 
-    const startedAt = Number(localStorage.getItem(this.SESSION_STARTED_AT_KEY) ?? Date.now());
+    const startedAt = Number(sessionStorage.getItem(this.SESSION_STARTED_AT_KEY) ?? Date.now());
     const remainingMs = this.SESSION_TIMEOUT_MS - (Date.now() - startedAt);
 
     if (remainingMs <= 0) {
@@ -140,9 +152,62 @@ export class AuthService {
       return;
     }
 
+    // Lên lịch cảnh báo trước 2 phút
+    const warningIn = remainingMs - this.SESSION_WARNING_BEFORE_MS;
+    if (warningIn > 0) {
+      this.warningTimer = setTimeout(() => {
+        this.showSessionWarning();
+      }, warningIn);
+    } else {
+      // Còn dưới 2 phút → hiển thị cảnh báo ngay
+      this.showSessionWarning();
+    }
+
+    // Lên lịch tự động đăng xuất
     this.autoLogoutTimer = setTimeout(() => {
       this.clearLocalSession('Phiên làm việc đã quá 10 phút, vui lòng đăng nhập lại để tiếp tục.');
     }, remainingMs);
+  }
+
+  /** Hiển thị snackbar cảnh báo phiên sắp hết — người dùng có thể chọn Gia hạn */
+  private showSessionWarning(): void {
+    const snackRef = this.snackBar.open(
+      '⚠️ Phiên làm việc còn khoảng 2 phút!',
+      'Gia hạn',
+      {
+        duration: this.SESSION_WARNING_BEFORE_MS,
+        panelClass: ['session-warning-snack'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      }
+    );
+
+    snackRef.onAction().subscribe(() => {
+      this.renewSession();
+    });
+  }
+
+  /** Gọi refresh token để gia hạn phiên, reset lại timer */
+  renewSession(): void {
+    this.refreshToken().subscribe({
+      next: (res) => {
+        if (res.success) {
+          // Reset thời gian bắt đầu phiên
+          sessionStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
+          this.scheduleAutoLogout();
+          this.snackBar.open('✅ Phiên làm việc đã được gia hạn thêm 10 phút.', '', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+        } else {
+          this.clearLocalSession('Không thể gia hạn phiên, vui lòng đăng nhập lại.');
+        }
+      },
+      error: () => {
+        this.clearLocalSession('Không thể gia hạn phiên, vui lòng đăng nhập lại.');
+      }
+    });
   }
 
   private async enforceBackendRestartOnStartup(): Promise<void> {
@@ -151,9 +216,9 @@ export class AuthService {
       return;
     }
 
-    const storedRuntimeId = localStorage.getItem(this.SESSION_RUNTIME_ID_KEY);
+    const storedRuntimeId = sessionStorage.getItem(this.SESSION_RUNTIME_ID_KEY);
     if (!storedRuntimeId) {
-      localStorage.setItem(this.SESSION_RUNTIME_ID_KEY, runtimeId);
+      sessionStorage.setItem(this.SESSION_RUNTIME_ID_KEY, runtimeId);
       return;
     }
 
@@ -189,7 +254,7 @@ export class AuthService {
   }
 
   private async tryRefreshThenValidateMe(): Promise<boolean> {
-    const rt = localStorage.getItem('refreshToken');
+    const rt = sessionStorage.getItem('refreshToken');
     if (!rt) {
       return false;
     }
@@ -212,7 +277,7 @@ export class AuthService {
   private async syncCurrentRuntimeId(): Promise<void> {
     const runtimeId = await this.getCurrentRuntimeId();
     if (runtimeId) {
-      localStorage.setItem(this.SESSION_RUNTIME_ID_KEY, runtimeId);
+      sessionStorage.setItem(this.SESSION_RUNTIME_ID_KEY, runtimeId);
     }
   }
 
@@ -231,9 +296,13 @@ export class AuthService {
       clearTimeout(this.autoLogoutTimer);
       this.autoLogoutTimer = null;
     }
+    if (this.warningTimer) {
+      clearTimeout(this.warningTimer);
+      this.warningTimer = null;
+    }
 
     for (const key of this.SESSION_STORAGE_KEYS) {
-      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
     }
 
     this.currentUserSubject.next(null);

@@ -451,3 +451,74 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-05-04 11:02:12.304 +07:00 [INF] SignalR Disconnected: ConnId=tMbe4dwAQVyHEcclP2kddw
 2026-05-04 11:02:12.307 +07:00 [INF] HTTP GET /hubs/room responded 101 in 292890.1170 ms
 2026-05-04 11:02:12.307 +07:00 [INF] HTTP GET /hubs/room responded 101 in 292872.4490 ms
+2026-05-04 11:09:29.425 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-04 11:09:51.400 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-04 11:09:51.407 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.6387 ms
+2026-05-04 11:09:51.624 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-04 11:09:51.944 +07:00 [INF] User 'Test12' logged in.
+2026-05-04 11:09:51.976 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 556.7478 ms
+2026-05-04 11:09:51.982 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.2882 ms
+2026-05-04 11:09:52.024 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 39.1932 ms
+2026-05-04 11:09:52.024 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0790 ms
+2026-05-04 11:09:52.024 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0797 ms
+2026-05-04 11:09:52.188 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 158.1750 ms
+2026-05-04 11:09:52.195 +07:00 [INF] HTTP GET /api/rooms responded 200 in 162.4663 ms
+2026-05-04 11:09:52.217 +07:00 [INF] HTTP GET /uploads/202605/22f6ec46b1c04d48a39f93ab5db92195.jpg responded 304 in 2.6732 ms
+2026-05-04 11:09:56.099 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.6732 ms
+2026-05-04 11:10:02.740 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.3472 ms
+2026-05-04 11:10:02.751 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-05-04 11:10:03.005 +07:00 [INF] User 'admin' logged in.
+2026-05-04 11:10:03.006 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 263.4130 ms
+2026-05-04 11:10:03.010 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0886 ms
+2026-05-04 11:10:03.014 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.5091 ms
+2026-05-04 11:10:03.091 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0755 ms
+2026-05-04 11:10:03.106 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.9219 ms
+2026-05-04 11:10:03.143 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1405 ms
+2026-05-04 11:10:03.143 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0520 ms
+2026-05-04 11:10:03.155 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 8.1638 ms
+2026-05-04 11:10:03.155 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 9.1540 ms
+2026-05-04 11:10:03.239 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=rXFZOT9fiJiI_TBWF0b1HA
+2026-05-04 11:10:03.242 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=IBSBKOsSH0WdqGBVVN8VXQ
+2026-05-04 11:10:06.470 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4173 ms
+2026-05-04 11:10:06.545 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3820 ms
+2026-05-04 11:10:06.578 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1877 ms
+2026-05-04 11:10:06.578 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1873 ms
+2026-05-04 11:10:06.582 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.5871 ms
+2026-05-04 11:10:06.584 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4372 ms
+2026-05-04 11:10:06.659 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=U-X9wWW9Q985UsfAOJi_Fw
+2026-05-04 11:10:06.668 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=h5VQ5y2eXj83zVDgPc0CWw
+2026-05-04 11:55:57.343 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-04 11:56:12.391 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-04 11:56:12.398 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.5136 ms
+2026-05-04 11:56:12.607 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-04 11:56:12.878 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 468.6058 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 87
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-04 11:56:12.895 +07:00 [WRN] AppException [401]: Email hoặc mật khẩu không đúng.
+2026-05-04 11:56:18.289 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.5453 ms
+2026-05-04 11:56:18.304 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-04 11:56:18.645 +07:00 [INF] User 'Test12' logged in.
+2026-05-04 11:56:18.666 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 373.1846 ms
+2026-05-04 11:56:18.670 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0715 ms
+2026-05-04 11:56:18.710 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1244 ms
+2026-05-04 11:56:18.710 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0360 ms
+2026-05-04 11:56:18.716 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 43.2313 ms
+2026-05-04 11:56:18.834 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 118.9778 ms
+2026-05-04 11:56:18.844 +07:00 [INF] HTTP GET /api/rooms responded 200 in 128.1254 ms
+2026-05-04 11:56:18.873 +07:00 [INF] HTTP GET /uploads/202605/22f6ec46b1c04d48a39f93ab5db92195.jpg responded 304 in 2.7592 ms
+2026-05-04 11:56:20.688 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.8339 ms
+2026-05-04 11:56:20.721 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.9450 ms
+2026-05-04 11:56:20.722 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.9854 ms
