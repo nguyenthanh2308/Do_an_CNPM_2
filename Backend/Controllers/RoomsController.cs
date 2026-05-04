@@ -98,11 +98,11 @@ namespace HotelManagement.Controllers
         [ProducesResponseType(typeof(ApiResponse<object>), 409)]
         public async Task<IActionResult> Create([FromBody] CreateRoomDto dto)
         {
-            // Kiểm tra RoomNumber trùng trong cùng Hotel
+            // Kiểm tra RoomNumber trùng trong cùng Hotel (kể cả phòng đã vô hiệu hóa)
             var exists = await _context.Rooms
-                .AnyAsync(r => r.HotelId == dto.HotelId && r.RoomNumber == dto.RoomNumber && r.IsActive);
+                .AnyAsync(r => r.HotelId == dto.HotelId && r.RoomNumber == dto.RoomNumber);
             if (exists)
-                throw AppException.Conflict($"Phòng '{dto.RoomNumber}' đã tồn tại trong khách sạn này.");
+                throw AppException.Conflict($"Số phòng '{dto.RoomNumber}' đã tồn tại trong khách sạn này (kể cả phòng đã vô hiệu hóa).");
 
             // Kiểm tra RoomType thuộc Hotel
             var roomType = await _context.RoomTypes
