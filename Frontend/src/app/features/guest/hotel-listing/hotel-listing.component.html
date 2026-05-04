@@ -2,11 +2,13 @@
   <app-guest-header></app-guest-header>
 
   <header class="page-header">
-    <h1>
-      <mat-icon>apartment</mat-icon>
-      Khách sạn
-    </h1>
-    <!-- <p>Mỗi khách sạn hiển thị số lượng phòng hiện có. Chọn khách sạn để xem phòng, không cần lọc theo thời gian.</p> -->
+    <div class="page-header-card">
+      <h1>
+        <mat-icon>apartment</mat-icon>
+        Khách sạn đối tác
+      </h1>
+      <p>Chọn một khách sạn để xem phòng, lọc theo sức chứa, xem chi tiết hoặc đặt nhanh.</p>
+    </div>
   </header>
 
   <div class="loading" *ngIf="isLoadingHotels">
@@ -48,15 +50,24 @@
 
     <div class="room-grid" *ngIf="!isLoadingRooms && getFilteredRooms().length > 0">
       <mat-card class="room-card" *ngFor="let room of getFilteredRooms()">
-        <img [src]="resolveImageUrl(room.thumbnailUrl, fallbackRoomImage)" [alt]="'Phòng ' + room.roomNumber">
+        <div class="room-thumb-wrap" (click)="viewRoom(room, $event)" (keydown.enter)="viewRoom(room, $event)" tabindex="0" role="button" [attr.aria-label]="'Xem phòng ' + room.roomNumber">
+          <img [src]="resolveImageUrl(room.thumbnailUrl, fallbackRoomImage)" [alt]="'Phòng ' + room.roomNumber">
+          <span class="thumb-hint"><mat-icon>zoom_in</mat-icon></span>
+        </div>
         <div class="room-body">
           <h4>Phòng {{ room.roomNumber }}</h4>
           <p>{{ room.roomTypeName }} • Tầng {{ room.floor }}</p>
           <p>Sức chứa: {{ getRoomCapacity(room) }} người</p>
         </div>
-        <button mat-flat-button [disabled]="room.status !== 'Available'" (click)="onBookClick(room)">
-          {{ room.status === 'Available' ? 'Đặt phòng' : 'Không khả dụng' }}
-        </button>
+        <div class="room-actions">
+          <button mat-stroked-button type="button" (click)="viewRoom(room, $event)">
+            <mat-icon>visibility</mat-icon>
+            Xem phòng
+          </button>
+          <button mat-flat-button [disabled]="room.status !== 'Available'" (click)="onBookClick(room)">
+            {{ room.status === 'Available' ? 'Đặt phòng' : 'Không khả dụng' }}
+          </button>
+        </div>
       </mat-card>
     </div>
 

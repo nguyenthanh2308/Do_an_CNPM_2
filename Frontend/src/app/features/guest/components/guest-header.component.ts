@@ -32,6 +32,10 @@ import { AuthService } from '../../../core/services/auth.service';
           </button>
 
           <mat-menu #accountMenu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="['/guest/profile']">
+              <mat-icon>person</mat-icon>
+              <span>Hồ sơ</span>
+            </button>
             <button mat-menu-item [routerLink]="['/guest/my-bookings']">
               <mat-icon>history</mat-icon>
               <span>Lịch sử đặt phòng</span>

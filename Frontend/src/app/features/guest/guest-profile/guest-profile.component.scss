@@ -1,0 +1,80 @@
+.guest-profile-page {
+  min-height: 100vh;
+  background: linear-gradient(165deg, #ecfeff 0%, #f8fafc 45%, #eef2ff 100%);
+}
+
+.page-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 20px 48px;
+}
+
+.hero {
+  margin-bottom: 20px;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
+    font-size: 1.65rem;
+    color: #0f172a;
+  }
+
+  p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.5;
+  }
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px;
+  color: #64748b;
+}
+
+.profile-card {
+  border-radius: 16px;
+  padding: 8px 8px 16px;
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
+}
+
+.profile-form {
+  padding: 16px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-row {
+  grid-column: 1 / -1;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.actions {
+  padding-top: 8px;
+}
+
+.actions button mat-icon {
+  margin-right: 6px;
+  vertical-align: middle;
+}

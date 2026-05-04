@@ -4,10 +4,23 @@
 
 .hotel-listing-page {
   min-height: 100vh;
-  padding: 24px;
+  padding: 24px 24px 40px;
   background:
     radial-gradient(circle at 90% 8%, rgba(45, 212, 191, 0.14), transparent 34%),
     linear-gradient(180deg, #f8fcff, #eef8ff);
+}
+
+.page-header {
+  max-width: 1100px;
+  margin: 0 auto 12px;
+}
+
+.page-header-card {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(45, 212, 191, 0.18);
+  box-shadow: 0 14px 36px rgba(15, 118, 110, 0.1);
 }
 
 .page-header h1 {
@@ -16,11 +29,14 @@
   align-items: center;
   gap: 10px;
   font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: #0f172a;
 }
 
 .page-header p {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: #475569;
+  line-height: 1.55;
+  max-width: 58ch;
 }
 
 .loading {
@@ -32,7 +48,8 @@
 }
 
 .hotel-grid {
-  margin-top: 18px;
+  margin: 18px auto 0;
+  max-width: 1100px;
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -82,7 +99,8 @@
 }
 
 .rooms-section {
-  margin-top: 24px;
+  margin: 24px auto 0;
+  max-width: 1100px;
   padding: 16px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.86);
@@ -113,11 +131,43 @@
   padding: 10px;
 }
 
-.room-card img {
+.room-thumb-wrap {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+}
+
+.room-thumb-wrap:focus-visible {
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.55);
+}
+
+.room-thumb-wrap img {
   width: 100%;
   height: 130px;
-  border-radius: 8px;
   object-fit: cover;
+  display: block;
+}
+
+.thumb-hint {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.5);
+  color: #fff;
+}
+
+.thumb-hint mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .room-body {
@@ -133,14 +183,25 @@
   color: #475569;
 }
 
-.room-card button {
-  width: 100%;
-  border-radius: 10px;
+.room-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.room-actions .mat-mdc-outlined-button,
+.room-actions .mat-mdc-unelevated-button {
+  border-radius: 10px !important;
+  font-weight: 600;
+}
+
+.room-actions .mat-mdc-unelevated-button:not([disabled]) {
   background: linear-gradient(135deg, #14b8a6, #2563eb) !important;
   color: #fff !important;
 }
 
-.room-card button[disabled] {
+.room-actions .mat-mdc-unelevated-button[disabled] {
   background: #cbd5e1 !important;
   color: #64748b !important;
 }

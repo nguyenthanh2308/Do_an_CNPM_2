@@ -2,7 +2,10 @@
   <app-guest-header></app-guest-header>
 
   <section class="search-dock">
-    <h1>Tìm phòng theo thời gian lưu trú</h1>
+    <div class="search-hero">
+      <h1>Tìm phòng theo lịch của bạn</h1>
+      <p>Chọn ngày nhận — trả phòng, hệ thống gợi ý phòng trống. Bấm vào thẻ phòng để xem chi tiết.</p>
+    </div>
 
     <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchRooms()">
       <mat-form-field appearance="outline">
@@ -37,13 +40,18 @@
     <p class="result-title" *ngIf="!isLoading">{{ availableRooms.length }} phòng trống phù hợp</p>
 
     <div class="room-grid" *ngIf="availableRooms.length > 0">
-      <mat-card class="room-card" *ngFor="let room of availableRooms">
+      <mat-card class="room-card" *ngFor="let room of availableRooms" (click)="viewRoom(room, $event)" (keydown.enter)="viewRoom(room, $event)" tabindex="0" role="button" [attr.aria-label]="'Xem phòng ' + room.roomNumber">
         <div class="thumb">
           <img [src]="resolveImageUrl(room.thumbnailUrl)" [alt]="room.roomTypeName">
+          <span class="card-badge">Xem chi tiết</span>
         </div>
-        <h3>{{ room.roomTypeName }} - Phòng {{ room.roomNumber }}</h3>
+        <h3>{{ room.roomTypeName }} — Phòng {{ room.roomNumber }}</h3>
         <p>Tầng {{ room.floor }} • Tối đa {{ room.maxOccupancy }} khách</p>
         <div class="price">{{ room.pricePerNight | number }} VND / đêm</div>
+        <button mat-stroked-button type="button" class="card-cta" (click)="viewRoom(room, $event)">
+          <mat-icon>visibility</mat-icon>
+          Xem phòng
+        </button>
       </mat-card>
     </div>
 

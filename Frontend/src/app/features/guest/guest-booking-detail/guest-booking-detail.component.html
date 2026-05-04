@@ -1,0 +1,80 @@
+<div class="booking-detail-page">
+  <app-guest-header></app-guest-header>
+
+  <div class="toolbar">
+    <button mat-stroked-button type="button" (click)="backToList()">
+      <mat-icon>arrow_back</mat-icon>
+      Quay lại lịch sử
+    </button>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Đang tải chi tiết đặt phòng...</p>
+  </div>
+
+  <mat-card class="detail-card" *ngIf="!isLoading && booking">
+    <div class="card-head">
+      <div>
+        <h1>Chi tiết đặt phòng #{{ booking.bookingId }}</h1>
+        <p class="muted">{{ booking.roomTypeName }} • {{ booking.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+      <span class="status-pill">{{ getStatusLabel(booking.status) }}</span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <section class="grid">
+      <div class="field">
+        <span class="label">Nhận phòng</span>
+        <strong>{{ booking.checkInDate | date:'dd/MM/yyyy' }}</strong>
+      </div>
+      <div class="field">
+        <span class="label">Trả phòng</span>
+        <strong>{{ booking.checkOutDate | date:'dd/MM/yyyy' }}</strong>
+      </div>
+      <div class="field">
+        <span class="label">Số khách</span>
+        <strong>{{ booking.numGuests }}</strong>
+      </div>
+      <div class="field">
+        <span class="label">Số đêm</span>
+        <strong>{{ booking.nightCount }}</strong>
+      </div>
+      <div class="field">
+        <span class="label">Khách</span>
+        <strong>{{ booking.guestName }}</strong>
+      </div>
+      <div class="field" *ngIf="booking.guestPhone">
+        <span class="label">Điện thoại</span>
+        <strong>{{ booking.guestPhone }}</strong>
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="rooms-block">
+      <h2><mat-icon>meeting_room</mat-icon> Phòng</h2>
+      <div class="room-row" *ngFor="let r of booking.rooms">
+        <mat-icon>door_front</mat-icon>
+        <div>
+          <strong>Phòng {{ r.roomNumber }}</strong>
+          <span class="muted">Tầng {{ r.floor }} • {{ r.roomTypeName }}</span>
+        </div>
+        <span class="price">{{ r.pricePerNight | number }} VND/đêm</span>
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="amounts">
+      <div class="row"><span>Tạm tính</span><strong>{{ booking.totalAmount | number }} VND</strong></div>
+      <div class="row" *ngIf="booking.discountAmount > 0">
+        <span>Giảm giá</span><strong class="discount">-{{ booking.discountAmount | number }} VND</strong>
+      </div>
+      <div class="row total"><span>Tổng thanh toán</span><strong>{{ booking.finalAmount | number }} VND</strong></div>
+    </section>
+
+    <p class="notes" *ngIf="booking.specialRequests"><strong>Yêu cầu đặc biệt:</strong> {{ booking.specialRequests }}</p>
+  </mat-card>
+</div>

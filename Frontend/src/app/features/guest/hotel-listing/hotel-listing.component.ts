@@ -9,11 +9,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { HotelService } from '../../../core/services/hotel.service';
 import { RoomService } from '../../../core/services/room.service';
 import { HotelDto, RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
 import { GuestHeaderComponent } from '../components/guest-header.component';
+import { RoomDetailDialogComponent } from '../../rooms/room-detail-dialog.component';
 
 @Component({
   selector: 'app-hotel-listing',
@@ -28,7 +30,8 @@ import { GuestHeaderComponent } from '../components/guest-header.component';
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   templateUrl: './hotel-listing.component.html',
   styleUrl: './hotel-listing.component.scss'
@@ -50,7 +53,8 @@ export class HotelListingComponent implements OnInit, OnDestroy {
     private readonly hotelService: HotelService,
     private readonly roomService: RoomService,
     private readonly snackBar: MatSnackBar,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -105,6 +109,15 @@ export class HotelListingComponent implements OnInit, OnDestroy {
 
   goToRoomPage(hotelId: number): void {
     this.router.navigate(['/guest/rooms'], { queryParams: { hotelId } });
+  }
+
+  viewRoom(room: RoomDto, event?: Event): void {
+    event?.stopPropagation();
+    this.dialog.open(RoomDetailDialogComponent, {
+      width: 'min(92vw, 720px)',
+      maxHeight: '90vh',
+      data: { roomId: room.roomId }
+    });
   }
 
   private loadHotels(): void {

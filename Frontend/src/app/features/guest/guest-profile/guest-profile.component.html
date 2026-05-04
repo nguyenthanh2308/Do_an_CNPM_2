@@ -1,0 +1,85 @@
+<div class="guest-profile-page">
+  <app-guest-header></app-guest-header>
+
+  <div class="page-inner">
+    <header class="hero">
+      <h1><mat-icon>badge</mat-icon> Hồ sơ của tôi</h1>
+      <p>Cập nhật thông tin liên hệ và giấy tờ để nhận phòng nhanh hơn.</p>
+    </header>
+
+    <div class="loading" *ngIf="isLoading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Đang tải...</p>
+    </div>
+
+    <mat-card class="profile-card" *ngIf="!isLoading && profile">
+      <form [formGroup]="form" (ngSubmit)="save()" class="profile-form">
+        <div class="two-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Họ và tên</mat-label>
+            <input matInput formControlName="fullName" autocomplete="name">
+            <mat-error *ngIf="form.get('fullName')?.hasError('required')">Bắt buộc</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" autocomplete="email">
+            <mat-error *ngIf="form.get('email')?.hasError('email')">Email không hợp lệ</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="two-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Số điện thoại</mat-label>
+            <input matInput formControlName="phone" autocomplete="tel">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Quốc tịch</mat-label>
+            <input matInput formControlName="nationality">
+          </mat-form-field>
+        </div>
+
+        <div class="two-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Loại giấy tờ</mat-label>
+            <mat-select formControlName="idType">
+              <mat-option *ngFor="let t of idTypes" [value]="t">{{ t }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Số CCCD / Hộ chiếu</mat-label>
+            <input matInput formControlName="idNumber">
+          </mat-form-field>
+        </div>
+
+        <div class="two-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Ngày sinh</mat-label>
+            <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth">
+            <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-row">
+            <mat-label>Địa chỉ</mat-label>
+            <textarea matInput formControlName="address" rows="2"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="meta" *ngIf="profile">
+          <span>Mã hồ sơ: <strong>#{{ profile.guestId }}</strong></span>
+          <span>Đặt phòng: <strong>{{ profile.totalBookings }}</strong></span>
+        </div>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="isSaving || form.invalid">
+            <mat-icon>save</mat-icon>
+            {{ isSaving ? 'Đang lưu...' : 'Lưu thay đổi' }}
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

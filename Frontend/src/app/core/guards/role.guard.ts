@@ -18,7 +18,9 @@ export const roleGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  // Nếu không có quyền, block và đẩy về trang thông báo lỗi hoặc trang chủ, 
-  // tạm thời đẩy về rooms list
+  if (userRole === 'Guest') {
+    return router.createUrlTree(['/home']);
+  }
+
   return router.createUrlTree(['/rooms']);
 };

@@ -8,10 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RoomService } from '../../../core/services/room.service';
 import { AvailableRoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
 import { GuestHeaderComponent } from '../components/guest-header.component';
+import { RoomDetailDialogComponent } from '../../rooms/room-detail-dialog.component';
 
 @Component({
   selector: 'app-guest-search',
@@ -26,7 +28,8 @@ import { GuestHeaderComponent } from '../components/guest-header.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   templateUrl: './guest-search.component.html',
   styleUrl: './guest-search.component.scss'
@@ -42,7 +45,8 @@ export class GuestSearchComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly roomService: RoomService
+    private readonly roomService: RoomService,
+    private readonly dialog: MatDialog
   ) {
     const checkIn = new Date();
     checkIn.setDate(checkIn.getDate() + 1);
@@ -107,5 +111,14 @@ export class GuestSearchComponent {
     return new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
       .toISOString()
       .split('T')[0];
+  }
+
+  viewRoom(room: AvailableRoomDto, event?: Event): void {
+    event?.stopPropagation();
+    this.dialog.open(RoomDetailDialogComponent, {
+      width: 'min(92vw, 720px)',
+      maxHeight: '90vh',
+      data: { roomId: room.roomId }
+    });
   }
 }

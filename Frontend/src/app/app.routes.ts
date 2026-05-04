@@ -57,6 +57,18 @@ export const routes: Routes = [
     canActivate: [roleGuard],
     data: { roles: ['Guest'] }
   },
+  {
+    path: 'guest/booking-detail',
+    loadComponent: () => import('./features/guest/guest-booking-detail/guest-booking-detail.component').then(m => m.GuestBookingDetailComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
+    path: 'guest/profile',
+    loadComponent: () => import('./features/guest/guest-profile/guest-profile.component').then(m => m.GuestProfileComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
   // Protected Routes Wrapper
   {
     path: '',

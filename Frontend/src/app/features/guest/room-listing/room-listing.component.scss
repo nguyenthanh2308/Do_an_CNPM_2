@@ -4,10 +4,23 @@
 
 .room-listing-page {
   min-height: 100vh;
-  padding: 24px;
+  padding: 24px 24px 40px;
   background:
     radial-gradient(circle at 12% 12%, rgba(56, 189, 248, 0.15), transparent 32%),
     linear-gradient(180deg, #f7fbff, #eef7ff);
+}
+
+.page-header {
+  max-width: 1100px;
+  margin: 0 auto 8px;
+}
+
+.page-header-inner {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 0 12px 36px rgba(37, 99, 235, 0.08);
 }
 
 .page-header h1 {
@@ -22,10 +35,12 @@
 .page-header p {
   margin: 8px 0 0;
   color: #334155;
+  max-width: 52ch;
+  line-height: 1.55;
 }
 
 .filter-panel {
-  margin-top: 18px;
+  margin: 18px auto 0;
   padding: 12px;
   border-radius: 14px;
   background: #ffffff;
@@ -51,7 +66,8 @@
 }
 
 .room-grid {
-  margin-top: 22px;
+  margin: 22px auto 0;
+  max-width: 1100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
@@ -67,12 +83,40 @@
 .image-wrap {
   position: relative;
   height: 170px;
+  cursor: pointer;
+  outline: none;
+}
+
+.image-wrap:focus-visible {
+  box-shadow: inset 0 0 0 3px rgba(37, 99, 235, 0.55);
 }
 
 .image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.zoom-hint {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.zoom-hint mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .status-badge {
@@ -136,6 +180,17 @@
   padding: 0 14px 14px;
 }
 
+.actions-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.view-btn {
+  border-radius: 10px !important;
+  font-weight: 600;
+}
+
 .book-btn {
   width: 100%;
   border-radius: 10px;
@@ -144,7 +199,8 @@
 }
 
 .summary {
-  margin-top: 14px;
+  margin: 14px auto 0;
+  max-width: 1100px;
   color: #334155;
   font-weight: 600;
 }

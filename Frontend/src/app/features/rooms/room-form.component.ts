@@ -66,7 +66,7 @@ import { ImageUploadComponent } from '../../shared/components/image-upload/image
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Loại Phòng</mat-label>
           <mat-icon matPrefix>category</mat-icon>
-          <mat-select formControlName="roomTypeId" [disabled]="!form.get('hotelId')?.value || isOptionsLoading">
+          <mat-select formControlName="roomTypeId">
             <mat-option *ngFor="let rt of roomTypes" [value]="rt.roomTypeId">
               {{ rt.name }}
             </mat-option>
@@ -167,6 +167,7 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
         notes: this.data.room.notes,
         thumbnailUrl: this.data.room.thumbnailUrl
       });
+      this.form.get('hotelId')?.disable({ emitEvent: false });
     }
   }
 
@@ -181,12 +182,27 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
           this.loadRoomTypesByHotel(hotelId);
         } else {
           this.roomTypes = [];
+          this.syncRoomTypeControlState();
         }
       });
 
-    const initialHotelId = this.form.get('hotelId')?.value;
-    if (initialHotelId) {
-      this.loadRoomTypesByHotel(initialHotelId);
+    const raw = this.form.getRawValue() as { hotelId?: number };
+    const hid = raw.hotelId ?? this.data?.room?.hotelId;
+    if (hid) {
+      this.loadRoomTypesByHotel(hid);
+    } else {
+      this.syncRoomTypeControlState();
+    }
+  }
+
+  private syncRoomTypeControlState(): void {
+    const hotelCtl = this.form.get('hotelId');
+    const hotelId = hotelCtl?.disabled ? this.data?.room?.hotelId : hotelCtl?.value;
+    const rtCtl = this.form.get('roomTypeId');
+    if (!hotelId || this.isOptionsLoading) {
+      rtCtl?.disable({ emitEvent: false });
+    } else {
+      rtCtl?.enable({ emitEvent: false });
     }
   }
 
@@ -210,16 +226,19 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
 
   private loadRoomTypesByHotel(hotelId: number): void {
     this.isOptionsLoading = true;
+    this.syncRoomTypeControlState();
     this.roomTypeService.getByHotel(hotelId)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (roomTypes) => {
           this.roomTypes = roomTypes;
           this.isOptionsLoading = false;
+          this.syncRoomTypeControlState();
         },
         error: () => {
           this.roomTypes = [];
           this.isOptionsLoading = false;
+          this.syncRoomTypeControlState();
           this.snackBar.open('Khong the tai loai phong theo khach san', 'Dong', { duration: 3000 });
         }
       });
@@ -232,14 +251,29 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (!this.form.valid) return;
 
+    const v = this.form.getRawValue() as {
+      hotelId: number;
+      roomNumber: string;
+      floor: number;
+      roomTypeId: number;
+      status: string;
+      notes?: string;
+      thumbnailUrl?: string;
+    };
+
+    if (!v.roomTypeId || !v.roomNumber?.trim()) {
+      this.snackBar.open('Vui lòng chọn khách sạn, loại phòng và số phòng.', 'Đóng', { duration: 3500 });
+      return;
+    }
+
     this.isLoading = true;
     if (this.data.mode === 'edit' && this.data?.room?.roomId) {
       const updateDto: UpdateRoomDto = {
-        roomTypeId: this.form.value.roomTypeId,
-        roomNumber: this.form.value.roomNumber,
-        floor: this.form.value.floor,
-        notes: this.form.value.notes,
-        thumbnailUrl: this.form.value.thumbnailUrl
+        roomTypeId: v.roomTypeId,
+        roomNumber: v.roomNumber,
+        floor: v.floor,
+        notes: v.notes,
+        thumbnailUrl: v.thumbnailUrl
       };
 
       this.roomService.update(this.data.room.roomId, updateDto).subscribe({
@@ -256,7 +290,14 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const createDto: CreateRoomDto = this.form.value;
+    const createDto: CreateRoomDto = {
+      hotelId: v.hotelId,
+      roomTypeId: v.roomTypeId,
+      roomNumber: v.roomNumber,
+      floor: v.floor,
+      notes: v.notes,
+      thumbnailUrl: v.thumbnailUrl
+    };
     this.roomService.create(createDto).subscribe({
       next: () => {
         this.snackBar.open('Phòng đã được thêm thành công', 'Đóng', { duration: 3000, panelClass: 'snack-success' });

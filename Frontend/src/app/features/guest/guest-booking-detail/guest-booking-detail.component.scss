@@ -1,0 +1,145 @@
+.booking-detail-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 40%);
+  padding-bottom: 48px;
+}
+
+.toolbar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px 20px 0;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 48px 20px;
+  color: #64748b;
+}
+
+.detail-card {
+  max-width: 900px;
+  margin: 16px auto 0;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: 1.5rem;
+    color: #0f172a;
+  }
+}
+
+.muted {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.field .label {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.rooms-block {
+  padding: 20px 0;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: #0f172a;
+  }
+}
+
+.room-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  mat-icon {
+    color: #0ea5e9;
+  }
+
+  .muted {
+    display: block;
+    font-size: 0.85rem;
+  }
+
+  .price {
+    margin-left: auto;
+    font-weight: 600;
+    color: #0f172a;
+  }
+}
+
+.amounts {
+  padding: 20px 0;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    color: #475569;
+  }
+
+  .discount {
+    color: #16a34a;
+  }
+
+  .total {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 1.1rem;
+    color: #0f172a;
+  }
+}
+
+.notes {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  background: #fffbeb;
+  border-radius: 10px;
+  color: #92400e;
+  font-size: 0.95rem;
+}

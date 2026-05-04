@@ -2,11 +2,13 @@
   <app-guest-header></app-guest-header>
 
   <header class="page-header">
-    <h1>
-      <mat-icon>meeting_room</mat-icon>
-      Trang Phòng
-    </h1>
-    <p>Danh sách tất cả phòng thuộc mọi loại phòng. Chỉ lọc theo số người, không theo thời gian.</p>
+    <div class="page-header-inner">
+      <h1>
+        <mat-icon>meeting_room</mat-icon>
+        Khám phá phòng
+      </h1>
+      <p>Xem thông tin chi tiết từng phòng hoặc đặt nhanh khi phòng đang trống.</p>
+    </div>
   </header>
 
   <section class="filter-panel">
@@ -34,11 +36,12 @@
 
   <section class="room-grid" *ngIf="!isLoading && getFilteredRooms().length > 0">
     <mat-card class="room-card" *ngFor="let room of getFilteredRooms()">
-      <div class="image-wrap">
+      <div class="image-wrap" (click)="viewRoom(room, $event)" (keydown.enter)="viewRoom(room, $event)" tabindex="0" role="button" [attr.aria-label]="'Xem phòng ' + room.roomNumber">
         <img [src]="getRoomImage(room)" [alt]="'Phòng ' + room.roomNumber">
         <span class="status-badge" [ngClass]="getStatusClass(room.status)">
           {{ getStatusLabel(room.status) }}
         </span>
+        <span class="zoom-hint"><mat-icon>zoom_in</mat-icon> Xem nhanh</span>
       </div>
 
       <div class="body">
@@ -52,7 +55,11 @@
         </div>
       </div>
 
-      <div class="actions">
+      <div class="actions actions-split">
+        <button mat-stroked-button type="button" class="view-btn" (click)="viewRoom(room, $event)">
+          <mat-icon>visibility</mat-icon>
+          Xem phòng
+        </button>
         <button mat-flat-button class="book-btn" [disabled]="!canBook(room)" (click)="onBookClick(room)">
           <mat-icon>event_available</mat-icon>
           {{ canBook(room) ? 'Đặt phòng' : 'Không khả dụng' }}

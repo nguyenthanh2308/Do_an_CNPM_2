@@ -12,12 +12,30 @@
 .search-dock,
 .results {
   padding: 20px 28px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.search-dock h1 {
-  margin: 0 0 12px;
+.search-hero {
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.08);
+}
+
+.search-hero h1 {
+  margin: 0 0 8px;
   font-size: clamp(1.6rem, 4vw, 2.5rem);
   color: #0f172a;
+}
+
+.search-hero p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.55;
+  max-width: 60ch;
 }
 
 .search-form {
@@ -62,18 +80,48 @@
   border-radius: 14px;
   border: 1px solid rgba(30, 41, 59, 0.14);
   box-shadow: 0 8px 20px rgba(30, 41, 59, 0.08);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.room-card:hover,
+.room-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(30, 64, 175, 0.14);
 }
 
 .thumb {
+  position: relative;
   margin: -16px -16px 12px;
   height: 140px;
   overflow: hidden;
+}
+
+.card-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
 }
 
 .thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.card-cta {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 10px !important;
+  font-weight: 600;
 }
 
 .room-card h3 {

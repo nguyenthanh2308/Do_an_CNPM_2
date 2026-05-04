@@ -10,10 +10,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RoomService } from '../../../core/services/room.service';
 import { RoomDto } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
 import { GuestHeaderComponent } from '../components/guest-header.component';
+import { RoomDetailDialogComponent } from '../../rooms/room-detail-dialog.component';
 
 @Component({
   selector: 'app-room-listing',
@@ -29,7 +31,8 @@ import { GuestHeaderComponent } from '../components/guest-header.component';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   templateUrl: './room-listing.component.html',
   styleUrl: './room-listing.component.scss'
@@ -48,7 +51,8 @@ export class RoomListingComponent implements OnInit, OnDestroy {
     private readonly roomService: RoomService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -138,6 +142,15 @@ export class RoomListingComponent implements OnInit, OnDestroy {
 
     sessionStorage.setItem('selectedRoomForBooking', JSON.stringify(room));
     this.router.navigate(['/guest/booking']);
+  }
+
+  viewRoom(room: RoomDto, event?: Event): void {
+    event?.stopPropagation();
+    this.dialog.open(RoomDetailDialogComponent, {
+      width: 'min(92vw, 720px)',
+      maxHeight: '90vh',
+      data: { roomId: room.roomId }
+    });
   }
 
   private showError(message: string): void {

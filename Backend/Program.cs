@@ -16,10 +16,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Giúp JWT role claims khớp với [Authorize(Roles = "...")] (tránh map claim gây 403).
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 var runtimeInstanceId = Guid.NewGuid().ToString("N");
 
 // ════════════════════════════════════════════════════════════════════════════
