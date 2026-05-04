@@ -112,9 +112,22 @@ namespace HotelManagement.Mappings
                            opt => opt.MapFrom(src => src.RoomType != null ? src.RoomType.BasePrice : 0));
 
             CreateMap<CreateRoomDto, Room>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => RoomStatus.Available));
+                .ForMember(dest => dest.Status,   opt => opt.MapFrom(src => RoomStatus.Available))
+                .ForMember(dest => dest.IsActive,  opt => opt.MapFrom(src => true))
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
+                .ForMember(dest => dest.Hotel,         opt => opt.Ignore())
+                .ForMember(dest => dest.RoomType,      opt => opt.Ignore())
+                .ForMember(dest => dest.BookingRooms,  opt => opt.Ignore())
+                .ForMember(dest => dest.HousekeepingTasks, opt => opt.Ignore());
 
             CreateMap<UpdateRoomDto, Room>()
+                .ForMember(dest => dest.IsActive,          opt => opt.Ignore())
+                .ForMember(dest => dest.HotelId,           opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedAt,         opt => opt.Ignore())
+                .ForMember(dest => dest.Hotel,             opt => opt.Ignore())
+                .ForMember(dest => dest.RoomType,          opt => opt.Ignore())
+                .ForMember(dest => dest.BookingRooms,      opt => opt.Ignore())
+                .ForMember(dest => dest.HousekeepingTasks, opt => opt.Ignore())
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
 
             // ══════════════════════════════════════════════════

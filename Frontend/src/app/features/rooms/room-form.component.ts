@@ -249,7 +249,11 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (!this.form.valid) return;
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      this.snackBar.open('Vui lòng điền đầy đủ thông tin bắt buộc.', 'Đóng', { duration: 3500 });
+      return;
+    }
 
     const v = this.form.getRawValue() as {
       hotelId: number;
@@ -261,7 +265,7 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
       thumbnailUrl?: string;
     };
 
-    if (!v.roomTypeId || !v.roomNumber?.trim()) {
+    if (!v.hotelId || !v.roomTypeId || !v.roomNumber?.trim()) {
       this.snackBar.open('Vui lòng chọn khách sạn, loại phòng và số phòng.', 'Đóng', { duration: 3500 });
       return;
     }
@@ -270,10 +274,10 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
     if (this.data.mode === 'edit' && this.data?.room?.roomId) {
       const updateDto: UpdateRoomDto = {
         roomTypeId: v.roomTypeId,
-        roomNumber: v.roomNumber,
-        floor: v.floor,
-        notes: v.notes,
-        thumbnailUrl: v.thumbnailUrl
+        roomNumber: v.roomNumber.trim(),
+        floor: Number(v.floor),
+        notes: v.notes ?? '',
+        thumbnailUrl: v.thumbnailUrl || undefined
       };
 
       this.roomService.update(this.data.room.roomId, updateDto).subscribe({
@@ -283,7 +287,8 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
           this.dialogRef.close(true);
         },
         error: (err: any) => {
-          this.snackBar.open(err.error?.errors?.[0] ?? 'Cập nhật phòng thất bại', 'Đóng', { duration: 4000, panelClass: 'snack-error' });
+          const msg = err?.error?.errors?.[0] ?? err?.error?.message ?? 'Cập nhật phòng thất bại';
+          this.snackBar.open(msg, 'Đóng', { duration: 5000, panelClass: 'snack-error' });
           this.isLoading = false;
         }
       });
@@ -291,12 +296,12 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
     }
 
     const createDto: CreateRoomDto = {
-      hotelId: v.hotelId,
-      roomTypeId: v.roomTypeId,
-      roomNumber: v.roomNumber,
-      floor: v.floor,
-      notes: v.notes,
-      thumbnailUrl: v.thumbnailUrl
+      hotelId: Number(v.hotelId),
+      roomTypeId: Number(v.roomTypeId),
+      roomNumber: v.roomNumber.trim(),
+      floor: Number(v.floor),
+      notes: v.notes ?? '',
+      thumbnailUrl: v.thumbnailUrl || undefined
     };
     this.roomService.create(createDto).subscribe({
       next: () => {
@@ -305,7 +310,8 @@ export class SimpleRoomFormComponent implements OnInit, OnDestroy {
         this.dialogRef.close(true);
       },
       error: (err: any) => {
-        this.snackBar.open(err.error?.errors?.[0] ?? 'Thêm phòng thất bại', 'Đóng', { duration: 4000, panelClass: 'snack-error' });
+        const msg = err?.error?.errors?.[0] ?? err?.error?.message ?? 'Thêm phòng thất bại';
+        this.snackBar.open(msg, 'Đóng', { duration: 5000, panelClass: 'snack-error' });
         this.isLoading = false;
       }
     });

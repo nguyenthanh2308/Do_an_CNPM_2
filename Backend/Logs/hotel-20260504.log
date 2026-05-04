@@ -522,3 +522,246 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-05-04 11:56:20.688 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.8339 ms
 2026-05-04 11:56:20.721 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.9450 ms
 2026-05-04 11:56:20.722 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.9854 ms
+2026-05-04 12:17:23.837 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-04 12:17:36.687 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-04 12:17:36.693 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.5322 ms
+2026-05-04 12:17:36.900 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-04 12:17:37.224 +07:00 [INF] User 'Test12' logged in.
+2026-05-04 12:17:37.255 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 549.7545 ms
+2026-05-04 12:17:37.262 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.7113 ms
+2026-05-04 12:17:37.311 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1293 ms
+2026-05-04 12:17:37.313 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.5401 ms
+2026-05-04 12:17:37.324 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 58.8362 ms
+2026-05-04 12:17:37.502 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 178.9721 ms
+2026-05-04 12:17:37.509 +07:00 [INF] HTTP GET /api/rooms responded 200 in 179.3303 ms
+2026-05-04 12:17:37.532 +07:00 [INF] HTTP GET /uploads/202605/22f6ec46b1c04d48a39f93ab5db92195.jpg responded 304 in 3.7222 ms
+2026-05-04 12:17:54.297 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1250 ms
+2026-05-04 12:17:54.309 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-05-04 12:17:54.551 +07:00 [INF] User 'admin' logged in.
+2026-05-04 12:17:54.553 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 253.0670 ms
+2026-05-04 12:17:54.557 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0846 ms
+2026-05-04 12:17:54.563 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 2.1827 ms
+2026-05-04 12:17:54.640 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0827 ms
+2026-05-04 12:17:54.657 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.3669 ms
+2026-05-04 12:17:54.699 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.3693 ms
+2026-05-04 12:17:54.699 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0646 ms
+2026-05-04 12:17:54.711 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 9.9338 ms
+2026-05-04 12:17:54.711 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 8.0516 ms
+2026-05-04 12:17:54.832 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=gG7SNnBZRiWcI0ESJUIw8Q
+2026-05-04 12:17:54.835 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=TGpg7NOBMvSJHOeRBQgo6w
+2026-05-04 12:18:01.562 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1397 ms
+2026-05-04 12:18:01.562 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/2 responded 204 in 0.0360 ms
+2026-05-04 12:18:01.576 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.5437 ms
+2026-05-04 12:18:01.603 +07:00 [INF] HTTP GET /api/room-types/hotel/2 responded 200 in 36.3953 ms
+2026-05-04 12:18:06.502 +07:00 [INF] HTTP OPTIONS /api/uploads/image responded 204 in 0.1030 ms
+2026-05-04 12:18:06.527 +07:00 [INF] HTTP POST /api/uploads/image responded 200 in 21.6943 ms
+2026-05-04 12:18:06.543 +07:00 [INF] HTTP GET /uploads/202605/d8168b4154074accb65e74b0ec467516.jpg responded 200 in 5.3506 ms
+2026-05-04 12:18:08.323 +07:00 [INF] HTTP OPTIONS /api/rooms/6 responded 204 in 0.0828 ms
+2026-05-04 12:18:08.406 +07:00 [INF] HTTP PUT /api/rooms/6 responded 200 in 78.9810 ms
+2026-05-04 12:18:08.491 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0562 ms
+2026-05-04 12:18:08.505 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.7579 ms
+2026-05-04 12:18:13.921 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1107 ms
+2026-05-04 12:18:13.941 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.1043 ms
+2026-05-04 12:18:17.839 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1002 ms
+2026-05-04 12:18:17.859 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 14.9200 ms
+2026-05-04 12:18:17.865 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0654 ms
+2026-05-04 12:18:17.891 +07:00 [INF] HTTP GET /api/rooms responded 200 in 22.4034 ms
+2026-05-04 12:18:20.001 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0718 ms
+2026-05-04 12:18:20.015 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.6389 ms
+2026-05-04 12:18:24.057 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0675 ms
+2026-05-04 12:18:24.065 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.6404 ms
+2026-05-04 12:18:24.106 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0790 ms
+2026-05-04 12:18:24.125 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 14.7654 ms
+2026-05-04 12:18:24.139 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0687 ms
+2026-05-04 12:18:24.161 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.6968 ms
+2026-05-04 12:18:28.324 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0451 ms
+2026-05-04 12:18:28.336 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.7113 ms
+2026-05-04 12:18:29.882 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.0780 ms
+2026-05-04 12:18:41.941 +07:00 [INF] SignalR Disconnected: ConnId=TGpg7NOBMvSJHOeRBQgo6w
+2026-05-04 12:18:41.941 +07:00 [INF] SignalR Disconnected: ConnId=gG7SNnBZRiWcI0ESJUIw8Q
+2026-05-04 12:18:41.943 +07:00 [INF] HTTP GET /hubs/room responded 101 in 47111.2529 ms
+2026-05-04 12:18:41.943 +07:00 [INF] HTTP GET /hubs/room responded 101 in 47130.4926 ms
+2026-05-04 12:18:42.040 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0412 ms
+2026-05-04 12:18:42.043 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.3787 ms
+2026-05-04 12:18:42.168 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0838 ms
+2026-05-04 12:18:42.191 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.8252 ms
+2026-05-04 12:18:42.317 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0637 ms
+2026-05-04 12:18:42.332 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.1156 ms
+2026-05-04 12:18:42.352 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 1.1007 ms
+2026-05-04 12:18:42.354 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.7590 ms
+2026-05-04 12:18:42.449 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=Zn_736qVkjcwTd92E0tbzg
+2026-05-04 12:18:42.466 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=FBU7WfLMCKzpNqLCfq2o6Q
+2026-05-04 12:18:55.151 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0412 ms
+2026-05-04 12:18:55.163 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.3373 ms
+2026-05-04 12:18:57.725 +07:00 [INF] HTTP OPTIONS /api/room-types/hotel/2 responded 204 in 0.0795 ms
+2026-05-04 12:18:57.739 +07:00 [INF] HTTP GET /api/room-types/hotel/2 responded 200 in 10.1215 ms
+2026-05-04 12:19:06.897 +07:00 [INF] HTTP OPTIONS /api/uploads/image responded 204 in 0.0916 ms
+2026-05-04 12:19:06.903 +07:00 [INF] HTTP POST /api/uploads/image responded 200 in 2.7721 ms
+2026-05-04 12:19:06.915 +07:00 [INF] HTTP GET /uploads/202605/ca1728903a5349f4af0de22c5bfcbdd1.jpg responded 200 in 0.6215 ms
+2026-05-04 12:19:08.512 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0554 ms
+2026-05-04 12:19:08.573 +07:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (DbType = Int32), @p2='?' (DbType = Int64), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 20), @p6='?' (DbType = Int64), @p7='?' (Size = 30), @p8='?' (Size = 500), @p9='?' (DbType = DateTime)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `rooms` (`created_at`, `floor`, `hotel_id`, `is_active`, `notes`, `room_number`, `room_type_id`, `status`, `thumbnail_url`, `updated_at`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+SELECT `room_id`
+FROM `rooms`
+WHERE ROW_COUNT() = 1 AND `room_id` = LAST_INSERT_ID();
+2026-05-04 12:19:08.601 +07:00 [ERR] An exception occurred in the database while saving changes for context type 'HotelManagement.Data.HotelDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry '2-HN101' for key 'rooms.IX_rooms_hotel_id_room_number'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry '2-HN101' for key 'rooms.IX_rooms_hotel_id_room_number'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2026-05-04 12:19:08.609 +07:00 [ERR] HTTP POST /api/rooms responded 500 in 93.6806 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry '2-HN101' for key 'rooms.IX_rooms_hotel_id_room_number'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.RoomsController.Create(CreateRoomDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 114
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-04 12:19:08.632 +07:00 [ERR] Unhandled exception: An error occurred while saving the entity changes. See the inner exception for details.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> MySqlConnector.MySqlException (0x80004005): Duplicate entry '2-HN101' for key 'rooms.IX_rooms_hotel_id_room_number'
+   at MySqlConnector.Core.ServerSession.ReceiveReplyAsync(IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 1081
+   at MySqlConnector.Core.ResultSet.ReadResultSetHeaderAsync(IOBehavior ioBehavior) in /_/src/MySqlConnector/Core/ResultSet.cs:line 37
+   at MySqlConnector.MySqlDataReader.ActivateResultSet(CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 131
+   at MySqlConnector.MySqlDataReader.InitAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, IDictionary`2 cachedProcedures, IMySqlCommand command, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlDataReader.cs:line 487
+   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(CommandListPosition commandListPosition, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, Activity activity, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 56
+   at MySqlConnector.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 357
+   at MySqlConnector.MySqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlCommand.cs:line 350
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.RoomsController.Create(CreateRoomDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 114
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-05-04 12:20:14.893 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1858 ms
+2026-05-04 12:20:14.912 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.7714 ms
+2026-05-04 12:20:17.354 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0397 ms
+2026-05-04 12:20:17.398 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-05T00:00:00.0000000", CheckOut: "2026-05-06T00:00:00.0000000"
+2026-05-04 12:20:17.446 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 87.7954 ms
+2026-05-04 12:20:21.379 +07:00 [INF] HTTP OPTIONS /api/rooms/2 responded 204 in 0.0317 ms
+2026-05-04 12:20:21.422 +07:00 [INF] HTTP GET /api/rooms/2 responded 200 in 39.4641 ms
+2026-05-04 12:20:24.517 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0305 ms
+2026-05-04 12:20:24.532 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.0761 ms
+2026-05-04 12:20:39.139 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0446 ms
+2026-05-04 12:20:39.154 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 9.8909 ms
+2026-05-04 12:20:39.158 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0440 ms
+2026-05-04 12:20:39.172 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3276 ms
+2026-05-04 12:20:41.255 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0363 ms
+2026-05-04 12:20:41.271 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 17.8205 ms
+2026-05-04 12:20:41.313 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 53.1769 ms
+2026-05-04 12:23:25.302 +07:00 [INF] HTTP OPTIONS /api/room-types responded 204 in 0.0563 ms
+2026-05-04 12:23:25.370 +07:00 [INF] HTTP POST /api/room-types responded 201 in 63.9892 ms
+2026-05-04 12:23:25.377 +07:00 [INF] HTTP OPTIONS /api/room-types/all responded 204 in 0.0370 ms
+2026-05-04 12:23:25.389 +07:00 [INF] HTTP GET /api/room-types/all responded 200 in 8.1581 ms
+2026-05-04 12:23:45.058 +07:00 [INF] SignalR Disconnected: ConnId=FBU7WfLMCKzpNqLCfq2o6Q
+2026-05-04 12:23:45.058 +07:00 [INF] SignalR Disconnected: ConnId=Zn_736qVkjcwTd92E0tbzg
+2026-05-04 12:23:45.059 +07:00 [INF] HTTP GET /hubs/room responded 101 in 302599.3402 ms
+2026-05-04 12:23:45.060 +07:00 [INF] HTTP GET /hubs/room responded 101 in 302615.2324 ms

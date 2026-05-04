@@ -110,8 +110,17 @@ namespace HotelManagement.Controllers
                 ?? throw new AppException($"Loại phòng #{dto.RoomTypeId} không thuộc khách sạn #{dto.HotelId}.");
 
             var room = _mapper.Map<Room>(dto);
-            await _context.Rooms.AddAsync(room);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                await _context.Rooms.AddAsync(room);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "DB error creating room '{RoomNumber}'", dto.RoomNumber);
+                throw new AppException($"Không thể lưu phòng vào cơ sở dữ liệu: {ex.InnerException?.Message ?? ex.Message}");
+            }
 
             var created = await _context.Rooms
                 .Include(r => r.Hotel).Include(r => r.RoomType)
@@ -133,12 +142,21 @@ namespace HotelManagement.Controllers
 
             _mapper.Map(dto, room);
             room.UpdatedAt = DateTime.UtcNow;
-            _context.Rooms.Update(room);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                _context.Rooms.Update(room);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "DB error updating room #{Id}", id);
+                throw new AppException($"Không thể cập nhật phòng: {ex.InnerException?.Message ?? ex.Message}");
+            }
 
             var updated = await _context.Rooms
                 .Include(r => r.Hotel).Include(r => r.RoomType)
-                .FirstAsync(r => r.RoomId == id);
+                .FirstAsync(r => r.RoomId == id && r.IsActive);
 
             return Success(_mapper.Map<RoomDto>(updated), "Cập nhật phòng thành công.");
         }
