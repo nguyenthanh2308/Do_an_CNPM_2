@@ -441,3 +441,13 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-05-04 10:58:05.911 +07:00 [INF] HTTP OPTIONS /api/bookings/my-bookings responded 204 in 0.0382 ms
 2026-05-04 10:58:05.930 +07:00 [INF] GET /api/bookings/my-bookings — UserId: 2
 2026-05-04 10:58:05.940 +07:00 [INF] HTTP GET /api/bookings/my-bookings responded 200 in 20.4084 ms
+2026-05-04 11:01:11.386 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0499 ms
+2026-05-04 11:01:11.400 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.5629 ms
+2026-05-04 11:01:11.416 +07:00 [INF] HTTP GET /uploads/202605/22f6ec46b1c04d48a39f93ab5db92195.jpg responded 304 in 0.2506 ms
+2026-05-04 11:01:15.348 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0309 ms
+2026-05-04 11:01:15.358 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-05T00:00:00.0000000", CheckOut: "2026-05-06T00:00:00.0000000"
+2026-05-04 11:01:15.362 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 11.3318 ms
+2026-05-04 11:02:12.304 +07:00 [INF] SignalR Disconnected: ConnId=b76kf4vK4EsZuU_68r9Z3w
+2026-05-04 11:02:12.304 +07:00 [INF] SignalR Disconnected: ConnId=tMbe4dwAQVyHEcclP2kddw
+2026-05-04 11:02:12.307 +07:00 [INF] HTTP GET /hubs/room responded 101 in 292890.1170 ms
+2026-05-04 11:02:12.307 +07:00 [INF] HTTP GET /hubs/room responded 101 in 292872.4490 ms

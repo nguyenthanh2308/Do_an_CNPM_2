@@ -1,4 +1,4 @@
-.guest-profile-page {
+.guest-profile-edit-page {
   min-height: 100vh;
   background: linear-gradient(165deg, #ecfeff 0%, #f8fafc 45%, #eef2ff 100%);
 }
@@ -71,7 +71,11 @@
 }
 
 .actions {
-  padding-top: 8px;
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
 }
 
 .actions button mat-icon {

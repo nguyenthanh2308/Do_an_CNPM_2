@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +17,7 @@ import { GuestHeaderComponent } from '../components/guest-header.component';
 import { GuestAccountService, GuestProfileDto } from '../../../core/services/guest-account.service';
 
 @Component({
-  selector: 'app-guest-profile',
+  selector: 'app-guest-profile-edit',
   standalone: true,
   imports: [
     CommonModule,
@@ -35,10 +35,10 @@ import { GuestAccountService, GuestProfileDto } from '../../../core/services/gue
     MatProgressSpinnerModule,
     MatSnackBarModule
   ],
-  templateUrl: './guest-profile.component.html',
-  styleUrl: './guest-profile.component.scss'
+  templateUrl: './guest-profile-edit.component.html',
+  styleUrl: './guest-profile-edit.component.scss'
 })
-export class GuestProfileComponent implements OnInit, OnDestroy {
+export class GuestProfileEditComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isLoading = true;
   isSaving = false;
@@ -49,7 +49,8 @@ export class GuestProfileComponent implements OnInit, OnDestroy {
   constructor(
     private readonly fb: FormBuilder,
     private readonly guestAccount: GuestAccountService,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router
   ) {
     this.form = this.fb.group({
       fullName: ['', [Validators.required, Validators.maxLength(150)]],
@@ -80,6 +81,10 @@ export class GuestProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  cancel(): void {
+    this.router.navigate(['/guest/profile']);
   }
 
   private patchForm(p: GuestProfileDto): void {
@@ -130,6 +135,7 @@ export class GuestProfileComponent implements OnInit, OnDestroy {
           this.patchForm(res.data);
           this.snackBar.open('Đã lưu hồ sơ.', 'Đóng', { duration: 3000 });
           this.isSaving = false;
+          this.router.navigate(['/guest/profile']);
         },
         error: (err) => {
           const msg = err.error?.errors?.[0] ?? 'Không thể lưu hồ sơ.';

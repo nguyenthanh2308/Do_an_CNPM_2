@@ -1,14 +1,4 @@
-:host {
-  display: block;
-  min-height: 100vh;
-  color: #1f2f4a;
-  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
-  --bg: #f5f8ff;
-  --ink: #1f2f4a;
-  --accent: #0ea5a6;
-  --accent-2: #3b82f6;
-  --panel: #ffffff;
-}
+:host{display:block;min-height:100vh;color:#1f2f4a;font-family:'Space Grotesk',system-ui,sans-serif}
 
 .home-page {
   min-height: 100vh;
@@ -19,9 +9,6 @@
   animation: pageFadeIn 0.55s ease;
 }
 
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
 .hero {
   padding: 36px 28px 20px;
 }
@@ -143,7 +130,6 @@
   }
 }
 
-/* Hero Visual */
 .hero-visual {
   position: relative;
   display: flex;
@@ -216,9 +202,6 @@
   mat-icon { color: #10b981; }
 }
 
-/* ═══════════════════════════════════════════
-   ACHIEVEMENT STATS
-═══════════════════════════════════════════ */
 .achievement-section {
   padding: 16px 28px 32px;
   max-width: 1256px;
@@ -259,9 +242,6 @@
 .tone-c { background: linear-gradient(180deg, #ffffff, #f0f5ff); }
 .tone-d { background: linear-gradient(180deg, #ffffff, #eefdf5); }
 
-/* ═══════════════════════════════════════════
-   FEATURES — WHY CHOOSE US
-═══════════════════════════════════════════ */
 .features-section {
   padding: 20px 28px 40px;
   max-width: 1256px;
@@ -321,9 +301,6 @@
   }
 }
 
-/* ═══════════════════════════════════════════
-   SHOWCASE MARQUEE
-═══════════════════════════════════════════ */
 .showcase-section {
   padding: 28px 0;
   overflow: hidden;
@@ -423,9 +400,6 @@
   text-overflow: ellipsis;
 }
 
-/* ═══════════════════════════════════════════
-   LIFESTYLE GALLERY
-═══════════════════════════════════════════ */
 .lifestyle-section {
   padding: 28px 28px 40px;
   max-width: 1256px;
@@ -458,10 +432,6 @@
   }
 }
 
-.ls-wide { grid-column: span 1; }
-.ls-tall { grid-column: span 1; }
-.ls-normal { grid-column: span 1; }
-
 .ls-overlay {
   position: absolute;
   inset: auto 0 0;
@@ -487,9 +457,6 @@
   }
 }
 
-/* ═══════════════════════════════════════════
-   TESTIMONIALS
-═══════════════════════════════════════════ */
 .testimonials-section {
   padding: 28px 28px 40px;
   max-width: 1256px;
@@ -584,9 +551,6 @@
   flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════════
-   CTA BANNER
-═══════════════════════════════════════════ */
 .cta-banner {
   margin: 8px 28px 48px;
   border-radius: 24px;
@@ -656,9 +620,6 @@
   }
 }
 
-/* ═══════════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════════ */
 @keyframes moveRightToLeft {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -679,9 +640,6 @@
   50%       { transform: translateY(-10px); }
 }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .lifestyle-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }

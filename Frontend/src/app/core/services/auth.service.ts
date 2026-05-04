@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, firstValueFrom, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -11,6 +11,13 @@ export class AuthService {
   private readonly SESSION_RUNTIME_ID_KEY = 'sessionRuntimeId';
   private readonly SESSION_STARTED_AT_KEY = 'sessionStartedAt';
   private readonly SESSION_TIMEOUT_MS = (environment.sessionTimeoutMinutes ?? 30) * 60 * 1000;
+  private readonly SESSION_STORAGE_KEYS = [
+    'accessToken',
+    'refreshToken',
+    'user',
+    'sessionRuntimeId',
+    'sessionStartedAt'
+  ];
   private currentUserSubject = new BehaviorSubject<UserInfo | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
   private autoLogoutTimer: ReturnType<typeof setTimeout> | null = null;
@@ -27,7 +34,6 @@ export class AuthService {
 
     this.initialized = true;
 
-    // Restore user from localStorage on startup
     const stored = localStorage.getItem('user');
     if (stored) {
       this.currentUserSubject.next(JSON.parse(stored));
@@ -38,7 +44,6 @@ export class AuthService {
       return;
     }
 
-    // Validate token with Backend
     await this.validateTokenWithBackend();
     if (!this.getAccessToken()) {
       return;
@@ -85,6 +90,10 @@ export class AuthService {
         if (res.success) {
           localStorage.setItem('accessToken', res.data.accessToken);
           localStorage.setItem('refreshToken', res.data.refreshToken);
+          if (res.data.user) {
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            this.currentUserSubject.next(res.data.user);
+          }
         }
       })
     );
@@ -103,14 +112,13 @@ export class AuthService {
 
     const startedAtRaw = localStorage.getItem(this.SESSION_STARTED_AT_KEY);
     if (!startedAtRaw) {
-      // Backward compatibility for old sessions created before timeout key existed.
       localStorage.setItem(this.SESSION_STARTED_AT_KEY, Date.now().toString());
       return;
     }
 
     const startedAt = Number(startedAtRaw);
     if (Number.isNaN(startedAt) || Date.now() - startedAt >= this.SESSION_TIMEOUT_MS) {
-      this.clearLocalSession('Phiên làm việc kết thúc, vui lòng đăng nhập lại');
+      this.clearLocalSession('Phiên làm việc đã quá 10 phút, vui lòng đăng nhập lại để tiếp tục.');
     }
   }
 
@@ -128,12 +136,12 @@ export class AuthService {
     const remainingMs = this.SESSION_TIMEOUT_MS - (Date.now() - startedAt);
 
     if (remainingMs <= 0) {
-      this.clearLocalSession('Phiên làm việc kết thúc, vui lòng đăng nhập lại');
+      this.clearLocalSession('Phiên làm việc đã quá 10 phút, vui lòng đăng nhập lại để tiếp tục.');
       return;
     }
 
     this.autoLogoutTimer = setTimeout(() => {
-      this.clearLocalSession('Phiên làm việc kết thúc, vui lòng đăng nhập lại');
+      this.clearLocalSession('Phiên làm việc đã quá 10 phút, vui lòng đăng nhập lại để tiếp tục.');
     }, remainingMs);
   }
 
@@ -150,23 +158,54 @@ export class AuthService {
     }
 
     if (storedRuntimeId !== runtimeId) {
-      this.clearLocalSession('Phiên đã kết thúc do hệ thống được khởi động lại, vui lòng đăng nhập lại');
+      this.clearLocalSession('Phiên đã kết thúc do hệ thống được khởi động lại (build/deploy), vui lòng đăng nhập lại.');
     }
   }
 
+  /** F5 không đăng xuất: lỗi mạng / backend tạm lỗi giữ phiên; 401 thử refresh; chỉ xóa khi token thật sự hết hiệu lực. */
   private async validateTokenWithBackend(): Promise<void> {
     try {
-      const response = await firstValueFrom(
-        this.http.get<ApiResponse<any>>(`${this.API}/me`).pipe(
-          catchError(() => of(null))
-        )
-      );
-
-      if (!response || !response.success) {
+      const response = await firstValueFrom(this.http.get<ApiResponse<unknown>>(`${this.API}/me`));
+      if (!response?.success) {
         this.clearLocalSession('Token không hợp lệ, vui lòng đăng nhập lại');
       }
-    } catch (err) {
-      this.clearLocalSession('Không thể xác thực với server, vui lòng đăng nhập lại');
+    } catch (err: unknown) {
+      const status = (err as HttpErrorResponse)?.status;
+
+      if (status === 0) {
+        return;
+      }
+
+      if (status === 401) {
+        const ok = await this.tryRefreshThenValidateMe();
+        if (!ok) {
+          this.clearLocalSession('Phiên làm việc hết hạn, vui lòng đăng nhập lại.');
+        }
+        return;
+      }
+
+      return;
+    }
+  }
+
+  private async tryRefreshThenValidateMe(): Promise<boolean> {
+    const rt = localStorage.getItem('refreshToken');
+    if (!rt) {
+      return false;
+    }
+
+    try {
+      const refreshed = await firstValueFrom(this.refreshToken().pipe(catchError(() => of(null))));
+      if (!refreshed?.success) {
+        return false;
+      }
+
+      const me2 = await firstValueFrom(
+        this.http.get<ApiResponse<unknown>>(`${this.API}/me`).pipe(catchError(() => of(null)))
+      );
+      return !!(me2 && me2.success);
+    } catch {
+      return false;
     }
   }
 
@@ -193,7 +232,10 @@ export class AuthService {
       this.autoLogoutTimer = null;
     }
 
-    localStorage.clear();
+    for (const key of this.SESSION_STORAGE_KEYS) {
+      localStorage.removeItem(key);
+    }
+
     this.currentUserSubject.next(null);
     this.router.navigate(['/login'], {
       queryParams: message ? { message } : undefined

@@ -1,0 +1,68 @@
+<div class="guest-profile-view-page">
+  <app-guest-header></app-guest-header>
+
+  <div class="page-inner">
+    <header class="hero">
+      <h1><mat-icon>badge</mat-icon> Hồ sơ của tôi</h1>
+      <p>Xem thông tin đã lưu. Chỉnh sửa khi bạn cần cập nhật liên hệ hoặc giấy tờ.</p>
+    </header>
+
+    <div class="loading" *ngIf="isLoading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Đang tải...</p>
+    </div>
+
+    <mat-card class="view-card" *ngIf="!isLoading && profile">
+      <div class="card-toolbar">
+        <button mat-flat-button color="primary" type="button" (click)="goEdit()">
+          <mat-icon>edit</mat-icon>
+          Chỉnh sửa hồ sơ
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <section class="fields">
+        <div class="row">
+          <span class="label">Họ và tên</span>
+          <strong>{{ profile.fullName }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Email</span>
+          <strong>{{ profile.email || '—' }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Số điện thoại</span>
+          <strong>{{ profile.phone || '—' }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Loại giấy tờ</span>
+          <strong>{{ profile.idType }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Số giấy tờ</span>
+          <strong>{{ profile.idNumber || '—' }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Ngày sinh</span>
+          <strong>{{ formatDob(profile.dateOfBirth) }}</strong>
+        </div>
+        <div class="row">
+          <span class="label">Quốc tịch</span>
+          <strong>{{ profile.nationality || '—' }}</strong>
+        </div>
+        <div class="row block">
+          <span class="label">Địa chỉ</span>
+          <strong>{{ profile.address || '—' }}</strong>
+        </div>
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <footer class="meta">
+        <span>Mã hồ sơ <strong>#{{ profile.guestId }}</strong></span>
+        <span>Đặt phòng <strong>{{ profile.totalBookings }}</strong></span>
+      </footer>
+    </mat-card>
+  </div>
+</div>

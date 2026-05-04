@@ -65,7 +65,13 @@ export const routes: Routes = [
   },
   {
     path: 'guest/profile',
-    loadComponent: () => import('./features/guest/guest-profile/guest-profile.component').then(m => m.GuestProfileComponent),
+    loadComponent: () => import('./features/guest/guest-profile-view/guest-profile-view.component').then(m => m.GuestProfileViewComponent),
+    canActivate: [roleGuard],
+    data: { roles: ['Guest'] }
+  },
+  {
+    path: 'guest/profile/edit',
+    loadComponent: () => import('./features/guest/guest-profile-edit/guest-profile-edit.component').then(m => m.GuestProfileEditComponent),
     canActivate: [roleGuard],
     data: { roles: ['Guest'] }
   },
