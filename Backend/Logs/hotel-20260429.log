@@ -319,3 +319,25 @@
 2026-04-29 10:04:32.110 +07:00 [INF] HTTP GET /api/rooms responded 200 in 8.1741 ms
 2026-04-29 10:04:45.977 +07:00 [INF] SignalR Disconnected: ConnId=ZupdEYDs-Iz97Udh2ThETQ
 2026-04-29 10:04:45.978 +07:00 [INF] HTTP GET /hubs/room responded 101 in 961136.0090 ms
+2026-04-29 10:17:29.971 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-04-29 10:18:07.005 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-04-29 10:18:07.012 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.4885 ms
+2026-04-29 10:18:07.220 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-04-29 10:18:07.547 +07:00 [INF] User 'Test12' logged in.
+2026-04-29 10:18:07.578 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 554.1254 ms
+2026-04-29 10:18:07.585 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.3827 ms
+2026-04-29 10:18:07.625 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 37.2260 ms
+2026-04-29 10:18:07.637 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1412 ms
+2026-04-29 10:18:07.642 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2545 ms
+2026-04-29 10:18:07.839 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 194.6009 ms
+2026-04-29 10:18:07.842 +07:00 [INF] HTTP GET /api/rooms responded 200 in 194.1108 ms
+2026-04-29 10:18:22.093 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.2175 ms
+2026-04-29 10:18:22.116 +07:00 [INF] HTTP GET /api/rooms responded 200 in 19.2823 ms
+2026-04-29 10:18:24.765 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1310 ms
+2026-04-29 10:18:24.785 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.9180 ms
+2026-04-29 10:18:24.785 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.2397 ms
+2026-04-29 10:19:25.703 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0873 ms
+2026-04-29 10:19:25.752 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-04-30T00:00:00.0000000", CheckOut: "2026-05-01T00:00:00.0000000"
+2026-04-29 10:19:25.803 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 96.3022 ms
+2026-04-29 10:19:42.472 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1233 ms
+2026-04-29 10:19:42.490 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.9058 ms
