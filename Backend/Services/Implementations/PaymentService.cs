@@ -2,6 +2,7 @@ using HotelManagement.Data;
 using HotelManagement.Enums;
 using HotelManagement.Models;
 using HotelManagement.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Services.Implementations
 {
@@ -14,6 +15,9 @@ namespace HotelManagement.Services.Implementations
             _context = context;
         }
 
+        // ═══════════════════════════════════════════════════════════════════
+        // TẠO THANH TOÁN KHI CHECK-OUT
+        // ═══════════════════════════════════════════════════════════════════
         public async Task<Payment> CreateCheckoutPaymentAsync(
             Invoice invoice,
             string paymentMethod,
@@ -41,6 +45,34 @@ namespace HotelManagement.Services.Implementations
             await _context.SaveChangesAsync();
 
             return payment;
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // LẤY PAYMENTS THEO HÓA ĐƠN
+        // ═══════════════════════════════════════════════════════════════════
+        public async Task<IEnumerable<Payment>> GetByInvoiceAsync(long invoiceId)
+        {
+            return await _context.Payments
+                .Include(p => p.Invoice)
+                    .ThenInclude(i => i.Booking)
+                        .ThenInclude(b => b.Guest)
+                .Where(p => p.InvoiceId == invoiceId)
+                .OrderByDescending(p => p.PaymentDate)
+                .ToListAsync();
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // LỊCH SỬ THANH TOÁN THEO KHOẢNG THỜI GIAN
+        // ═══════════════════════════════════════════════════════════════════
+        public async Task<IEnumerable<Payment>> GetPaymentHistoryAsync(DateTime from, DateTime to)
+        {
+            return await _context.Payments
+                .Include(p => p.Invoice)
+                    .ThenInclude(i => i.Booking)
+                        .ThenInclude(b => b.Guest)
+                .Where(p => p.PaymentDate >= from && p.PaymentDate <= to)
+                .OrderByDescending(p => p.PaymentDate)
+                .ToListAsync();
         }
     }
 }

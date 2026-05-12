@@ -21,11 +21,13 @@ namespace HotelManagement.Controllers
     {
         private readonly HotelDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<PaymentsController> _logger;
 
-        public PaymentsController(HotelDbContext context, IMapper mapper)
+        public PaymentsController(HotelDbContext context, IMapper mapper, ILogger<PaymentsController> logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -84,6 +86,33 @@ namespace HotelManagement.Controllers
                     .ThenInclude(i => i.Booking)
                         .ThenInclude(b => b.Guest)
                 .Where(p => p.InvoiceId == invoiceId)
+                .OrderByDescending(p => p.PaymentDate)
+                .ToListAsync();
+
+            return Success(_mapper.Map<IEnumerable<PaymentDto>>(payments));
+        }
+
+        /// <summary>
+        /// Lịch sử thanh toán theo khoảng thời gian
+        /// </summary>
+        [HttpGet("history")]
+        [Authorize(Roles = "Admin,Manager,Receptionist")]
+        [ProducesResponseType(typeof(ApiResponse<IEnumerable<PaymentDto>>), 200)]
+        public async Task<IActionResult> GetHistory(
+            [FromQuery] DateTime from,
+            [FromQuery] DateTime to)
+        {
+            if (from > to)
+                return Fail("Ngày bắt đầu phải nhỏ hơn ngày kết thúc.");
+
+            _logger.LogInformation(
+                "GET /api/payments/history — From: {From}, To: {To}", from, to);
+
+            var payments = await _context.Payments
+                .Include(p => p.Invoice)
+                    .ThenInclude(i => i.Booking)
+                        .ThenInclude(b => b.Guest)
+                .Where(p => p.PaymentDate >= from && p.PaymentDate <= to)
                 .OrderByDescending(p => p.PaymentDate)
                 .ToListAsync();
 

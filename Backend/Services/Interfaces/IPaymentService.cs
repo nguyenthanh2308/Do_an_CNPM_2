@@ -9,5 +9,9 @@ namespace HotelManagement.Services.Interfaces
             string paymentMethod,
             decimal amountPaid,
             string? notes);
+
+        Task<IEnumerable<Payment>> GetByInvoiceAsync(long invoiceId);
+
+        Task<IEnumerable<Payment>> GetPaymentHistoryAsync(DateTime from, DateTime to);
     }
 }

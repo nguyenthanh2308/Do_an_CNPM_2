@@ -154,6 +154,7 @@
     padding: 6px 14px 6px 6px;
     border-radius: 50px;
     background: rgba(99, 102, 241, 0.05);
+    overflow: hidden;
     transition: background 0.3s ease;
 
     &:hover {
@@ -179,6 +180,7 @@
       display: flex;
       flex-direction: column;
       min-width: 0;
+      max-width: 120px;
 
       .name-small {
         font-weight: 600;

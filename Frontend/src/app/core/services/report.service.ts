@@ -23,4 +23,16 @@ export class ReportService {
       params: { from: startDate, to: endDate }
     });
   }
+
+  getDashboardStats(hotelId?: number): Observable<ApiResponse<any>> {
+    const params: any = {};
+    if (hotelId) params['hotelId'] = hotelId;
+    return this.http.get<ApiResponse<any>>(`${this.APIUrl}/dashboard`, { params });
+  }
+
+  getTopRooms(startDate: string, endDate: string, top: number = 5): Observable<ApiResponse<any>> {
+    return this.http.get<ApiResponse<any>>(`${this.APIUrl}/top-rooms`, {
+      params: { from: startDate, to: endDate, top: top.toString() }
+    });
+  }
 }
