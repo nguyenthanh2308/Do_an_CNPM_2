@@ -576,3 +576,208 @@
     grid-template-columns: 1fr;
   }
 }
+
+// ── Booking Dates Adjuster in Step 2 ─────────────────────────────────────
+.booking-dates-adjuster {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  
+  h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px 0;
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 1rem;
+    
+    mat-icon {
+      color: #7c3aed;
+    }
+  }
+
+  .adjuster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .adjuster-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .night-picker-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px 12px;
+    height: 56px;
+    
+    .picker-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    
+    .night-spinner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      button {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: #7c3aed;
+        }
+      }
+      
+      .nights-display {
+        font-weight: 700;
+        color: #1f2937;
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  // Real-time price calc preview inside Step 2
+  .realtime-price-preview {
+    margin-top: 16px;
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px dashed #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    .preview-row {
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 0.875rem;
+      
+      &.total-preview {
+        border-top: 1px solid #f1f5f9;
+        padding-top: 8px;
+        margin-top: 4px;
+        font-size: 1rem;
+        color: #1e293b;
+        
+        .text-success {
+          color: #10b981;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-dates-adjuster {
+    .adjuster-grid {
+      grid-template-columns: 1fr !important;
+      gap: 12px;
+    }
+    
+    .night-picker-col {
+      height: 70px;
+      align-items: flex-start;
+      padding: 10px 16px;
+    }
+  }
+}
+
+// ── Quick Search Banner in Step 1 ────────────────────────────────────────
+.quick-search-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(99, 102, 241, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-left: 4px solid #3b82f6;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  
+  mat-icon {
+    color: #3b82f6;
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .banner-text {
+    flex: 1;
+    
+    p {
+      margin: 0;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-weight: 500;
+      
+      &.sub {
+        color: #64748b;
+        font-size: 0.85rem;
+        margin-top: 2px;
+      }
+    }
+  }
+  
+  .toggle-search-btn {
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+    font-weight: 600;
+    
+    &:hover {
+      background: rgba(59, 130, 246, 0.05);
+    }
+  }
+}
+
+.hide-search-btn {
+  color: #64748b !important;
+  margin-left: 12px;
+}
+
+// ── Checking Availability Indicator ──────────────────────────────────────
+.checking-availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px dashed rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 16px 0;
+  color: #6366f1;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .quick-search-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    
+    .toggle-search-btn {
+      width: 100%;
+    }
+  }
+}

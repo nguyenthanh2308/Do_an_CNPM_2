@@ -60,6 +60,11 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
   isApplyingVoucher = false;
   voucherError = '';
   voucherSuccess = '';
+
+  // Advanced search and room validation state
+  showAdvancedSearch = false;
+  roomUnavailableError = '';
+  isCheckingAvailability = false;
   
   isSearching = false;
   isBooking = false;
@@ -157,6 +162,11 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
         if (this.stepper) {
           this.stepper.next();
         }
+      }, 100);
+    } else {
+      // Auto-trigger search for default dates so available rooms are pre-loaded immediately!
+      setTimeout(() => {
+        this.searchAvailableRooms();
       }, 100);
     }
   }
@@ -303,6 +313,59 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     const checkIn = new Date(this.searchForm.get('checkInDate')?.value);
     const checkOut = new Date(this.searchForm.get('checkOutDate')?.value);
     return Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+  }
+
+  changeNights(change: number): void {
+    if (!this.searchForm) return;
+    const checkIn = new Date(this.searchForm.get('checkInDate')?.value);
+    const currentNights = this.getNightCount();
+    const newNights = currentNights + change;
+    if (newNights < 1) return;
+
+    const newCheckOut = new Date(checkIn.getTime() + newNights * 24 * 60 * 60 * 1000);
+    this.searchForm.get('checkOutDate')?.setValue(newCheckOut);
+    this.clearVoucher();
+    this.checkRoomAvailabilityForNewDates();
+  }
+
+  onDatesChanged(): void {
+    this.clearVoucher();
+    this.checkRoomAvailabilityForNewDates();
+  }
+
+  checkRoomAvailabilityForNewDates(): void {
+    if (!this.selectedRoom || !this.searchForm) return;
+
+    this.isCheckingAvailability = true;
+    this.roomUnavailableError = '';
+
+    const formValue = this.searchForm.value;
+    const searchDto = {
+      checkIn: this.formatDate(formValue.checkInDate),
+      checkOut: this.formatDate(formValue.checkOutDate),
+      guests: formValue.guests
+    };
+
+    const currentRoomId = this.selectedRoom.roomId;
+
+    this.roomService.getAvailableRooms(searchDto)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.isCheckingAvailability = false;
+          const isStillAvailable = res.data && res.data.some(r => r.roomId === currentRoomId);
+          if (!isStillAvailable) {
+            this.roomUnavailableError = '⚠️ Rất tiếc, phòng này đã được đặt hoặc không khả dụng trong khoảng thời gian mới chọn. Vui lòng giảm số đêm hoặc chọn ngày khác.';
+            this.showInfo('Phòng đã chọn không còn trống trong thời gian này.');
+          } else {
+            this.roomUnavailableError = '';
+          }
+        },
+        error: (err) => {
+          this.isCheckingAvailability = false;
+          console.warn('Lỗi kiểm tra tính khả dụng của phòng:', err);
+        }
+      });
   }
 
   getTotalPrice(): number {

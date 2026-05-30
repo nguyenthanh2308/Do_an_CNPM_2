@@ -28,35 +28,54 @@
             <mat-icon>check_circle</mat-icon>
             <p>Phòng {{ preSelectedRoom?.roomNumber }} đã được chọn. Tiếp tục để hoàn tất thông tin.</p>
           </div>
-          <h3 *ngIf="!skipSearchStep">Chọn ngày và số lượng khách</h3>
           
-          <div class="search-form" *ngIf="!skipSearchStep">
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Ngày nhận phòng</mat-label>
-              <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
-              <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
-              <mat-datepicker #checkInPicker></mat-datepicker>
-            </mat-form-field>
+          <div *ngIf="!skipSearchStep">
+            <!-- Simplified Quick Search Alert Banner -->
+            <div class="quick-search-banner" *ngIf="!showAdvancedSearch">
+              <mat-icon>info</mat-icon>
+              <div class="banner-text">
+                <p><strong>Tìm phòng nhanh</strong>: Hệ thống đang hiển thị danh sách phòng trống từ ngày mai (1 đêm).</p>
+                <p class="sub">Bạn có thể chọn phòng mong muốn bên dưới và dễ dàng tinh chỉnh số đêm ở Bước 2.</p>
+              </div>
+              <button type="button" mat-stroked-button class="toggle-search-btn" (click)="showAdvancedSearch = true">
+                <mat-icon>tune</mat-icon> Thay đổi ngày
+              </button>
+            </div>
 
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Ngày trả phòng</mat-label>
-              <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
-              <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
-              <mat-datepicker #checkOutPicker></mat-datepicker>
-            </mat-form-field>
+            <h3 *ngIf="showAdvancedSearch">Chọn ngày và số lượng khách</h3>
+            
+            <div class="search-form" *ngIf="showAdvancedSearch">
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Ngày nhận phòng</mat-label>
+                <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate">
+                <mat-datepicker-toggle matIconSuffix [for]="checkInPicker"></mat-datepicker-toggle>
+                <mat-datepicker #checkInPicker></mat-datepicker>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>Số khách</mat-label>
-              <input matInput type="number" min="1" max="10" formControlName="guests">
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Ngày trả phòng</mat-label>
+                <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate">
+                <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
+                <mat-datepicker #checkOutPicker></mat-datepicker>
+              </mat-form-field>
 
-            <button mat-flat-button class="search-btn" 
-                    (click)="searchAvailableRooms()" 
-                    [disabled]="isSearching || searchForm.invalid">
-              <mat-icon *ngIf="!isSearching">search</mat-icon>
-              <mat-spinner *ngIf="isSearching" diameter="20" color="accent"></mat-spinner>
-              {{ isSearching ? 'Đang tìm...' : 'Tìm phòng' }}
-            </button>
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Số khách</mat-label>
+                <input matInput type="number" min="1" max="10" formControlName="guests">
+              </mat-form-field>
+
+              <button mat-flat-button class="search-btn" 
+                      (click)="searchAvailableRooms()" 
+                      [disabled]="isSearching || searchForm.invalid">
+                <mat-icon *ngIf="!isSearching">search</mat-icon>
+                <mat-spinner *ngIf="isSearching" diameter="20" color="accent"></mat-spinner>
+                {{ isSearching ? 'Đang tìm...' : 'Tìm phòng' }}
+              </button>
+              
+              <button type="button" mat-button class="hide-search-btn" (click)="showAdvancedSearch = false">
+                Thu gọn
+              </button>
+            </div>
           </div>
 
           <p class="error" *ngIf="searchError">{{ searchError }}</p>
@@ -144,6 +163,63 @@
             </div>
           </div>
 
+          <!-- Interactive Nights / Dates Adjuster -->
+          <div class="booking-dates-adjuster">
+            <h4>
+              <mat-icon>date_range</mat-icon>
+              Thời gian lưu trú & Tính giá nhanh
+            </h4>
+            
+            <div class="adjuster-grid">
+              <div class="adjuster-col">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Ngày nhận phòng</mat-label>
+                  <input matInput [matDatepicker]="checkInPicker2" [formControl]="$any(searchForm.get('checkInDate'))" (dateChange)="onDatesChanged()">
+                  <mat-datepicker-toggle matIconSuffix [for]="checkInPicker2"></mat-datepicker-toggle>
+                  <mat-datepicker #checkInPicker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+              
+              <div class="adjuster-col night-picker-col">
+                <label class="picker-label">Số đêm lưu trú</label>
+                <div class="night-spinner">
+                  <button type="button" mat-icon-button (click)="changeNights(-1)" [disabled]="getNightCount() <= 1">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <span class="nights-display">{{ getNightCount() }} đêm</span>
+                  <button type="button" mat-icon-button (click)="changeNights(1)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+              <div class="adjuster-col">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Ngày trả phòng (Tự động tính)</mat-label>
+                  <input matInput [matDatepicker]="checkOutPicker2" [formControl]="$any(searchForm.get('checkOutDate'))" (dateChange)="onDatesChanged()">
+                  <mat-datepicker-toggle matIconSuffix [for]="checkOutPicker2"></mat-datepicker-toggle>
+                  <mat-datepicker #checkOutPicker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- Real-time price calculation preview in Step 2 -->
+            <div class="realtime-price-preview" *ngIf="selectedRoom">
+              <div class="preview-row">
+                <span>Đơn giá phòng:</span>
+                <span>{{ selectedRoom.pricePerNight | number }} VND / đêm</span>
+              </div>
+              <div class="preview-row">
+                <span>Số đêm lưu trú:</span>
+                <span>x {{ getNightCount() }} đêm</span>
+              </div>
+              <div class="preview-row total-preview">
+                <span>Tạm tính tổng tiền:</span>
+                <strong class="text-success">{{ getTotalPrice() | number }} VND</strong>
+              </div>
+            </div>
+          </div>
+
           <!-- Special Requests -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Yêu cầu đặc biệt (tùy chọn)</mat-label>
@@ -164,6 +240,13 @@
             </p>
           </div>
 
+          <!-- Checking availability indicator -->
+          <div class="checking-availability" *ngIf="isCheckingAvailability">
+            <mat-spinner diameter="20" color="primary"></mat-spinner>
+            <span>Đang kiểm tra tình trạng phòng trống...</span>
+          </div>
+
+          <p class="error" *ngIf="roomUnavailableError">{{ roomUnavailableError }}</p>
           <p class="error" *ngIf="bookingError">{{ bookingError }}</p>
         </div>
 
@@ -172,7 +255,7 @@
             <mat-icon>arrow_back</mat-icon>
             Quay lại
           </button>
-          <button mat-flat-button matStepperNext>
+          <button mat-flat-button matStepperNext [disabled]="!!roomUnavailableError || isCheckingAvailability">
             Tiếp theo
             <mat-icon>arrow_forward</mat-icon>
           </button>
