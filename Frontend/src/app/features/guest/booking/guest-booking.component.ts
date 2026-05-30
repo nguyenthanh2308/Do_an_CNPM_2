@@ -99,8 +99,10 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     // Initialize search form
     const checkIn = new Date();
     checkIn.setDate(checkIn.getDate() + 1);
+    checkIn.setHours(0, 0, 0, 0);
     const checkOut = new Date();
     checkOut.setDate(checkOut.getDate() + 2);
+    checkOut.setHours(0, 0, 0, 0);
 
     this.searchForm = this.fb.group({
       checkInDate: [checkIn, Validators.required],
@@ -312,7 +314,13 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
     if (!this.searchForm) return 0;
     const checkIn = new Date(this.searchForm.get('checkInDate')?.value);
     const checkOut = new Date(this.searchForm.get('checkOutDate')?.value);
-    return Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+    
+    // Normalize times to midnight to ensure exact day difference calculation
+    checkIn.setHours(0, 0, 0, 0);
+    checkOut.setHours(0, 0, 0, 0);
+    
+    const diffTime = checkOut.getTime() - checkIn.getTime();
+    return Math.max(1, Math.round(diffTime / (1000 * 60 * 60 * 24)));
   }
 
   changeNights(change: number): void {

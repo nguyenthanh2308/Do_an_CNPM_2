@@ -181,13 +181,13 @@
               </div>
               
               <div class="adjuster-col night-picker-col">
-                <label class="picker-label">Số đêm lưu trú</label>
+                <span class="picker-label">Số đêm lưu trú</span>
                 <div class="night-spinner">
-                  <button type="button" mat-icon-button (click)="changeNights(-1)" [disabled]="getNightCount() <= 1">
+                  <button type="button" class="spinner-btn" (click)="changeNights(-1)" [disabled]="getNightCount() <= 1" aria-label="Giảm số đêm">
                     <mat-icon>remove</mat-icon>
                   </button>
                   <span class="nights-display">{{ getNightCount() }} đêm</span>
-                  <button type="button" mat-icon-button (click)="changeNights(1)">
+                  <button type="button" class="spinner-btn" (click)="changeNights(1)" aria-label="Tăng số đêm">
                     <mat-icon>add</mat-icon>
                   </button>
                 </div>
@@ -223,7 +223,6 @@
           <!-- Special Requests -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Yêu cầu đặc biệt (tùy chọn)</mat-label>
-            <mat-icon matPrefix>note</mat-icon>
             <textarea matInput formControlName="specialRequests" 
                       placeholder="Ví dụ: Phòng tầng cao, gần thang máy, v.v..."
                       rows="4"></textarea>
