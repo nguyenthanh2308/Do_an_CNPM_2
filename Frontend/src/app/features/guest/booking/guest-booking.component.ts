@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingService } from '../../../core/services/booking.service';
 import { RoomService } from '../../../core/services/room.service';
 import { RatePlanService } from '../../../core/services/rate-plan.service';
@@ -28,6 +28,7 @@ import { GuestHeaderComponent } from '../components/guest-header.component';
     CommonModule,
     RouterModule,
     GuestHeaderComponent,
+    FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,
@@ -52,6 +53,13 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
   availableRooms: AvailableRoomDto[] = [];
   currentUser: UserInfo | null = null;
   preSelectedRoom: any | null = null;
+
+  // Voucher validation state
+  voucherCode = '';
+  appliedVoucher: any = null;
+  isApplyingVoucher = false;
+  voucherError = '';
+  voucherSuccess = '';
   
   isSearching = false;
   isBooking = false;
@@ -158,6 +166,7 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
 
     this.isSearching = true;
     this.searchError = '';
+    this.clearVoucher();
     const formValue = this.searchForm.value;
 
     const searchDto = {
@@ -198,6 +207,7 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
 
   selectRoom(room: AvailableRoomDto): void {
     this.selectedRoom = room;
+    this.clearVoucher();
   }
 
   createBooking(): void {
@@ -234,7 +244,8 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
             numGuests: formValue.guests,
             bookingSource: 'Online',
             specialRequests: this.bookingForm.get('specialRequests')?.value,
-            roomIds: [selectedRoom.roomId]
+            roomIds: [selectedRoom.roomId],
+            promotionId: this.appliedVoucher?.promotionId || undefined
           };
 
           console.log('Booking DTO:', bookingDto);
@@ -297,6 +308,61 @@ export class GuestBookingComponent implements OnInit, OnDestroy {
   getTotalPrice(): number {
     if (!this.selectedRoom) return 0;
     return this.getNightCount() * (this.selectedRoom?.pricePerNight || 0);
+  }
+
+  clearVoucher(): void {
+    this.voucherCode = '';
+    this.appliedVoucher = null;
+    this.voucherError = '';
+    this.voucherSuccess = '';
+  }
+
+  applyVoucher(): void {
+    if (!this.voucherCode || !this.voucherCode.trim()) {
+      this.voucherError = 'Vui lòng nhập mã giảm giá';
+      this.voucherSuccess = '';
+      return;
+    }
+
+    this.isApplyingVoucher = true;
+    this.voucherError = '';
+    this.voucherSuccess = '';
+
+    const req = {
+      code: this.voucherCode.trim().toUpperCase(),
+      bookingAmount: this.getTotalPrice()
+    };
+
+    this.bookingService.validateVoucher(req)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.isApplyingVoucher = false;
+          if (res.success && res.data?.isValid) {
+            this.appliedVoucher = res.data;
+            this.voucherSuccess = res.data.message || 'Áp dụng mã giảm giá thành công!';
+            this.showSuccess(this.voucherSuccess);
+          } else {
+            this.appliedVoucher = null;
+            this.voucherError = res.data?.message || res.message || 'Mã giảm giá không hợp lệ';
+            this.showInfo(this.voucherError);
+          }
+        },
+        error: (err) => {
+          this.isApplyingVoucher = false;
+          this.appliedVoucher = null;
+          this.voucherError = err.error?.message || 'Lỗi kiểm tra mã giảm giá';
+          this.showInfo(this.voucherError);
+        }
+      });
+  }
+
+  getDiscountAmount(): number {
+    return this.appliedVoucher?.discountAmount || 0;
+  }
+
+  getFinalTotalPrice(): number {
+    return Math.max(0, this.getTotalPrice() - this.getDiscountAmount());
   }
 
   onCancel(): void {

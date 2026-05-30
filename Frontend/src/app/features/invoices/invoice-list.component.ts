@@ -213,6 +213,10 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
                     (click)="markAsPaid(selectedInvoice)">
               <mat-icon>check_circle</mat-icon> Đánh dấu Đã thanh toán
             </button>
+            <button mat-raised-button color="accent" class="print-btn"
+                    (click)="printInvoice(selectedInvoice)">
+              <mat-icon>print</mat-icon> In Hóa đơn
+            </button>
           </div>
         </div>
       </div>
@@ -277,6 +281,7 @@ import { InvoiceService, InvoiceDto } from '../../core/services/invoice.service'
     .status-display { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px; font-weight: 600; margin: 8px 0; }
     .note-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; color: #64748b; font-size: 0.875rem; margin-top: 8px; }
     .pay-btn { width: 100%; margin-top: 16px; }
+    .print-btn { width: 100%; margin-top: 12px; background: linear-gradient(135deg, #0284c7, #0ea5e9) !important; color: white !important; }
   `]
 })
 export class InvoiceListComponent implements OnInit, OnDestroy {
@@ -339,6 +344,127 @@ export class InvoiceListComponent implements OnInit, OnDestroy {
 
   viewDetail(inv: InvoiceDto): void { this.selectedInvoice = inv; }
   closeDetail(): void { this.selectedInvoice = null; }
+
+  printInvoice(invoice: InvoiceDto): void {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      this.snackBar.open('⚠️ Không thể mở cửa sổ in. Vui lòng kiểm tra cấu hình chặn Popup của trình duyệt.', 'Đóng', { duration: 4000 });
+      return;
+    }
+    
+    const taxRate = invoice.taxAmount > 0 && invoice.subtotal > 0
+      ? Math.round((invoice.taxAmount / (invoice.subtotal - invoice.discountAmount)) * 100)
+      : 10;
+      
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Hóa đơn ${invoice.invoiceNumber}</title>
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; color: #333; line-height: 1.6; background-color: #ffffff; }
+            .invoice-box { max-width: 800px; margin: auto; border: 1px solid #e2e8f0; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+            .header { display: flex; justify-content: space-between; border-bottom: 3px solid #6366f1; padding-bottom: 24px; margin-bottom: 32px; }
+            .logo { font-size: 26px; font-weight: 800; color: #6366f1; letter-spacing: 0.5px; text-transform: uppercase; }
+            .info { display: flex; justify-content: space-between; margin-bottom: 32px; gap: 20px; }
+            .info div { width: 48%; }
+            .info h4 { margin-top: 0; color: #475569; text-transform: uppercase; font-size: 11px; font-weight: 700; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 6px; letter-spacing: 0.5px; }
+            .info p { margin: 4px 0; font-size: 13px; color: #334155; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+            th { background: #f8fafc; border-bottom: 2px solid #e2e8f0; text-align: left; padding: 14px; font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; }
+            td { padding: 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: #1e293b; }
+            .totals { width: 50%; margin-left: auto; margin-top: 24px; }
+            .totals-row { display: flex; justify-content: space-between; padding: 8px 12px; font-size: 13px; color: #475569; border-radius: 6px; }
+            .totals-row.total { border-top: 2px solid #6366f1; font-weight: bold; font-size: 18px; padding-top: 14px; color: #1e293b; margin-top: 8px; }
+            .footer { text-align: center; margin-top: 60px; color: #94a3b8; font-size: 12px; border-top: 1px solid #f1f5f9; padding-top: 24px; }
+            @media print {
+              body { padding: 0; background-color: #ffffff; }
+              .invoice-box { border: none; box-shadow: none; padding: 0; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="invoice-box">
+            <div class="header">
+              <div>
+                <div class="logo">HOTEL MANAGEMENT SYSTEM</div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 6px; font-weight: 500;">Hóa đơn dịch vụ lưu trú & dịch vụ gia tăng</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: bold; font-size: 17px; color: #1e293b;">SỐ HÓA ĐƠN: ${invoice.invoiceNumber}</div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 4px;">Ngày phát hành: ${this.formatDate(invoice.issuedAt)}</div>
+              </div>
+            </div>
+            
+            <div class="info">
+              <div>
+                <h4>Thông tin khách sạn</h4>
+                <p><strong>Hotel Management System</strong></p>
+                <p>Địa chỉ: 123 Đường Ba Tháng Hai, Quận 10, TP. Hồ Chí Minh</p>
+                <p>Điện thoại: +84 28 1234 5678</p>
+                <p>Email: contact@hotelmanagement.com</p>
+              </div>
+              <div style="text-align: right;">
+                <h4>Thông tin khách hàng</h4>
+                <p><strong>${invoice.guestName || 'Khách vãng lai'}</strong></p>
+                <p>Mã đặt phòng: #${invoice.bookingId}</p>
+                <p>Trạng thái: <span style="font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 12px; background-color: ${invoice.status === 'Paid' ? '#dcfce7' : '#fee2e2'}; color: ${invoice.status === 'Paid' ? '#15803d' : '#b91c1c'};">${this.getStatusLabel(invoice.status)}</span></p>
+              </div>
+            </div>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Mô tả dịch vụ</th>
+                  <th style="text-align: right;">Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tiền phòng & Dịch vụ lưu trú (Mã đặt phòng #${invoice.bookingId})</td>
+                  <td style="text-align: right; font-weight: 600;">${this.formatCurrency(invoice.subtotal)}</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="totals">
+              <div class="totals-row">
+                <span>Tạm tính:</span>
+                <span>${this.formatCurrency(invoice.subtotal)}</span>
+              </div>
+              ${invoice.discountAmount > 0 ? `
+              <div class="totals-row" style="color: #15803d; background-color: #f0fdf4; font-weight: 500;">
+                <span>Giảm giá (Voucher):</span>
+                <span>- ${this.formatCurrency(invoice.discountAmount)}</span>
+              </div>
+              ` : ''}
+              ${invoice.taxAmount > 0 ? `
+              <div class="totals-row">
+                <span>Thuế VAT (${taxRate}%):</span>
+                <span>+ ${this.formatCurrency(invoice.taxAmount)}</span>
+              </div>
+              ` : ''}
+              <div class="totals-row total">
+                <span>Tổng thanh toán:</span>
+                <span>${this.formatCurrency(invoice.totalAmount)}</span>
+              </div>
+            </div>
+            
+            <div class="footer">
+              <p>Cảm ơn quý khách đã tin tưởng và sử dụng dịch vụ tại khách sạn của chúng tôi!</p>
+              <p>Hẹn gặp lại quý khách trong những kỳ nghỉ tiếp theo.</p>
+            </div>
+          </div>
+          <script>
+            window.onload = function() {
+              window.print();
+              setTimeout(function() { window.close(); }, 500);
+            };
+          <\/script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
 
   canMarkPaid(status: string): boolean { return ['Issued', 'Draft', 'Overdue', 'Pending'].includes(status); }
 

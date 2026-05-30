@@ -235,11 +235,42 @@
             </div>
           </div>
 
+          <!-- Voucher Section -->
+          <div class="summary-section voucher-section">
+            <h4>
+              <mat-icon>card_giftcard</mat-icon>
+              Mã giảm giá (Voucher)
+            </h4>
+            <div class="voucher-input-group">
+              <mat-form-field appearance="outline" class="voucher-field">
+                <mat-label>Nhập mã giảm giá</mat-label>
+                <input matInput [(ngModel)]="voucherCode" placeholder="Mã voucher (Ví dụ: PROMO10)" [disabled]="isApplyingVoucher || !!appliedVoucher">
+              </mat-form-field>
+              
+              <button mat-flat-button color="primary" class="apply-voucher-btn" 
+                      *ngIf="!appliedVoucher"
+                      (click)="applyVoucher()" 
+                      [disabled]="isApplyingVoucher || !voucherCode">
+                <mat-spinner *ngIf="isApplyingVoucher" diameter="20" color="accent"></mat-spinner>
+                <span *ngIf="!isApplyingVoucher">Áp dụng</span>
+              </button>
+              
+              <button mat-stroked-button color="warn" class="remove-voucher-btn" 
+                      *ngIf="appliedVoucher"
+                      (click)="clearVoucher()">
+                Hủy mã
+              </button>
+            </div>
+            
+            <p class="voucher-success" *ngIf="voucherSuccess && appliedVoucher">{{ voucherSuccess }}</p>
+            <p class="voucher-error" *ngIf="voucherError && !appliedVoucher">{{ voucherError }}</p>
+          </div>
+
           <!-- Price Summary -->
           <div class="summary-section price-section">
             <h4>
               <mat-icon>receipt</mat-icon>
-              Tổng giá
+              Chi tiết chi phí
             </h4>
             <div class="price-grid">
               <div class="price-row">
@@ -250,9 +281,17 @@
                 <span>Số đêm:</span>
                 <strong>{{ getNightCount() }}</strong>
               </div>
-              <div class="price-row total">
-                <span>Tổng tiền:</span>
+              <div class="price-row" *ngIf="appliedVoucher">
+                <span>Tạm tính:</span>
                 <strong>{{ getTotalPrice() | number }} VND</strong>
+              </div>
+              <div class="price-row discount-row" *ngIf="appliedVoucher">
+                <span>Giảm giá (Voucher):</span>
+                <strong>- {{ getDiscountAmount() | number }} VND</strong>
+              </div>
+              <div class="price-row total">
+                <span>Tổng thanh toán:</span>
+                <strong>{{ getFinalTotalPrice() | number }} VND</strong>
               </div>
             </div>
           </div>
