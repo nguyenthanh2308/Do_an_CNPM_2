@@ -1619,3 +1619,770 @@ HotelManagement.Exceptions.AppException: Room #6 không tìm thấy.
 2026-05-30 12:17:43.418 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.5591 ms
 2026-05-30 12:17:54.012 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0718 ms
 2026-05-30 12:17:54.025 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.2459 ms
+2026-05-30 12:28:08.820 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-30 12:28:42.825 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-30 12:28:42.831 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.9036 ms
+2026-05-30 12:28:43.038 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-30 12:28:43.369 +07:00 [INF] User 'Test12' logged in.
+2026-05-30 12:28:43.400 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 556.1654 ms
+2026-05-30 12:28:43.408 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.4825 ms
+2026-05-30 12:28:43.447 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0958 ms
+2026-05-30 12:28:43.448 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0752 ms
+2026-05-30 12:28:43.452 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 40.7787 ms
+2026-05-30 12:28:43.604 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 152.5718 ms
+2026-05-30 12:28:43.612 +07:00 [INF] HTTP GET /api/rooms responded 200 in 159.8014 ms
+2026-05-30 12:28:43.644 +07:00 [INF] HTTP GET /uploads/202605/d8168b4154074accb65e74b0ec467516.jpg responded 200 in 7.0616 ms
+2026-05-30 12:28:45.241 +07:00 [INF] HTTP GET /api/rooms responded 200 in 19.2454 ms
+2026-05-30 12:28:54.877 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0835 ms
+2026-05-30 12:28:54.896 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 13.5561 ms
+2026-05-30 12:28:54.903 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0868 ms
+2026-05-30 12:28:54.937 +07:00 [INF] HTTP GET /api/rooms responded 200 in 30.8277 ms
+2026-05-30 12:29:00.068 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0809 ms
+2026-05-30 12:29:00.083 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.5784 ms
+2026-05-30 12:29:02.819 +07:00 [INF] HTTP OPTIONS /api/rooms/6 responded 204 in 0.0675 ms
+2026-05-30 12:29:02.869 +07:00 [INF] HTTP GET /api/rooms/6 responded 200 in 46.8221 ms
+2026-05-30 12:31:04.642 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.2013 ms
+2026-05-30 12:31:04.655 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-05-30 12:31:04.898 +07:00 [INF] User 'admin' logged in.
+2026-05-30 12:31:04.899 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 252.9674 ms
+2026-05-30 12:31:04.903 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0588 ms
+2026-05-30 12:31:04.907 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.1842 ms
+2026-05-30 12:31:04.976 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0883 ms
+2026-05-30 12:31:04.991 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.3501 ms
+2026-05-30 12:31:05.032 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.2686 ms
+2026-05-30 12:31:05.034 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0697 ms
+2026-05-30 12:31:05.043 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 5.5147 ms
+2026-05-30 12:31:05.043 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 6.8088 ms
+2026-05-30 12:31:05.153 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=EuMs5ysQAKrr29Kdl4t8TQ
+2026-05-30 12:31:05.155 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=FCVKwPukTfrmtoG0-yhmiA
+2026-05-30 12:31:08.332 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.1078 ms
+2026-05-30 12:31:08.384 +07:00 [INF] HTTP GET /api/hotels responded 200 in 47.3291 ms
+2026-05-30 12:31:09.456 +07:00 [INF] HTTP OPTIONS /api/reports/dashboard responded 204 in 0.0879 ms
+2026-05-30 12:31:09.458 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0683 ms
+2026-05-30 12:31:09.458 +07:00 [INF] HTTP OPTIONS /api/reports/top-rooms responded 204 in 0.0192 ms
+2026-05-30 12:31:09.479 +07:00 [INF] GET /api/reports/top-rooms — Top: 5
+2026-05-30 12:31:09.479 +07:00 [INF] GET /api/reports/revenue — From: "2026-05-23T00:00:00.0000000", To: "2026-05-30T00:00:00.0000000"
+2026-05-30 12:31:09.515 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 52.1310 ms
+2026-05-30 12:31:09.515 +07:00 [INF] HTTP GET /api/reports/dashboard responded 200 in 52.6089 ms
+2026-05-30 12:31:09.518 +07:00 [ERR] HTTP GET /api/reports/top-rooms responded 500 in 55.2600 ms
+System.InvalidOperationException: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.TranslateSubquery(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.<VisitMethodCall>g__TranslateAsSubquery|33_0(Expression expression, <>c__DisplayClass33_0&)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.CallBaseVisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateInternal(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateProjection(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberAssignment(MemberAssignment memberAssignment)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(MemberBinding node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberInit(MemberInitExpression memberInitExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Translate(SelectExpression selectExpression, Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.TranslateSelect(ShapedQueryExpression source, LambdaExpression selector)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.ReportsController.GetTopRooms(DateTime from, DateTime to, Int32 top) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\ReportsController.cs:line 192
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:31:09.551 +07:00 [ERR] Unhandled exception: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+System.InvalidOperationException: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.TranslateSubquery(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.<VisitMethodCall>g__TranslateAsSubquery|33_0(Expression expression, <>c__DisplayClass33_0&)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.CallBaseVisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateInternal(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateProjection(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberAssignment(MemberAssignment memberAssignment)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(MemberBinding node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberInit(MemberInitExpression memberInitExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Translate(SelectExpression selectExpression, Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.TranslateSelect(ShapedQueryExpression source, LambdaExpression selector)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.ReportsController.GetTopRooms(DateTime from, DateTime to, Int32 top) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\ReportsController.cs:line 192
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-05-30 12:44:15.449 +07:00 [INF] SignalR Disconnected: ConnId=FCVKwPukTfrmtoG0-yhmiA
+2026-05-30 12:44:15.449 +07:00 [INF] SignalR Disconnected: ConnId=EuMs5ysQAKrr29Kdl4t8TQ
+2026-05-30 12:44:15.451 +07:00 [INF] HTTP GET /hubs/room responded 101 in 790320.7987 ms
+2026-05-30 12:44:15.451 +07:00 [INF] HTTP GET /hubs/room responded 101 in 790298.8757 ms
+2026-05-30 13:05:58.266 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1772 ms
+2026-05-30 13:05:58.293 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-05-30 13:05:58.537 +07:00 [INF] User 'admin' logged in.
+2026-05-30 13:05:58.539 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 269.6447 ms
+2026-05-30 13:05:58.543 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0447 ms
+2026-05-30 13:05:58.547 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.4419 ms
+2026-05-30 13:05:58.598 +07:00 [INF] HTTP OPTIONS /api/reports/dashboard responded 204 in 0.0547 ms
+2026-05-30 13:05:58.598 +07:00 [INF] HTTP OPTIONS /api/reports/revenue responded 204 in 0.0486 ms
+2026-05-30 13:05:58.599 +07:00 [INF] HTTP OPTIONS /api/reports/top-rooms responded 204 in 0.0350 ms
+2026-05-30 13:05:58.610 +07:00 [INF] GET /api/reports/revenue — From: "2026-05-23T00:00:00.0000000", To: "2026-05-30T00:00:00.0000000"
+2026-05-30 13:05:58.611 +07:00 [INF] GET /api/reports/top-rooms — Top: 5
+2026-05-30 13:05:58.617 +07:00 [ERR] HTTP GET /api/reports/top-rooms responded 500 in 13.4337 ms
+System.InvalidOperationException: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.TranslateSubquery(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.<VisitMethodCall>g__TranslateAsSubquery|33_0(Expression expression, <>c__DisplayClass33_0&)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.CallBaseVisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateInternal(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateProjection(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberAssignment(MemberAssignment memberAssignment)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(MemberBinding node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberInit(MemberInitExpression memberInitExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Translate(SelectExpression selectExpression, Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.TranslateSelect(ShapedQueryExpression source, LambdaExpression selector)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.ReportsController.GetTopRooms(DateTime from, DateTime to, Int32 top) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\ReportsController.cs:line 192
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 13:05:58.617 +07:00 [INF] HTTP GET /api/reports/dashboard responded 200 in 16.0876 ms
+2026-05-30 13:05:58.620 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0605 ms
+2026-05-30 13:05:58.623 +07:00 [INF] HTTP GET /api/reports/revenue responded 200 in 20.6685 ms
+2026-05-30 13:05:58.638 +07:00 [ERR] Unhandled exception: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+System.InvalidOperationException: The LINQ expression 'RelationalGroupByShaperExpression:
+KeySelector: new { 
+    RoomId = b.room_id, 
+    RoomNumber = r.room_number, 
+    RoomTypeName = r0.name
+ }, 
+ElementSelector: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+    Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+        Outer = new TransparentIdentifier<BookingRoom, Booking>(
+            Outer = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.BookingRoom
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                IsNullable: False), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.Booking
+                ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                IsNullable: False)
+        ), 
+        Inner = StructuralTypeShaperExpression(
+            StructuralType: HotelManagement.Models.Room
+            ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+            IsNullable: False)
+    ), 
+    Inner = StructuralTypeShaperExpression(
+        StructuralType: HotelManagement.Models.RoomType
+        ValueBufferExpression: ProjectionBindingExpression: Inner
+        IsNullable: False)
+), 
+GroupingEnumerable:ShapedQueryExpression: 
+    QueryExpression: 
+        Projection Mapping:
+            Outer.Outer.Outer -> StructuralTypeProjectionExpression: BookingRoom
+            Outer.Outer.Inner -> StructuralTypeProjectionExpression: Booking
+            Outer.Inner -> StructuralTypeProjectionExpression: Room
+            Inner -> StructuralTypeProjectionExpression: RoomType
+        SELECT 1
+        FROM booking_rooms AS b1
+        INNER JOIN bookings AS b2 ON b1.booking_id == b2.booking_id
+        INNER JOIN rooms AS r1 ON b1.room_id == r1.room_id
+        INNER JOIN room_types AS r2 ON r1.room_type_id == r2.room_type_id
+        WHERE (((b2.status != 'Cancelled') && (b1.check_in_date >= @__from_0)) && (b1.check_in_date <= @__to_1)) && (((b.room_id == b1.room_id) && (r.room_number == r1.room_number)) && (r0.name == r2.name))
+    ShaperExpression: new TransparentIdentifier<TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>, RoomType>(
+            Outer = new TransparentIdentifier<TransparentIdentifier<BookingRoom, Booking>, Room>(
+                Outer = new TransparentIdentifier<BookingRoom, Booking>(
+                    Outer = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.BookingRoom
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Outer
+                        IsNullable: False), 
+                    Inner = StructuralTypeShaperExpression(
+                        StructuralType: HotelManagement.Models.Booking
+                        ValueBufferExpression: ProjectionBindingExpression: Outer.Outer.Inner
+                        IsNullable: False)
+                ), 
+                Inner = StructuralTypeShaperExpression(
+                    StructuralType: HotelManagement.Models.Room
+                    ValueBufferExpression: ProjectionBindingExpression: Outer.Inner
+                    IsNullable: False)
+            ), 
+            Inner = StructuralTypeShaperExpression(
+                StructuralType: HotelManagement.Models.RoomType
+                ValueBufferExpression: ProjectionBindingExpression: Inner
+                IsNullable: False)
+        )
+
+    .AsQueryable()
+    .Sum(e => e.Outer.Outer.Outer.PricePerNight * (decimal)(e.Outer.Outer.Outer.CheckOutDate - e.Outer.Outer.Outer.CheckInDate).Days)' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.TranslateSubquery(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.<VisitMethodCall>g__TranslateAsSubquery|33_0(Expression expression, <>c__DisplayClass33_0&)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.CallBaseVisitMethodCall(MethodCallExpression methodCallExpression)
+   at Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal.MySqlSqlTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateInternal(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.RelationalSqlTranslatingExpressionVisitor.TranslateProjection(Expression expression, Boolean applyDefaultTypeMapping)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberAssignment(MemberAssignment memberAssignment)
+   at System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(MemberBinding node)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.VisitMemberInit(MemberInitExpression memberInitExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Visit(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.RelationalProjectionBindingExpressionVisitor.Translate(SelectExpression selectExpression, Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.TranslateSelect(ShapedQueryExpression source, LambdaExpression selector)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.RelationalQueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.Translate(Expression expression)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1.GetAsyncEnumerator(CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable`1.GetAsyncEnumerator()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at HotelManagement.Controllers.ReportsController.GetTopRooms(DateTime from, DateTime to, Int32 top) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\ReportsController.cs:line 192
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at HotelManagement.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\MSI\source\Do_An_2\Backend\Middleware\GlobalExceptionMiddleware.cs:line 26
+2026-05-30 13:05:58.643 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.7283 ms
+2026-05-30 13:05:58.650 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=WtjxUPnUfads-XB5jfOAlw
+2026-05-30 13:06:04.320 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0664 ms
+2026-05-30 13:06:04.337 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.4049 ms
+2026-05-30 13:06:05.226 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0520 ms
+2026-05-30 13:06:05.277 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-05-30 13:06:05.407 +07:00 [INF] HTTP GET /api/bookings responded 200 in 177.0727 ms
+2026-05-30 13:06:10.865 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0457 ms
+2026-05-30 13:06:10.902 +07:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-05-30 13:06:10.964 +07:00 [INF] HTTP GET /api/invoices responded 200 in 94.1060 ms
+2026-05-30 13:06:12.242 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0671 ms
+2026-05-30 13:06:12.304 +07:00 [INF] HTTP GET /api/payments responded 200 in 57.4280 ms
+2026-05-30 13:06:14.376 +07:00 [INF] HTTP GET /api/invoices responded 200 in 16.5399 ms
+2026-05-30 13:07:00.318 +07:00 [INF] SignalR Disconnected: ConnId=WtjxUPnUfads-XB5jfOAlw
+2026-05-30 13:07:00.319 +07:00 [INF] HTTP GET /hubs/room responded 101 in 61671.4684 ms
+2026-05-30 13:07:02.548 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0918 ms
+2026-05-30 13:07:02.552 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.5329 ms
+2026-05-30 13:07:02.565 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=X43JB1d3fu_zLIpv8cwyvw
+2026-05-30 13:07:06.474 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0588 ms
+2026-05-30 13:07:06.554 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 76.1664 ms
+2026-05-30 13:07:09.033 +07:00 [INF] HTTP OPTIONS /api/invoices responded 204 in 0.0524 ms
+2026-05-30 13:07:09.059 +07:00 [INF] HTTP GET /api/invoices responded 200 in 21.2272 ms
+2026-05-30 13:07:20.816 +07:00 [INF] HTTP OPTIONS /api/payments responded 204 in 0.0587 ms
+2026-05-30 13:07:20.836 +07:00 [INF] HTTP GET /api/payments responded 200 in 13.4367 ms
+2026-05-30 13:07:22.409 +07:00 [INF] HTTP OPTIONS /api/guests responded 204 in 0.0652 ms
+2026-05-30 13:07:22.459 +07:00 [INF] HTTP GET /api/guests responded 200 in 45.9930 ms
+2026-05-30 13:07:24.010 +07:00 [INF] HTTP OPTIONS /api/rateplans responded 204 in 0.0366 ms
+2026-05-30 13:07:24.046 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 31.6176 ms
+2026-05-30 13:07:25.625 +07:00 [INF] HTTP GET /api/guests responded 200 in 14.5917 ms
+2026-05-30 13:07:27.955 +07:00 [INF] HTTP GET /api/rateplans responded 200 in 12.6232 ms
+2026-05-30 13:07:30.484 +07:00 [INF] HTTP OPTIONS /api/promotions responded 204 in 0.0320 ms
+2026-05-30 13:07:30.540 +07:00 [INF] HTTP GET /api/promotions responded 200 in 52.3665 ms
+2026-05-30 13:07:31.721 +07:00 [INF] HTTP OPTIONS /api/staff responded 204 in 0.0388 ms
+2026-05-30 13:07:31.757 +07:00 [INF] GET /api/staff — 4 records
+2026-05-30 13:07:31.761 +07:00 [INF] HTTP GET /api/staff responded 200 in 36.7605 ms
+2026-05-30 13:07:54.042 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0302 ms
+2026-05-30 13:07:54.053 +07:00 [INF] POST /api/auth/login — Email: A@hotel.com
+2026-05-30 13:07:54.289 +07:00 [INF] User 'nhanvienA' logged in.
+2026-05-30 13:07:54.290 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 245.4284 ms
+2026-05-30 13:07:54.294 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0255 ms
+2026-05-30 13:07:54.298 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.2833 ms
+2026-05-30 13:07:54.347 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0304 ms
+2026-05-30 13:07:54.359 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.2543 ms
+2026-05-30 13:07:54.396 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0423 ms
+2026-05-30 13:07:54.396 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0190 ms
+2026-05-30 13:07:54.398 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.4731 ms
+2026-05-30 13:07:54.400 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.3900 ms
+2026-05-30 13:07:54.463 +07:00 [INF] SignalR Connected: UserId=4, Role=, ConnId=YBWI87_6fnVsUSAQcSEErg
+2026-05-30 13:07:54.475 +07:00 [INF] SignalR Connected: UserId=4, Role=, ConnId=c-RR7PZ8OrOsTfXf9EbQLg
+2026-05-30 13:08:03.640 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0498 ms
+2026-05-30 13:08:03.656 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 12.4854 ms
+2026-05-30 13:08:34.293 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0288 ms
+2026-05-30 13:08:34.306 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.0886 ms
+2026-05-30 13:08:38.193 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0309 ms
+2026-05-30 13:08:38.204 +07:00 [INF] POST /api/auth/login — Email: B@hotel.com
+2026-05-30 13:08:38.438 +07:00 [INF] User 'nhanvienB' logged in.
+2026-05-30 13:08:38.439 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 240.6587 ms
+2026-05-30 13:08:38.443 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0489 ms
+2026-05-30 13:08:38.447 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.3296 ms
+2026-05-30 13:08:38.505 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0290 ms
+2026-05-30 13:08:38.518 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.3915 ms
+2026-05-30 13:08:38.555 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0379 ms
+2026-05-30 13:08:38.555 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0126 ms
+2026-05-30 13:08:38.558 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.3657 ms
+2026-05-30 13:08:38.560 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 0.3750 ms
+2026-05-30 13:08:38.622 +07:00 [INF] SignalR Connected: UserId=3, Role=, ConnId=lVr7T1TgXxOb51s0i7J-8w
+2026-05-30 13:08:38.632 +07:00 [INF] SignalR Connected: UserId=3, Role=, ConnId=klOhEi9dX7JlD1Ww7mv8Kg
+2026-05-30 13:08:42.181 +07:00 [INF] HTTP OPTIONS /api/bookings responded 204 in 0.0322 ms
+2026-05-30 13:08:42.196 +07:00 [INF] GET /api/bookings — Page: 1, Filter: {"GuestName":null,"Status":null,"CheckInFrom":null,"CheckInTo":null,"Page":1,"PageSize":20,"$type":"BookingFilterDto"}
+2026-05-30 13:08:42.204 +07:00 [INF] HTTP GET /api/bookings responded 200 in 20.2882 ms
+2026-05-30 13:08:44.343 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0390 ms
+2026-05-30 13:08:44.359 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.1211 ms
+2026-05-30 13:09:04.303 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0298 ms
+2026-05-30 13:09:04.314 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 8.7709 ms
+2026-05-30 13:09:34.300 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0462 ms
+2026-05-30 13:09:34.312 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 8.5952 ms
+2026-05-30 13:10:04.307 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0370 ms
+2026-05-30 13:10:04.321 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.3646 ms
+2026-05-30 13:10:34.293 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0314 ms
+2026-05-30 13:10:34.305 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 8.6590 ms
+2026-05-30 13:11:04.298 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0350 ms
+2026-05-30 13:11:04.312 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.3341 ms
+2026-05-30 13:12:06.309 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0335 ms
+2026-05-30 13:12:06.323 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.7116 ms
+2026-05-30 13:13:06.296 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0292 ms
+2026-05-30 13:13:06.310 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.2600 ms
+2026-05-30 13:14:06.306 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0310 ms
+2026-05-30 13:14:06.320 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.8428 ms
+2026-05-30 13:15:06.301 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0333 ms
+2026-05-30 13:15:06.313 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 8.5909 ms
+2026-05-30 13:16:06.307 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0309 ms
+2026-05-30 13:16:06.322 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 11.9202 ms
+2026-05-30 13:17:06.299 +07:00 [INF] HTTP OPTIONS /api/housekeeping responded 204 in 0.0315 ms
+2026-05-30 13:17:06.313 +07:00 [INF] HTTP GET /api/housekeeping responded 200 in 10.8355 ms
+2026-05-30 13:18:52.023 +07:00 [INF] SignalR Disconnected: ConnId=X43JB1d3fu_zLIpv8cwyvw
+2026-05-30 13:18:52.024 +07:00 [INF] HTTP GET /hubs/room responded 101 in 709461.1343 ms
+2026-05-30 13:18:52.024 +07:00 [INF] SignalR Disconnected: ConnId=lVr7T1TgXxOb51s0i7J-8w
+2026-05-30 13:18:52.025 +07:00 [INF] SignalR Disconnected: ConnId=klOhEi9dX7JlD1Ww7mv8Kg
+2026-05-30 13:18:52.026 +07:00 [INF] SignalR Disconnected: ConnId=YBWI87_6fnVsUSAQcSEErg
+2026-05-30 13:18:52.026 +07:00 [INF] SignalR Disconnected: ConnId=c-RR7PZ8OrOsTfXf9EbQLg
+2026-05-30 13:18:52.026 +07:00 [INF] HTTP GET /hubs/room responded 101 in 613408.7391 ms
+2026-05-30 13:18:52.027 +07:00 [INF] HTTP GET /hubs/room responded 101 in 613396.4892 ms
+2026-05-30 13:18:52.028 +07:00 [INF] HTTP GET /hubs/room responded 101 in 657568.6830 ms
+2026-05-30 13:18:52.028 +07:00 [INF] HTTP GET /hubs/room responded 101 in 657554.5368 ms
