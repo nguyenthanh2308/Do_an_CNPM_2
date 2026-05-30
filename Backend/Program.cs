@@ -451,6 +451,100 @@ using (var scope = app.Services.CreateScope())
 
             await db.SaveChangesAsync();
         }
+
+        var capellaHotel = await db.Hotels.FirstOrDefaultAsync(h => h.Name == "Capella Hà Nội");
+        if (capellaHotel == null)
+        {
+            capellaHotel = new Hotel
+            {
+                Name = "Capella Hà Nội",
+                Address = "Quận Hoàn Kiếm, Hà Nội",
+                Phone = "02439878888",
+                Email = "info@capellahanoi.com",
+                Description = "Khách sạn cao cấp tiêu chuẩn 5 sao tại trung tâm Hà Nội.",
+                StarRating = 5,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+            await db.Hotels.AddAsync(capellaHotel);
+            await db.SaveChangesAsync();
+        }
+
+        var capellaRoomTypes = await db.RoomTypes.Where(rt => rt.HotelId == capellaHotel.HotelId).ToListAsync();
+        if (!capellaRoomTypes.Any())
+        {
+            var capellaSuite = new RoomType
+            {
+                HotelId = capellaHotel.HotelId,
+                Name = "Suite",
+                Description = "Phòng Suite sang trọng, đẳng cấp hoàng gia.",
+                MaxOccupancy = 4,
+                BasePrice = 3500000,
+                AreaSqm = 65,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+            var capellaDeluxe = new RoomType
+            {
+                HotelId = capellaHotel.HotelId,
+                Name = "Deluxe",
+                Description = "Phòng Deluxe trang nhã, ban công hướng phố.",
+                MaxOccupancy = 2,
+                BasePrice = 2200000,
+                AreaSqm = 45,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+            await db.RoomTypes.AddRangeAsync(capellaSuite, capellaDeluxe);
+            await db.SaveChangesAsync();
+            capellaRoomTypes = await db.RoomTypes.Where(rt => rt.HotelId == capellaHotel.HotelId).ToListAsync();
+        }
+
+        var capellaRooms = await db.Rooms.Where(r => r.HotelId == capellaHotel.HotelId).ToListAsync();
+        var capellaSuiteType = capellaRoomTypes.First(rt => rt.Name == "Suite");
+        var capellaDeluxeType = capellaRoomTypes.FirstOrDefault(rt => rt.Name == "Deluxe") ?? capellaSuiteType;
+
+        if (capellaRooms.Count < 2)
+        {
+            var hn201 = capellaRooms.FirstOrDefault(r => r.RoomNumber == "HN201");
+            if (hn201 == null)
+            {
+                hn201 = new Room { HotelId = capellaHotel.HotelId, RoomTypeId = capellaSuiteType.RoomTypeId, RoomNumber = "HN201", Floor = 2, Status = RoomStatus.Available, IsActive = true, CreatedAt = DateTime.UtcNow };
+                await db.Rooms.AddAsync(hn201);
+            }
+            else
+            {
+                hn201.IsActive = true;
+                hn201.Status = RoomStatus.Available;
+                db.Rooms.Update(hn201);
+            }
+
+            var hn202 = capellaRooms.FirstOrDefault(r => r.RoomNumber == "HN202");
+            if (hn202 == null)
+            {
+                hn202 = new Room { HotelId = capellaHotel.HotelId, RoomTypeId = capellaDeluxeType.RoomTypeId, RoomNumber = "HN202", Floor = 2, Status = RoomStatus.Available, IsActive = true, CreatedAt = DateTime.UtcNow };
+                await db.Rooms.AddAsync(hn202);
+            }
+            else
+            {
+                hn202.IsActive = true;
+                hn202.Status = RoomStatus.Available;
+                db.Rooms.Update(hn202);
+            }
+            await db.SaveChangesAsync();
+        }
+        else
+        {
+            foreach (var r in capellaRooms)
+            {
+                if (!r.IsActive)
+                {
+                    r.IsActive = true;
+                    db.Rooms.Update(r);
+                }
+            }
+            await db.SaveChangesAsync();
+        }
     }
 
     // Auto migrate chỉ bật trong Development.

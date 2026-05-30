@@ -40,7 +40,7 @@ namespace HotelManagement.Mappings
             // ══════════════════════════════════════════════════
             CreateMap<Hotel, HotelDto>()
                 .ForMember(dest => dest.TotalRooms,
-                           opt => opt.MapFrom(src => src.Rooms.Count))
+                           opt => opt.MapFrom(src => src.Rooms.Count(r => r.IsActive)))
                 .ForMember(dest => dest.AvailableRooms,
                            opt => opt.MapFrom(src => src.Rooms.Count(r => r.Status == RoomStatus.Available && r.IsActive)));
 
@@ -63,7 +63,7 @@ namespace HotelManagement.Mappings
                 .ForMember(dest => dest.HotelName,
                            opt => opt.MapFrom(src => src.Hotel != null ? src.Hotel.Name : string.Empty))
                 .ForMember(dest => dest.TotalRooms,
-                           opt => opt.MapFrom(src => src.Rooms.Count))
+                           opt => opt.MapFrom(src => src.Rooms.Count(r => r.IsActive)))
                 .ForMember(dest => dest.AvailableRooms,
                            opt => opt.MapFrom(src => src.Rooms.Count(r => r.Status == RoomStatus.Available && r.IsActive)))
                 .ForMember(dest => dest.Amenities,

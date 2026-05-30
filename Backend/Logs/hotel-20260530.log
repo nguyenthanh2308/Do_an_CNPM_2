@@ -1246,3 +1246,376 @@ HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng
 2026-05-30 11:50:16.791 +07:00 [INF] POST /api/auth/refresh
 2026-05-30 11:50:16.810 +07:00 [INF] Token refreshed for user 'testguest'.
 2026-05-30 11:50:16.811 +07:00 [INF] HTTP POST /api/auth/refresh responded 200 in 31.4967 ms
+2026-05-30 11:51:36.922 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-30 11:52:07.530 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-30 11:52:07.537 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 2.5769 ms
+2026-05-30 11:52:07.751 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-05-30 11:52:08.083 +07:00 [INF] User 'Test12' logged in.
+2026-05-30 11:52:08.115 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 564.2665 ms
+2026-05-30 11:52:08.122 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.5214 ms
+2026-05-30 11:52:08.164 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1024 ms
+2026-05-30 11:52:08.164 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0501 ms
+2026-05-30 11:52:08.170 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 43.2678 ms
+2026-05-30 11:52:08.340 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 168.7227 ms
+2026-05-30 11:52:08.348 +07:00 [INF] HTTP GET /api/rooms responded 200 in 173.7594 ms
+2026-05-30 11:52:18.219 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.1850 ms
+2026-05-30 11:52:18.232 +07:00 [INF] POST /api/auth/login — Email: admin@hotel.com
+2026-05-30 11:52:18.478 +07:00 [INF] User 'admin' logged in.
+2026-05-30 11:52:18.480 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 256.4894 ms
+2026-05-30 11:52:18.485 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0945 ms
+2026-05-30 11:52:18.491 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.7291 ms
+2026-05-30 11:52:18.566 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0726 ms
+2026-05-30 11:52:18.584 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.6583 ms
+2026-05-30 11:52:18.622 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.3650 ms
+2026-05-30 11:52:18.622 +07:00 [INF] HTTP OPTIONS /hubs/room/negotiate responded 204 in 0.0466 ms
+2026-05-30 11:52:18.636 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 8.3629 ms
+2026-05-30 11:52:18.636 +07:00 [INF] HTTP POST /hubs/room/negotiate responded 200 in 10.0645 ms
+2026-05-30 11:52:18.739 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=U00eAzuaz0_lRwzF6bpzDQ
+2026-05-30 11:52:18.740 +07:00 [INF] SignalR Connected: UserId=1, Role=, ConnId=UOp_2AvcyMkBen04CyvlqQ
+2026-05-30 11:52:31.471 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.1460 ms
+2026-05-30 11:52:31.519 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-31T00:00:00.0000000", CheckOut: "2026-06-01T00:00:00.0000000"
+2026-05-30 11:52:31.571 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 95.7063 ms
+2026-05-30 11:52:37.762 +07:00 [INF] HTTP OPTIONS /api/rooms/10 responded 204 in 0.0693 ms
+2026-05-30 11:52:37.812 +07:00 [INF] HTTP GET /api/rooms/10 responded 200 in 46.3143 ms
+2026-05-30 11:52:43.460 +07:00 [INF] HTTP OPTIONS /api/rooms/10 responded 204 in 0.0880 ms
+2026-05-30 11:52:43.477 +07:00 [INF] HTTP GET /api/rooms/10 responded 200 in 12.7639 ms
+2026-05-30 11:52:45.955 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0684 ms
+2026-05-30 11:52:45.974 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.8275 ms
+2026-05-30 11:52:56.462 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.2191 ms
+2026-05-30 11:52:56.483 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.3202 ms
+2026-05-30 11:52:56.488 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0824 ms
+2026-05-30 11:52:56.520 +07:00 [INF] HTTP GET /api/rooms responded 200 in 27.3773 ms
+2026-05-30 11:53:01.346 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0937 ms
+2026-05-30 11:53:01.368 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.2290 ms
+2026-05-30 11:53:11.716 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0609 ms
+2026-05-30 11:53:11.731 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-31T00:00:00.0000000", CheckOut: "2026-06-01T00:00:00.0000000"
+2026-05-30 11:53:11.736 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 15.7605 ms
+2026-05-30 11:53:14.346 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0535 ms
+2026-05-30 11:53:14.366 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.9935 ms
+2026-05-30 11:53:21.899 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0502 ms
+2026-05-30 11:53:21.919 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 14.6370 ms
+2026-05-30 11:53:21.925 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0949 ms
+2026-05-30 11:53:21.939 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.0368 ms
+2026-05-30 11:53:25.971 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0710 ms
+2026-05-30 11:53:25.987 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.4296 ms
+2026-05-30 11:53:28.878 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.0422 ms
+2026-05-30 11:53:32.935 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0399 ms
+2026-05-30 11:53:32.954 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.7408 ms
+2026-05-30 11:53:32.959 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0466 ms
+2026-05-30 11:53:32.976 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.5766 ms
+2026-05-30 11:53:41.157 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.0432 ms
+2026-05-30 11:53:41.174 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-31T00:00:00.0000000", CheckOut: "2026-06-01T00:00:00.0000000"
+2026-05-30 11:53:41.178 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 17.0167 ms
+2026-05-30 11:53:45.158 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0446 ms
+2026-05-30 11:53:45.179 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.0360 ms
+2026-05-30 11:53:55.346 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0887 ms
+2026-05-30 11:53:55.364 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 11.7619 ms
+2026-05-30 11:53:55.370 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0553 ms
+2026-05-30 11:53:55.386 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.0812 ms
+2026-05-30 11:53:57.128 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0394 ms
+2026-05-30 11:53:57.142 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.1875 ms
+2026-05-30 11:54:46.589 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0628 ms
+2026-05-30 11:54:46.613 +07:00 [INF] HTTP GET /api/rooms responded 200 in 16.2599 ms
+2026-05-30 11:55:00.148 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0649 ms
+2026-05-30 11:55:00.170 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.4092 ms
+2026-05-30 11:55:00.175 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0475 ms
+2026-05-30 11:55:00.194 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.2515 ms
+2026-05-30 11:55:06.308 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0527 ms
+2026-05-30 11:55:06.329 +07:00 [INF] HTTP GET /api/rooms responded 200 in 15.3816 ms
+2026-05-30 11:55:09.118 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0294 ms
+2026-05-30 11:55:09.138 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 12.0237 ms
+2026-05-30 11:55:09.143 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0308 ms
+2026-05-30 11:55:09.155 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.4081 ms
+2026-05-30 11:55:19.975 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0284 ms
+2026-05-30 11:55:19.990 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.3358 ms
+2026-05-30 11:55:24.099 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0314 ms
+2026-05-30 11:55:24.115 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.9807 ms
+2026-05-30 11:55:25.137 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.3298 ms
+2026-05-30 11:55:31.915 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0438 ms
+2026-05-30 11:55:31.930 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 10.3467 ms
+2026-05-30 11:55:31.935 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0339 ms
+2026-05-30 11:55:31.950 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.3352 ms
+2026-05-30 11:55:35.398 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.4074 ms
+2026-05-30 11:56:07.945 +07:00 [INF] SignalR Disconnected: ConnId=UOp_2AvcyMkBen04CyvlqQ
+2026-05-30 11:56:07.945 +07:00 [INF] SignalR Disconnected: ConnId=U00eAzuaz0_lRwzF6bpzDQ
+2026-05-30 11:56:07.947 +07:00 [INF] HTTP GET /hubs/room responded 101 in 229227.3388 ms
+2026-05-30 11:56:07.947 +07:00 [INF] HTTP GET /hubs/room responded 101 in 229208.9817 ms
+2026-05-30 11:59:09.009 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-30 12:00:14.636 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-05-30 12:00:14.645 +07:00 [INF] HTTP OPTIONS /api/auth/register responded 204 in 4.6067 ms
+2026-05-30 12:00:14.962 +07:00 [INF] POST /api/auth/register — Username: testuser
+2026-05-30 12:00:15.353 +07:00 [INF] User 'testuser' registered with role '"Guest"'.
+2026-05-30 12:00:15.396 +07:00 [INF] HTTP POST /api/auth/register responded 201 in 736.5386 ms
+2026-05-30 12:00:49.856 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.4713 ms
+2026-05-30 12:00:49.878 +07:00 [INF] POST /api/auth/login — Email: testuser@example.com
+2026-05-30 12:00:50.265 +07:00 [INF] User 'testuser' logged in.
+2026-05-30 12:00:50.272 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 412.5573 ms
+2026-05-30 12:00:50.278 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.1068 ms
+2026-05-30 12:00:50.326 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1365 ms
+2026-05-30 12:00:50.326 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0288 ms
+2026-05-30 12:00:50.340 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 58.8987 ms
+2026-05-30 12:00:50.470 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 139.5038 ms
+2026-05-30 12:00:50.478 +07:00 [INF] HTTP GET /api/rooms responded 200 in 146.0119 ms
+2026-05-30 12:01:07.337 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.2146 ms
+2026-05-30 12:01:07.364 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 24.4189 ms
+2026-05-30 12:01:07.372 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1164 ms
+2026-05-30 12:01:07.415 +07:00 [INF] HTTP GET /api/rooms responded 200 in 38.6318 ms
+2026-05-30 12:01:32.544 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1722 ms
+2026-05-30 12:01:32.564 +07:00 [INF] HTTP GET /api/rooms responded 200 in 16.7581 ms
+2026-05-30 12:01:52.220 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.2181 ms
+2026-05-30 12:01:52.225 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.5225 ms
+2026-05-30 12:01:56.705 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.2842 ms
+2026-05-30 12:01:56.769 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-05-31T00:00:00.0000000", CheckOut: "2026-06-01T00:00:00.0000000"
+2026-05-30 12:01:56.842 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 133.0125 ms
+2026-05-30 12:02:18.222 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1115 ms
+2026-05-30 12:02:18.239 +07:00 [INF] HTTP GET /api/rooms responded 200 in 13.8496 ms
+2026-05-30 12:02:57.278 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.3810 ms
+2026-05-30 12:02:57.292 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.5250 ms
+2026-05-30 12:03:09.756 +07:00 [INF] HTTP OPTIONS /api/hotels responded 204 in 0.0856 ms
+2026-05-30 12:03:09.818 +07:00 [INF] HTTP GET /api/hotels responded 200 in 60.1924 ms
+2026-05-30 12:03:16.279 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0981 ms
+2026-05-30 12:03:16.338 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 56.2081 ms
+2026-05-30 12:03:16.341 +07:00 [INF] HTTP OPTIONS /api/rooms/2 responded 204 in 0.1104 ms
+2026-05-30 12:03:16.355 +07:00 [INF] HTTP GET /api/rooms/2 responded 200 in 10.2931 ms
+2026-05-30 12:03:16.358 +07:00 [INF] HTTP OPTIONS /api/rooms/3 responded 204 in 0.0774 ms
+2026-05-30 12:03:16.372 +07:00 [INF] HTTP GET /api/rooms/3 responded 200 in 11.3756 ms
+2026-05-30 12:03:16.375 +07:00 [INF] HTTP OPTIONS /api/rooms/4 responded 204 in 0.1132 ms
+2026-05-30 12:03:16.389 +07:00 [INF] HTTP GET /api/rooms/4 responded 200 in 10.9467 ms
+2026-05-30 12:03:16.392 +07:00 [INF] HTTP OPTIONS /api/rooms/5 responded 204 in 0.0875 ms
+2026-05-30 12:03:16.410 +07:00 [INF] HTTP GET /api/rooms/5 responded 200 in 15.2175 ms
+2026-05-30 12:03:16.416 +07:00 [INF] HTTP OPTIONS /api/rooms/6 responded 204 in 0.1630 ms
+2026-05-30 12:03:16.433 +07:00 [ERR] HTTP GET /api/rooms/6 responded 500 in 13.2680 ms
+HotelManagement.Exceptions.AppException: Room #6 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.453 +07:00 [WRN] AppException [404]: Room #6 không tìm thấy.
+2026-05-30 12:03:16.462 +07:00 [INF] HTTP OPTIONS /api/rooms/7 responded 204 in 0.0819 ms
+2026-05-30 12:03:16.475 +07:00 [ERR] HTTP GET /api/rooms/7 responded 500 in 9.2591 ms
+HotelManagement.Exceptions.AppException: Room #7 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.480 +07:00 [WRN] AppException [404]: Room #7 không tìm thấy.
+2026-05-30 12:03:16.484 +07:00 [INF] HTTP OPTIONS /api/rooms/8 responded 204 in 0.0807 ms
+2026-05-30 12:03:16.497 +07:00 [ERR] HTTP GET /api/rooms/8 responded 500 in 10.0381 ms
+HotelManagement.Exceptions.AppException: Room #8 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.501 +07:00 [WRN] AppException [404]: Room #8 không tìm thấy.
+2026-05-30 12:03:16.504 +07:00 [INF] HTTP OPTIONS /api/rooms/9 responded 204 in 0.0505 ms
+2026-05-30 12:03:16.516 +07:00 [ERR] HTTP GET /api/rooms/9 responded 500 in 10.6191 ms
+HotelManagement.Exceptions.AppException: Room #9 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.521 +07:00 [WRN] AppException [404]: Room #9 không tìm thấy.
+2026-05-30 12:03:16.524 +07:00 [INF] HTTP OPTIONS /api/rooms/10 responded 204 in 0.0923 ms
+2026-05-30 12:03:16.537 +07:00 [INF] HTTP GET /api/rooms/10 responded 200 in 9.9078 ms
+2026-05-30 12:03:16.541 +07:00 [INF] HTTP OPTIONS /api/rooms/11 responded 204 in 0.1185 ms
+2026-05-30 12:03:16.553 +07:00 [ERR] HTTP GET /api/rooms/11 responded 500 in 9.3288 ms
+HotelManagement.Exceptions.AppException: Room #11 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.557 +07:00 [WRN] AppException [404]: Room #11 không tìm thấy.
+2026-05-30 12:03:16.561 +07:00 [INF] HTTP OPTIONS /api/rooms/12 responded 204 in 0.0753 ms
+2026-05-30 12:03:16.573 +07:00 [ERR] HTTP GET /api/rooms/12 responded 500 in 9.6071 ms
+HotelManagement.Exceptions.AppException: Room #12 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:03:16.578 +07:00 [WRN] AppException [404]: Room #12 không tìm thấy.
+2026-05-30 12:03:21.582 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0635 ms
+2026-05-30 12:03:21.596 +07:00 [INF] HTTP GET /api/rooms responded 200 in 11.6361 ms
+2026-05-30 12:03:29.050 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.1577 ms
+2026-05-30 12:03:29.065 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.5439 ms
+2026-05-30 12:03:37.999 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0545 ms
+2026-05-30 12:03:38.002 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.3921 ms
+2026-05-30 12:03:38.046 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0536 ms
+2026-05-30 12:03:38.047 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0570 ms
+2026-05-30 12:03:38.059 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.0271 ms
+2026-05-30 12:03:38.059 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 10.1063 ms
+2026-05-30 12:03:53.369 +07:00 [INF] HTTP OPTIONS /api/auth/logout responded 204 in 0.1615 ms
+2026-05-30 12:03:53.396 +07:00 [INF] POST /api/auth/logout — UserId: 7
+2026-05-30 12:03:53.422 +07:00 [INF] RefreshToken revoked during logout.
+2026-05-30 12:03:53.424 +07:00 [INF] HTTP POST /api/auth/logout responded 200 in 52.5105 ms
+2026-05-30 12:04:01.571 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0691 ms
+2026-05-30 12:04:01.583 +07:00 [INF] POST /api/auth/login — Email: admin@gmail.com
+2026-05-30 12:04:01.587 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 13.5298 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng. không tìm thấy.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 82
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:04:01.594 +07:00 [WRN] AppException [404]: Email hoặc mật khẩu không đúng. không tìm thấy.
+2026-05-30 12:04:01.606 +07:00 [INF] POST /api/auth/login — Email: admin@gmail.com
+2026-05-30 12:04:01.609 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 10.7960 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng. không tìm thấy.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 82
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:04:01.612 +07:00 [WRN] AppException [404]: Email hoặc mật khẩu không đúng. không tìm thấy.
+2026-05-30 12:04:01.623 +07:00 [INF] POST /api/auth/login — Email: admin@example.com
+2026-05-30 12:04:01.626 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 11.1406 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng. không tìm thấy.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 82
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:04:01.630 +07:00 [WRN] AppException [404]: Email hoặc mật khẩu không đúng. không tìm thấy.
+2026-05-30 12:04:01.642 +07:00 [INF] POST /api/auth/login — Email: admin@example.com
+2026-05-30 12:04:01.645 +07:00 [ERR] HTTP POST /api/auth/login responded 500 in 10.8343 ms
+HotelManagement.Exceptions.AppException: Email hoặc mật khẩu không đúng. không tìm thấy.
+   at HotelManagement.Services.Implementations.AuthService.LoginAsync(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Services\Implementations\AuthService.cs:line 82
+   at HotelManagement.Controllers.AuthController.Login(LoginRequestDto dto) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\AuthController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:04:01.649 +07:00 [WRN] AppException [404]: Email hoặc mật khẩu không đúng. không tìm thấy.
+2026-05-30 12:04:01.683 +07:00 [INF] HTTP POST /api/auth/login responded 400 in 28.3268 ms
+2026-05-30 12:04:01.695 +07:00 [INF] HTTP POST /api/auth/login responded 400 in 7.8672 ms
+2026-05-30 12:04:09.399 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 0.0841 ms
+2026-05-30 12:04:09.408 +07:00 [INF] POST /api/auth/login — Email: testuser@example.com
+2026-05-30 12:04:09.656 +07:00 [INF] User 'testuser' logged in.
+2026-05-30 12:04:09.657 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 255.9218 ms
+2026-05-30 12:11:04.688 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0848 ms
+2026-05-30 12:11:04.693 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 1.3497 ms
+2026-05-30 12:11:04.717 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0581 ms
+2026-05-30 12:11:04.742 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 22.7291 ms
+2026-05-30 12:11:04.746 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0644 ms
+2026-05-30 12:11:04.759 +07:00 [INF] HTTP GET /api/rooms responded 200 in 10.1266 ms
+2026-05-30 12:11:35.532 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0454 ms
+2026-05-30 12:11:35.547 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.2064 ms
+2026-05-30 12:12:24.801 +07:00 [INF] HTTP GET /api/hotels responded 200 in 14.7245 ms
+2026-05-30 12:12:28.680 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.2174 ms
+2026-05-30 12:12:34.108 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0335 ms
+2026-05-30 12:12:34.123 +07:00 [INF] HTTP GET /api/rooms responded 200 in 12.7631 ms
+2026-05-30 12:12:39.628 +07:00 [INF] HTTP GET /api/rooms/10 responded 200 in 11.8348 ms
+2026-05-30 12:12:50.914 +07:00 [ERR] HTTP GET /api/rooms/6 responded 500 in 8.7050 ms
+HotelManagement.Exceptions.AppException: Room #6 không tìm thấy.
+   at HotelManagement.Controllers.RoomsController.GetById(Int64 id) in C:\Users\MSI\source\Do_An_2\Backend\Controllers\RoomsController.cs:line 66
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-30 12:12:50.918 +07:00 [WRN] AppException [404]: Room #6 không tìm thấy.
+2026-05-30 12:13:59.142 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0906 ms
+2026-05-30 12:13:59.144 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.2735 ms
+2026-05-30 12:17:43.321 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.0388 ms
+2026-05-30 12:17:43.324 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 0.2779 ms
+2026-05-30 12:17:43.376 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0399 ms
+2026-05-30 12:17:43.398 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 19.1705 ms
+2026-05-30 12:17:43.406 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0385 ms
+2026-05-30 12:17:43.418 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.5591 ms
+2026-05-30 12:17:54.012 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0718 ms
+2026-05-30 12:17:54.025 +07:00 [INF] HTTP GET /api/rooms responded 200 in 9.2459 ms
