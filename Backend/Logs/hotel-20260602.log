@@ -1,0 +1,35 @@
+2026-06-02 15:21:27.317 +07:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-06-02 15:21:34.132 +07:00 [WRN] Failed to determine the https port for redirect.
+2026-06-02 15:21:34.139 +07:00 [INF] HTTP OPTIONS /api/auth/login responded 204 in 3.0670 ms
+2026-06-02 15:21:34.397 +07:00 [INF] POST /api/auth/login — Email: Test12@example.com
+2026-06-02 15:21:34.727 +07:00 [INF] User 'Test12' logged in.
+2026-06-02 15:21:34.761 +07:00 [INF] HTTP POST /api/auth/login responded 200 in 605.4591 ms
+2026-06-02 15:21:34.768 +07:00 [INF] HTTP OPTIONS /api/session/runtime-id responded 204 in 0.5063 ms
+2026-06-02 15:21:34.811 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.0770 ms
+2026-06-02 15:21:34.812 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0622 ms
+2026-06-02 15:21:34.829 +07:00 [INF] HTTP GET /api/session/runtime-id responded 200 in 57.5426 ms
+2026-06-02 15:21:34.986 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 168.2218 ms
+2026-06-02 15:21:34.994 +07:00 [INF] HTTP GET /api/rooms responded 200 in 175.1965 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/b5d869f5f0c04df6a9e0188b950ca814.jpg responded 304 in 4.8390 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/14b8cbed619f4a488c5594f3366b28ac.jpg responded 304 in 4.8326 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/d8168b4154074accb65e74b0ec467516.jpg responded 304 in 4.8252 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/873f58b9c0fa44c9a3b84aa270ac10ac.jpg responded 304 in 4.8288 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/5fb7bad542924a3689df459d3b6bd10f.jpg responded 304 in 4.8172 ms
+2026-06-02 15:21:35.022 +07:00 [INF] HTTP GET /uploads/202605/42a199d928fb4c41b85a1c2bf1c2f328.jpg responded 304 in 0.4087 ms
+2026-06-02 15:21:35.028 +07:00 [INF] HTTP GET /uploads/202605/d3db65df8a0d4c07a5d718fc8534f3cf.jpg responded 304 in 0.3070 ms
+2026-06-02 15:21:43.085 +07:00 [INF] HTTP OPTIONS /api/guest-account/profile responded 204 in 0.1251 ms
+2026-06-02 15:21:43.228 +07:00 [INF] HTTP GET /api/guest-account/profile responded 200 in 137.1483 ms
+2026-06-02 15:21:54.072 +07:00 [INF] HTTP OPTIONS /api/guest-account/profile responded 204 in 0.1305 ms
+2026-06-02 15:21:54.099 +07:00 [INF] HTTP GET /api/guest-account/profile responded 200 in 19.3030 ms
+2026-06-02 15:21:58.827 +07:00 [INF] HTTP OPTIONS /api/guest-account/profile responded 204 in 0.2774 ms
+2026-06-02 15:21:58.894 +07:00 [INF] HTTP PUT /api/guest-account/profile responded 200 in 62.7492 ms
+2026-06-02 15:21:58.926 +07:00 [INF] HTTP GET /api/guest-account/profile responded 200 in 15.9698 ms
+2026-06-02 15:22:04.211 +07:00 [INF] HTTP OPTIONS /api/hotels/all responded 204 in 0.1141 ms
+2026-06-02 15:22:04.212 +07:00 [INF] HTTP OPTIONS /api/rooms responded 204 in 0.0536 ms
+2026-06-02 15:22:04.231 +07:00 [INF] HTTP GET /api/hotels/all responded 200 in 14.2717 ms
+2026-06-02 15:22:04.231 +07:00 [INF] HTTP GET /api/rooms responded 200 in 14.0036 ms
+2026-06-02 15:22:09.075 +07:00 [INF] HTTP OPTIONS /api/bookings/available-rooms responded 204 in 0.2206 ms
+2026-06-02 15:22:09.130 +07:00 [INF] GET /api/bookings/available-rooms — CheckIn: "2026-06-03T00:00:00.0000000", CheckOut: "2026-06-04T00:00:00.0000000"
+2026-06-02 15:22:09.189 +07:00 [INF] HTTP GET /api/bookings/available-rooms responded 200 in 109.3345 ms
+2026-06-02 15:22:12.306 +07:00 [INF] HTTP OPTIONS /api/rooms/1 responded 204 in 0.0804 ms
+2026-06-02 15:22:12.365 +07:00 [INF] HTTP GET /api/rooms/1 responded 200 in 54.6928 ms
