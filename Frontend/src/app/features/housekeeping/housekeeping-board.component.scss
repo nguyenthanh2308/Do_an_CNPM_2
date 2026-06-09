@@ -452,3 +452,114 @@
   0%, 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
   50%       { box-shadow: 0 0 0 4px rgba(251,191,36,0.15); }
 }
+
+// ── Assignee unassigned style ─────────────────────────────────────────────
+.assignee.unassigned {
+  color: #f59e0b;
+  font-style: italic;
+}
+
+// ── Assign Section ─────────────────────────────────────────────────────────
+.assign-section {
+  margin-bottom: 10px;
+}
+
+.btn-assign-toggle {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 9px;
+  border: 1px dashed #7c3aed;
+  background: rgba(124,58,237,0.06);
+  color: #7c3aed;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(124,58,237,0.14);
+  }
+
+  &.active {
+    background: rgba(124,58,237,0.15);
+    border-style: solid;
+  }
+}
+
+.assign-dropdown {
+  margin-top: 8px;
+  padding: 10px;
+  background: #f8f7ff;
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .staff-select {
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid #c4b5fd;
+    background: #fff;
+    color: #333;
+    font-size: 0.82rem;
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+    }
+  }
+
+  .assign-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-assign-confirm {
+    flex: 1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      background: #6d28d9;
+      box-shadow: 0 4px 12px rgba(124,58,237,0.4);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-assign-cancel {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #888;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+
+  .no-staff-hint {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #f59e0b;
+    text-align: center;
+  }
+}

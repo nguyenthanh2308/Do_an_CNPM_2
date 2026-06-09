@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ApiResponse, HousekeepingTaskDto, TaskStatus, TaskType, TaskPriority } from '../models/models';
+import { ApiResponse, HousekeepingTaskDto, TaskStatus, TaskType, TaskPriority, PagedResult } from '../models/models';
 
 export interface CreateHousekeepingTaskDto {
   roomId: number;
@@ -18,9 +18,19 @@ export interface UpdateTaskStatusDto {
   notes?: string;
 }
 
+export interface HousekeepingStaffDto {
+  userId: number;
+  username: string;
+  fullName?: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+}
+
 @Injectable({ providedIn: 'root' })
 export class HousekeepingService {
   private readonly APIUrl = `${environment.apiUrl}/housekeeping`;
+  private readonly StaffUrl = `${environment.apiUrl}/staff`;
 
   constructor(private http: HttpClient) {}
 
@@ -40,7 +50,14 @@ export class HousekeepingService {
     return this.http.put<ApiResponse<HousekeepingTaskDto>>(`${this.APIUrl}/${taskId}/status`, dto);
   }
 
-  assignTask(taskId: number, userId: number): Observable<ApiResponse<any>> {
-    return this.http.patch<ApiResponse<any>>(`${this.APIUrl}/${taskId}/assign`, { userId });
+  /** Phân công task cho nhân viên (userId = null để hủy phân công) */
+  assignTask(taskId: number, userId: number | null): Observable<ApiResponse<HousekeepingTaskDto>> {
+    return this.http.patch<ApiResponse<HousekeepingTaskDto>>(`${this.APIUrl}/${taskId}/assign`, { userId });
+  }
+
+  /** Lấy danh sách nhân viên có role Housekeeping (và Manager) để phân công */
+  getHousekeepingStaff(): Observable<ApiResponse<PagedResult<HousekeepingStaffDto>>> {
+    const params = new HttpParams().set('role', 'Housekeeping').set('pageSize', '100');
+    return this.http.get<ApiResponse<PagedResult<HousekeepingStaffDto>>>(this.StaffUrl, { params });
   }
 }

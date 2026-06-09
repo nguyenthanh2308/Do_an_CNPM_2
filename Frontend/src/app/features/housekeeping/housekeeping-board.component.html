@@ -107,10 +107,50 @@
 
           <!-- Assignee & Time -->
           <div class="card-meta">
-            <span class="assignee">
+            <span class="assignee" [class.unassigned]="!task.assignedToUserName">
               👤 {{ task.assignedToUserName || 'Chưa phân công' }}
             </span>
             <span class="time-ago">{{ getTimeAgo(task.createdAt) }}</span>
+          </div>
+
+          <!-- ── Assign Panel (Admin/Manager only) ────────────────── -->
+          <div *ngIf="canAssign() && task.status !== 'Completed' && task.status !== 'Cancelled'" class="assign-section">
+
+            <!-- Nút mở dropdown -->
+            <button
+              class="btn-assign-toggle"
+              (click)="toggleAssignDropdown(task)"
+              [class.active]="assigningTaskId === task.taskId"
+            >
+              👥 {{ assigningTaskId === task.taskId ? 'Đóng' : (task.assignedToUserId ? 'Đổi nhân viên' : 'Phân công') }}
+            </button>
+
+            <!-- Dropdown chọn nhân viên -->
+            <div *ngIf="assigningTaskId === task.taskId" class="assign-dropdown">
+              <select
+                class="staff-select"
+                [(ngModel)]="selectedStaffMap[task.taskId]"
+                [id]="'staff-select-' + task.taskId"
+              >
+                <option [ngValue]="null">— Hủy phân công —</option>
+                <option *ngFor="let staff of staffList" [ngValue]="staff.userId">
+                  {{ getStaffDisplayName(staff) }}
+                </option>
+              </select>
+              <div class="assign-actions">
+                <button
+                  class="btn-assign-confirm"
+                  (click)="confirmAssign(task)"
+                  [disabled]="assigningInProgress"
+                >
+                  {{ assigningInProgress ? '...' : '✔ Xác nhận' }}
+                </button>
+                <button class="btn-assign-cancel" (click)="toggleAssignDropdown(task)">✕</button>
+              </div>
+              <p *ngIf="staffList.length === 0" class="no-staff-hint">
+                ⚠️ Chưa có nhân viên Housekeeping. Tạo tài khoản tại mục Nhân viên.
+              </p>
+            </div>
           </div>
 
           <!-- ── Actions ────────────────────────────────────────────── -->

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,8 +15,9 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatBadgeModule } from '@angular/material/badge';
 import { Subject, takeUntil, interval } from 'rxjs';
 
-import { HousekeepingService, CreateHousekeepingTaskDto } from '../../core/services/housekeeping.service';
+import { HousekeepingService, CreateHousekeepingTaskDto, HousekeepingStaffDto } from '../../core/services/housekeeping.service';
 import { SignalRService } from '../../core/services/signalr.service';
+import { AuthService } from '../../core/services/auth.service';
 import { HousekeepingTaskDto, TaskStatus, TaskType, TaskPriority } from '../../core/models/models';
 
 @Component({
@@ -23,6 +25,7 @@ import { HousekeepingTaskDto, TaskStatus, TaskType, TaskPriority } from '../../c
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     MatButtonModule,
@@ -44,6 +47,21 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
   isLoading = true;
   allTasks: HousekeepingTaskDto[] = [];
   filterForm: FormGroup;
+
+  /** Danh sách nhân viên Housekeeping để phân công */
+  staffList: HousekeepingStaffDto[] = [];
+
+  /** taskId đang mở dropdown phân công */
+  assigningTaskId: number | null = null;
+
+  /** Map taskId → userId đang được chọn trong dropdown */
+  selectedStaffMap: Record<number, number | null> = {};
+
+  /** Đang gọi API assign */
+  assigningInProgress = false;
+
+  /** Role của user hiện tại */
+  currentUserRole: string = '';
 
   private destroy$ = new Subject<void>();
 
@@ -71,6 +89,7 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
   constructor(
     private housekeepingService: HousekeepingService,
     private signalRService: SignalRService,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
   ) {
@@ -78,7 +97,9 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.currentUserRole = this.authService.getCurrentUser()?.role ?? '';
     this.loadTasks();
+    this.loadStaff();
 
     // Auto-refresh every 30s
     interval(30000).pipe(takeUntil(this.destroy$)).subscribe(() => this.loadTasks(false));
@@ -118,9 +139,21 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: () => {
-          // Demo data nếu API chưa sẵn sàng
           this.allTasks = this.getDemoTasks();
           this.isLoading = false;
+        }
+      });
+  }
+
+  loadStaff(): void {
+    this.housekeepingService.getHousekeepingStaff()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.staffList = res.data?.data ?? [];
+        },
+        error: () => {
+          this.staffList = [];
         }
       });
   }
@@ -133,6 +166,63 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
 
   getColumnCount(status: TaskStatus): number {
     return this.getTasksByStatus(status).length;
+  }
+
+  // ── Phân công nhân viên ─────────────────────────────────────────────────
+
+  /** Chỉ Admin/Manager mới thấy nút phân công */
+  canAssign(): boolean {
+    return this.currentUserRole === 'Admin' || this.currentUserRole === 'Manager';
+  }
+
+  /** Mở/đóng dropdown phân công cho 1 task */
+  toggleAssignDropdown(task: HousekeepingTaskDto): void {
+    if (this.assigningTaskId === task.taskId) {
+      this.assigningTaskId = null;
+    } else {
+      this.assigningTaskId = task.taskId;
+      this.selectedStaffMap[task.taskId] = task.assignedToUserId ?? null;
+    }
+  }
+
+  /** Xác nhận phân công */
+  confirmAssign(task: HousekeepingTaskDto): void {
+    const userId = this.selectedStaffMap[task.taskId] ?? null;
+    this.assigningInProgress = true;
+
+    this.housekeepingService.assignTask(task.taskId, userId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.assigningInProgress = false;
+          this.assigningTaskId = null;
+
+          // Cập nhật task trực tiếp trong danh sách
+          const idx = this.allTasks.findIndex(t => t.taskId === task.taskId);
+          if (idx !== -1) {
+            this.allTasks[idx] = res.data;
+          }
+
+          const staffName = userId
+            ? (this.staffList.find(s => s.userId === userId)?.fullName || 'nhân viên')
+            : null;
+
+          this.snackBar.open(
+            userId
+              ? `✅ Đã phân công phòng ${task.roomNumber} cho ${staffName}`
+              : `↩️ Đã hủy phân công phòng ${task.roomNumber}`,
+            'Đóng', { duration: 4000, panelClass: 'snack-success' }
+          );
+        },
+        error: (err: { error?: { errors?: string[] } }) => {
+          this.assigningInProgress = false;
+          this.showError(err?.error?.errors?.[0] ?? 'Phân công thất bại');
+        }
+      });
+  }
+
+  getStaffDisplayName(staff: HousekeepingStaffDto): string {
+    return staff.fullName ? `${staff.fullName} (${staff.username})` : staff.username;
   }
 
   // ── Status transition ───────────────────────────────────────────────────
@@ -158,7 +248,6 @@ export class HousekeepingBoardComponent implements OnInit, OnDestroy {
   }
 
   confirmMaintenanceDone(task: HousekeepingTaskDto): void {
-    // Mark task completed AND note maintenance done
     this.housekeepingService.updateStatus(task.taskId, {
       status: 'Completed',
       notes: (task.notes || '') + ' [Bảo trì hoàn thành - phòng sẵn sàng]'

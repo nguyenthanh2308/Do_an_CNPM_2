@@ -351,6 +351,64 @@ namespace HotelManagement.Controllers
                 $"Task #{id}: {oldStatus} → {newStatus}.");
         }
 
+        /// <summary>
+        /// Phân công task cho nhân viên Housekeeping
+        /// </summary>
+        /// <remarks>Roles: Admin, Manager</remarks>
+        [HttpPatch("{id:long}/assign")]
+        [Authorize(Roles = "Admin,Manager")]
+        [ProducesResponseType(typeof(ApiResponse<HousekeepingTaskDto>), 200)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 400)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Assign(long id, [FromBody] AssignTaskDto dto)
+        {
+            var task = await _context.HousekeepingTasks
+                .Include(ht => ht.Room).ThenInclude(r => r.RoomType)
+                .Include(ht => ht.AssignedToUser)
+                .Include(ht => ht.CreatedByUser)
+                .FirstOrDefaultAsync(ht => ht.TaskId == id)
+                ?? throw AppException.NotFound($"HousekeepingTask #{id}");
+
+            if (task.Status == HousekeepingTaskStatus.Completed || task.Status == HousekeepingTaskStatus.Cancelled)
+                throw new AppException($"Không thể phân công task đã ở trạng thái '{task.Status}'.");
+
+            if (dto.UserId.HasValue)
+            {
+                var assignee = await _context.Users.FindAsync(dto.UserId.Value)
+                    ?? throw AppException.NotFound($"Nhân viên #{dto.UserId.Value} không tồn tại.");
+
+                if (assignee.Role != UserRole.Housekeeping && assignee.Role != UserRole.Manager)
+                    throw new AppException("Chỉ có thể phân công cho nhân viên có role Housekeeping hoặc Manager.");
+
+                if (!assignee.IsActive)
+                    throw new AppException("Tài khoản nhân viên này đã bị vô hiệu hóa.");
+
+                task.AssignedToUserId = dto.UserId.Value;
+                _logger.LogInformation(
+                    "Task #{TaskId} assigned to User #{UserId} by User #{AssignedBy}.",
+                    id, dto.UserId.Value, GetCurrentUserId());
+            }
+            else
+            {
+                // Bỏ phân công (unassign)
+                task.AssignedToUserId = null;
+                _logger.LogInformation("Task #{TaskId} unassigned by User #{AssignedBy}.", id, GetCurrentUserId());
+            }
+
+            task.UpdatedAt = DateTime.UtcNow;
+            _context.HousekeepingTasks.Update(task);
+            await _context.SaveChangesAsync();
+
+            var updated = await _context.HousekeepingTasks
+                .Include(ht => ht.Room).ThenInclude(r => r.RoomType)
+                .Include(ht => ht.AssignedToUser)
+                .Include(ht => ht.CreatedByUser)
+                .FirstAsync(ht => ht.TaskId == id);
+
+            return Success(_mapper.Map<HousekeepingTaskDto>(updated),
+                dto.UserId.HasValue ? "Phân công thành công." : "Đã hủy phân công.");
+        }
+
         // ════════════════════════════════════════════════════════════════════
         // PRIVATE HELPERS
         // ════════════════════════════════════════════════════════════════════
@@ -370,5 +428,12 @@ namespace HotelManagement.Controllers
                 throw new AppException(
                     $"Không thể chuyển trạng thái từ '{current}' sang '{next}'.");
         }
+    }
+
+    // ── DTO ──────────────────────────────────────────────────────────────────
+    public class AssignTaskDto
+    {
+        /// <summary>UserId của nhân viên được giao task. Null = hủy phân công.</summary>
+        public long? UserId { get; set; }
     }
 }
